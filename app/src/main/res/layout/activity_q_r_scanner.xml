@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Salesman.QR.QRScanner">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/QRScanner_back_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/QRScanner_backbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24_white" />
+
+                    <TextView
+                        android:id="@+id/textView67"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/back"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <EditText
+                    android:id="@+id/QRScanner_carodometer_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:background="@null"
+                    android:drawableStart="@mipmap/milage"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/please_add_current_odometer"
+                    android:inputType="number"
+                    android:textColor="#ffffff"
+                    android:textColorHint="#c3c3c3" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView2115"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:src="@mipmap/product_qty" />
+
+                    <Spinner
+                        android:id="@+id/QRScanner_caroil_SP"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight=".1"
+                        android:backgroundTint="#ffffff"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView1115"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:src="@mipmap/quantity" />
+
+                    <Spinner
+                        android:id="@+id/QRScanner_carquantity_SP"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight=".1"
+                        android:backgroundTint="#ffffff"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/darker_gray" />
+                <!-- <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/QRScanner_caroil_SP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/QRScanner_carquantity_SP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <CheckBox
+                    android:id="@+id/QRScanner_checkboxairfilter_CB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="#ffffff"
+                    android:buttonTint="#ffffff"
+                    android:text="@string/air_filter"
+                    android:textColor="#ffffff" />
+
+                <CheckBox
+                    android:id="@+id/QRScanner_checkboxoilfilter_CB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="#ffffff"
+                    android:buttonTint="#ffffff"
+                    android:text="@string/oil_filter"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/scan_qr"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <com.budiyev.android.codescanner.CodeScannerView
+                    android:id="@+id/scanner_view"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    app:autoFocusButtonColor="@android:color/white"
+                    app:autoFocusButtonVisible="true"
+                    app:flashButtonColor="@android:color/white"
+                    app:flashButtonVisible="true"
+                    app:frameAspectRatioHeight="1"
+                    app:frameAspectRatioWidth="1"
+                    app:frameColor="@android:color/white"
+                    app:frameCornersRadius="0dp"
+                    app:frameCornersSize="20dp"
+                    app:frameSize="0.5"
+                    app:frameThickness="2dp"
+                    app:maskColor="#77000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/Total_Liters"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/QRScanner_totalliters_SP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/Discounted_Quantity"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/QRScanner_discountedqty_SP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="22sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <Button
+                    android:id="@+id/QRScanner_finish_Btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_corner_btn_orange"
+                    android:text="@string/Finish"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

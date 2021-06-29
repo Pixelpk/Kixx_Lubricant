@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#E3580B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#E3580B</color>
+    <color name="dark">#585858</color>
+    <color name="gray_color">#C6C6C6</color>
+    <color name="color_green">#2CAE66</color>
+
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+
+
+
+    <color name="sekizbit_switch_background">#585858</color>
+    <color name="sekizbit_switch_stroke">#585858</color>
+    <color name="sekizbit_switch_thumb">#ffffff</color>
+
+    <color name="sekizbit_switch_text_selected">@android:color/black</color>
+    <color name="sekizbit_switch_text_unselected">@android:color/white</color>
+
+</resources>

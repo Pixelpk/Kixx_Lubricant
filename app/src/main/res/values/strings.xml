@@ -1,0 +1,1095 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Kixx Lubricant</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notifications_admin_channel_name">Global channel</string>
+    <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string-array name="UserProfile_Gender">
+
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+
+    </string-array>
+
+    <string name="male_gender">Male</string>
+    <string name="female_gender">Female</string>
+
+
+    <string-array name="oil_qty">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+
+    <string name="how_are_we_doing">How was your experience with us?</string>
+    <string name="Please_give_us_your_feedback">Give us your feedback</string>
+    <string name="eligible_for_our_next_promotion">Fill this to become eligible for our next promotion</string>
+    <string name="Done">Done</string>
+    <string name="Submit">Submit</string>
+    <string name="Forgot">Forgot</string>
+    <string name="Change_password">Change Password</string>
+    <string name="Create">Create</string>
+    <string name="Confirm">Confirm</string>
+    <string name="About_us">About us</string>
+    <string name="Car_number">Car number</string>
+    <string name="brand">brand</string>
+    <string name="model">model</string>
+    <string name="Add">Add</string>
+    <string name="Number_plate">Number plate</string>
+    <string name="Current_odometer">Car Current Mileage</string>
+    <string name="Profile">Profile</string>
+    <string name="Copy_Referral_code">Referral code</string>
+    <string name="Contact_us">Write to us</string>
+    <string name="Tutorials">Tutorials</string>
+    <string name="Latest_marketing">Latest marketing</string>
+    <string name="Product_portfolio">Product Line Up</string>
+    <string name="Products">Products</string>
+    <string name="Signout">Sign Out</string>
+    <string name="Home">Home</string>
+    <string name="Notifications">Notifications</string>
+    <string name="Settings">Settings</string>
+    <string name="Update">Update</string>
+    <string name="Name">Name</string>
+    <string name="City_email">City</string>
+    <string name="Mobile">Mobile</string>
+    <string name="Select_Gender">Select Gender</string>
+    <string name="Other">Other</string>
+    <string name="Next">Next</string>
+    <string name="Mobile_number">Mobile number (05xxxxxxxx)</string>
+    <string name="Sign_in">Sign in</string>
+    <string name="User">User</string>
+    <string name="salesman">Shopkeeper</string>
+    <string name="Do_you_have_a_referral_code">Do you have a referral code?</string>
+    <string name="Become_a_seller">Become a Seller?</string>
+    <string name="are_you_a_salesman">Are you a Seller?</string>
+    <string name="are_you_a_user">Are you a User?</string>
+    <string name="request">Request</string>
+
+    <!-- <string name="password">Password (Minimum 3 characters)</string>
+    <string name="forgot_password">Forgot Password?</string>
+ -->
+    <string name="sign_up">Sign Up</string>
+
+    <string name="feedback">Feedback &amp; suggestions</string>
+    <string name="latest_marketing_promotions">Latest Marketing Promotions</string>
+    <!--   <string name="select_car">Select Car</string>
+ -->
+    <string name="user_name">Username</string>
+    <string name="user_loyality">loyality points</string>
+
+    <!--   <string name="car_history">Car History</string>
+ -->
+    <string name="notification_title">Notification TItle</string>
+    <string name="notification_desc">Notification Description</string>
+
+    <!--   <string name="shop_name">Shop Name</string>
+ -->
+    <string name="shop_distance">3.5 km</string>
+    <string name="shop_city_country">Shop City</string>
+    <string name="shop_open">Shop Open</string>
+
+    <string name="promo_title">Promo Title</string>
+    <string name="promo_description">Promo Description</string>
+
+    <string name="profile_update">Update your profile</string>
+
+    <string name="update_name">Name</string>
+    <string name="update_city">City</string>
+    <string name="update_email">Email</string>
+    <string name="update_mobile">Mobile</string>
+
+    <!--  <string name="add_car">Add Car</string>
+  -->
+    <string name="update_record">Update</string>
+
+    <string name="select_gender">Select Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <string-array name="gender_arr">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+
+    <string name="occupation">Select Occupation</string>
+
+    <string name="Change_lang">Change Language</string>
+    <string name="Select_lang">Select Language</string>
+    <string name="Tutorials_Screen">Tutorials Screen</string>
+    <string name="Cars_list">User Car list</string>
+
+    <string name="please_add_car">Add Your Car</string>
+    <string name="please_add_car_num">Car Number (number plate)</string>
+    <string name="please_add_current_odometer">Car current mileage</string>
+
+    <!--  <string name="select_car_brand">Select Car Brand</string>
+    <string name="select_car_manufacturer">Select Car Manufacturer</string>
+-->
+    <string name="create_new_pass">Create new password (Minimum 3 characters)</string>
+    <string name="confirm_pass">Confirm password (Minimum 3 characters)</string>
+
+    <string name="Aboutus_title">About Us</string>
+    <string name="Aboutus_desc">GS Caltex is a South Korean oil refiner. The company changed its name from LG-Caltex Oil Corporation to GS Caltex Corporation on January 27, 2006. It is jointly owned by Chevron and GS Group. GS Caltex was founded in May 1967 as the first private oil company in Korea. </string>
+
+    <string name="Aboutus_desc_continue">Kixx automotive lubricants are formulated with Triple Double Technology, an exclusive and unique technology developed through extensive research and testing at GS Caltex. Consisting of Triple Anti Technology and Double Boosting Technology, our Triple Double Technology delivers optimized performance anytime, anywhere.</string>
+
+
+    <string name="feedbackopt">Feedback and Suggestions</string>
+
+    <!--  <string name="subject">Subject</string>
+  -->
+    <string name="Message">Message</string>
+
+    <string name="Your_Claim">Tap for claim car history</string>
+
+    <string name="Enter_User_ID">Enter User ID</string>
+    <string name="Search">Search</string>
+    <string name="Select_Car">Select Car (if applicable)</string>
+    <string name="Continue">Continue</string>
+    <string name="Continue_language">استمر</string>
+    <string name="add_car_if">Add car if you have no car added</string>
+
+    <!--  <string name="air_filter">Air Filter</string>
+    <string name="oil_filter">Oil Filter</string>
+-->
+    <string name="Select_Product">Select Product</string>
+    <string name="Select_Quantity">Select Quantity</string>
+
+    <string name="scan_qr">Scan QR Code</string>
+    <string name="scan_qr_menu">QR Scan</string>
+
+    <string name="Total_Liters">Total Liters</string>
+    <string name="Discounted_Quantity">Discounted Quantity</string>
+    <string name="Finish">Finish</string>
+
+    <string name="shopProfile">Shop Profile</string>
+
+    <string name="alreadyauser">Already a User?</string>
+    <string name="alreadyashopkeeper">Already a Shopkeeper?</string>
+    <string name="Notauser">Not a User?</string>
+
+    <string name="arabic">عربى</string>
+    <string name="title_activity_product_portfolio">ProductPortfolio</string>
+
+    <string name="alert_title">Register as shop keeper</string>
+    <string name="alert_decs">This is only for shop owners, want to continue?</string>
+
+    <!--   <string name="proceed">Proceed</string>
+    <string name="cancel">Cancel</string>
+-->
+    <string name="products01_type">Gasoline Engine Oil</string>
+    <string name="products01_name">Kixx G1 SN PLUS 10W-30</string>
+    <string name="products01_model">L2104AL1E1</string>
+    <string name="products01_barcode">801470210416</string>
+    <string name="products01_unit">1 Litre</string>
+    <string name="products01_description">Kixx G1 SN PLUS 10W-30 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products01_specification">"• 10W-30 : Advanced top-tier engine oil grade of API SN PLUS-RC, ILSAC GF-5 Formulated from Synthetic Technology base oil.
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"
+</string>
+
+    <string name="products02_type">Gasoline Engine Oil</string>
+    <string name="products02_name">Kixx G1 SN PLUS 10W-40</string>
+    <string name="products02_model">L2105AL1E1</string>
+    <string name="products02_barcode">801470210515</string>
+    <string name="products02_unit">1 Litre</string>
+    <string name="products02_description">Kixx G1 SN PLUS 10W-40 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products02_specification">"• 10W-40 : Advanced top-tier engine oil grade of API SN PLUS Formulated from Synthetic Technology base oil.
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"
+</string>
+
+    <string name="products03_type">Gasoline Engine Oil</string>
+    <string name="products03_name">Kixx G1 SN PLUS 20W-50</string>
+    <string name="products03_model">L2106AL1E1</string>
+    <string name="products03_barcode">801470210614</string>
+    <string name="products03_unit">1 Litre</string>
+    <string name="products03_description">Kixx G1 SN PLUS 20W-50 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products03_specification">"• 20W-50 : Advanced top-tier engine oil grade of API SN PLUS Formulated from Synthetic Technology base oil.
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"
+
+</string>
+
+    <string name="products04_type">Gasoline Engine Oil</string>
+    <string name="products04_name">Kixx G1 SN PLUS 5W-20 </string>
+    <string name="products04_model">L2100AL1E1</string>
+    <string name="products04_barcode">801470210010</string>
+    <string name="products04_unit">1 Litre</string>
+    <string name="products04_description">Kixx G1 SN PLUS 5W-20 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products04_specification">"• 5W-20 : Fully Synthetic Advanced top-tier engine oil grade of API SN PLUS-RC, ILSAC GF-5
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"
+
+</string>
+
+    <string name="products05_type">Gasoline Engine Oil</string>
+    <string name="products05_name">Kixx G1 SN PLUS 5W-30</string>
+    <string name="products05_model">L2101AL1E1</string>
+    <string name="products05_barcode">801470210119</string>
+    <string name="products05_unit">1 Litre</string>
+    <string name="products05_description">Kixx G1 SN PLUS 5W-30  is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products05_specification">"• 5W-30 : Fully Synthetic Advanced top-tier engine oil grade of API SN PLUS-RC, ILSAC GF-5
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"
+
+</string>
+
+    <string name="products06_type">Gasoline Engine Oil</string>
+    <string name="products06_name">Kixx G1 SN PLUS 5W-40</string>
+    <string name="products06_model">L2102AL1E1</string>
+    <string name="products06_barcode">801470210218</string>
+    <string name="products06_unit">1 Litre</string>
+    <string name="products06_description">Kixx G1 SN PLUS 5W-40 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products06_specification">"• 5W-40 : Fully Synthetic Advanced top-tier engine oil grade of API SN PLUS-RC, ILSAC GF-5
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"
+
+</string>
+
+    <string name="products07_type">Automatic Transmission Fluid</string>
+    <string name="products07_name">Kixx CVTF</string>
+    <string name="products07_model">L2519AL1E1</string>
+    <string name="products07_barcode">801470251914</string>
+    <string name="products07_unit">1 Litre</string>
+    <string name="products07_description">Kixx CVTF is Fully Synthetic premium quality transmission fluid designed to meet the service fill use in a broad range of Continuously Variable Transmissions(CVT). </string>
+    <string name="products07_specification">This CVTF is a specially formulated to provide excellent driving comfort, longer life of transmission, extended service interval, excellent wear control and durability between belt and pully. It is recommended for use in all of the push belt type CVT. And it is recommended to be used in chain type CVTs.
+</string>
+
+    <string name="products08_type">Automatic Transmission Fluid</string>
+    <string name="products08_name">Kixx ATF DX-III</string>
+    <string name="products08_model">L2509AL1E1</string>
+    <string name="products08_barcode">801470250917</string>
+    <string name="products08_unit">1 Litre</string>
+    <string name="products08_description"> Kixx ATF DX-III Fully Synthetic is superior to any other past or currently ATF for uses in passenger car with automatic transmission. And It can be recommended for Automatic transmission with lock-up clutch.</string>
+    <string name="products08_specification">  Kixx ATF DX-III Fully Synthetic is superior to any other past or currently ATF for uses in passenger car with automatic transmission. And It can be recommended for Automatic transmission with lock-up clutch. It provides a higher quality performance due in part by its oxidation resistance, low temperature fluidity, appropriate friction performance, high shear stability, and near sludge free operation.</string>
+
+    <string name="products09_type">Automatic Transmission Fluid</string>
+    <string name="products09_name">Kixx ATF DX-VI</string>
+    <string name="products09_model">L2524AL1E1</string>
+    <string name="products09_barcode">801470252416</string>
+    <string name="products09_unit">1 Litre</string>
+    <string name="products09_description">Kixx ATF DX-VI is a premium performance, low viscosity multi-vehicle fluid for modern automatic transmissions, which is blended with synthetic base stocks and advanced high performance additives. It is specially designed to provide improved fuel efficiency and excellent shudder control performance.</string>
+    <string name="products09_specification">Kixx ATF DX-VI is officially approved for use by GM and meets or exceeds the requirements of latest OEM specifications such as Ford MERCON LV, Toyota WS, Nissan Matic S, Hyundai SP-IV/SP-IV-RR. It is also suitable for most modern 6+ speed automatic transmissions.
+</string>
+    <string name="products10_type">Diesel Engine Oil
+</string>
+    <string name="products10_name">Kixx HD1 CI-4/E7 15W-40 (1L)</string>
+    <string name="products10_model">L2015AL1E1</string>
+    <string name="products10_barcode">801470201513</string>
+    <string name="products10_unit">1 Litre</string>
+    <string name="products10_description">Kixx HD1 CI-4/E7 15W-40 is  Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines.</string>
+    <string name="products10_specification">"• Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines requiring API CI-4, SL, ACEA E7 performance lubricants operating under the most severe service conditions.
+• Performance Standards
+API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, MTU Type 2, Mack EO-M Plus, Renault RLD/ RLD-2, Cummins 20071,72,76,77, Cat. ECF-1-a, ZF TE-ML 07C."
+
+        <!--
+</string>
+    <string name="products11_type">Diesel Engine Oil
+</string>
+    <string name="products11_name">Kixx HD1 CI-4/E7 15W-40 (1L)</string>
+    <string name="products11_model">L2015AL1E1</string>
+    <string name="products11_barcode">801470201513</string>
+    <string name="products11_unit">1 Litre</string>
+    <string name="products11_description">Kixx HD1 CI-4/E7 15W-40 is  Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines</string>
+    <string name="products11_specification">"• Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines requiring API CI-4, SL, ACEA E7 performance lubricants operating under the most severe service conditions.
+• Performance Standards
+API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, MTU Type 2, Mack EO-M Plus, Renault RLD/ RLD-2, Cummins 20071,72,76,77, Cat. ECF-1-a, ZF TE-ML 07C."
+-->
+
+</string>
+    <string name="products12_type">Diesel Engine Oil</string>
+    <string name="products12_name">Kixx HD1 CI-4/E7 15W-40 (4L)</string>
+    <string name="products12_model">L20155440E1</string>
+    <string name="products12_barcode">801470201544</string>
+    <string name="products12_unit">4 Litre</string>
+    <string name="products12_description">Kixx HD1 CI-4/E7 15W-40 is  Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines</string>
+    <string name="products12_specification">"• Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines requiring API CI-4, SL, ACEA E7 performance lubricants operating under the most severe service conditions.
+• Performance Standards
+API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, MTU Type 2, Mack EO-M Plus, Renault RLD/ RLD-2, Cummins 20071,72,76,77, Cat. ECF-1-a, ZF TE-ML 07C."
+</string>
+
+    <string name="products13_type">Diesel Engine Oil</string>
+    <string name="products13_name">Kixx HD1 CI-4/E7 20W-50</string>
+    <string name="products13_model">L5331440E1</string>
+    <string name="products13_barcode">801470533140</string>
+    <string name="products13_unit">4 Litre</string>
+    <string name="products13_description">Kixx HD1 CI-4/E7 20W-50 is Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines</string>
+    <string name="products13_specification">"• Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel and gasoline engines requiring API CI-4, SL, ACEA E7 performance lubricants operating under the most severe service conditions.
+• Performance Standards
+API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, MTU Type 2, Mack EO-M Plus, Renault RLD/ RLD-2, Cummins 20071,72,76,77, Cat. ECF-1-a, ZF TE-ML 07C."
+
+</string>
+    <string name="products14_type">Manual Transmission and Axle Fluid</string>
+    <string name="products14_name">Kixx Geartec GL-5 80W-90</string>
+    <string name="products14_model">L2983440E1</string>
+    <string name="products14_barcode">801470298346
+</string>
+    <string name="products14_unit">4 Litre</string>
+    <string name="products14_description">Kixx Geartec GL-5 80W-90 is High performance, multipurpose, thermally stable, EP automotive gear lubricant.
+</string>
+    <string name="products14_specification">"• KIXX Geartec GL-5 API GL-5. MIL-L-2105D High performance, multipurpose, thermally stable, EP automotive gear lubricant.
+• Recommended for automotive hypoid gear applications requiring lubricants meeting MIL-PRF-2105E, MIL-L-2105D, MILL-2105C, MIL-L-2105B, API Service GL-5 or where EP, multi-purpose or hypoid type gear oils are specified.
+• Recommended where loading is severe and maximum gear protection is required. “Clean gear” technology makes it particularly suitable where gear oil temperatures are high."
+    </string>
+
+
+    <string name="products15_type">Manual Transmission and Axle Fluid</string>
+    <string name="products15_name">Kixx Geartec GL-5 85W-140</string>
+    <string name="products15_model">L2984440E1</string>
+    <string name="products15_barcode">801470298445
+</string>
+    <string name="products15_unit">4 Litre</string>
+    <string name="products15_description">KKixx Geartec GL-5 85W-140 is High performance, multipurpose, thermally stable, EP automotive gear lubricant.
+</string>
+    <string name="products15_specification">"• KIXX Geartec GL-5 API GL-5. MIL-L-2105D High performance, multipurpose, thermally stable, EP automotive gear lubricant.
+• Recommended for automotive hypoid gear applications requiring lubricants meeting MIL-PRF-2105E, MIL-L-2105D, MILL-2105C, MIL-L-2105B, API Service GL-5 or where EP, multi-purpose or hypoid type gear oils are specified.
+• Recommended where loading is severe and maximum gear protection is required. “Clean gear” technology makes it particularly suitable where gear oil temperatures are high."</string>
+
+
+    <string name="agreeto">Agree to</string>
+    <string name="terms">Terms of Use</string>
+    <string name="faqs">FAQ`s</string>
+
+    <!--   <string name="turtorial_1_desc">Greetings From World Class Oil Lubricants Straight from the Heart of Kixx, Leading Engine Oil Provider.</string>
+ -->
+    <string name="turtorial_1_title">Kixx Lubricants</string>
+    <!--  <string name="turtorial_2_desc">Sit Back and Relax, We Take Care of Your Car with Our One Stop Shop Solution.</string>
+  -->
+    <string name="turtorial_2_title">Kixx One Stop Shop</string>
+    <!--   <string name="turtorial_3_desc">Our Bucket is full of Exciting Promotions in Discounted Liters with Exciting Promotions and to Earn Unlimited Points on Referrals.</string>
+ -->
+    <string name="turtorial_3_title">We Gift You</string>
+    <!--   <string name="turtorial_4_desc">Premium High Performance Oils! Ranging to Gasoline, Diesel Engine Oils.</string>
+ -->
+    <string name="turtorial_4_title">You Name It and We have it!</string>
+    <!--  <string name="turtorial_5_desc">Gasoline to Hybrid, Hybrid to Diesel, Our High-Quality Oil Stand Out from The Crowd your Car will Love and will Never Go Away.</string>
+  -->
+    <string name="turtorial_5_title">Multi Grade High Quality Oil</string>
+    <string name="usernotfound">You have entered incorrect Username / Password</string>
+    <!--  <string name="skip">Skip</string>
+  -->
+    <string name="next">next</string>
+
+    <string-array name="User_occupation">
+
+        <item>Select Occupation</item>
+        <item>Others</item>
+        <item>Business</item>
+        <item>Job holder</item>
+        <item>Student</item>
+
+
+    </string-array>
+
+    <string-array name="please_select_car">
+
+        <item>Select your car</item>
+
+    </string-array>
+
+    <string name="User_id">ID</string>
+
+
+    <string name="carnotfound_title">Sorry! No data found</string>
+    <string name="carnotfound_desc">Record will be shown on first oil change</string>
+    <string name="clicktoaddcar">Click here to add car</string>
+
+    <string name="entercode">Enter your code</string>
+    <string name="sixdigitcode">We have sent a 6-digit code to</string>
+    <string name="resendcode">Resend code in :</string>
+    <string name="yourprofile">Profile</string>
+    <!--<string name="promotion">Promotion</string>
+    <string name="gold">Gold</string>
+    <string name="silver">Silver</string>
+    <string name="platinum">Platinum</string>
+    <string name="bronze">Bronze</string>
+-->
+    <string-array name="promoad_types">
+        <item>Promos</item>
+        <item>Ads</item>
+    </string-array>
+
+    <!--  <string name="tutorialscreen1">Greetings from World Class Oil Lubricants Straight from the Heart of Kixx Ranging from Engine to Transmission Oil, Gear Oil to Hydraulic Oils, Greases from your Favorite Oil Provider.</string>
+    <string name="tutorialscreen1_title">Greetings from World Class Oil Lubricants Straight from the Heart of Kixx Ranging from Engine to Transmission Oil, Gear Oil to Hydraulic Oils, Greases from your Favorite Oil Provider.</string>
+    <string name="tutorialscreen2">Greetings from World Class Oil Lubricants Straight from theHeart of Kixx Ranging from Engine to Transmission Oil, GearOil to Hydraulic Oils, Greases from your Favorite Oil Provider.</string>
+    <string name="tutorialscreen3">Greetings from World Class Oil Lubricants Straight from theHeart of Kixx Ranging from Engine to Transmission Oil, GearOil to Hydraulic Oils, Greases from your Favorite Oil Provider.</string>
+    <string name="tutorialscreen4">Greetings from World Class Oil Lubricants Straight from theHeart of Kixx Ranging from Engine to Transmission Oil, GearOil to Hydraulic Oils, Greases from your Favorite Oil Provider.</string>
+    <string name="tutorialscreen5">Greetings from World Class Oil Lubricants Straight from theHeart of Kixx Ranging from Engine to Transmission Oil, GearOil to Hydraulic Oils, Greases from your Favorite Oil Provider.</string>
+-->
+
+
+    <string name="join">Join World Class Kixx Community and win Rewards</string>
+
+
+    <!--  <string name="app_name">Kixx_button_animate</string>
+ -->
+    <string name="Tutorials_Screen_1_eng_title">Tutorials Screen</string>
+
+    <string name="turtorial_1_desc">Greetings From World Class Oil Lubricants Straight from the Heart of Kixx, Leading Engine Oil Provider.</string>
+
+    <string name="turtorial_2_eng_title">Kixx Lubricants</string>
+
+
+    <string name="keep_old">Keep Old</string>
+
+    <string name="daily_average_pop">Your daily car average is</string>
+
+
+    <string name="thank_you_pop">Thank you for Oil Change</string>
+
+    <string name="update_average_pop">Do you want to Update Daily car Average or Keep the Old one</string>
+
+
+
+
+    <string name="turtorial_2_desc">Sit Back and Relax, We Take Care of Your Car with Our One Stop Shop Solution.</string>
+
+    <string name="turtorial_3_eng_title">Kixx One Stop Shop</string>
+    <string name="turtorial_3_desc">Our Bucket is full of Exciting Promotions in Discounted Liters with Exciting Promotions and to Earn Unlimited Points on Referrals.</string>
+
+    <string name="turtorial_4_eng_title">Exciting Promotions, Discounts, Reward Points</string>
+    <string name="turtorial_4_desc">Premium High Performance Oils! Ranging to Gasoline, Diesel Engine Oils.</string>
+
+    <string name="turtorial_5_eng_title">You Name It and We have it!</string>
+    <string name="turtorial_5_desc">Gasoline to Hybrid, Hybrid to Diesel, Our High-Quality Oil Stand Out from The Crowd your Car will Love and will Never Go Away.</string>
+    <string name="multi_grade_hight">Multi Grade High Quality Oil.</string>
+    <string name="Entered_username_warning">You Have Entered Username / Incorrect Password</string>
+    <string name="skip">Skip</string>
+    <string name="finish">Finish</string>
+    <string name="select_language">Select Language</string>
+    <string name="confirm">Confirm</string>
+    <string name="sign_in_screen">User Signin Screen</string>
+    <string name="already_user">Already a User?</string>
+    <string name="password">Password (Min 3 characters)</string>
+    <string name="warning_character">Minimum 3 characters</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="signin">Sign in</string>
+    <string name="signup">Sign up</string>
+    <string name="are_you_shopkeeper">Are you a shopkeeper?</string>
+    <string name="only_for_ksa">Only for KSA</string>
+    <string name="enter_phone_number">enter phone number</string>
+    <string name="enter_password">enter password</string>
+    <string name="phone_number_start_warning">Phone number must start with 0</string>
+    <string name="network_problem_warning">Network Problem!check your internet connection and restart app</string>
+    <string name="or">or</string>
+    <!--    <string name="turtorial_5_arabic_desc">You Have Entered Username / Incorrect Password</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">لقد قمت بإدخال اسم المستخدم / كلمة مرور غير صحيحة.</string>-->
+    <string name="server_error">Server Under Maintainence, try again later</string>
+    <string name="incorrect_data">Incorrect Data</string>
+    <string name="sign_up_screen">Sign up Screen</string>
+    <string name="agree_to">Agree to</string>
+    <string name="term_of_use">Terms of use</string>
+    <string name="referal_code_error">Invalid Referral Code. No spaces allowed</string>
+    <string name="agree_to_term">Agree to terms of use</string>
+    <string name="fill_fields">Fill this field</string>
+    <string name="password_must_have_error">Password must have atleast 3 characters</string>
+    <string name="shopkeeper_signin_screen">Shopkeeper Signin Screen:</string>
+    <string name="already_a_shopkeeper">Already a Shopkeeper?</string>
+    <string name="user_dashboard">User Dashboard: </string>
+    <string name="profile">Profile</string>
+    <string name="promotion">Promotions</string>
+    <string name="no_data_error">Sorry! No data found</string>
+    <string name="record_will_shown_on_first">Record will be shown on first oil change</string>
+
+    <string name="click_add_car">Click here to add car</string>
+    <string name="car_history">Car History</string>
+    <string name="settings_screen">Settings Screen:</string>
+    <string name="latest_marketing_promotion">Latest Marketing Promotions</string>
+    <string name="referal_code">Referral code</string>
+    <string name="refer_to_friend">Refer to a friend</string>
+    <string name="feedback_and_suggest">Feedback and Suggestions</string>
+    <string name="change_language">Change Language</string>
+    <string name="change_language_arab">تغيير اللغة</string>
+    <string name="change_language_eng">Change Language</string>
+    <string name="user_profile">User Profile update:</string>
+    <string name="update_profile">Update your profile</string>
+    <string name="select_occupation">Select occupation</string>
+    <string name="add_car">Add car</string>
+    <string name="user_car_list_screen">User Car List Screen:</string>
+    <string name="user_car_list">User car list</string>
+    <string name="car_number">Car number</string>
+    <string name="car_brand">Car Brand</string>
+    <string name="car_model">Car Model/Year</string>
+    <string name="add_car_screen">Add car screen:</string>
+    <string name="please_add_your_car">Add your car</string>
+    <string name="car_current_mileage">Car current mileage</string>
+    <string name="select_car_manufacturer">Select Car Manufacturer</string>
+    <string name="select_car_brand">Select Car Brand</string>
+    <string name="add">Add</string>
+    <string name="product_portfolio">Product Portfolio Screen</string>
+    <string name="product_list">Products list</string>
+    <string name="feedback_suggestioon_screen">Feedback and Suggestions Screen: </string>
+    <string name="experience_with_us">How was your experience with us?</string>
+    <string name="select_hobbies">Select hobbies</string>
+    <string name="select_age">Select Age</string>
+    <string name="contact_us_screen">Contact Us Screen: </string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="change_password">Change Password Screen: </string>
+    <string name="create_new_password">Create new password</string>
+    <string name="shopkeeper">Shopkeeper Dashboard:</string>
+    <string name="your_claim">Your Claim</string>
+    <string name="points">points</string>
+    <string name="car_info_screen">Car info Screen:</string>
+    <string name="enter_user_id">Enter User ID</string>
+    <string name="search">Search</string>
+    <string name="select_car">Select car</string>
+    <string name="if_applicable">if applicable</string>
+    <string name="if_no_car_selected">if no car selected</string>
+    <string name="QR_screen">QR Screen</string>
+    <string name="car_current">Car current mileage</string>
+    <string name="select_product">Select Product</string>
+    <string name="select_quantity">Select Quantity</string>
+    <string name="air_filter">Air Filter</string>
+    <string name="oil_filter">Oil Filter</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="total_liters">Total Liters</string>
+    <string name="discounted_liters">Discounted Liters</string>
+    <string name="shop_profile_screen">Shop Profile Screen:</string>
+    <string name="shop_profile">Shop Profile</string>
+    <string name="menu">Menu</string>
+    <string name="promos">Promos</string>
+    <string name="more">More</string>
+    <string name="become_seller_screen">Become a seller Screen</string>
+    <string name="register_as_shopkeeper">Register as shopkeeper </string>
+    <string name="only_for_shopkeeper">This is only for shopkeepers, want to continue?</string>
+    <string name="cancel">Cancel</string>
+    <string name="proceed">Proceed</string>
+    <string name="shop_name">Shop name</string>
+    <string name="forgot_password_screen">Forgot password screen</string>
+    <string name="please_enter_your_code">Enter your code </string>
+    <string name="we_have_sent_6_digit_code">we have sent a 6-digit code to</string>
+    <string name="resend_code_in">Resend code in</string>
+    <string name="please_enter_otp">Enter OTP </string>
+    <string name="login_has_blocked">You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Try Again Later After 1 Hour, Thank You</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="ads">Ads</string>
+    <string name="gold">Gold</string>
+    <string name="bronze">Bronze</string>
+    <string name="silver">Silver</string>
+    <string name="back">Back</string>
+    <string name="platinum">Platinum</string>
+
+    <string name="claim_reward_screen">Claim Reward Screen:</string>
+    <string name="you_are_gold_user">Your are a Gold user.</string>
+    <string name="your_are_a_bronze_user">Your are a Bronze user.</string>
+    <string name="your_are_a_silver_user">Your are a Silver user.</string>
+    <string name="your_are_a_platinum_user">Your are a Platinum user.</string>
+    <string name="liter_1">1 liter</string>
+    <string name="liter_2">2 liters</string>
+    <string name="liter_3">3 liters</string>
+    <string name="liter_4">4 liters</string>
+    <!--    <string name="points">Points</string>-->
+    <!--    <string name="points_arabic">نقاط</string>-->
+    <string name="refering_person_oil_change">Referred person oil change</string>
+    <string name="oneachoilchange">On each oil change</string>
+    <string name="refering_person_register_app">Referring person to register app</string>
+    <string name="oil_change">Oil change</string>
+    <string name="redeem_point">Redeem your points</string>
+    <string name="earn_points">How to earn points</string>
+    <string name="how_to_earn_badges">How to earn badges</string>
+    <string name="platinum_badge">Platinum Badge</string>
+    <string name="gold_badge">Gold Badge</string>
+    <string name="silver_badge">Silver Badge</string>
+    <string name="bronze_badge">Bronze Badge</string>
+    <string name="at_first_login">At first login</string>
+    <string name="signup_screen">Signup Screen:</string>
+    <string name="new_to_kixx">New to kixx?</string>
+    <string name="feedback_screen">Feedback Screen:</string>
+    <string name="please_give_us_feedback">Give us your feedback</string>
+    <string name="please_fill_to_become_eligible">Fill this to become eligible for our next promotion</string>
+    <string name="contact_us">Contact us:</string>
+    <string name="write_to_us">Write to us</string>
+    <!--    <string name="subject">Subject</string>-->
+    <!--    <string name="subject_arabic">الموضوع</string>-->
+    <!--    <string name="message">Message</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">الرسالة</string>-->
+    <string name="settings">Settings</string>
+    <string name="product_line_up">Product line up</string>
+    <string name="faq_s">FAQ`s</string>
+    <string name="salesman_dashboard">Seller dashboard:</string>
+    <string name="view_profile">View Profile</string>
+    <string name="total_liters_claim">Total liters to be claimed</string>
+    <!--    <string name="total_liters">Total liters to be claimed</string>-->
+    <!--    <string name="total_liters_arabic">إجمالي اللترات للمطالبة</string>-->
+    <string name="qr_first_screen">Qr first screen</string>
+    <string name="enter_id">Enter ID</string>
+
+    <string name="user_not_found" tools:ignore="ExtraTranslation">User not Found</string>
+    <string name="user_updated_Success" tools:ignore="ExtraTranslation">User Updated Successful</string>
+
+    <string name="please_select_image_type">Select Image Upload Type</string>
+    <string name="Camera">Camera</string>
+    <string name="Gallery">Gallery</string>
+
+
+    <string name="select_your_car">Select your car</string>
+    <string name="add_a_car_no_car">Add a car if you`ve no car added</string>
+    <string name="current_odometer">Current Odometer reading</string>
+    <string name="qr_screen">QR Screen:</string>
+    <string name="mileage_reading">Mileage Reading</string>
+    <!--    <string name="select_product">Select product </string>-->
+    <!--    <string name="select_product_arabic">حدد المنتج</string>-->
+    <!--    <string name="select_quantity">Select Quantity</string>-->
+    <!--    <string name="select_quantity_arabic">حدد الكمية</string>-->
+    <!--    <string name="air_filter">Air Filter</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">مصفاة الهواء</string>-->
+    <!--    <string name="oil_filter">Oil Filter</string>-->
+    <!--    <string name="oil_filter_arabic">مصفاة النفط</string>-->
+    <!--    <string name="scan_qr_code">Scan QR Code</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">مسح رمز الاستجابة السريعة (QR)</string>-->
+    <!--    <string name="total_liters">Total liters</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">مجموع اللترات</string>-->
+    <!--    <string name="discounted_liters">Discounted liters</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">اللترات المخفضة</string>-->
+    <!--    <string name="settings">Settings</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">الإعدادات</string>-->
+    <string name="are_you_sure_to_logout">Are you sure you want to Signout?</string>
+
+    <string name="onlyforksa">Only for KSA</string>
+    <string name="pleaseenterphonenumber">Enter phone number</string>
+    <string name="pleaseenterpassword">Enter password</string>
+    <string name="passwordmusthavethreecharacters">Password must have atleast 3 characters</string>
+    <string name="pleasecheckinternetconnection">Network issue</string>
+    <string name="invalidreferralcode">Invalid Referral Code. No spaces allowed</string>
+    <string name="phonenumbermuststartwith">Phone number must start with 0</string>
+    <string name="networkerror">Network Problem! Please check your internet connection and restart app</string>
+    <string name="useralreadyregistered">User already registered</string>
+    <string name="usersuccessfullyregistered">User successfully registered</string>
+    <string name="servermaintainence">Server Under Maintainence, Try again later</string>
+    <string name="incorrectdata">Incorrect Data</string>
+    <string name="welcometokixx">Welcome to KIXX</string>
+    <string name="incorrectunamepass">You Have Entered Username / Incorrect Password</string>
+    <string name="agreetoterms">Agree to</string>
+    <string name="pleaseagreetoterms">Agree to terms of use</string>
+
+    <string name="mismatchedpasswords">Password does not match</string>
+    <string name="entercarmilage">Enter car milage</string>
+    <string name="entercarnumber">Enter car number</string>
+    <string name="permissiondenied">Permission Declined, Cannot get user current location</string>
+    <string name="foroilchange">For oil change, Seller has been registered successfully</string>
+    <string name="useralreadyregisteredunregistered">User already registered, Use an unregistered Email and Contact number</string>
+    <string name="internetconnection">Connection Problem, Recheck internet connection and try again</string>
+    <string name="caraddedsuccessfully">Car added successfully</string>
+    <string name="caralreadyexists">Car already Added</string>
+    <string name="carid">"Select car"</string>
+    <string name="productid">Select product</string>
+    <string name="shopid">Select shop</string>
+    <string name="salesmanid">Select salesman</string>
+    <string name="declinedcamerapermission">You have declined camera permission</string>
+    <string name="qrnotfound">QR Not found</string>
+    <string name="qrinvalid">QR has expired or is invalid </string>
+    <string name="totallitersgreater">Total liters should be equal or greater then discounted liters</string>
+    <string name="claim1liter">Are you sure you want to Redeem 1000 points for 1 Liter?</string>
+    <string name="claim2liter">Are you sure you want to Redeem 2000 points for 2 Liters?</string>
+    <string name="claim3liter">Are you sure you want to Redeem 3000 points for 3 Liters?</string>
+    <string name="claim4liter">Are you sure you want to Redeem 4000 points for 4 Liters?</string>
+    <string name="redeem">Redeem</string>
+    <string name="notenoughpoints">Not enough points for Free liters claim.</string>
+    <string name="passwordchangedsuccessfully">Your password changed successfully</string>
+    <string name="thankyouforresponse">Thank you! Your response is valueable for us.</string>
+    <string name="feedbacksubmitted">Feedback submitted successfully</string>
+    <string name="languageconfirmation">أتكد</string>
+    <string name="verificationerror">Code Verification Error, Try again</string>
+    <string name="nocaradded">No Car Added. Add your cars</string>
+    <string name="nonotification">You have no notification yet</string>
+    <string name="contact_customer_service">Contact Customer Service</string>
+    <string name="oilchange">Oil Change</string>
+    <string name="ok">ok</string>
+    <string name="deletecar">Are you sure, you want to delete this Car?</string>
+    <string name="delete">Delete</string>
+    <string name="cardeletedsuccessfully">Car deleted successfully</string>
+    <string name="cannotdeletecar">Cannot delete! Activity exists for the selected car</string>
+
+    <string-array name="cities">
+
+        <item>Riyadh</item>
+        <item>Jeddah</item>
+        <item>Dammam</item>
+        <item>Makkah</item>
+        <item>Madinah</item>
+        <item>Ta if</item>
+        <item>Jubail</item>
+        <item>Qassim</item>
+        <item>Ahsa</item>
+        <item>Arar</item>
+        <item>Baha</item>
+        <item>Buqayq</item>
+        <item>Kharj</item>
+        <item>Khobar</item>
+        <item>Qatif</item>
+        <item>Rabigh</item>
+        <item>Sakaka</item>
+        <item>Yanbu al-Bahr</item>
+        <item>Others</item>
+
+
+    </string-array>
+
+    <string name="Resend">Resend</string>
+    <string name="invalidphone">invalid phone number</string>
+    <string name="toomanyattempts">Too many attempts, only 3 attempts allow, please try again in 2hrs</string>
+
+
+    <string name="product_title">Product title</string>
+    <string name="product_type">Product type</string>
+    <string name="unit_measure">Unit measure</string>
+    <string name="model_number">Model no</string>
+    <string name="product_code">Product code</string>
+    <string name="product_specification">Product Specifications</string>
+
+    <string name="oilalreadychanged">The oil for this car has already been changed. You can rechange oil after</string>
+    <string name="days">Days</string>
+    <string name="liters">Liters</string>
+    <string name="hello">Hello, Your Friend </string>
+    <string name="yourfriendwantsyoutoavail"> wants you to avail Free Liters of Oil on Kixx Lubricants App. Enjoy!</string>
+
+    <string name="add_car_submit">Add car</string>
+
+    <string name="products11_type">Diesel Engine Oil
+</string>
+    <string name="products11_name">Kixx HD1 CI-4/E7 15W-40 (1L)</string>
+    <string name="products11_model">L2015AL1E1</string>
+    <string name="products11_barcode">801470201513</string>
+    <string name="products11_unit">1 Litre</string>
+    <string name="products11_description">Kixx HD1 CI-4/E7 15W-40 is  Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines</string>
+    <string name="products11_specification">"• Synthetic based Premium performance, multigrade, heavy-duty diesel engine oil specifically designed to lubricate a wide range of diesel engines requiring API CI-4, SL, ACEA E7 performance lubricants operating under the most severe service conditions.
+• Performance Standards
+API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, MTU Type 2, Mack EO-M Plus, Renault RLD/ RLD-2, Cummins 20071,72,76,77, Cat. ECF-1-a, ZF TE-ML 07C."
+
+</string>
+
+
+    <!--New update words for kixx app (22/04/2021)-->
+
+    <string name="oil_change_history">Oil Change History</string>
+
+    <string name="mileagereading">Mileage Reading</string>
+    <string name="currentmileagereading">Last Oil Change Mileage Reading (KM’s)</string>
+    <string name="enterdailycarmileage">Enter Average Daily Car Mileage (KMs)</string>
+    <string name="yearofmanufacturing">Year Of Manufacturing/Model Year</string>
+    <string name="selectcarenginetype">Select Car Engine Type</string>
+    <string name="claimOilFromKixx">Claim Your Free Liters</string>
+    <string name="distancefromcurrentlocation">Distance from your location is</string>
+    <string name="gotogooglemap">Click to Open Google Map</string>
+    <string name="oil_recommendation">Oil Recommendation</string>
+    <string name="recommended_oil">Recommended Oil</string>
+    <string name="with5000km">*with 5000KM Mileage</string>
+    <string name="with10000km">*with 10000KM Mileage</string>
+    <string name="with15000km">*with 15000KM Mileage</string>
+    <string name="onlyrecommendation">* The above is only recommendation \n it is advisable to discuss with the Oil Change Shop before change</string>
+    <string name="GMCcarrecommendation">* If Your Car is General Motors Corporation (GMC), It is Advised to Use “Dexos1” Approved Products for Better Performance. For Premium Cars, You Can Use Kixx PAO 10W-40</string>
+    <string name="howtochoosebestoilformycar">How to choose best oil for my car?</string>
+    <string name="rightoilselection">Selecting the right engine oil can be challenging for most of us. Multiple types, different numbers, letters, variant grades, and viscosity are available in the market. So, how to select the right one? Will it be ideal for the current weather conditions? How long will it last before a change is recommended? Is it ok to mix them up?
+
+Seems like quite a challenging decision to make!  That’s why we usually leave it to the mechanic to recommend one for us.
+
+But not to worry, in this article, we will guide you to pick the right oil for your car.
+
+What kind of oil you need depends on the engine. All new cars will come with a recommended grade listed in the car manual. The grade will be shown in numbers, separated by the letter ‘w’ – for example, 5w40. “The ‘w’ rating, preceded by a number, gives you an indication of how the oil flows (Viscosoty) at winter temperatures and the last number indicates flow (Viscosity) in summer temperatures.”
+
+Not all engine oils are the same. It is important to choose an oil that is suited to your car and local climate conditions to enjoy all its benefits. Following are the main types of oil:
+\n\n
+"Mineral Oil:
+
+Mineral oil, also known as “conventional oil”, is the most basic &amp; affordable type of engine oils, obtained from refined petroleum crude oil.
+
+Mineral oil is thicker than other oil types which causes a slower flow rate that results in increased fuel consumption.
+
+Mineral engine oils are less resistant to high temperatures and oxidation compared to synthetic engine oils, and have higher liquid points, which makes them favorable for winter conditions and extremely low temperatures.
+
+And because of that, mineral oils require frequent oil changes, after every 5,000 kilometers or every four months.
+\n\n"
+"Synthetic Oil:
+\n
+
+Synthetic oil is a product of complex chemical transformations that are performed either directly on drilled crude petroleum or using preselected molecules. It undergoes more sophisticated modification.They hold many advantages:
+ - Synthetics dont break down or sludge up as fast as ordinary mineral-based oils do. In other words, it has less deposit formation which leads to cleaner engines.
+- Better engine protection that increases its health &amp; life span
+- Stable flow performance &amp; viscosity during extreme temperatures
+- Fuel consumption optimization
+And not to forget, one of its main perks is that it requires less frequent oil changes. Synthetic oil can last between 8,000 to 15,000 kilometers or every six months before its next change.
+
+However, the main disadvantage of synthetic oils that makes the least favorite to people is that they are slightly more expensive.
+ \n\n"
+"Semi-Synthetic Oil:
+
+\n
+Semi-Synthetic oil is also known as synthetic blends &amp; as hybrid lubricants; is a mixture of mineral and synthetic oils that reserves the best features of both oils.
+
+Semi-synthetic oils can be the best choice for engines that encounter heavy loads caused by intensive usage.
+
+Semi-synthetic oil is more of a wallet-friendly than fully synthetic oil as they are of a lower cost. While getting some benefits of the fully-synthetic oil, it can be your next best choice."
+\n\n
+"Did You Ever Wondered??
+Have you ever looked at the engine oil bottle and wondered what all these numbers and letters stand for? There are many different ways in describing motor oils, each refers to a certain standard of classification. ​​​​​Here are the three standards used for describing the oils:
+ - The API standard
+ - The SAE standard
+ - The ACEA standard
+You can get more detailed information of all these standards and lubricants info on below link of our website"
+</string>
+
+    <string name="link">https://www.kixxoil.com/support/categoryByPerformance</string>
+
+    <string name="edit">Edit</string>
+    <string name="please_edit_car">Edit Your Car</string>
+
+    <string-array name="enginetype">
+        <item>Gasoline</item>
+        <item>Diesel</item>
+    </string-array>
+
+
+    <string-array name="yearlist">
+        <item>1950</item>
+        <item>1951</item>
+        <item>1952</item>
+        <item>1953</item>
+        <item>1954</item>
+        <item>1955</item>
+        <item>1956</item>
+        <item>1957</item>
+        <item>1958</item>
+        <item>1959</item>
+        <item>1960</item>
+        <item>1961</item>
+        <item>1962</item>
+        <item>1963</item>
+        <item>1964</item>
+        <item>1965</item>
+        <item>1966</item>
+        <item>1967</item>
+        <item>1968</item>
+        <item>1969</item>
+        <item>1970</item>
+        <item>1971</item>
+        <item>1972</item>
+        <item>1973</item>
+        <item>1974</item>
+        <item>1975</item>
+        <item>1976</item>
+        <item>1977</item>
+        <item>1978</item>
+        <item>1979</item>
+        <item>1980</item>
+        <item>1981</item>
+        <item>1982</item>
+        <item>1983</item>
+        <item>1984</item>
+        <item>1985</item>
+        <item>1986</item>
+        <item>1987</item>
+        <item>1988</item>
+        <item>1989</item>
+        <item>1990</item>
+        <item>1991</item>
+        <item>1992</item>
+        <item>1993</item>
+        <item>1994</item>
+        <item>1995</item>
+        <item>1996</item>
+        <item>1997</item>
+        <item>1998</item>
+        <item>1999</item>
+        <item>2000</item>
+        <item>2001</item>
+        <item>2002</item>
+        <item>2003</item>
+        <item>2004</item>
+        <item>2005</item>
+        <item>2006</item>
+        <item>2007</item>
+        <item>2008</item>
+        <item>2009</item>
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+
+    </string-array>
+
+
+    <string name="products16_type">Gasoline Engine Oil</string>
+    <string name="products16_name">Kixx Dexos1 Gen2 0W-20</string>
+    <string name="products16_model">L2111AL1E1</string>
+    <string name="products16_barcode">801470211116
+</string>
+    <string name="products16_unit">1 Litre</string>
+    <string name="products16_description">Kixx Dexos1 Gen2 0W-20  is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+</string>
+    <string name="products16_specification">"• Dexos1 Gen2 Approved 0W-20 : Fully Synthetic Advanced top-tier engine oil grade of API SN PLUS-RC, ILSAC GF-5
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"</string>
+
+
+    <string name="products17_type">Gasoline Engine Oil</string>
+    <string name="products17_name">Kixx PAO1 0W-40</string>
+    <string name="products17_model">L2084AL1E1</string>
+    <string name="products17_barcode">801470208413
+</string>
+    <string name="products17_unit">1 Litre</string>
+    <string name="products17_description">• KIXX PAO 1 is a premium performance, multi-grade motor oil formulated from selected PAO (Poly Alpha Olefin) and race proven additive thchnology.                                                          • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products17_specification">"• KIXX PAO 1 is a premium performance, multi-grade motor oil formulated from selected PAO (Poly Alpha Olefin) and race proven additive thchnology.                                                          • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.                                                                                       •  Naturally aspirated Gasolinee enignes, LPG and Diesel engines in passenger cars.                                                              .Light truck Gasoline and diesel engines.                                                                                                                  . Gasoline and diesel Powered RV and SUV.                                  • CRDI engine in passenger cars.
+• Passenger cars with high speed, four- stroke, turbocharged and EGR, DPF.
+•  four- stroke gasoline engine in motor and portable power equipment  where the manufacturer recommends conventional passsenger car motor oil.
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles.
+• 0W-40 API SN / CF ,ACCEA C3- 16, BMW LL-04, MERCEDES BENZ 229.31 / 229.51, VOLKSWAGEN 502.00 / 505.00 Recommended"</string>
+
+
+    <string name="products18_type">Gasoline Engine Oil</string>
+    <string name="products18_name">Kixx G1 SP 10W-30</string>
+    <string name="products18_model">L2156AL1E1</string>
+    <string name="products18_barcode">801470215619
+</string>
+    <string name="products18_unit">1 Litre</string>
+    <string name="products18_description">Kixx G1 SP 10W-30 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention                                                          • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products18_specification">"• 10W-30 : Advanced top-tier engine oil grade of API SP, ILSAC GF-5 Formulated from Synthetic Technology base oil.
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"</string>
+
+
+    <string name="products19_type">Gasoline Engine Oil</string>
+    <string name="products19_name">Kixx G1 SP 10W-40</string>
+    <string name="products19_model">L2157AL1E1</string>
+    <string name="products19_barcode">801470215718
+</string>
+    <string name="products19_unit">1 Litre</string>
+    <string name="products19_description">Kixx G1 SP 10W-40 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention                                                        • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products19_specification">"• 10W-40 : Advanced top-tier engine oil grade of API SP Formulated from Synthetic Technology base oil.
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"</string>
+
+
+    <string name="products20_type">Gasoline Engine Oil</string>
+    <string name="products20_name">Kixx Dexos1 Gen2 5W-30</string>
+    <string name="products20_model">L2107AL1E1</string>
+    <string name="products20_barcode">801470210713
+</string>
+    <string name="products20_unit">1 Litre</string>
+    <string name="products20_description">Kixx Dexos1 Gen2 5W-30  is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention                                                       • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products20_specification">"• Dexos1 Gen2 Approved 5W-30 : Fully Synthetic Advanced top-tier engine oil grade of API SN PLUS-RC, ILSAC GF-5
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"</string>
+
+
+    <string name="products21_type">Gasoline Engine Oil</string>
+    <string name="products21_name">Kixx G1 SP 20W-50</string>
+    <string name="products21_model">L2158AL1E1</string>
+    <string name="products21_barcode">801470215817
+</string>
+    <string name="products21_unit">1 Litre</string>
+    <string name="products21_description">Kixx G1 SP 20W-50 is a High grade gasoline engine oil providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention                                                       • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products21_specification">"• 20W-50 : Advanced top-tier engine oil grade of API SN PLUS Formulated from Synthetic Technology base oil.
+• High grade gasoline engine oil providing excellent protection
+• Tripple Double Technology:  Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention
+Can be used in:
+• All gasoline fueled vehicles
+• High performance cars equipped with T-GDI, GDI, DOHC, EFI and VVT
+• Four-stroke gasoline engines in motorcycles"</string>
+
+
+    <string name="oilrecommendation_yom_not_added">Following Fields Are Missing: \n\n -Year of Manufacture \n -Engine Type \n\n Please Click on "Edit Car Button" to Update your Car".</string>
+    <string name="oilrecommendation_nocar_added">You have no cars added, Please add your car</string>
+    <string name="Mileagetext">Please Enter to get Notified for Future Oil Change Date and Mileage Which Keeps your Car Healthy</string>
+    <string name="selectyourcar">Select your car</string>
+    <string name="editcar">Edit Car</string>
+    <string name="spacingerror">Please Add Car Number Without Spaces</string>
+    <string name="steps_to_choose_str"><![CDATA[Go to Home Screen and Follow the Steps Given Below ]]>
+        <br></br>
+        <br>1. Click on the Oil Recommendation icon</br>
+        <br></br>
+        <br>2. Select the Car </br>
+        <br></br>
+        <br>3. Scroll Down and You will See a button Labeled</br>
+
+        <br><b>How to choose best oil for My Car</b></br></string>
+    <string name="enter_name_str">Enter Name</string>
+    <string name="enter_mobile_number_str">Enter Mobile Number</string>
+    <string name="enter_email_address_str">Enter Email Address</string>
+    <string name="enter_city_str">Enter City</string>
+    <string name="enter_the_gender_str">Enter the Gender</string>
+    <string name="enter_the_occupation_str">Enter the Occupation</string>
+    <string name="last_mileage_car_pop">Last Mileage:</string>
+    <string name="next_mileage_car_pop">Next Mileage:</string>
+    <string name="last_date_car_pop">Last Date:</string>
+    <string name="next_date_car_pop">Next Date:</string>
+    <string name="enter_car_manufacturer">Enter Car Manufacturer</string>
+    <string name="enter_last_oil_change">Enter Last Oil Change</string>
+    <string name="enter_car_brand">Enter Car Brand</string>
+    <string name="select_year_of_manufacturing">Select Year of Manufacturing</string>
+    <string name="select_car_engine_type">Select Car Engine Type</string>
+    <string name="enter_car_number_plate">Enter Car Number Plate</string>
+    <string name="enter_car_daily_mileage">Enter Car Daily Mileage</string>
+
+</resources>

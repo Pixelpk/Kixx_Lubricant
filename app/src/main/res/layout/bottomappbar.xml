@@ -1,0 +1,106 @@
+<com.google.android.material.bottomappbar.BottomAppBar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.MaterialComponents.BottomAppBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    app:backgroundTint="@android:color/white"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    tools:ignore="BottomAppBar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/createc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/mydec"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/placeholder"
+            android:layout_width="70dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/createc"
+            app:layout_constraintEnd_toStartOf="@+id/dropdec"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/mydec"
+            app:layout_constraintTop_toTopOf="@+id/createc" />
+
+   <!--     <TextView
+            android:id="@+id/textView68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/oil_change"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder"
+            app:layout_constraintStart_toStartOf="@+id/placeholder" />-->
+
+        <ImageView
+            android:id="@+id/oilchange_button_TV"
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/oil_change_text_png"
+            android:text="@string/oilchange"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder"
+            app:layout_constraintStart_toStartOf="@+id/placeholder" />
+
+        <ImageView
+            android:id="@+id/imageView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder"
+            app:layout_constraintStart_toStartOf="@+id/placeholder"
+            app:srcCompat="@mipmap/oilchangetxt"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/dropdec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/promo"
+            app:layout_constraintBottom_toBottomOf="@+id/createc"
+            app:layout_constraintEnd_toStartOf="@+id/moreopt"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/placeholder" />
+
+        <ImageView
+            android:id="@+id/mydec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/notifications"
+            app:layout_constraintBottom_toBottomOf="@+id/createc"
+            app:layout_constraintEnd_toStartOf="@+id/placeholder"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/createc"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/moreopt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/more"
+            app:layout_constraintBottom_toBottomOf="@+id/createc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/dropdec" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.bottomappbar.BottomAppBar>

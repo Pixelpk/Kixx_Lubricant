@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".User.FAQ_Screen">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back_btn_faq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:onClick="go_back_to_home"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/back"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="FAQ"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="What are Kixx products?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="KIXX is Korea’s leading lubricant and Global Brand under the umbrella of GS (founded jointly by Korean group and American Caltex), sold in more than 63 countries worldwide including Saudi Arabia. KIXX lubricants are recognized for their superior quality and technology.We have all kind of Automitive Engine Oils for all types of vehicles including
+      -  Petrol Cars / Passanger cars Premium Engine Oil
+      -  Diesel Vehicles Engine Oil "
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="What kind of services does Kixx provide?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="We are keen to provide our customers with the best care for their car by providing them with      \n\n1. No. 1 Engine oil to keep the engine safe from wear and enhance fuel economy      \n\n2. We guide you to the nearest oil change shops through our KIXX APP to make sure that our services are available near to you and accessible easily all the time no matter where you are.     \n\n3. We provide all our users to keep log of oil change maintenance for all your cars seperately, no matter what the numbers are; individuals and corporate, so that you always know what your car needs      \n\n4. We also aim to provide you with a good technical knowledge of what engine oils really do and why you need the best quality oil."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="What types of oils does Kixx provide?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="you name it and we have it!\n\n
+We have full range of engine oils needed for your cars
+\n\n1. Gasoline Engine Oils:
+    \n0W20, 0W40, 5W20, 5W30, 5W40, 10W30, 10W40, 20W50
+\n\n2. Diesel Engine Oils:
+     \n15W40 CI4
+\n\n3. Automatic Transmission Fluids:
+     \nATF III, ATF VI, CVTF
+\n\n4. Gear Oils:
+     \n80W90 (GL5), 85W140 (GL5"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="How do I know the best type of oil for my car?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/steps_to_choose_str"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="How can I obtain Kixx oils?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="1. We are already present on most of oil change shops in Riyadh nad Dammam Regions. In case yyou need any assistance for your nearby shop. Please advise your area nad we can share with you the nearest locations. Or you can also get us online through our mobile APP. YOu can download it from the following links........ add App links for IOS and Android or barcodes
+\n\n
+2. You can also find us on noon.com"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/faq_noon_saudi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="https://www.noon.com/saudi-en/p-29072"
+                android:textColor="@color/blue"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Are Kixx oils available in the stations?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Yes!
+We are already present on most of oil change shops in Riyadh nad Dammam Regions. In case yyou need any assistance for your nearby shop. Please advise your area nad we can share with you the nearest locations. Or you can also get us online through our mobile APP. YOu can download it from the following links........ add App links for IOS and Android or barcodes"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="When do I have to change the car oil?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="KIXX is Korea’s leading lubricant and Global Brand under the umbrella of GS (founded jointly by Korean group and American Caltex), sold in more than 63 countries worldwide including Saudi Arabia. KIXX lubricants are recognized for their superior quality and technology.We have all kind of Automitive Engine Oils for all types of vehicles including
+      \n\n1.  Petrol Cars / Passanger cars Premium Engine Oil
+      \n\n2.  Diesel Vehicles Engine Oil "
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="When do I have to change the car oil?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Depending on vehicle age, type of oil and driving conditions, oil change intervals will vary. It used to be normal to change the oil every 3,000 miles, but with modern lubricants most engines today have recommended oil change intervals of 5,000 to 7,500 miles. Moreover, if your car's engine requires full-synthetic motor oil, it might go as far as 10,000 miles between services! You cannot judge engine oil condition by color, so follow the factory maintenance schedule for oil changes.
+Tip: early oil change enhances the life of your engine and saves cost on a longer run."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="What are the advantages of Kixx oil?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Kixx automotive lubricants are formulated with Triple Double Technology, an exclusive and unique technology developed through extensive research and testing at GS Caltex.
+Consisting of Triple Anti Technology and Double Boosting Technology, our Triple Double Technology delivers optimized performance anytime, anywhere.
+
+ \n\n1. Triple Anti Technology significantly reduces friction within the engine through friction modifiers, ultimately improving fuel economy.
+ \n\n2. Triple Anti Technology prevents and eliminates formation of varnish and sludge that are caused by thermal oxidation of lubricants in high temperatures.
+ \n\n3. Triple Anti Technology protects and prolongs engine life through anti-wear additives that forms lubricating film between moving parts.
+ \n\n4. Double Boosting Technology allows temperature stability to be maintained in a wide spectrum of temperatures
+ 5. Double Boosting Technology boosts shear stability and enhanced shear stability of Kixx products allows the required properties and viscosity to be maintained consistently throughout usage. "
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="What is the appropriate answer when inquiring about prices?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/faq_text_view_inquiring"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="https://www.noon.com/saudi-en/p-29072"
+                android:textColor="@color/blue"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="How to apply for jobs?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="K"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Are there new stations where your oils are available?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Yes, Please download our KIXX APP from playstore or Apple store and it will guide you the nearest locations through google map."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Do you have express shops for change car oil?"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Not yet."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="When someone criticizing kixx products or complain (after-sales services):"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text=" apologize from The customer, and informed him that he will be contacted through the private  .... Then contact him on private messages, inquire about the problem, collect all the necessary information ( name, number, the problem, the gasstation,...) and transfer it to customer service team."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="When receiving any positive praise or opinion:"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Thank you for your kind words, we appreciate it."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Bad and indecent comments"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="It will be delete immediately or blocked the user."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="When posting ads"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Delete it "
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="When asked about discounts"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="All new Promotions related to Kixx products will be announced on our Social Media pages, Stay close!"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

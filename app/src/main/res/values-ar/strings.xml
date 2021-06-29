@@ -1,0 +1,1052 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="app_name">Kixx Lubricant</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notifications_admin_channel_name">Global channel</string>
+    <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="Products">منتج</string>
+
+        <string name="how_are_we_doing">كيف كانت تجربتك معنا</string>
+        <string name="Please_give_us_your_feedback">شاركنا ملاحظاتك أواقتراحاتك</string>
+        <string name="eligible_for_our_next_promotion">من فضلك املأ هذا لكي تتأهل للحصول على عرضنا الترويجي التالي</string>
+        <string name="Done">تـّم</string>
+        <string name="Submit">إرسال</string>
+        <string name="Forgot">هل نسيت كلمة املرور؟</string>
+        <string name="Change_password">تغيير كلمة المرور</string>
+        <string name="Create">إنشاء</string>
+        <string name="Confirm">تأكيد</string>
+        <string name="About_us">تعرف علينا</string>
+        <string name="Car_number">رقم السيارة</string>
+        <string name="brand">ماركة(العالمة التجارية)</string>
+        <string name="model">طراز السيارة</string>
+        <string name="Add">أضف</string>
+        <string name="Number_plate">رقم لوحة السيارة</string>
+        <string name="Current_odometer">المسافة الحالية المقطوعة بالسيارة</string>
+        <string name="Profile">الملف الشخصي</string>
+        <string name="Copy_Referral_code">نسخ رمز الإحالة</string>
+        <string name="Contact_us">تواصل معنا</string>
+        <string name="Tutorials">البرامج التعليمية</string>
+        <string name="Tutorials_Screen">شاشة التوجيهات</string>
+        <string name="Latest_marketing">المستجدات التسويقية</string>
+        <string name="Product_portfolio">خط الإنتاج</string>
+        <string name="Signout"> الخروج</string>
+        <string name="Home">الصفحة الرئيسية</string>
+        <string name="Notifications">الإشعارات</string>
+        <string name="Settings">الإعدادات</string>
+        <string name="Update">تحديث</string>
+        <string name="Name">الاسم</string>
+        <string name="City_email">المدينة</string>
+        <string name="Mobile">رقم الهاتف</string>
+        <string name="Select_Gender">اختر الجنس</string>
+        <string name="Other">ألخرى</string>
+        <string name="Next">التالي</string>
+        <string name="Mobile_number">رقم اجلوال</string>
+        <string name="Sign_in">تسجيل الدخول</string>
+        <string name="User">المستخدم</string>
+        <string name="salesman">بائع</string>
+        <string name="Do_you_have_a_referral_code">هل لديك رمز إحالة؟</string>
+        <string name="Become_a_seller">تود الإنضمام لفريق المبيعات؟</string>
+        <string name="are_you_a_salesman">هل أنت بائع ؟</string>
+        <string name="are_you_a_user">هل انت مستخدم؟</string>
+        <string name="request">طلب</string>
+    <string name="or">أو</string>
+
+
+ <!--   <string name="password">كلمه السر</string>
+    <string name="forgot_password">هل نسيت كلمة المرور</string>
+-->    <string name="sign_up">التسجيل</string>
+    <string name="feedback">الملاحظات والاقتراحات</string>
+    <string name="latest_marketing_promotions">أحدث عروض التسويق</string>
+  <!--  <string name="select_car">حدد السيارة</string>
+-->
+    <string name="user_name">اسم المستخدم</string>
+    <string name="user_loyality">الولاء</string>
+
+  <!--  <string name="car_history">انتقل إلى تاريخ السيارة</string>
+-->
+    <string name="notification_title">عنوان الإخطار</string>
+    <string name="notification_desc">وصف الإخطار</string>
+
+    <!--<string name="shop_name">اسم المحل</string>
+  -->  <string name="shop_distance">متجر المسافة</string>
+    <string name="shop_city_country">مدينة التسوق</string>
+    <string name="shop_open">متجر مفتوح</string>
+
+    <string name="promo_title">العنوان الترويجي</string>
+    <string name="promo_description">وصف الترويجي</string>
+
+    <string name="profile_update">تحديث ملفك الشخصي</string>
+
+    <string name="update_name">اسم</string>
+    <string name="update_city">المدينة</string>
+    <string name="update_email">عنوان البريد الإلكتروني</string>
+    <string name="update_mobile">رقم الهاتف</string>
+
+ <!--   <string name="add_car">أضف سيارة</string>
+ -->   <string name="update_record">تحديث</string>
+
+    <string name="select_gender">اختر الجنس</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثى</string>
+
+    <string-array name="gender_arr">
+        <item>اختر الجنس</item>
+        <item>ذكر</item>
+        <item>أنثى</item>
+
+    </string-array>
+
+    <string name="male_gender">ذكر</string>
+    <string name="female_gender">أنثى</string>
+
+    <string name="occupation">اختر المهنة</string>
+
+    <string name="Change_lang">تغيير اللغة</string>
+
+    <string name="Cars_list">قائمة سيارات المستخدم</string>
+    <string name="please_add_car">إضافة سيارتك</string>
+    <string name="please_add_car_num">رقم السيارة</string>
+    <string name="please_add_current_odometer">المسافة المقطوعة بالميل الحالي للسيارة</string>
+
+  <!--  <string name="select_car_brand">حدد ماركة السيارة</string>
+    <string name="select_car_manufacturer">حدد الشركة المصنعة للسيارة</string>
+-->
+    <string name="create_new_pass">أنشئ كلمة مرور جديدة</string>
+    <string name="confirm_pass">تأكيد كلمة المرور الجديدة</string>
+
+    <string name="Aboutus_title">معلومات عنا</string>
+    <string name="Aboutus_desc">جي ايس كالتكس (GS Caltex) هي شركة كورية جنوبية لتكرير النفط. قامت الشركة بتغيير اسمها من مؤسسة النفط ايل جي كالتكس (LG-Caltex Oil Corporation) إلى مؤسسة جي ايس كالتكس (GS Caltex Corporation) في 27 من شهر يناير عام 2006. وهي مملوكة بشكل مشترك من قبل شيفرون ومجموعة جي ايس. تم تأسيس شركة جي ايس كالتكس في شهر مايو عام 1967 كأول شركة نفط خاصة في كوريا.</string>
+    <string name="Aboutus_desc_continue">تم تصنيع زيوت تشحيم كيكس للسيارات بتقنية ثلاثي مزدوج وهي تقنية حصرية وفريدة تم تطويرها من خلال الأبحاث والاختبارات المكثفة في جي ايس كالتكس. والتي تتألف من تقنية المكافحة الثلاثية وتقنية التعزيز المزدوجة، تقوم تقنيتنا المزدوجة الثلاثية بتقديم الأداء الراقي والأمثل في أي وقت وفي أي مكان.
+</string>
+    <string name="feedbackopt">الملاحظات والاقتراحات</string>
+
+  <!--  <string name="subject">موضوع</string>
+  -->  <string name="Message">الرسالة</string>
+
+    <string name="Your_Claim">طلبك</string>
+
+    <string name="Enter_User_ID">أدخل اسم المستخدم</string>
+    <string name="Search">بحث</string>
+    <string name="Select_Car">اختر السيارة (إن أمكن)</string>
+    <string name="Continue">استمر</string>
+    <string name="Continue_language">استمر</string>
+
+    <string name="add_car_if">أضف سيارة ( في حال عدم إضافتها مسبقاً)</string>
+
+ <!--   <string name="air_filter">مرشح الهواء</string>
+    <string name="oil_filter">مصفاة النفط</string>
+-->
+    <string name="Select_Product">اختر المنتج</string>
+    <string name="Select_Quantity">اختر الكمية</string>
+    <string name="scan_qr">امسح رمز الاستجابة السريعة(QR)</string>
+
+    <string name="Total_Liters">مجموع اللترات</string>
+    <string name="Discounted_Quantity">مقدار التخفيض</string>
+
+    <string name="Finish">إنهاء</string>
+
+    <string name="user_not_found" tools:ignore="ExtraTranslation">المستخدم ليس موجو </string>
+    <string name="user_updated_Success" tools:ignore="ExtraTranslation">تم تحديث المستخدم بنجاح</string>
+
+    <string name="shopProfile">متجر الملف الشخصي</string>
+
+    <string name="alreadyauser">مسجل مسبقاً؟</string>
+    <string name="alreadyashopkeeper">مسجل مسبقاً كصاحب متجر؟</string>
+    <string name="Notauser">ليس مستخدم</string>
+
+    <string name="arabic">عربى</string>
+
+    <string name="title_activity_product_portfolio">محفظة المنتج</string>
+    <string name="alert_title">سجل بصفتك صاحب متجر</string>
+    <string name="alert_decs">هذا فقط لأصحاب المتاجر، هل تود الاستمرار؟</string>
+
+<!--
+    <string name="proceed">تقدم</string>
+    <string name="cancel">إلغاء</string>
+-->
+
+    <string name="products01_type">زيت محرك البنزين</string>
+    <string name="products01_name">Kixx G1 SN PLUS 10W-30</string>
+    <string name="products01_model">L2104AL1E1</string>
+    <string name="products01_barcode">801470210416</string>
+    <string name="products01_unit">1 Litre</string>
+    <string name="products01_description">Kixx G1 SN PLUS 10W-30 is a High grade زيت محرك البنزين providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products01_specification">"• 10W-30: زيت محرك متقدم من الدرجة الأولى بدرجة API SN PLUS-RC ، ILSAC GF-5 مركب من زيت أساس بالتكنولوجيا الاصطناعية.
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+</string>
+
+    <string name="products02_type">زيت محرك البنزين</string>
+    <string name="products02_name">Kixx G1 SN PLUS 10W-40</string>
+    <string name="products02_model">L2105AL1E1</string>
+    <string name="products02_barcode">801470210515</string>
+    <string name="products02_unit">1 Litre</string>
+    <string name="products02_description">Kixx G1 SN PLUS 10W-40 is a High grade زيت محرك البنزين providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products02_specification">"• 10W-40: زيت محرك متقدم من الدرجة الأولى بدرجة API SN PLUS مصاغ من زيت أساسي للتكنولوجيا الاصطناعية.
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+</string>
+
+    <string name="products03_type">زيت محرك البنزين</string>
+    <string name="products03_name">Kixx G1 SN PLUS 20W-50</string>
+    <string name="products03_model">L2106AL1E1</string>
+    <string name="products03_barcode">801470210614</string>
+    <string name="products03_unit">1 Litre</string>
+    <string name="products03_description">Kixx G1 SN PLUS 20W-50 is a High grade زيت محرك البنزين providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention</string>
+    <string name="products03_specification">"• 20W-50: زيت محرك متقدم من الدرجة الأولى بدرجة API SN PLUS تم تركيبه من زيت أساس بالتكنولوجيا الاصطناعية.
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+
+</string>
+
+    <string name="products04_type">زيت محرك البنزين</string>
+    <string name="products04_name">Kixx G1 SN PLUS 5W-20</string>
+    <string name="products04_model">L2100AL1E1</string>
+    <string name="products04_barcode">801470210010</string>
+    <string name="products04_unit">1 Litre</string>
+    <string name="products04_description">Kixx G1 SN PLUS 5W-20 هو زيت محرك بنزين عالي الجودة يوفر حماية ممتازة ، واقتصاد وقود محسّن ، وقوة محرك محسّنة وقابلية صيانته ، وفاصل تصريف الزيت الممتد ، ومقاومة التآكل تحت ظروف درجة حرارة واسعة ، ومنع LSPI</string>
+    <string name="products04_specification">"• 5W-20: زيت محرك تخليقي بالكامل متقدم من الدرجة الأولى من API SN PLUS-RC، ILSAC GF-5
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+
+</string>
+
+    <string name="products05_type">زيت محرك البنزين</string>
+    <string name="products05_name">Kixx G1 SN PLUS 5W-30</string>
+    <string name="products05_model">L2101AL1E1</string>
+    <string name="products05_barcode">801470210119</string>
+    <string name="products05_unit">1 Litre</string>
+    <string name="products05_description">Kixx G1 SN PLUS 5W-30 هو زيت محرك بنزين عالي الجودة يوفر حماية ممتازة ، واقتصاد وقود محسّن ، وقوة محرك محسّنة وقابلية صيانته ، وفاصل تصريف الزيت الممتد ، ومقاومة التآكل تحت ظروف درجة حرارة واسعة ، ومنع LSPI</string>
+    <string name="products05_specification">"• 5W-30: زيت محرك تخليقي بالكامل متقدم من الدرجة الأولى بدرجة API SN PLUS-RC و ILSAC GF-5
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+
+</string>
+
+    <string name="products06_type">زيت محرك البنزين</string>
+    <string name="products06_name">Kixx G1 SN PLUS 5W-40</string>
+    <string name="products06_model">L2102AL1E1</string>
+    <string name="products06_barcode">801470210218</string>
+    <string name="products06_unit">1 Litre</string>
+    <string name="products06_description">Kixx G1 SN PLUS 5W-40 هو زيت محرك بنزين عالي الجودة يوفر حماية ممتازة ، واقتصادًا معززًا للوقود ، وقوة محرك محسّنة وقابلية صيانته ، وفاصل تصريف الزيت الممتد ، ومقاومة التآكل تحت ظروف درجة حرارة واسعة ، ومنع LSPI</string>
+    <string name="products06_specification">"• 5W-40: زيت محرك صناعي متقدم من الدرجة الأولى بدرجة API SN PLUS-RC و ILSAC GF-5
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+
+</string>
+
+    <string name="products07_type">السائل ناقل حركة أوتوماتيكي</string>
+    <string name="products07_name">Kixx CVTF</string>
+    <string name="products07_model">L2519AL1E1</string>
+    <string name="products07_barcode">801470251914</string>
+    <string name="products07_unit">1 Litre</string>
+    <string name="products07_description">Kixx CVTF عبارة عن سائل ناقل حركة عالي الجودة تخليقي بالكامل مصمم لتلبية استخدام تعبئة الخدمة في مجموعة واسعة من ناقل الحركة المتغير باستمرار (CVT).</string>
+    <string name="products07_specification">تم تصميم CVTF خصيصًا لتوفير راحة قيادة ممتازة ، وعمر أطول لنقل الحركة ، وفاصل زمني ممتد للخدمة ، وتحكم ممتاز في التآكل ، ومتانة بين الحزام والبولي. يوصى باستخدامه في جميع أنواع حزام الدفع CVT. ويوصى باستخدامه في CVTs من نوع السلسلة.
+
+</string>
+
+    <string name="products08_type">زيت محرك البنزين</string>
+    <string name="products08_name">Kixx G1 SN PLUS 20W-50</string>
+    <string name="products08_model">L2106AL1E1</string>
+    <string name="products08_barcode">801470210614</string>
+    <string name="products08_unit">1 Litre</string>
+    <string name="products08_description">Kixx G1 SN PLUS 20W-50 هو زيت محرك بنزين عالي الجودة يوفر حماية ممتازة ، واقتصاد وقود محسّن ، وقوة محرك محسّنة وقابلية صيانته ، وفاصل تصريف الزيت الممتد ، ومقاومة التآكل تحت ظروف درجة حرارة واسعة ، ومنع LSPI</string>
+    <string name="products08_specification">"• 20W-50: زيت محرك متقدم من الدرجة الأولى بدرجة API SN PLUS مصاغ من زيت أساسي للتكنولوجيا الاصطناعية.
+• زيت محرك بنزين عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"
+</string>
+
+    <string name="products09_type">السائل ناقل حركة أوتوماتيكي</string>
+    <string name="products09_name">Kixx ATF DX-III</string>
+    <string name="products09_model">L2509AL1E1</string>
+    <string name="products09_barcode">801470250917</string>
+    <string name="products09_unit">1 Litre</string>
+    <string name="products09_description"> يتفوق Kixx ATF DX-III Fully Synthetic على أي ATF سابق أو حالي للاستخدام في سيارات الركاب ذات ناقل الحركة الأوتوماتيكي. ويمكن أن يوصى به لناقل الحركة الأوتوماتيكي مع القابض القفل.</string>
+    <string name="products09_specification"> يتفوق Kixx ATF DX-III Fully Synthetic على أي ATF سابق أو حالي للاستخدام في سيارات الركاب ذات ناقل الحركة الأوتوماتيكي. ويمكن أن يوصى به لناقل الحركة الأوتوماتيكي مع القابض القفل. إنه يوفر أداء عالي الجودة يرجع جزئيًا إلى مقاومته للأكسدة ، وسيولة درجات الحرارة المنخفضة ، وأداء الاحتكاك المناسب ، وثبات القص العالي ، والتشغيل القريب من الحمأة.
+
+</string>
+    <string name="products10_type">السائل ناقل حركة أوتوماتيكي
+</string>
+    <string name="products10_name">Kixx ATF DX-VI</string>
+    <string name="products10_model">L2524AL1E1</string>
+    <string name="products10_barcode">801470252416</string>
+    <string name="products10_unit">1 Litre</string>
+    <string name="products10_description">Kixx ATF DX-VI هو سائل متعدد المركبات ذو أداء متميز ولزوجة منخفضة لنقل الحركة الأوتوماتيكية الحديثة ، وهو ممزوج بمخزون أساسي صناعي وإضافات متقدمة عالية الأداء. إنه مصمم خصيصًا لتوفير كفاءة محسنة للوقود وأداء ممتاز للتحكم في الاهتزاز.
+</string>
+    <string name="products10_specification">يتفوق Kixx ATF DX-III Fully Synthetic على أي ATF سابق أو حالي للاستخدام في سيارات الركاب ذات ناقل الحركة الأوتوماتيكي. ويمكن أن يوصى به لناقل الحركة الأوتوماتيكي مع القابض القفل.
+
+</string>
+    <string name="products11_type">زيت محرك الديزل
+
+</string>
+    <string name="products11_name">Kixx HD1 CI-4/E7 15W-40 (1L)</string>
+    <string name="products11_model">L2015AL1E1</string>
+    <string name="products11_barcode">801470201513</string>
+    <string name="products11_unit">1 Litre</string>
+    <string name="products11_description">Kixx HD1 CI-4 / E7 15W-40 هو زيت محركات ديزل عالي الأداء ، متعدد الدرجات ، عالي الأداء ، مصمم خصيصًا لتزييت مجموعة واسعة من محركات الديزل</string>
+    <string name="products11_specification">"• زيت محركات ديزل عالي الأداء قائم على التخليق ، متعدد الدرجات ، للخدمة الشاقة مصمم خصيصًا لتزييت مجموعة واسعة من محركات الديزل التي تتطلب زيوت تشحيم أداء API CI-4 و SL و ACEA E7 تعمل في ظل ظروف الخدمة الأشد قسوة.
+• معايير الأداء
+API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3، MAN 3275، MTU Type 2، Mack EO-M Plus، Renault RLD / RLD-2 ، Cummins 20071،72،76،77 ، كات. ECF-1-a ، ZF TE-ML 07C."
+
+</string>
+    <string name="products12_type">زيت محرك الديزل</string>
+    <string name="products12_name">Kixx HD1 CI-4/E7 15W-40 (4L)</string>
+    <string name="products12_model">L20155440E1</string>
+    <string name="products12_barcode">801470201544</string>
+    <string name="products12_unit">4 Litre</string>
+    <string name="products12_description">Kixx HD1 CI-4 / E7 15W-40 هو زيت محرك ذو أداء عالٍ صناعي ، متعدد الدرجات ، شديد التحمل ، مصمم خصيصًا لتزييت مجموعة واسعة من محركات الديزل</string>
+    <string name="products12_specification">"• زيت محرك الديزل ذو أداء عالٍ اصطناعي ، متعدد الدرجات ، للخدمة الشاقة مصمم خصيصًا لتزييت مجموعة واسعة من محركات الديزل التي تتطلب زيوت تشحيم أداء API CI-4 ، SL ، ACEA E7 تعمل في ظل أقسى ظروف الخدمة.
+• معايير الأداء
+API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3، MAN 3275، MTU Type 2، Mack EO-M Plus، Renault RLD / RLD-2 ، Cummins 20071،72،76،77 ، كات. ECF-1-a ، ZF TE-ML 07C.
+</string>
+
+    <string name="products13_type">زيت محرك الديزل</string>
+    <string name="products13_name">Kixx HD1 CI-4/E7 20W-50</string>
+    <string name="products13_model">L5331440E1</string>
+    <string name="products13_barcode">801470533140</string>
+    <string name="products13_unit">4 Litre</string>
+    <string name="products13_description">Kixx HD1 CI-4 / E7 20W-50 هو زيت محرك ذو أداء عالٍ صناعي ، متعدد الدرجات ، شديد التحمل ، مصمم خصيصًا لتزييت مجموعة واسعة من محركات الديزل</string>
+    <string name="products13_specification">"• زيت محرك الديزل ذو أداء عالٍ اصطناعي ، متعدد الدرجات ، للخدمة الشاقة مصمم خصيصًا لتزييت مجموعة واسعة من محركات الديزل والبنزين التي تتطلب زيوت تشحيم أداء API CI-4 ، SL ، ACEA E7 تعمل في ظل أقسى ظروف الخدمة.
+• معايير الأداء
+API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3، MAN 3275، MTU Type 2، Mack EO-M Plus، Renault RLD / RLD-2 ، Cummins 20071،72،76،77 ، كات. ECF-1-a ، ZF TE-ML 07C.
+</string>
+    <string name="products14_type">ناقل الحركة اليدوي وسوائل المحور</string>
+    <string name="products14_name">Kixx Geartec GL-5 80W-90</string>
+    <string name="products14_model">L2983440E1</string>
+    <string name="products14_barcode">801470298346
+</string>
+    <string name="products14_unit">4 Litre</string>
+    <string name="products14_description">Kixx Geartec GL-5 80W-90 هو زيت تشحيم عالي الأداء ومتعدد الأغراض ومستقر حرارياً ومزلق تروس السيارات EP.
+</string>
+    <string name="products14_specification">"• KIXX Geartec GL-5 API GL-5. MIL-L-2105D عالي الأداء ، متعدد الأغراض ، مستقر حرارياً ، زيوت تشحيم تروس السيارات EP.
+• موصى به لتطبيقات التروس الهيبويد للسيارات التي تتطلب مواد تشحيم تتوافق مع MIL-PRF-2105E و MIL-L-2105D و MILL-2105C و MIL-L-2105B و API Service GL-5 أو حيث تكون زيوت التروس EP أو متعددة الأغراض أو زيوت التروس من النوع hypoid محدد.
+• يوصى به عندما يكون التحميل شديدًا ويكون الحد الأقصى لحماية التروس مطلوبًا. تجعل تقنية "الترس النظيف" مناسباً بشكل خاص عندما تكون درجات حرارة زيت التروس مرتفعة."
+
+</string>
+
+
+
+    <string name="products15_type">ناقل الحركة اليدوي وسوائل المحور</string>
+    <string name="products15_name">Kixx Geartec GL-5 85W-140</string>
+    <string name="products15_model">L2984440E1</string>
+    <string name="products15_barcode">801470298445
+</string>
+    <string name="products15_unit">4 Litre</string>
+    <string name="products15_description">Kixx Geartec GL-5 85W-140 عبارة عن زيوت تشحيم عالية الأداء ومتعددة الأغراض ومستقرة حرارياً ، وزيوت تشحيم تروس السيارات EP.
+</string>
+    <string name="products15_specification">"• KIXX Geartec GL-5 API GL-5. MIL-L-2105D عالي الأداء ، متعدد الأغراض ، مستقر حرارياً ، زيوت تشحيم تروس السيارات EP.
+• موصى به لتطبيقات التروس الهيبويد للسيارات التي تتطلب مواد تشحيم تتوافق مع MIL-PRF-2105E و MIL-L-2105D و MILL-2105C و MIL-L-2105B و API Service GL-5 أو حيث تكون زيوت التروس EP أو متعددة الأغراض أو زيوت التروس من النوع hypoid محدد.
+• يوصى به عندما يكون التحميل شديدًا ويكون الحد الأقصى لحماية التروس مطلوبًا. تجعل تقنية "الترس النظيف" مناسباً بشكل خاص عندما تكون درجات حرارة زيت التروس مرتفعة."
+    </string>
+
+
+    <string name="terms">شروط الاستخدام</string>
+
+    <string name="Select_lang">اختر اللغة</string>
+
+  <!--  <string name="turtorial_1_desc">تحيات من زيوت التشحيم العالمية المستوى مباشرة من قلب كيكس بدءًا من المحرك إلى زيت ناقل الحركة ومن زيت التروس إلى الزيوت الهيدروليكية والشحوم من مزود الزيت المفضل لديك.</string>
+  -->  <string name="turtorial_1_title">كيكس لزيوت تشحيم السيارات</string>
+  <!--  <string name="turtorial_2_desc">اجلس واسترخ ، نحن نعتني بسيارتك من خلال حل المتجر الشامل.</string>
+  -->  <string name="turtorial_2_title">كيكس محطة واحدة</string>
+ <!--   <string name="turtorial_3_desc">نحن نقدم أحدث العروض الترويجية ، وخصومات مثيرة وفرصة لنقاط غير محدودة على الإحالات.</string>
+    <string name="turtorial_4_desc">نحن نقدم زيوت عالية الأداء ممتازة! مع درجات وأحجام واسعة النطاق.</string>
+ -->   <string name="turtorial_3_title">هدايا ومفاجآت بتعجبك</string>
+    <string name="turtorial_4_title">سمها ما شئت ولدينا ذلك!</string>
+    <string name="turtorial_5_desc">من البنزين إلى الهجين، ومن الهجين إلى الديزل تقدم كيكس زيوت عالية الجودة مما يجعلها في طليعة المنافسين, والمفضلة لدى سيارتك.</string>
+    <string name="turtorial_5_title">زيوت عالية الجودة متنوعة الدرجات والأحجام</string>
+    <string name="usernotfound">أدخلت اسم المستخدم / كلمة المرور غير صحيحة؟</string>
+   <!-- <string name="skip">تخطى</string>
+   --> <string name="next">التالى</string>
+
+    <string name="agreeto">أوافق على</string>
+
+    <string-array name="User_occupation">
+
+        <item>حدد المهنة</item>
+        <item>طالب علم</item>
+        <item>صاحب الوظيفة</item>
+        <item>اعمال</item>
+        <item>آخر</item>
+
+
+    </string-array>
+
+    <string-array name="please_select_car">
+
+        <item>اختر سيارتك</item>
+
+    </string-array>
+
+    <string name="User_id">الهوية الوطنية، أو الإقامة</string>
+
+    <string name="carnotfound_title"> آسف! لم يتم العثور على بيانات</string>
+    <string name="carnotfound_desc">سيتم عرض السجل بعد أول تغيير للزيت</string>
+    <string name="clicktoaddcar">انقر هنا لإضافة سيارة</string>
+
+    <string name="entercode">الرجاء إدخال الرمز الخاص بك</string>
+    <string name="sixdigitcode">لقد أرسلنا رمزًا مكونًا من ستة أرقام إلى</string>
+    <string name="resendcode">إعادة إرسال الرمز</string>
+
+    <string name="yourprofile">ملفك الشخصي</string>
+ <!--   <string name="promotion">ترقية وظيفية</string>
+-->
+ <!--   <string name="gold">Gold</string>
+    <string name="silver">Silver</string>
+    <string name="platinum">Platinum</string>
+    <string name="bronze">Bronze</string>-->
+    <string name="faqs">التعليمات</string>
+
+    
+  <!--  <string name="tutorialscreen1"> ترحب بكم كيكس من أعماق القلب إلى عالم زيوت التشحيم من الطراز العالمي, حيث تجد زيت المحرك و زيت ناقل الحركة وزيت التروس المسننة من الزيوت الهيدروليكية والشحوم وما إلى ذلك من أنواع الزيوت المفضلة لديك.</string>
+    <string name="tutorialscreen2">متع بالجلوس والاسترخاء, فنحن نحرص على الاعتناء بسيارتك بخدماتناالشاملة الموحد</string>
+    <string name="tutorialscreen3">حن نقدم أحدث العروض الترويجية، وخصومات مثيرة وفرصة لكسبنقاط غير محدودة على الإحالات</string>
+-->
+
+    <string-array name="cities">
+
+        <item>الرياض</item>
+        <item>جدة</item>
+        <item>الدمام</item>
+        <item>مكه</item>
+        <item>الدمامالمدينة المنورة</item>
+        <item>الطائف</item>
+        <item>الجبيل</item>
+        <item>قاسم</item>
+        <item>الاحساء</item>
+        <item>عرعر</item>
+        <item>بهاء</item>
+        <item>بقيق</item>
+        <item>الخرج</item>
+        <item>مدينه الخبر</item>
+        <item>القطيف</item>
+        <item>رابغ</item>
+        <item> سكاكا</item>
+        <item>ينبع البحر</item>
+        <item>آحرون</item>
+
+
+    </string-array>
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="join">انضم إلى عالم كيكس واحصل على العديد من الهدايا والجوائز</string>
+
+
+
+    <string name="Tutorials_Screen_1_eng_title">شاشة التوجيهات</string>
+    <string name="turtorial_1_desc">حياكم... نورتونا في كيكس زيوت السيارات الأول في العالم</string>
+    <string name="turtorial_2_eng_title">محطة كيكس لزيوت التشحيم</string>
+    <string name="turtorial_2_desc">ريح بالك ودلع سيارتك زوروا أحد فروعنا واستمتعوا بخدماتنا الشاملة للعناية بسيارتك</string>
+
+    <string name="turtorial_3_eng_title">كيكس اكسبرس</string>
+    <string name="turtorial_3_desc">نقدم لكم عروض وخصومات مثيرة وعبوات مجانية وفرص لكسب العديد من النقاط على تغيير الزيت و الإحالات.</string>
+
+    <string name="turtorial_4_eng_title">العروض الترويجية المثيرة، والخصومات، ونقاط المكافآت</string>
+    <string name="turtorial_4_desc">زيوت ممتازة عالية الأداء تقدم كل ماتحتاجه محركات البنزين والديزل</string>
+
+    <string name="turtorial_5_eng_title">اطلب ...وحنا نلبي</string>
+    <string name="multi_grade_hight">زيت عالي الجودة متعدد الدرجات</string>
+    <string name="Entered_username_warning">لقد قمت بإدخال اسم المستخدم / كلمة مرور غير صحيحة</string>
+    <string name="skip">تخطي</string>
+    <string name="finish">إنهاء</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="confirm">تأكد</string>
+    <string name="sign_in_screen">شاشة تسجيل دخول المستخدم</string>
+    <string name="already_user">مسجل مسبقاً؟</string>
+    <string name="password">كلمة المرور(الحد الأدنى ثلاثة أحرف)</string>
+    <string name="warning_character">الحد الأدنى ثلاثة أحرف.</string>
+    <string name="forgot_password">نسيت كلمة المرور</string>
+    <string name="signin">تسجيل الدخول</string>
+    <string name="signup">التسجيل</string>
+    <string name="are_you_shopkeeper">هل أنت صاحب متجر؟</string>
+    <string name="only_for_ksa">فقط في المملكة العربية السعودية</string>
+    <string name="enter_phone_number">يرجى إدخال رقم الهاتف.</string>
+    <string name="enter_password">,  يرجى إدخال كلمة المرور.</string>
+    <string name="phone_number_start_warning">يجب أن يبدأ رقم الهاتف بـ 0.</string>
+    <string name="network_problem_warning">مشكلة في الشبكة! يرجى التحقق من اتصال الإنترنت الخاص بك وإعادة تشغيل التطبيق.</string>
+    <!--    <string name="turtorial_5_arabic_desc">You Have Entered Username / Incorrect Password</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">لقد قمت بإدخال اسم المستخدم / كلمة مرور غير صحيحة.</string>-->
+    <string name="server_error">السيرفر تحت الصيانة، يرجى المحاولة مرة أخرى في وقت لاحق.</string>
+    <string name="incorrect_data">بيانات غير صحيحة.</string>
+    <string name="sign_up_screen">تسجيل الشاشة:</string>
+    <string name="agree_to">أوافق على</string>
+    <string name="term_of_use">الشروط والأحكام</string>
+    <string name="referal_code_error"> رمز إحالة غير صالح, لا يسمح بالمساحات.</string>
+    <string name="agree_to_term">يرجى الموافقة على شروط الاستخدام.</string>
+    <string name="fill_fields">يرجى تعبئة هذا الحقل</string>
+    <string name="password_must_have_error">يجب أن تحتوي كلمة المرور على ثلاثة أحرف على الأقل.</string>
+    <string name="shopkeeper_signin_screen">شاشة تسجيل دخول صاحب متجر:</string>
+    <string name="already_a_shopkeeper">مسجل مسبقاً كصاحب متجر؟</string>
+    <string name="user_dashboard">لوحة تحكم المستخدم</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="promotion">العروض</string>
+    <string name="no_data_error">آسف! لم يتم العثور على بيانات.</string>
+    <string name="record_will_shown_on_first">سيتم عرض السجل بعد أول تغيير للزيت</string>
+    <string name="click_add_car">انقر هنا لإضافة سيارة.</string>
+    <string name="car_history">سجل السيارة</string>
+    <string name="settings_screen">شاشة الإعدادات:</string>
+    <string name="latest_marketing_promotion">أحدث العروض التسويقية.</string>
+    <string name="referal_code"> رمز الإحالة.</string>
+
+    <string name="refer_to_friend">ارسل دعوة لصديقك</string>
+    <string name="please_select_image_type">الرجاء تحديد نوع الصورة المراد تحميلها</string>
+    <string name="Camera">كاميرا</string>
+    <string name="Gallery">المعرض</string>
+
+    <string name="feedback_and_suggest">الملاحظات والاقتراحات</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="user_profile">تحديث ملف تعريف المستخدم:</string>
+    <string name="update_profile">تحديث ملفك الشخصي</string>
+    <string name="select_occupation">اختر المهنة</string>
+    <string name="add_car">أضف سيارة</string>
+    <string name="user_car_list_screen">شاشة قائمة سيارات المستخدم:</string>
+    <string name="user_car_list">قائمة سيارات المستخدم</string>
+    <string name="car_number">رقم السيارة</string>
+    <string name="car_brand">الماركة / العلامة التجارية للسيارة</string>
+    <string name="car_model">طراز السيارة / السنة</string>
+    <string name="add_car_screen">إضافة شاشة السيارة:</string>
+    <string name="please_add_your_car">الرجاء إضافة سيارتك</string>
+    <string name="car_current_mileage">المسافة المقطوعة بالميل الحالي للسيارة.</string>
+    <string name="select_car_manufacturer">اختر الشركة المصنعة للسيارة</string>
+    <string name="select_car_brand">اختر ماركة السيارة</string>
+    <string name="add">إضافة</string>
+    <string name="product_portfolio">شاشة محفظة المنتج:</string>
+    <string name="product_list">, قائمة المنتجات</string>
+    <string name="feedback_suggestioon_screen">شاشة الملاحظات والاقتراحات:</string>
+    <string name="experience_with_us">كيف كانت تجربتك معنا؟</string>
+    <string name="select_hobbies">اختر الهوايات.</string>
+    <string name="select_age">قم بتحديد العمر.</string>
+    <string name="contact_us_screen">شاشة الاتصال بنا:</string>
+    <string name="subject">الموضوع</string>
+    <string name="message">الرسالة</string>
+    <string name="change_password"> تغيير كلمة المرور</string>
+    <string name="create_new_password">إنشاء كلمة مرور جديدة.</string>
+    <string name="shopkeeper">لوحة تحكم لصاحب المتجر:</string>
+    <string name="your_claim">مطالباتك</string>
+    <string name="points">النقاط</string>
+    <string name="car_info_screen">شاشة معلومات السيارة:</string>
+    <string name="enter_user_id">قم بإدخال معرف المستخدم.</string>
+    <string name="search">بحث</string>
+    <string name="select_car">اختر السيارة.</string>
+    <string name="if_applicable">إذا كان قابلا للتطبيق.</string>
+    <string name="if_no_car_selected">إذا لم يتم اختيار أي سيارة.</string>
+    <string name="QR_screen">شاشة الاستجابة السريعة (QR)</string>
+    <string name="car_current">المسافة المقطوعة بالميل الحالي للسيارة.</string>
+    <string name="select_product">حدد المنتج</string>
+    <string name="select_quantity">حدد الكمية</string>
+    <string name="air_filter">مصفاة الهواء</string>
+    <string name="oil_filter">مصفاة الزيت</string>
+    <string name="scan_qr_code">مسح رمز الاستجابة السريعة (QR)</string>
+    <string name="total_liters">مجموع اللترات</string>
+    <string name="total_liters_claim">إجمالي اللترات المستحقة</string>
+    <string name="discounted_liters">اللترات المخفضة</string>
+    <string name="shop_profile_screen">شاشة الملف الشخصي للمتجر:</string>
+    <string name="shop_profile">الملف الشخصي للمتجر.</string>
+    <string name="menu">القائمة</string>
+    <string name="promos">العروض الترويجية</string>
+    <string name="more">المزيد</string>
+    <string name="become_seller_screen">تود الإنضمام لفريق المبيعات؟</string>
+    <string name="register_as_shopkeeper">سجل بصفتك صاحب متجر</string>
+    <string name="only_for_shopkeeper">هذا فقط لأصحاب المتاجر، هل تود الاستمرار؟</string>
+    <string name="cancel">إلغاء</string>
+    <string name="proceed">المتابعة</string>
+    <string name="shop_name">اسم المحل</string>
+    <string name="forgot_password_screen">شاشة نسيت كلمة المرور</string>
+    <string name="please_enter_your_code">الرجاء إدخال الرمز الخاص بك</string>
+    <string name="we_have_sent_6_digit_code">لقد أرسلنا رمزًا مكونًا من ستة أرقام إلى.</string>
+    <string name="resend_code_in">إعادة إرسال الرمز بتنسيق</string>
+    <string name="please_enter_otp">, الرجاء إدخال كلمة المرور لمرة واحدة (OTP)</string>
+    <string name="login_has_blocked">تم حظر تسجيل دخولك بسبب ثلاث محاولات خاطئة لتلقي كلمة المرور لمرة واحدة ( OTP), يرجى المحاولة مرة أخرى لاحقًا بعد ساعة، شكرًا لك.</string>
+    <string name="edit_profile">تحرير الملف الشخصي</string>
+    <string name="ads">الإعلانات</string>
+    <string name="gold">الذهبية</string>
+    <string name="bronze">البرونزية</string>
+    <string name="silver">الفضية</string>
+    <string name="back">العودة</string>
+    <string name="platinum">البلاتينية</string>
+    <string name="claim_reward_screen">شاشة المطالبة بالمكافأة:</string>
+    <string name="you_are_gold_user">أنت عضو ذهبي</string>
+    <string name="your_are_a_bronze_user">هل أنت عضو برونزي</string>
+    <string name="your_are_a_silver_user">هل أنت عضو فضي</string>
+    <string name="your_are_a_platinum_user">هل أنت عضو بلاتيني</string>
+    <string name="liter_1">لتر واحد</string>
+    <string name="liter_2">لتران</string>
+    <string name="liter_3">ثلاث لترات</string>
+    <string name="liter_4">اربع لترات</string>
+    <!--    <string name="points">Points</string>-->
+    <!--    <string name="points_arabic">نقاط</string>-->
+    <string name="refering_person_oil_change">تغيير زيت الشخص المدعو</string>
+    <string name="oneachoilchange">على كل تغيير زيت</string>
+    <string name="refering_person_register_app">دعوة صديق للتسجيل في التطبيق</string>
+    <string name="oil_change">تغيير الزيت</string>
+    <string name="oil_change_history">تغيير الزيت</string>
+    <string name="redeem_point">استبدل نقاطك</string>
+    <string name="earn_points">كيف احصل على النقاط</string>
+    <string name="how_to_earn_badges">كيف أحصل على العضوية؟</string>
+    <string name="platinum_badge">عضوية بلاتينية</string>
+    <string name="gold_badge">عضوية ذهبية</string>
+    <string name="silver_badge">عضوية فضية</string>
+    <string name="bronze_badge">عضوية برونزية</string>
+    <string name="at_first_login">عند تسجيل الدخول لأول مرة</string>
+    <string name="signup_screen">شاشة التسجيل</string>
+    <string name="new_to_kixx">هل أنت جديد في كيكس(kixx)؟</string>
+    <string name="feedback_screen">شاشة الملاحظات والاقتراحات</string>
+    <string name="please_give_us_feedback">شاركنا ملاحظاتك أواقتراحاتك</string>
+    <string name="please_fill_to_become_eligible">قم بالإجابة عمايلي لكي تتأهل لعرضنا الترويجي التالي </string>
+    <string name="contact_us">الاتصال بنا:</string>
+    <string name="write_to_us">تواصل معنا</string>
+    <!--    <string name="subject">Subject</string>-->
+    <!--    <string name="subject_arabic">الموضوع</string>-->
+    <!--    <string name="message">Message</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">الرسالة</string>-->
+    <string name="settings">الإعدادات</string>
+    <string name="product_line_up">خط المنتج حتى</string>
+    <string name="faq_s">الأسئلة المتكررة</string>
+    <string name="salesman_dashboard">لوحة تحكم البائع</string>
+    <string name="view_profile">عرض الملف الشخصي</string>
+    <!--    <string name="total_liters">Total liters to be claimed</string>-->
+    <!--    <string name="total_liters_arabic">إجمالي اللترات للمطالبة</string>-->
+    <string name="qr_first_screen">الشاشة الأولى للاستجابة السريعة (QR)</string>
+    <string name="enter_id">أدخل معرف</string>
+    <string name="select_your_car">اختر سيارتك</string>
+    <string name="add_a_car_no_car">لم تتم إضافة أي سيارة. أضف سياراتك</string>
+    <string name="current_odometer">قراءة عداد المسافات الحالي</string>
+    <string name="qr_screen">شاشة الاستجابة السريعة (QR)</string>
+    <string name="mileage_reading">قراءة الأميال</string>
+    <!--    <string name="select_product">Select product </string>-->
+    <!--    <string name="select_product_arabic">حدد المنتج</string>-->
+    <!--    <string name="select_quantity">Select Quantity</string>-->
+    <!--    <string name="select_quantity_arabic">حدد الكمية</string>-->
+    <!--    <string name="air_filter">Air Filter</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">مصفاة الهواء</string>-->
+    <!--    <string name="oil_filter">Oil Filter</string>-->
+    <!--    <string name="oil_filter_arabic">مصفاة النفط</string>-->
+    <!--    <string name="scan_qr_code">Scan QR Code</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">مسح رمز الاستجابة السريعة (QR)</string>-->
+    <!--    <string name="total_liters">Total liters</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">مجموع اللترات</string>-->
+    <!--    <string name="discounted_liters">Discounted liters</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">اللترات المخفضة</string>-->
+    <!--    <string name="settings">Settings</string>-->
+    <!--    <string name="turtorial_5_arabic_desc">الإعدادات</string>-->
+    <string name="are_you_sure_to_logout">هل أنت متأكد أنك تريد الخروج</string>
+   <!-- <string name="record_will_shown_on_first">سيتم عرض السجل في أول تغيير للزيت</string>-->
+
+    <string name="onlyforksa">فقط للمملكة العربية السعودية</string>
+    <string name="pleaseenterphonenumber">يرجى إدخال رقم الهاتف المحمول</string>
+    <string name="pleaseenterpassword">يرجى إدخال كلمة المرور.</string>
+    <string name="passwordmusthavethreecharacters">يجب أن تحتوي كلمة المرور على ثلاثة أحرف على الأقل</string>
+    <string name="pleasecheckinternetconnection">يرجى التحقق من اتصال الإنترنت الخاص بك وإعادة تشغيل التطبيق.</string>
+    <string name="invalidreferralcode">رمز الإحالة غير صالح, لا يسمح بالفراغات.</string>
+    <string name="phonenumbermuststartwith">يجب أن يبدأ رقم الهاتف 0</string>
+    <string name="networkerror">لديك مشكلة في الشبكة! يرجى التحقق من اتصالك بالإنترنت وإعادة تشغيل التطبيق.</string>
+    <string name="useralreadyregistered">المستخدم مسجل سابقاً</string>
+    <string name="usersuccessfullyregistered">تم تسجيل المستخدم بنجاح</string>
+    <string name="servermaintainence">الخادم قيد الصيانة، يرجى المحاولة مرة أخرى في وقت لاحق.</string>
+    <string name="incorrectdata">بيانات غير صحيحة</string>
+    <string name="welcometokixx">مرحبا بكم في كيكس</string>
+    <string name="incorrectunamepass">لقد قمت بإدخال اسم المستخدم / كلمة المرور بطريقة غير صحيحة.</string>
+    <string name="agreetoterms">أوافق على</string>
+    <string name="pleaseagreetoterms">يرجى الموافقة على شروط الاستخدام</string>
+    <string name="mismatchedpasswords">كلمة المرور غير متطابقة</string>
+    <string name="entercarmilage">أدخل المسافة المقطوعة للسيارة بالميل</string>
+    <string name="entercarnumber">أدخل رقم السيارة</string>
+    <string name="permissiondenied">تم رفض الإذن ، لا يمكن الحصول على موقع المستخدم الحالي</string>
+    <string name="foroilchange">لتغيير الزيت ، تم تسجيل البائع بنجاح</string>
+    <string name="useralreadyregisteredunregistered">تم تسجيل المستخدم بالفعل ، يرجى استخدام بريد إلكتروني ورقم اتصال غير مسجلين</string>
+    <string name="internetconnection">مشكلة في الاتصال ، يرجى التحقق من الاتصال بالإنترنت والمحاولة مرة أخرى</string>
+    <string name="caraddedsuccessfully">تم إضافة سيارتك بنجاح</string>
+    <string name="caralreadyexists">هذه السيارة موجودة بالفعل</string>
+    <string name="carid">" الرجاء تحديد معرف السيارة"</string>
+    <string name="productid">الرجاء تحديد معرف المنتج</string>
+    <string name="shopid">الرجاء تحديد معرف المتجر</string>
+    <string name="salesmanid">الرجاء تحديد معرف بائع</string>
+    <string name="declinedcamerapermission">لقد رفضت إذن الكاميرا</string>
+    <string name="qrnotfound">QR غير موجود</string>
+    <string name="qrinvalid"> أو غير صالح QR انتهت صلاحية</string>
+    <string name="totallitersgreater">يجب أن يكون إجمالي اللترات مساوياً أو أكبر من اللترات المخصومة</string>
+    <string name="claim1liter">هل أنت متأكد أنك تريد استبدال 1000 نقطة بـلتر من الزيت؟</string>
+    <string name="claim2liter">هل أنت متأكد أنك تريد استبدال 2000 نقطة بـلتر من الزيت؟</string>
+    <string name="claim3liter">هل أنت متأكد أنك تريد استبدال 3000 نقطة بـلتر من الزيت؟</string>
+    <string name="claim4liter">هل أنت متأكد أنك تريد استبدال 4000 نقطة بـلتر من الزيت؟</string>
+    <string name="redeem">استبدال</string>
+    <string name="notenoughpoints">لا توجد نقاط كافية للمطالبة باللترات المجانية.</string>
+    <string name="passwordchangedsuccessfully">تم تغيير كلمة المرور بنجاح</string>
+    <string name="thankyouforresponse">شكرا جزيلاً! استجابتك قيمة بالنسبة لنا</string>
+    <string name="feedbacksubmitted">تم إرسال الملاحظات والاقتراحات بنجاح</string>
+    <string name="languageconfirmation">أتكد</string>
+    <string name="verificationerror">رمز التحقق خطأ، يرجى المحاولة مرة أخرى</string>
+    <string name="nocaradded">لا توجد سيارة مضافة.الرجاء إضافة سيارتك</string>
+    <string name="nonotification">ليس لديك إشعارات حتى الآن</string>
+    <string name="contact_customer_service">تواصل مع خدمة العملاء</string>
+    <string name="oilchange">تغيير زيت</string>
+    <string name="change_language_arab">تغيير اللغة</string>
+    <string name="change_language_eng">Change Language</string>
+    <string name="ok">موافق</string>
+    <string name="delete">حذف</string>
+    <string name="deletecar">هل أنت متأكد أنك تريد حذف هذه السيارة؟</string>
+    <string name="cardeletedsuccessfully">تم حذف السيارة بنجاح</string>
+    <string name="cannotdeletecar">لا يمكن مسحه! النشاط موجود للسيارة المختارة</string>
+    <string name="Resend">إعادة إرسال</string>
+    <string name="invalidphone">رقم الهاتف غير صحيح</string>
+    <string name="toomanyattempts">تجاوزت عدد المحاولات المسموح لك (ثلاثة مرات فقط) ، يرجى المحاولة مرة أخرى بعد ساعتين</string>
+    <string name="scan_qr_menu">مسح QR</string>
+
+
+    <string name="product_title">عنوان المنتج</string>
+    <string name="product_type">نوع المنتج</string>
+    <string name="unit_measure">وحدة القياس</string>
+    <string name="model_number">رقم النموذج أو الموديل</string>
+    <string name="product_code">كود المنتج</string>
+    <string name="product_specification">مواصفات المنتج</string>
+
+    <string name="oilalreadychanged">تم بالفعل تغيير زيت هذه السيارة. يمكنك إعادة تغيير الزيت بعد ذلك
+</string>
+    <string name="days">أيام</string>
+    <string name="liters">لترات</string>
+
+    <string name="hello">مرحبًا ، يود صديقك </string>
+    <string name="yourfriendwantsyoutoavail"> دعوتك للحصول على عبوات زيت سيارات مجانية من تطبيق كيكس... حمله الآن</string>
+
+    <string name="add_car_submit">أضف سيارة</string>
+
+
+    <!--New update words for kixx app (22/04/2021)-->
+
+    <string name="mileagereading">قراءة الأميال</string>
+    <string name="currentmileagereading">آخر قراءة للأميال لتغيير الزيت (كم)</string>
+    <string name="enterdailycarmileage">أدخل الأميال اليومية للسيارة (كم)</string>
+    <string name="yearofmanufacturing">سنة التصنيع / سنة الموديل
+</string>
+    <string name="selectcarenginetype">حدد نوع محرك السيارة</string>
+    <string name="claimOilFromKixx">اطلب لترًا مجانيًا</string>
+    <string name="distancefromcurrentlocation">المسافة من موقعك هي</string>
+    <string name="gotogooglemap">اذهب إلى خريطة جوجل</string>
+
+
+    <string name="keep_old">ابقى عجوزا</string>
+
+    <string name="daily_average_pop">متوسط سيارتك اليومي هو</string>
+
+    <string name="thank_you_pop">شكرا لك على تغيير الزيت</string>
+
+    <string name="update_average_pop">هل تريد تحديث متوسط السيارة اليومي أو الاحتفاظ بالمعدل القديم</string>
+
+
+
+    <string name="oil_recommendation">توصية الزيت</string>
+    <string name="recommended_oil">الزيت الموصى به</string>
+    <string name="with5000km">مع 5000 كم عدد الأميال</string>
+    <string name="with10000km">مع 10000 كيلومتر من الأميال</string>
+    <string name="with15000km">مع 15000 كيلومتر من الأميال</string>
+    <string name="onlyrecommendation">ما ورد أعلاه مجرد توصية <br/> يُنصح بمناقشته مع محل تغيير الزيت قبل التغيير</string>
+    <string name="GMCcarrecommendation">إذا كانت سيارتك من GMC. استخدم المنتجات المعتمدة من Dexos1 للحصول على أداء أفضل. <br/> بالنسبة للسيارات الفاخرة ، استخدم Kixx PAO10W-40</string>
+    <string name="howtochoosebestoilformycar">How to choose best oil for my car?</string>
+    <string name="rightoilselection">Selecting the right engine oil can be challenging for most of us. Multiple types, different numbers, letters, variant grades, and viscosity are available in the market. So, how to select the right one? Will it be ideal for the current weather conditions? How long will it last before a change is recommended? Is it ok to mix them up?
+
+Seems like quite a challenging decision to make!  That’s why we usually leave it to the mechanic to recommend one for us.
+
+But not to worry, in this article, we will guide you to pick the right oil for your car.
+
+What kind of oil you need depends on the engine. All new cars will come with a recommended grade listed in the car manual. The grade will be shown in numbers, separated by the letter ‘w’ – for example, 5w40. “The ‘w’ rating, preceded by a number, gives you an indication of how the oil flows (Viscosoty) at winter temperatures and the last number indicates flow (Viscosity) in summer temperatures.”
+
+Not all engine oils are the same. It is important to choose an oil that is suited to your car and local climate conditions to enjoy all its benefits. Following are the main types of oil:
+\n\n
+"Mineral Oil:
+
+Mineral oil, also known as “conventional oil”, is the most basic &amp; affordable type of engine oils, obtained from refined petroleum crude oil.
+
+Mineral oil is thicker than other oil types which causes a slower flow rate that results in increased fuel consumption.
+
+Mineral engine oils are less resistant to high temperatures and oxidation compared to synthetic engine oils, and have higher liquid points, which makes them favorable for winter conditions and extremely low temperatures.
+
+And because of that, mineral oils require frequent oil changes, after every 5,000 kilometers or every four months.
+\n\n"
+"Synthetic Oil:
+\n
+
+Synthetic oil is a product of complex chemical transformations that are performed either directly on drilled crude petroleum or using preselected molecules. It undergoes more sophisticated modification.They hold many advantages:
+ - Synthetics dont break down or sludge up as fast as ordinary mineral-based oils do. In other words, it has less deposit formation which leads to cleaner engines.
+- Better engine protection that increases its health &amp; life span
+- Stable flow performance &amp; viscosity during extreme temperatures
+- Fuel consumption optimization
+And not to forget, one of its main perks is that it requires less frequent oil changes. Synthetic oil can last between 8,000 to 15,000 kilometers or every six months before its next change.
+
+However, the main disadvantage of synthetic oils that makes the least favorite to people is that they are slightly more expensive.
+ \n\n"
+"Semi-Synthetic Oil:
+
+\n
+Semi-Synthetic oil is also known as synthetic blends &amp; as hybrid lubricants; is a mixture of mineral and synthetic oils that reserves the best features of both oils.
+
+Semi-synthetic oils can be the best choice for engines that encounter heavy loads caused by intensive usage.
+
+Semi-synthetic oil is more of a wallet-friendly than fully synthetic oil as they are of a lower cost. While getting some benefits of the fully-synthetic oil, it can be your next best choice."
+\n\n
+"Did You Ever Wondered??
+Have you ever looked at the engine oil bottle and wondered what all these numbers and letters stand for? There are many different ways in describing motor oils, each refers to a certain standard of classification. ​​​​​Here are the three standards used for describing the oils:
+ - The API standard
+ - The SAE standard
+ - The ACEA standard
+You can get more detailed information of all these standards and lubricants info on below link of our website"
+\n\n
+        https://www.kixxoil.com/support/categoryByPerformance</string>
+
+
+
+    <string name="edit">تعديل</string>
+    <string name="please_edit_car">تحرير سيارتك
+</string>
+
+    <string-array name="enginetype">
+        <item>Gasoline</item>
+        <item>Diesel</item>
+    </string-array>
+
+
+    <string-array name="yearlist">
+        <item>1950</item>
+        <item>1951</item>
+        <item>1952</item>
+        <item>1953</item>
+        <item>1954</item>
+        <item>1955</item>
+        <item>1956</item>
+        <item>1957</item>
+        <item>1958</item>
+        <item>1959</item>
+        <item>1960</item>
+        <item>1961</item>
+        <item>1962</item>
+        <item>1963</item>
+        <item>1964</item>
+        <item>1965</item>
+        <item>1966</item>
+        <item>1967</item>
+        <item>1968</item>
+        <item>1969</item>
+        <item>1970</item>
+        <item>1971</item>
+        <item>1972</item>
+        <item>1973</item>
+        <item>1974</item>
+        <item>1975</item>
+        <item>1976</item>
+        <item>1977</item>
+        <item>1978</item>
+        <item>1979</item>
+        <item>1980</item>
+        <item>1981</item>
+        <item>1982</item>
+        <item>1983</item>
+        <item>1984</item>
+        <item>1985</item>
+        <item>1986</item>
+        <item>1987</item>
+        <item>1988</item>
+        <item>1989</item>
+        <item>1990</item>
+        <item>1991</item>
+        <item>1992</item>
+        <item>1993</item>
+        <item>1994</item>
+        <item>1995</item>
+        <item>1996</item>
+        <item>1997</item>
+        <item>1998</item>
+        <item>1999</item>
+        <item>2000</item>
+        <item>2001</item>
+        <item>2002</item>
+        <item>2003</item>
+        <item>2004</item>
+        <item>2005</item>
+        <item>2006</item>
+        <item>2007</item>
+        <item>2008</item>
+        <item>2009</item>
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+
+    </string-array>
+
+    <string name="products16_type">زيت محرك البنزين</string>
+    <string name="products16_name">Kixx Dexos1 Gen2 0W-20</string>
+    <string name="products16_model">L2111AL1E1</string>
+    <string name="products16_barcode">801470211116
+</string>
+    <string name="products16_unit">1 Litre</string>
+    <string name="products16_description">Kixx Dexos1 Gen2 0W-20 هو محرك بنزين عالي الجودة يوفر حماية ممتازة ، واقتصادًا معززًا للوقود ، وقوة محرك محسّنة وقابلية صيانته ، وفاصل تصريف الزيت الممتد ، ومقاومة التآكل تحت ظروف درجة حرارة واسعة ، ومنع LSPI
+</string>
+    <string name="products16_specification">"• معتمد من Dexos1 Gen2 0W-20: زيت محرك متطور اصطناعي بالكامل من الدرجة الأولى من API SN PLUS-RC و ILSAC GF-5
+• زيت محرك عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"</string>
+
+
+
+    <string name="products17_type">زيت محرك البنزين</string>
+    <string name="products17_name">Kixx PAO1 0W-40</string>
+    <string name="products17_model">L2084AL1E1</string>
+    <string name="products17_barcode">801470208413
+</string>
+    <string name="products17_unit">1 Litre</string>
+    <string name="products17_description">• KIXX PAO 1 هو زيت محرك متعدد الدرجات عالي الأداء مصنوع من PAO (بولي ألفا أوليفين) ومضافات ثكنولوجيا مثبتة في السباق. • يمكن استخدامه في محركات الديزل لسيارات الركاب وسيارات الركاب تحت جميع ظروف التشغيل. • مُحسَّن لتوفير حماية كاملة للمحرك بالإضافة إلى الأداء المطلق.</string>
+    <string name="products17_specification">"• KIXX PAO 1 هو زيت محرك متعدد الدرجات عالي الأداء مصنوع من PAO (بولي ألفا أوليفين) ومضافات ثكنولوجيا مثبتة في السباق. • يمكن استخدامه في محركات الديزل لسيارات الركاب وسيارات الركاب تحت جميع ظروف التشغيل. • مُحسَّن لتوفير حماية كاملة للمحرك بالإضافة إلى الأداء المطلق. • محركات الجازولين المستنشق بشكل طبيعي ومحركات غاز البترول المسال والديزل في سيارات الركاب. . الشاحنات الخفيفة محركات البنزين والديزل... . تعمل بالبنزين والديزل RV و SUV. • محرك CRDI في سيارات الركاب.
+• سيارات ركاب ذات سرعة عالية ، رباعية الأشواط ، شاحن توربيني و EGR ، DPF.
+• محرك بنزين رباعي الأشواط في المحرك ومعدات الطاقة المحمولة حيث توصي الشركة المصنعة بزيت محرك السيارة التقليدي.
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية.
+• 0W-40 API SN / CF، ACCEA C3- 16، BMW LL-04، MERCEDES BENZ 229.31 / 229.51، VOLKSWAGEN 502.00 / 505.00 موصى به"</string>
+
+    <string name="products18_type">زيت محرك البنزين</string>
+    <string name="products18_name">Kixx G1 SP 10W-30</string>
+    <string name="products18_model">L2156AL1E1</string>
+    <string name="products18_barcode">801470215619
+</string>
+    <string name="products18_unit">1 Litre</string>
+    <string name="products18_description">Kixx G1 SP 10W-30 محرك بنزين عالي الجودة يوفر حماية ممتازة واقتصادًا معززًا للوقود وتحسين قوة المحرك وقابلية صيانته وفاصل تصريف الزيت الممتد ومقاومة التآكل تحت ظروف درجة حرارة واسعة ومنع LSPI                                                       • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products18_specification">"• 10W-30: زيت محرك متقدم من الدرجة الأولى بدرجة API SP ، ILSAC GF-5 مركب من زيت أساسي للتكنولوجيا الاصطناعية.
+• زيت محرك عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"</string>
+
+    <string name="products19_type">زيت محرك البنزين</string>
+    <string name="products19_name">Kixx G1 SP 10W-40</string>
+    <string name="products19_model">L2157AL1E1</string>
+    <string name="products19_barcode">801470215718
+</string>
+    <string name="products19_unit">1 Litre</string>
+    <string name="products19_description">Kixx G1 SP 10W-40 is a High grade زيت محرك البنزين providing excellent protection, Enhanced Fuel Economy, Improved Engine Power and Maintainability, Extended Oil Drainage Interval, Wear Resistance under Wide Temperature Condition, LSPI Prevention                                                        • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products19_specification">"• 10W-40: زيت محرك متقدم من الدرجة الأولى بدرجة API SP مركب من زيت أساس بالتكنولوجيا الاصطناعية.
+• زيت محرك عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"</string>
+
+
+    <string name="products20_type">زيت محرك البنزين</string>
+    <string name="products20_name">Kixx Dexos1 Gen2 5W-30</string>
+    <string name="products20_model">L2107AL1E1</string>
+    <string name="products20_barcode">801470210713
+</string>
+    <string name="products20_unit">1 Litre</string>
+    <string name="products20_description">Kixx Dexos1 Gen2 5W-30 هو محرك بنزين عالي الجودة يوفر حماية ممتازة ، واقتصادًا معززًا للوقود ، وقوة محرك محسّنة وقابلية صيانته ، وفاصل تصريف الزيت الممتد ، ومقاومة التآكل تحت ظروف درجة حرارة واسعة ، ومنع LSPI                                                       • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products20_specification">"• معتمد من Dexos1 Gen2 5W-30: زيت محرك متطور اصطناعي بالكامل من الدرجة الأولى من API SN PLUS-RC و ILSAC GF-5
+• زيت محرك عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"</string>
+
+
+    <string name="products21_type">زيت محرك البنزين</string>
+    <string name="products21_name">Kixx G1 SP 20W-50</string>
+    <string name="products21_model">L2158AL1E1</string>
+    <string name="products21_barcode">801470215817
+</string>
+    <string name="products21_unit">1 Litre</string>
+    <string name="products21_description">Kixx G1 SP 20W-50 محرك بنزين عالي الجودة يوفر حماية ممتازة واقتصادًا معززًا للوقود وتحسين قوة المحرك وقابلية صيانته وفاصل تصريف الزيت الممتد ومقاومة التآكل تحت ظروف درجة حرارة واسعة ومنع LSPI                                                       • It can be used in passenger car and passenger car  diesel engines under all operating conditions.                                            • It is optimized to provide complete engine protection plus ultimate performance.
+</string>
+    <string name="products21_specification">"• 20W-50: زيت محرك متقدم من الدرجة الأولى بدرجة API SN PLUS تم تركيبه من زيت أساس بالتكنولوجيا الاصطناعية.
+• زيت محرك عالي الجودة يوفر حماية ممتازة
+• تقنية Tripple Double: الاقتصاد المعزز في استهلاك الوقود ، وتحسين قوة المحرك وقابلية الصيانة ، والفاصل الزمني الممتد لتصريف الزيت ، ومقاومة التآكل في ظل ظروف درجة الحرارة الواسعة ، ومنع LSPI
+يمكن استخدامها في:
+• جميع المركبات التي تعمل بالبنزين
+• سيارات عالية الأداء مزودة بـ T-GDI و GDI و DOHC و EFI و VVT
+• محركات بنزين رباعية الأشواط في الدراجات النارية"</string>
+
+    <string name="oilrecommendation_yom_not_added">You have one of these things missing from car information<br/><br/>Year of Manufacture<br/>Engine Type<br/><br/>to get oil recommendation, Please update your car</string>
+    <string name="oilrecommendation_nocar_added">You have no cars added, Please add your car</string>
+    <string name="Mileagetext">Please Enter to Notiified for Future Oil Change Date and Mileage Which Keeps your Car Healthy</string>
+    <string name="selectyourcar">اختر سيارتك</string>
+    <string name="editcar">تحرير السيارة</string>
+
+    <string name="link">https://www.kixxoil.com/support/categoryByPerformance</string>
+    <string name="spacingerror">Please Add Car Number Without Spaces</string>
+    <string name="steps_to_choose_str"><![CDATA[Go to Home Screen and Follow the Steps Given Below \n\n1. Click on the Oil Recommendation icon \n\n1. Select the Car \n\n1. Scroll Down and You will See a button Labeled <b>How to choose best oil for My Car</b> \n\n1. Click on the Oil Recommendation icon]]></string>
+
+
+    <string name="enter_name_str">أدخل الاسم</string>
+    <string name="enter_mobile_number_str">أدخل رقم الهاتف المتحرك</string>
+    <string name="enter_email_address_str">أدخل عنوان البريد الالكتروني</string>
+    <string name="enter_city_str">أدخل المدينة</string>
+    <string name="enter_the_gender_str">أدخل الجنس</string>
+    <string name="enter_the_occupation_str">أدخل الاحتلال</string>
+    <string name="last_mileage_car_pop">الأميال الأخيرة:</string>
+    <string name="next_mileage_car_pop">الأميال التالي:</string>
+    <string name="last_date_car_pop">اخر موعد:</string>
+    <string name="next_date_car_pop">التاريخ القادم:</string>
+    <string name="enter_car_manufacturer">أدخل صناعة السيارة</string>
+    <string name="enter_last_oil_change"> أدخل آخر تغيير زيت</string>
+    <string name="enter_car_brand">أدخل ماركة السيارة</string>
+    <string name="select_year_of_manufacturing">حدد سنة التصنيع</string>
+    <string name="select_car_engine_type">حدد نوع محرك السيارة</string>
+    <string name="enter_car_number_plate">أدخل رقم لوحة السيارة</string>
+    <string name="enter_car_daily_mileage">أدخل الأميال اليومية للسيارة</string>
+
+
+</resources>

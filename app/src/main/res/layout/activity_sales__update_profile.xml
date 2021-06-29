@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:orientation="vertical"
+    tools:context=".User.Fragments.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/Sales_profile_back_LL"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="#00000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp">
+
+        <ImageView
+            android:id="@+id/sales_back_btn_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24_white" />
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/back"
+            android:textColor="#ffffff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:src="@drawable/usericon" />
+
+            <TextView
+                android:id="@+id/sales_salesprofile_salesid_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="16dp"
+                android:text="ID 2415"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".2"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/shopProfile"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/Updateuserprofile_user_profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/profilepic"
+                android:visibility="visible"
+                app:civ_border_color="#E3580B"
+                app:civ_border_width="1dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/sales_salesprofile_name_ET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#ffffff"
+            android:drawableStart="@drawable/settingsprofile"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="@string/Name"
+            android:inputType="textPersonName"
+            android:textColor="#ffffff"
+            android:textColorHint="#c3c3c3" />
+
+        <EditText
+            android:id="@+id/sales_salesprofile_contact_ET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:drawableStart="@drawable/callicon"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="@string/Mobile_number"
+            android:inputType="textPersonName"
+            android:textColor="#ffffff"
+            android:textColorHint="#c3c3c3" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
