@@ -144,6 +144,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     else
                     {
                         daily_mileage = AddCarInfo_dailycarmileage_ET.getText().toString();
+                        editor.putString("shared_daily_mileage",daily_mileage).apply();
                     }
                     if( Year_manufacture == null || Year_manufacture.equals("") )
                     {
@@ -775,7 +776,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         //  Toast.makeText(this, refreshedToken, Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, car_idnumber, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, car_idnumber, Toast.LENGTH_SHORT).show();
 
 
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
@@ -821,7 +822,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                        Toast.makeText(AddCarInfoScreen.this, error.toString(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(AddCarInfoScreen.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
                     }
                 })

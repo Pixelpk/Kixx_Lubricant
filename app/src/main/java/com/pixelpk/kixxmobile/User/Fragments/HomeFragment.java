@@ -1,5 +1,6 @@
 package com.pixelpk.kixxmobile.User.Fragments;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -7,12 +8,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
@@ -71,13 +75,15 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.pixelpk.kixxmobile.Constants;
+import com.pixelpk.kixxmobile.Location_Permission;
+import com.pixelpk.kixxmobile.PermissionUtils;
 import com.pixelpk.kixxmobile.R;
+import com.pixelpk.kixxmobile.Salesman.HomeScreen;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.AddCar.AddCarScreen;
 import com.pixelpk.kixxmobile.User.AddCarInfoScreen;
 import com.pixelpk.kixxmobile.User.ClaimReward.ClaimRewardPointsScreen;
 import com.pixelpk.kixxmobile.User.EditCarInfo;
-import com.pixelpk.kixxmobile.User.HomeScreen;
 import com.pixelpk.kixxmobile.User.ModelClasses.CarDetailsList;
 import com.pixelpk.kixxmobile.User.ModelClasses.CarStatus;
 import com.pixelpk.kixxmobile.User.ModelClasses.ImageSliderList;
@@ -114,6 +120,7 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.pixelpk.kixxmobile.Location_Permission.MY_PERMISSIONS_REQUEST_LOCATION;
 import static com.pixelpk.kixxmobile.URLs.BASE_URL;
 import static com.pixelpk.kixxmobile.URLs.update_car_mileage;
 
@@ -140,6 +147,8 @@ public class HomeFragment extends Fragment {
     int[] array_rep_odometer;
 
     String shown_str = "0";
+
+    String shared_daily_mileage_str;
 
     String id_car;
 
@@ -179,6 +188,9 @@ public class HomeFragment extends Fragment {
     ArrayList<Integer> arrayList_odometer1;
     ArrayList<Integer> arrayList_odometer2;
     ArrayList<Integer> arrayList_result_date;
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;//    TextView test;
+
 
     ArrayList<Integer> arrayList_result_odometer;
 
@@ -222,6 +234,8 @@ public class HomeFragment extends Fragment {
     float result_div = 0;
     float result_div_float = 0;
 
+    String Shared_denied_str = "0";
+
     String result_div_str;
     LinearLayout HomeFragment_oilrecommendation;
 
@@ -251,13 +265,21 @@ public class HomeFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("Shared", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        shared_daily_mileage_str = sharedPreferences.getString("shared_daily_mileage", "0");
+
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+
         String userid = sharedPreferences.getString(Shared.loggedIn_user_id, "0");
         KX_formatted_userid = sharedPreferences.getString(Shared.LoggedIn_fromatted_userid, "0");
         //   Toast.makeText(getActivity(), userid, Toast.LENGTH_SHORT).show();
 
         initializers(view);
 
-        HomeFragment_oilchangebtn.setOnClickListener(new View.OnClickListener() {
+
+        HomeFragment_oilchangebtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
 
@@ -271,15 +293,20 @@ public class HomeFragment extends Fragment {
 
         labeledSwitch.setLabelOff(getResources().getString(R.string.arabic));
         labeledSwitch.setLabelOn("EN");
-        labeledSwitch.setOnToggledListener(new OnToggledListener() {
+        labeledSwitch.setOnToggledListener(new OnToggledListener()
+        {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
 
-                if (isOn == true) {
+                if (isOn == true)
+                {
                     editor.putString(Shared.KIXX_APP_LANGUAGE, "1").apply();
                     Intent intent = new Intent(getContext(), Splash.class);
                     startActivity(intent);
-                } else {
+                }
+
+                else
+                {
                     editor.putString(Shared.KIXX_APP_LANGUAGE, "2").apply();
                     Intent intent = new Intent(getContext(), Splash.class);
                     startActivity(intent);
@@ -331,66 +358,79 @@ public class HomeFragment extends Fragment {
 
 //            Toast.makeText(getContext(),rtl, Toast.LENGTH_SHORT).show();
 
-        if (rtl.equals("1")) {
+        if (rtl.equals("1"))
+        {
             HomeFragment_titlebar_kixxlogo.setImageResource(R.mipmap.kixx_ar);
         }
 
-        if (activity != null && isAdded()) {
+        if (activity != null && isAdded())
+        {
             imageslider();
             get_user_data(userid);
             //    Toast.makeText(activity, user_loyality_points, Toast.LENGTH_SHORT).show();
         }
 
-        HomeFragment_editprofile.setOnClickListener(new View.OnClickListener() {
+        HomeFragment_editprofile.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
         });
 
-        HomeFragment_username.setOnClickListener(new View.OnClickListener() {
+        HomeFragment_username.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
         });
 
 
-        HomeFragment_profile_IV.setOnClickListener(new View.OnClickListener() {
+        HomeFragment_profile_IV.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                /* Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);*/
             }
         });
 
 
-        HomeFragment_carhist_IV.setOnClickListener(new View.OnClickListener() {
+        HomeFragment_carhist_IV.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getContext(), AddCarInfoScreen.class);
                 intent.putExtra("oilchange", "2");
                 startActivity(intent);
             }
         });
 
-        reward_background.setOnClickListener(new View.OnClickListener() {
+        reward_background.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getContext(), ClaimRewardPointsScreen.class);
                 intent.putExtra("points", user_loyality_points);
                 intent.putExtra("badge", badge_activity_count);
                 startActivity(intent);
                 getActivity().finish();
-
             }
         });
 
-        user_profile_image.setOnClickListener(new View.OnClickListener() {
+        user_profile_image.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
@@ -514,6 +554,38 @@ public class HomeFragment extends Fragment {
 
     }
 
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+//    {
+//        switch (requestCode)
+//        {
+//            case MY_PERMISSIONS_REQUEST_LOCATION:
+//            {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//                {
+//                    // permission was granted, yay! Do the
+//                    // location-related task you need to do.
+//                    if (ContextCompat.checkSelfPermission(getActivity(),
+//                            Manifest.permission.ACCESS_FINE_LOCATION)
+//                            == PackageManager.PERMISSION_GRANTED)
+//                    {
+//                        Toast.makeText(activity, "grant", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//
+//                else
+//                {
+//                    PermissionUtils.setShouldShowStatus(getContext(), Manifest.permission.ACCESS_FINE_LOCATION);
+////                    finish();
+//                }
+//
+//                return;
+//            }}}
+
     @Override
     public void onResume() {
         super.onResume();
@@ -532,8 +604,8 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void initializers(View view) {
-
+    public void initializers(View view)
+    {
         String lang = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE, "0");
         //  editor.putString(Shared.User_promo,"2").apply();
 
@@ -634,11 +706,15 @@ public class HomeFragment extends Fragment {
 
         createlink_progress = new ProgressDialog(getContext());
 
-        if (lang != null) {
-            if (lang.equals("1")) {
+        if (lang != null)
+        {
+            if (lang.equals("1"))
+            {
                 labeledSwitch.setOn(true);
+            }
 
-            } else if (lang.equals("2")) {
+            else if (lang.equals("2"))
+            {
                 labeledSwitch.setOn(false);
             }
         }
@@ -658,9 +734,10 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public void imageslider() {
-        for (int i = 0; i < dotscount; i++) {
-
+    public void imageslider()
+    {
+        for (int i = 0; i < dotscount; i++)
+        {
             dots[i] = new ImageView(getActivity());
             dots[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
 
@@ -669,7 +746,6 @@ public class HomeFragment extends Fragment {
             params.setMargins(8, 0, 8, 0);
 
             sliderDotspanel.addView(dots[i], params);
-
         }
 
         dots[0].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
@@ -1418,7 +1494,6 @@ public class HomeFragment extends Fragment {
                             {
                                 Toast.makeText(activity, "Mileage Updated Successfully", Toast.LENGTH_SHORT).show();
                             }
-
 //                            Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
                             Log.d("update_milleage_tag", response);
 //                            Toast.makeText(activity, result_div_str, Toast.LENGTH_SHORT).show();
@@ -1860,7 +1935,8 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void Mileage_dialogbox(String car_id, String status, String car_number, int index) {
+    public void Mileage_dialogbox(String car_id, String status, String car_number, int index)
+    {
         LayoutInflater factory = LayoutInflater.from(getContext());
         final View milage_dialog = factory.inflate(R.layout.milage_dialog, null);
         final AlertDialog deleteDialog = new AlertDialog.Builder(getContext()).create();
@@ -1886,9 +1962,9 @@ public class HomeFragment extends Fragment {
 
         milage_dialog.findViewById(R.id.HomeScreen_dialog_cancel_btn).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                updatemileagestatus("1", car_id, "0", "2");
+            public void onClick(View v)
+            {
+                updatemileagestatus("1", car_id, shared_daily_mileage_str, "2");
                 deleteDialog.dismiss();
             }
         });

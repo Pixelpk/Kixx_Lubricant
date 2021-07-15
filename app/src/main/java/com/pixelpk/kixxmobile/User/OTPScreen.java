@@ -88,12 +88,12 @@ public class OTPScreen extends AppCompatActivity {
         setContentView(R.layout.activity_o_t_p_screen);
 
         InitializeViews();
-      //  sendVerificationCode(phoneNumber);
+        //  sendVerificationCode(phoneNumber);
         mAuth = FirebaseAuth.getInstance();
 
         sendVerificationCode();
 
-       // mCountDownTimer.start();
+        // mCountDownTimer.start();
 
         OTPScreen_nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +101,7 @@ public class OTPScreen extends AppCompatActivity {
 
                 String code = OTPScreen_codedigit1.getText().toString();
 
-             //   Toast.makeText(OTPScreen.this, verificationId, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(OTPScreen.this, verificationId, Toast.LENGTH_SHORT).show();
 
                 if(TextUtils.isEmpty(code)){
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.entercode), Toast.LENGTH_SHORT).show();
@@ -113,13 +113,13 @@ public class OTPScreen extends AppCompatActivity {
                     //  loader.setVisibility(View.VISIBLE);
 
 
-                  //  if (verificationId == null && savedInstanceState != null) {
-                //        onRestoreInstanceState(savedInstanceState);
+                    //  if (verificationId == null && savedInstanceState != null) {
+                    //        onRestoreInstanceState(savedInstanceState);
                        /* PhoneAuthCredential credential = PhoneAuthProvider.getCredential(id, code.replace(" ", ""));
                         signInWithPhoneAuthCredential(credential);*/
 
                     Toast.makeText(OTPScreen.this, getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
-                   // }
+                    // }
 
                 }
 
@@ -220,19 +220,21 @@ public class OTPScreen extends AppCompatActivity {
                     public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         // super.onCodeSent(s, forceResendingToken);
                         OTPScreen.this.id = id;
-                       // progress.dismiss();
+                        // progress.dismiss();
                     }
                     @Override
-                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential)
+                    {
+//                        Toast.makeText(OTPScreen.this, "verify done", Toast.LENGTH_SHORT).show();
                         signInWithPhoneAuthCredential(phoneAuthCredential);
                     }
 
                     @Override
                     public void onVerificationFailed(@NonNull FirebaseException e) {
-                       // Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
-                 //       Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
-                //        Toast.makeText(OTPScreen.this, "Error Message =" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                     //   Toast.makeText(OTPScreen.this, getResources().getString(R.string.verificationerror), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
+                        //       Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
+                        //        Toast.makeText(OTPScreen.this, "Error Message =" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(OTPScreen.this, getResources().getString(R.string.verificationerror), Toast.LENGTH_SHORT).show();
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(OTPScreen.this, getResources().getString(R.string.invalidphone), Toast.LENGTH_SHORT).show();
                             // Invalid request
@@ -240,19 +242,20 @@ public class OTPScreen extends AppCompatActivity {
                             Toast.makeText(OTPScreen.this, getResources().getString(R.string.toomanyattempts), Toast.LENGTH_SHORT).show();
                             // The SMS quota for the project has been exceeded
                         }
-                       // Toast.makeText(OTPScreen.this, "", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(OTPScreen.this, "", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onCodeAutoRetrievalTimeOut(@NonNull String s) {
+                    public void onCodeAutoRetrievalTimeOut(@NonNull String s)
+                    {
                         super.onCodeAutoRetrievalTimeOut(s);
-                  //      Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
+                        //      Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
 
                         alerbox();
-                       // Toast.makeText(OTPScreen.this, getResources().getText(R.string.network_problem_warning), Toast.LENGTH_SHORT).show();
-                  //      Toast.makeText(OTPScreen.this, s, Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(OTPScreen.this, getResources().getText(R.string.network_problem_warning), Toast.LENGTH_SHORT).show();
+                        //      Toast.makeText(OTPScreen.this, s, Toast.LENGTH_SHORT).show();
                     }
-                });        // OnVerificationStateChangedCallbacks
+                });        //OnVerificationStateChangedCallbacks
 
 
     }
@@ -352,7 +355,7 @@ mAuth.signInAnonymously()
         phoneNumber = getIntent().getStringExtra("AuthPhone");
         zeroexcluded_phonenumber = getIntent().getStringExtra("withoutzeroAuthPhone");
 
-     //   Toast.makeText(this, zeroexcluded_phonenumber, Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(this, zeroexcluded_phonenumber, Toast.LENGTH_SHORT).show();
 
 
         number = phoneNumber;
@@ -384,7 +387,7 @@ mAuth.signInAnonymously()
         referred_code = sharedPreferences.getString(Shared.Reffered_code,"0");
 
 //        Toast.makeText(this, referred_code, Toast.LENGTH_SHORT).show();
-
+//
 //        Toast.makeText(this, referral, Toast.LENGTH_SHORT).show();
 
         if(referral=="")
@@ -400,7 +403,7 @@ mAuth.signInAnonymously()
 
 
 
-      //  Toast.makeText(this, intentData, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, intentData, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -413,9 +416,9 @@ mAuth.signInAnonymously()
                     @Override
                     public void onResponse(String response) {
 
-                      //  Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
                         //      Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(OTPScreen.this, response, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(OTPScreen.this, response, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
 
                         if(response.contains("Duplicate"))
@@ -424,7 +427,7 @@ mAuth.signInAnonymously()
                         }
                         else
                         {
-                //            Toast.makeText(OTPScreen.this, getResources().getString(R.string.usersuccessfullyregistered), Toast.LENGTH_SHORT).show();
+                            //            Toast.makeText(OTPScreen.this, getResources().getString(R.string.usersuccessfullyregistered), Toast.LENGTH_SHORT).show();
 
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -579,7 +582,7 @@ mAuth.signInAnonymously()
 
 //                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(OTPScreen.this, response, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(OTPScreen.this, response, Toast.LENGTH_SHORT).show();
 
                         progressDialog.dismiss();
 
@@ -667,7 +670,7 @@ mAuth.signInAnonymously()
                                 });
                             }
                         }
-                   //     progressDialog.dismiss();
+                        //     progressDialog.dismiss();
                         // Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
 
 
@@ -743,11 +746,11 @@ mAuth.signInAnonymously()
                 {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                    //    loader.setVisibility(View.GONE);
+                        //    loader.setVisibility(View.GONE);
                         if (task.isSuccessful())
                         {
 
-                           // Toast.makeText(OTPScreen.this, intentData, Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(OTPScreen.this, intentData, Toast.LENGTH_SHORT).show();
 
 
 //                            Toast.makeText(OTPScreen.this,"yeet1"+ referral, Toast.LENGTH_SHORT).show();
@@ -784,7 +787,7 @@ mAuth.signInAnonymously()
                             }
                             else
                             {
-                          //      progressDialog.dismiss();
+                                //      progressDialog.dismiss();
 //                                Toast.makeText(OTPScreen.this, "hello", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(OTPScreen.this, ForgotPass_ChangePassword.class);
                                 intent.putExtra("phone",phoneNumber);
@@ -804,7 +807,7 @@ mAuth.signInAnonymously()
                         else
                         {
                             alerbox_failedverification();
-                             // Toast.makeText(getApplicationContext(), "Verification Failed", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getApplicationContext(), "Verification Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

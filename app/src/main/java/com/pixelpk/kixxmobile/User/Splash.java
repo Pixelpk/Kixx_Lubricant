@@ -40,6 +40,7 @@ import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.pixelpk.kixxmobile.Fcm.FirebaseToken;
 import com.pixelpk.kixxmobile.LanguageSelectionScreen;
+import com.pixelpk.kixxmobile.Location_Permission;
 import com.pixelpk.kixxmobile.Login;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
@@ -87,7 +88,8 @@ public class Splash extends AppCompatActivity {
         {
             permission_disclouser();
         }
-        else {
+        else
+            {
 
             Splash_welmessage = findViewById(R.id.Splash_welmessage);
 
@@ -101,17 +103,31 @@ public class Splash extends AppCompatActivity {
 
             //   Toast.makeText(this, lang, Toast.LENGTH_SHORT).show();
 
-            ActivityCompat.requestPermissions(Splash.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_LOCATION);
+//            ActivityCompat.requestPermissions(Splash.this,
+//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                    MY_PERMISSIONS_REQUEST_LOCATION);
 
-            if (ContextCompat.checkSelfPermission(Splash.this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
+//            if (ContextCompat.checkSelfPermission(Splash.this,
+//                    Manifest.permission.ACCESS_FINE_LOCATION)
+//                    == PackageManager.PERMISSION_GRANTED)
+//            {
+//                editor.putString(Shared.permission_location,"1").apply();
+//            }
 
-                editor.putString(Shared.permission_location,"1").apply();
-
-            }
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        //Calling new Activity
+                        //   startActivity(new Intent(getApplicationContext(), ));
+                        Intent mainIntent = new Intent(Splash.this, TutorialScreen.class);
+                        editor.putString(Shared.User_promo,"1");
+                        startActivity(mainIntent);
+                        finish();
+                        //  finish();
+                    }
+                }, SPLASH_TIME_OUT);
 
             if(lang!=null)
             {
@@ -177,7 +193,8 @@ public class Splash extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String permissions[], int[] grantResults)
+    {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -212,23 +229,29 @@ public class Splash extends AppCompatActivity {
                         //  locationManager.requestLocationUpdates(provider, 400, 1, this);
                     }
 
-                } else {
-                  //  Toast.makeText(Splash.this, "Permission Declined, Cannot get user current location", Toast.LENGTH_SHORT).show();
+                }
 
-                    new Handler().postDelayed(new Runnable()
+                else
                     {
-                        @Override
-                        public void run()
-                        {
-                            //Calling new Activity
-                            //   startActivity(new Intent(getApplicationContext(), ));
-                            Intent mainIntent = new Intent(Splash.this, TutorialScreen.class);
-                            editor.putString(Shared.User_promo,"1");
-                            startActivity(mainIntent);
-                            finish();
-                            //  finish();
-                        }
-                    }, SPLASH_TIME_OUT);
+                        Intent mainIntent = new Intent(Splash.this, Location_Permission.class);
+                        editor.putString(Shared.User_promo,"1");
+                        startActivity(mainIntent);
+                        finish();
+
+//                    new Handler().postDelayed(new Runnable()
+//                    {
+//                        @Override
+//                        public void run()
+//                        {
+//                            //Calling new Activity
+//                            //   startActivity(new Intent(getApplicationContext(), ));
+//                            Intent mainIntent = new Intent(Splash.this, TutorialScreen.class);
+//                            editor.putString(Shared.User_promo,"1");
+//                            startActivity(mainIntent);
+//                            finish();
+//                            //  finish();
+//                        }
+//                    }, SPLASH_TIME_OUT);
 
                     //      setTimer();
                     // permission denied, boo! Disable the
@@ -376,6 +399,7 @@ public class Splash extends AppCompatActivity {
         LayoutInflater factory = LayoutInflater.from(this);
         final View deleteDialogView = factory.inflate(R.layout.custom_prominent_disclosure, null);
         final AlertDialog deleteDialog = new AlertDialog.Builder(this).create();
+        deleteDialog.setCanceledOnTouchOutside(false);
         deleteDialog.setView(deleteDialogView);
         deleteDialogView.findViewById(R.id.Custom_prominent_disclouser_Yes).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -396,17 +420,18 @@ public class Splash extends AppCompatActivity {
 
                 //   Toast.makeText(this, lang, Toast.LENGTH_SHORT).show();
 
-                ActivityCompat.requestPermissions(Splash.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-
-                if (ContextCompat.checkSelfPermission(Splash.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
-
-                    editor.putString(Shared.permission_location,"1").apply();
-
-                }
+//                ActivityCompat.requestPermissions(Splash.this,
+//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                        MY_PERMISSIONS_REQUEST_LOCATION);
+//
+//                if (ContextCompat.checkSelfPermission(Splash.this,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+//                        == PackageManager.PERMISSION_GRANTED)
+//                {
+//
+//                    editor.putString(Shared.permission_location,"1").apply();
+//
+//                }
 
                 if(lang!=null)
                 {
@@ -427,7 +452,20 @@ public class Splash extends AppCompatActivity {
                     }
                 }
 
-
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        //Calling new Activity
+                        //   startActivity(new Intent(getApplicationContext(), ));
+                        Intent mainIntent = new Intent(Splash.this, TutorialScreen.class);
+                        editor.putString(Shared.User_promo,"1");
+                        startActivity(mainIntent);
+                        finish();
+                        //  finish();
+                    }
+                }, SPLASH_TIME_OUT);
 
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 //
@@ -471,17 +509,17 @@ public class Splash extends AppCompatActivity {
 
                 //   Toast.makeText(this, lang, Toast.LENGTH_SHORT).show();
 
-                ActivityCompat.requestPermissions(Splash.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-
-                if (ContextCompat.checkSelfPermission(Splash.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
-
-                    editor.putString(Shared.permission_location,"1").apply();
-
-                }
+//                ActivityCompat.requestPermissions(Splash.this,
+//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                        MY_PERMISSIONS_REQUEST_LOCATION);
+//
+//                if (ContextCompat.checkSelfPermission(Splash.this,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+//                        == PackageManager.PERMISSION_GRANTED) {
+//
+//                    editor.putString(Shared.permission_location,"1").apply();
+//
+//                }
 
                 if(lang!=null)
                 {
@@ -502,7 +540,20 @@ public class Splash extends AppCompatActivity {
                     }
                 }
 
-
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        //Calling new Activity
+                        //   startActivity(new Intent(getApplicationContext(), ));
+                        Intent mainIntent = new Intent(Splash.this, TutorialScreen.class);
+                        editor.putString(Shared.User_promo,"1");
+                        startActivity(mainIntent);
+                        finish();
+                        //  finish();
+                    }
+                }, SPLASH_TIME_OUT);
 
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 //
@@ -528,5 +579,11 @@ public class Splash extends AppCompatActivity {
         });
 
         deleteDialog.show();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
     }
 }

@@ -191,9 +191,13 @@ public class QRScanner extends AppCompatActivity {
                    //     Toast.makeText(QRScanner.this, String.valueOf(total_lit), Toast.LENGTH_SHORT).show();
 
                         String next_odometer = String.valueOf(Integer.valueOf(current_odometer) + Integer.valueOf(prod_milage));
-                        if (qrid.equals("")) {
+                        if (qrid.equals(""))
+                        {
                                    update_user_data(uid,car_id,product_id,shop_id,salesman_id,oil_selected_qty,current_odometer,next_odometer);
-                        } else {
+                        }
+
+                        else
+                            {
                                 update_user_data_qr_id(qrid,uid,car_id,product_id,shop_id,salesman_id,oil_selected_qty,current_odometer,next_odometer);
                         }
                     }
@@ -427,9 +431,8 @@ public class QRScanner extends AppCompatActivity {
     }
 
 
-    private void getProductsData() {
-
-
+    private void getProductsData()
+    {
         progressDialog.show();
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_PRODUCT_SALES,
@@ -750,7 +753,9 @@ public class QRScanner extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        if (response.contains("success")) {
+                        if (response.contains("success"))
+                        {
+                            Toast.makeText(QRScanner.this, getResources().getString(R.string.oil_change_successful), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(QRScanner.this, HomeScreen.class);
                             startActivity(intent);
                         }
@@ -840,7 +845,9 @@ public class QRScanner extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        if (response.contains("success")) {
+                        if (response.contains("success"))
+                        {
+                            Toast.makeText(QRScanner.this, getResources().getString(R.string.oil_change_successful), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(QRScanner.this, HomeScreen.class);
                             startActivity(intent);
                         }

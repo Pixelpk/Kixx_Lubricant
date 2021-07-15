@@ -356,6 +356,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="bottom"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -386,8 +387,8 @@
 
                             <LinearLayout
                                 android:id="@+id/HomeScreen_EditCar_LL"
-                                android:layout_width="80dp"
-                                android:layout_height="20dp"
+                                android:layout_width="125dp"
+                                android:layout_height="wrap_content"
                                 android:background="@mipmap/editprofilebg"
                                 android:gravity="center"
                                 android:orientation="horizontal"
@@ -396,17 +397,18 @@
                                 <TextView
                                     android:id="@+id/textView85"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="56dp"
                                     android:layout_weight="1"
                                     android:text="@string/editcar"
+                                    android:gravity="center"
                                     android:textAlignment="center"
                                     android:textColor="#ffffff"
-                                    android:textSize="10sp" />
+                                    android:textSize="15sp" />
 
                                 <ImageView
                                     android:id="@+id/imageView14"
-                                    android:layout_width="10dp"
-                                    android:layout_height="10dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
                                     android:layout_weight="1"
                                     android:src="@mipmap/iconeditprofile" />
 

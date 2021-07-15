@@ -61,32 +61,50 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Kixx Lubricant"
+                android:text="Use Your Location "
+                android:drawableEnd="@drawable/location"
                 android:textColor="@color/orange"
+                android:textAlignment="center"
+                android:drawableTint="@color/orange"
+                android:drawablePadding="5dp"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
                 android:layout_marginEnd="52dp"
                 android:textColor="@color/black"
                 android:textAlignment="center"
-                android:layout_marginBottom="5dp"
-                android:text='This app collects location data to enable route tracking functionality to the user that allows user to find kixx oil change shops nearby.'
+                android:layout_marginBottom="10dp"
+                android:text='Our app collects location data to enable:'
                 android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/textView52_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="115dp"
+                android:layout_marginEnd="52dp"
+                android:textColor="@color/black"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="start"
+                android:textAlignment="textStart"
+                android:text='Features :\n\n1. View Shops\n\n2. Get Nearest Shops\n\n3. Navigate to the nearest shop using your current location'
+                android:textSize="10sp" />
+
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
                 android:layout_marginEnd="52dp"
                 android:textColor="@color/black"
                 android:textAlignment="center"
-                android:text='This app DOES NOT track you across the internet and even the apps  on your smartphone.'
+                android:layout_marginBottom="10dp"
+                android:text="even when the app is closed or not in use"
                 android:textSize="10sp" />
 
         </LinearLayout>

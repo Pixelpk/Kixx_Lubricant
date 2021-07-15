@@ -1046,6 +1046,7 @@ You can get more detailed information of all these standards and lubricants info
     <string name="select_year_of_manufacturing">حدد سنة التصنيع</string>
     <string name="select_car_engine_type">حدد نوع محرك السيارة</string>
     <string name="enter_car_number_plate">أدخل رقم لوحة السيارة</string>
+    <string name="oil_change_successful">تغيير الزيت بنجاح</string>
     <string name="enter_car_daily_mileage">أدخل الأميال اليومية للسيارة</string>
 
 

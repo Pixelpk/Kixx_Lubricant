@@ -1127,11 +1127,13 @@ public class UpdateUserProfile extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int RC, int RQC, Intent I) {
+    protected void onActivityResult(int RC, int RQC, Intent I)
+    {
 
         super.onActivityResult(RC, RQC, I);
 
-        if (RC == 1 && RQC == RESULT_OK && I != null && I.getData() != null) {
+        if (RC == 1 && RQC == RESULT_OK && I != null && I.getData() != null)
+        {
 
             Uri uri = I.getData();
           /*  Updateuserprofile_user_profile_image.setImageURI(uri);
@@ -1281,6 +1283,8 @@ public class UpdateUserProfile extends AppCompatActivity {
 
             ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
+            Log.d("up_img",ConvertImage);
+
 
 
             class AsyncTaskUploadClass extends AsyncTask<Void,Void,String>
@@ -1425,6 +1429,9 @@ public class UpdateUserProfile extends AppCompatActivity {
                 byteArray = byteArrayOutputStream.toByteArray();
 
                 ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                Log.d("up_img",ConvertImage);
+
 
                 if(!ConvertImage.equals(""))
                 {
@@ -1747,9 +1754,11 @@ public class UpdateUserProfile extends AppCompatActivity {
         }
     }
 
-    public class ImageProcessClass{
+    public class ImageProcessClass
+    {
 
-        public String ImageHttpRequest(String requestURL,HashMap<String, String> PData) {
+        public String ImageHttpRequest(String requestURL,HashMap<String, String> PData)
+        {
 
             StringBuilder stringBuilder = new StringBuilder();
 

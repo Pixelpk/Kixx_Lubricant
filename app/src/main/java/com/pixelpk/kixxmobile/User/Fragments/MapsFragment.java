@@ -3,16 +3,13 @@ package com.pixelpk.kixxmobile.User.Fragments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
@@ -22,14 +19,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 
-import com.google.android.gms.common.util.IOUtils;
 import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -60,40 +52,25 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.maps.android.SphericalUtil;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.GPSTracker;
-import com.pixelpk.kixxmobile.User.GeofenceTrasitionService;
 import com.pixelpk.kixxmobile.User.HomeScreen;
 import com.pixelpk.kixxmobile.User.ModelClasses.AddLangLatList;
 import com.pixelpk.kixxmobile.User.ModelClasses.DistanceModelClass;
 import com.pixelpk.kixxmobile.User.ModelClasses.MapFragmentRecyclerList;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 import com.pixelpk.kixxmobile.User.adapters.MapFragmentRecyclerAdapter;
-import com.pixelpk.kixxmobile.directionhelpers.FetchURL;
 import com.pixelpk.kixxmobile.directionhelpers.TaskLoadedCallback;
-import com.sun.mail.iap.ProtocolException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -109,12 +86,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import static android.content.ContentValues.TAG;
 
@@ -168,6 +140,8 @@ public class MapsFragment extends Fragment  implements
 
     LatLng origin;
 
+    String denied_str;
+
     ArrayList<DistanceModelClass> distanceModelClasses;
 
     boolean getlocation_flag = false;
@@ -177,10 +151,13 @@ public class MapsFragment extends Fragment  implements
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState)
+    {
+//        checkPermission();
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
 
         sharedPreferences = getActivity().getSharedPreferences("Shared", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         mapFragmentRecyclerLists = new ArrayList<>();
 
@@ -190,7 +167,7 @@ public class MapsFragment extends Fragment  implements
         directdistancearray = new ArrayList<>();
 
 
-   //     Toast.makeText(getContext(), String.valueOf(center.distanceTo(test)), Toast.LENGTH_SHORT).show();
+        //     Toast.makeText(getContext(), String.valueOf(center.distanceTo(test)), Toast.LENGTH_SHORT).show();
 
         mGeofenceList = new ArrayList<>();
         distanceModelClasses = new ArrayList<>();
@@ -198,6 +175,9 @@ public class MapsFragment extends Fragment  implements
 
         permission_data = sharedPreferences.getString(Shared.permission_location,"0");
 
+        denied_str = sharedPreferences.getString("Shared_denied","0");
+
+//        Toast.makeText(getContext(), denied_str, Toast.LENGTH_SHORT).show();
 
         mapfragmentRV = view.findViewById(R.id.mapfragmentRV);
 
@@ -208,9 +188,24 @@ public class MapsFragment extends Fragment  implements
 
         locationListener = new MapsFragment();
 
-        ActivityCompat.requestPermissions(getActivity(),
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                MY_PERMISSIONS_REQUEST_LOCATION);
+//        ActivityCompat.requestPermissions(getActivity(),
+//                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                MY_PERMISSIONS_REQUEST_LOCATION);
+
+        if(ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_DENIED)
+        {
+            pop();
+        }
+
+        else if(ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED)
+        {
+            Toast.makeText(getContext(), "Checking Nearest Shops", Toast.LENGTH_SHORT).show();
+        }
+
 
 /*        LatLng latLngFrom = new LatLng(31.4775,74.2803);
         LatLng latLngTo = new LatLng(31.4469,74.2682);
@@ -236,20 +231,40 @@ public class MapsFragment extends Fragment  implements
                 new MapFragmentRecyclerList(R.drawable.slide1,"Liberty Kixx Oil Change","Lahore"),
                 new MapFragmentRecyclerList(R.drawable.slide2,"DHA Kixx Oil Change","Lahore"),
                 new MapFragmentRecyclerList(R.drawable.slide3,"Bahria Kixx Oil Change","Lahore"),
-
-
         };
 */
-
-
-
-
-
         return view;
     }
 
-
-
+    private void pop()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Location Access is required for the app to work. Please provide location Access. Please permit the permission through"
+                + "Settings screen.\n\nSelect Permissions -> Enable permission");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Permit Manually", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent = new Intent();
+                intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                Intent intent = new Intent(getActivity(),HomeScreen.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        builder.show();
+    }
 
 
     protected Marker createMarker(double latitude, double longitude,GoogleMap googleMap) {
@@ -273,7 +288,7 @@ public class MapsFragment extends Fragment  implements
             mapFragment.getMapAsync(callback);
         }
 
-        }
+    }
 
 
     public void get_shop_locations(String token,MarkerOptions options,GoogleMap googleMap,LatLng origin)
@@ -288,7 +303,7 @@ public class MapsFragment extends Fragment  implements
                     public void onResponse(String response) {
 
                         progressDialog.dismiss();
-              // Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
                         //    Toast.makeText(UpdateUserProfile.this, response, Toast.LENGTH_SHORT).show();
                         //  Log.d("HTTP_AUTHORIZATION",token);
                         try {
@@ -332,7 +347,7 @@ public class MapsFragment extends Fragment  implements
                                         DistanceModelClass distanceModelClassvar = new DistanceModelClass(id,shop_name,origin,latLng,val,shop_image);
                                         distanceModelClasses.add(distanceModelClassvar);
 
-                                       // creategeofence(id,latLng,500);
+                                        // creategeofence(id,latLng,500);
 
 
 
@@ -348,7 +363,7 @@ public class MapsFragment extends Fragment  implements
 
                                 if(distanceModelClasses.isEmpty())
                                 {
-                                       Toast.makeText(getContext(), "NO data", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "NO data", Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {
@@ -356,7 +371,7 @@ public class MapsFragment extends Fragment  implements
                                     int count = 0;
                                     for(DistanceModelClass counter: distanceModelClasses){
                                         // System.out.println(counter);
-                                     //   Log.d("sorteddirection",String.valueOf(counter.getArea()));
+                                        //   Log.d("sorteddirection",String.valueOf(counter.getArea()));
                                         if(count<5)
                                         {
                                             MapFragmentRecyclerList mapdatalist = new MapFragmentRecyclerList(R.drawable.caltex,counter.getTitle(),counter.getShopemail(),counter.getOrigin(),counter.getArea(),counter.getImageurl());
@@ -385,7 +400,7 @@ public class MapsFragment extends Fragment  implements
 
                                 }
 
-                               // getGeofencingRequest();
+                                // getGeofencingRequest();
 
 
                                 MapFragmentRecyclerAdapter adapter = new MapFragmentRecyclerAdapter(mapFragmentRecyclerLists,getActivity(),mMap);
@@ -399,7 +414,7 @@ public class MapsFragment extends Fragment  implements
                             }
                             else
                             {
-                               // Toast.makeText(getActivity(), "No location Marked", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getActivity(), "No location Marked", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (final JSONException e) {
@@ -428,7 +443,7 @@ public class MapsFragment extends Fragment  implements
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();\
                         progressDialog.dismiss();
-                     //   Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        //   Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
 
@@ -481,8 +496,8 @@ public class MapsFragment extends Fragment  implements
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
-   /*     if (mLastLocation != null) {
-        *//*    lat = mLastLocation.getLatitude();
+        /*     if (mLastLocation != null) {
+         *//*    lat = mLastLocation.getLatitude();
             lng = mLastLocation.getLongitude();*//*
 
         }*/
@@ -497,7 +512,15 @@ public class MapsFragment extends Fragment  implements
             statusCheck();
         }
 
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED)
+        {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+
+
+
 
     }
 
@@ -539,11 +562,11 @@ public class MapsFragment extends Fragment  implements
         {
             get_shop_locations(token, options, map, origin);
         }*/
-       // Toast.makeText(getContext(), String.valueOf(distanceModelClasses.size()), Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getContext(), String.valueOf(distanceModelClasses.size()), Toast.LENGTH_SHORT).show();
 
 
 
-      //  LatLng latlng = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+        //  LatLng latlng = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
        /* ArrayList<Float> distance = caculatedirectdistance(origin,latlngs);
         Collections.sort(distance);*/
 
@@ -558,7 +581,7 @@ public class MapsFragment extends Fragment  implements
             count++;
         }*/
         //double res = distance(location.getLatitude(),location.getLongitude(),val1,val2);
-      //  double res = getKmFromLatLong(location.getLatitude(),location.getLongitude(),val1,val2);
+        //  double res = getKmFromLatLong(location.getLatitude(),location.getLongitude(),val1,val2);
       /*  if(getActivity()!=null)
         {
            // String res = getDistance(location.getLatitude(),location.getLongitude(),val1,val2);
@@ -642,7 +665,7 @@ public class MapsFragment extends Fragment  implements
 
                         new FetchURL(getContext()).execute(getUrl(origin, destination, "driving"), "driving");*/
                         // \n is for new line
-                     //   Toast.makeText(getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                        //   Toast.makeText(getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
                     } else {
                         // Can't get location.
                         // GPS or network is not enabled.
@@ -679,7 +702,7 @@ public class MapsFragment extends Fragment  implements
            /* LatLng origion = new LatLng(31.475782,74.279018);
             LatLng destination = new LatLng(31.484249,74.326139);*/
 
-        //    new FetchURL((Activity) getContext()).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
+            //    new FetchURL((Activity) getContext()).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
    /*         LatLng me = new LatLng(31.47582964, -285.72093344);
             googleMap.addMarker(new MarkerOptions().position(me).title("Me"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(me));
@@ -759,7 +782,7 @@ public class MapsFragment extends Fragment  implements
                         mMap.setMyLocationEnabled(true);
 
                         //Request location updates:
-                      //  locationManager.requestLocationUpdates(provider, 400, 1, this);
+                        //  locationManager.requestLocationUpdates(provider, 400, 1, this);
                     }
 
                 } else {
@@ -808,8 +831,8 @@ public class MapsFragment extends Fragment  implements
             public void run() {
                 try {
 
-                   // URL url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + lat1 + "," + lon1 + "&destination=" + lat2 + "," + lon2 + "&sensor=false&units=metric&mode=driving");
-                   // URL url = new URL("http://maps.googleapis.com/maps/api/distancematrix/json?origins" + lat1 + "," + lon1 + "&destinations=" + lat2 + "," + lon2 + "&mode=driving&language=en-EN&sensor=false");
+                    // URL url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + lat1 + "," + lon1 + "&destination=" + lat2 + "," + lon2 + "&sensor=false&units=metric&mode=driving");
+                    // URL url = new URL("http://maps.googleapis.com/maps/api/distancematrix/json?origins" + lat1 + "," + lon1 + "&destinations=" + lat2 + "," + lon2 + "&mode=driving&language=en-EN&sensor=false");
                     String str_origin = "origin=" + lat1 + "," + lon1;
                     // Destination of route
                     String str_dest = "destination=" + lat2 + "," + lon2;
@@ -831,13 +854,13 @@ public class MapsFragment extends Fragment  implements
                     conn.setRequestMethod("POST");
                     InputStream in = new BufferedInputStream(conn.getInputStream());
                     final StringBuilder output = new StringBuilder();
-                   // response = IOUtils.toString(in, "UTF-8");
+                    // response = IOUtils.toString(in, "UTF-8");
                     Reader streamReader = new InputStreamReader(in, StandardCharsets.UTF_8);
                     int character = 0;
                     while ((character = streamReader.read(buffer, 0, buffer.length)) > 0) {
                         output.append(buffer, 0, character);
                     }
-               //     Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                    //     Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
 
                     response = output.toString();
                     Log.d("success",response);
@@ -871,67 +894,68 @@ public class MapsFragment extends Fragment  implements
     }
 
 
-    private void markerForGeofence(LatLng latLng) {
-        Log.i(TAG, "markerForGeofence("+latLng+")");
-        String title = latLng.latitude + ", " + latLng.longitude;
-        // Define marker options
-        MarkerOptions markerOptions = new MarkerOptions()
-                .position(latLng)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-                .title(title);
-
-            geoFenceMarker = map.addMarker(markerOptions);
-
-
-    }
+//    private void markerForGeofence(LatLng latLng)
+//    {
+//        Log.i(TAG, "markerForGeofence("+latLng+")");
+//        String title = latLng.latitude + ", " + latLng.longitude;
+//        // Define marker options
+//        MarkerOptions markerOptions = new MarkerOptions()
+//                .position(latLng)
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+//                .title(title);
+//
+//        geoFenceMarker = map.addMarker(markerOptions);
+//
+//
+//    }
 
     // Start Geofence creation process
-    private void startGeofence() {
-        Log.i("start", "startGeofence()");
-        if( geoFenceMarker != null ) {
-            Geofence geofence = createGeofence( geoFenceMarker.getPosition(), GEOFENCE_RADIUS );
-            GeofencingRequest geofenceRequest = createGeofenceRequest( geofence );
-            addGeofence( geofenceRequest );
-        } else {
-            Log.e(TAG, "Geofence marker is null");
-        }
-    }
+//    private void startGeofence() {
+//        Log.i("start", "startGeofence()");
+//        if( geoFenceMarker != null ) {
+//            Geofence geofence = createGeofence( geoFenceMarker.getPosition(), GEOFENCE_RADIUS );
+//            GeofencingRequest geofenceRequest = createGeofenceRequest( geofence );
+//            addGeofence( geofenceRequest );
+//        } else {
+//            Log.e(TAG, "Geofence marker is null");
+//        }
+//    }
 
-    private void addGeofence(GeofencingRequest request) {
-        Log.d("addgeo", "addGeofence");
-        if (checkPermission())
-            Log.d("permissiongranted","permission granted");
-            LocationServices.GeofencingApi.addGeofences(
-                    mGoogleApiClient,
-                    request,
-                    createGeofencePendingIntent()
-            );
-    }
+//    private void addGeofence(GeofencingRequest request) {
+//        Log.d("addgeo", "addGeofence");
+//        if (checkPermission())
+//            Log.d("permissiongranted","permission granted");
+//        LocationServices.GeofencingApi.addGeofences(
+//                mGoogleApiClient,
+//                request,
+//                createGeofencePendingIntent()
+//        );
+//    }
 
-    private static final long GEO_DURATION = 60 * 60 * 1000;
-    private static final String GEOFENCE_REQ_ID = "My Geofence";
-    private static final float GEOFENCE_RADIUS = 500.0f; // in meters
+//    private static final long GEO_DURATION = 60 * 60 * 1000;
+//    private static final String GEOFENCE_REQ_ID = "My Geofence";
+//    private static final float GEOFENCE_RADIUS = 500.0f; // in meters
 
     // Create a Geofence
-    private Geofence createGeofence( LatLng latLng, float radius ) {
-        Log.d(TAG, "createGeofence");
-        return new Geofence.Builder()
-                .setRequestId(GEOFENCE_REQ_ID)
-                .setCircularRegion( latLng.latitude, latLng.longitude, radius)
-                .setExpirationDuration( GEO_DURATION )
-                .setTransitionTypes( Geofence.GEOFENCE_TRANSITION_ENTER
-                        | Geofence.GEOFENCE_TRANSITION_EXIT )
-                .build();
-    }
+//    private Geofence createGeofence( LatLng latLng, float radius ) {
+//        Log.d(TAG, "createGeofence");
+//        return new Geofence.Builder()
+//                .setRequestId(GEOFENCE_REQ_ID)
+//                .setCircularRegion( latLng.latitude, latLng.longitude, radius)
+//                .setExpirationDuration( GEO_DURATION )
+//                .setTransitionTypes( Geofence.GEOFENCE_TRANSITION_ENTER
+//                        | Geofence.GEOFENCE_TRANSITION_EXIT )
+//                .build();
+//    }
 
     // Create a Geofence Request
-    private GeofencingRequest createGeofenceRequest( Geofence geofence ) {
-        Log.d(TAG, "createGeofenceRequest");
-        return new GeofencingRequest.Builder()
-                .setInitialTrigger( GeofencingRequest.INITIAL_TRIGGER_ENTER )
-                .addGeofence( geofence )
-                .build();
-    }
+//    private GeofencingRequest createGeofenceRequest( Geofence geofence ) {
+//        Log.d(TAG, "createGeofenceRequest");
+//        return new GeofencingRequest.Builder()
+//                .setInitialTrigger( GeofencingRequest.INITIAL_TRIGGER_ENTER )
+//                .addGeofence( geofence )
+//                .build();
+//    }
 
  /*   private void addGeofence(GeofencingRequest request) {
         Log.d(TAG, "addGeofence");
@@ -943,100 +967,103 @@ public class MapsFragment extends Fragment  implements
             ).setResultCallback(this);
     }*/
 
-    private Circle geoFenceLimits;
-    private void drawGeofence(LatLng latLng) {
-        Log.d(TAG, "drawGeofence()");
+//    private Circle geoFenceLimits;
+//    private void drawGeofence(LatLng latLng) {
+//        Log.d(TAG, "drawGeofence()");
+//
+///*        if ( geoFenceLimits != null )
+//            geoFenceLimits.remove();*/
+//
+//        CircleOptions circleOptions = new CircleOptions()
+//                .center( latLng)
+//                .strokeColor(Color.argb(100, 150,150,150))
+//                .fillColor( Color.argb(100, 150,150,150) )
+//                .radius( GEOFENCE_RADIUS );
+//        geoFenceLimits = map.addCircle( circleOptions );
+//    }
 
-/*        if ( geoFenceLimits != null )
-            geoFenceLimits.remove();*/
+//    private PendingIntent geoFencePendingIntent;
+//    private final int GEOFENCE_REQ_CODE = 0;
+//    private PendingIntent createGeofencePendingIntent()
+//    {
+//        Log.d(TAG, "createGeofencePendingIntent");
+//        if ( geoFencePendingIntent != null ) {
+//            Log.d("notnull","Not NUll");
+//            return geoFencePendingIntent;
+//        }
+//        Intent intent = new Intent( getContext(), GeofenceTrasitionService.class);
+//        return PendingIntent.getService(
+//                getContext(), GEOFENCE_REQ_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT );
+//    }
 
-        CircleOptions circleOptions = new CircleOptions()
-                .center( latLng)
-                .strokeColor(Color.argb(100, 150,150,150))
-                .fillColor( Color.argb(100, 150,150,150) )
-                .radius( GEOFENCE_RADIUS );
-        geoFenceLimits = map.addCircle( circleOptions );
-    }
-
-    private PendingIntent geoFencePendingIntent;
-    private final int GEOFENCE_REQ_CODE = 0;
-    private PendingIntent createGeofencePendingIntent() {
-        Log.d(TAG, "createGeofencePendingIntent");
-        if ( geoFencePendingIntent != null ) {
-            Log.d("notnull","Not NUll");
-            return geoFencePendingIntent;
-        }
-        Intent intent = new Intent( getContext(), GeofenceTrasitionService.class);
-        return PendingIntent.getService(
-                getContext(), GEOFENCE_REQ_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT );
-    }
-
-    private static final String NOTIFICATION_MSG = "NOTIFICATION MSG";
-    // Create a Intent send by the notification
-    public static Intent makeNotificationIntent(Context context, String msg) {
-        Intent intent = new Intent( context, HomeScreen.class);
-        intent.putExtra( NOTIFICATION_MSG, msg );
-        return intent;
-    }
+//    private static final String NOTIFICATION_MSG = "NOTIFICATION MSG";
+//    // Create a Intent send by the notification
+//    public static Intent makeNotificationIntent(Context context, String msg)
+//    {
+//        Intent intent = new Intent( context, HomeScreen.class);
+//        intent.putExtra( NOTIFICATION_MSG, msg );
+//        return intent;
+//    }
 
     @Override
     public void onResult(@NonNull Status status) {
         Log.i(TAG, "onResult: " + status);
         if ( status.isSuccess() ) {
-          //  saveGeofence();
-          //  drawGeofence();
+            //  saveGeofence();
+            //  drawGeofence();
         } else {
             // inform about fail
         }
     }
 
 
-    private final int REQ_PERMISSION = 999;
-
-    // Check for permission to access Location
-    private boolean checkPermission() {
-        Log.d(TAG, "checkPermission()");
-        // Ask for permission if it wasn't granted yet
-        return (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED );
-    }
-
-    // Asks for permission
-    private void askPermission() {
-        Log.d(TAG, "askPermission()");
-        ActivityCompat.requestPermissions(
-                getActivity(),
-                new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
-                REQ_PERMISSION
-        );
-    }
-
-
-
-    public ArrayList<Float> caculatedirectdistance(LatLng origin,ArrayList<LatLng> destin)
-    {
-        ArrayList<Float> distt;
-        distt = new ArrayList<>();
-
-        center.setLatitude(origin.latitude);
-        center.setLongitude(origin.longitude);
-
-        for(LatLng counter: destin){
-            // System.out.println(counter);
-
-            test.setLatitude(counter.latitude);
-            test.setLongitude(counter.longitude);
-
-            distt.add(center.distanceTo(test));
-
-
-        }
+//    private final int REQ_PERMISSION = 999;
+//
+//    // Check for permission to access Location
+//    private boolean checkPermission()
+//    {
+//        Log.d(TAG, "checkPermission()");
+//        // Ask for permission if it wasn't granted yet
+//        return (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+//                == PackageManager.PERMISSION_GRANTED );
+//    }
+//
+//    // Asks for permission
+//    private void askPermission() {
+//        Log.d(TAG, "askPermission()");
+//        ActivityCompat.requestPermissions(
+//                getActivity(),
+//                new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+//                REQ_PERMISSION
+//        );
+//    }
 
 
 
-
-       return distt;
-    }
+//    public ArrayList<Float> caculatedirectdistance(LatLng origin,ArrayList<LatLng> destin)
+//    {
+//        ArrayList<Float> distt;
+//        distt = new ArrayList<>();
+//
+//        center.setLatitude(origin.latitude);
+//        center.setLongitude(origin.longitude);
+//
+//        for(LatLng counter: destin){
+//            // System.out.println(counter);
+//
+//            test.setLatitude(counter.latitude);
+//            test.setLongitude(counter.longitude);
+//
+//            distt.add(center.distanceTo(test));
+//
+//
+//        }
+//
+//
+//
+//
+//        return distt;
+//    }
 
     public Float caldirectdistance(LatLng origin,LatLng destin)
     {

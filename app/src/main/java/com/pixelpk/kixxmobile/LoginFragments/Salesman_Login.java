@@ -240,7 +240,7 @@ else
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();\
                         progressDialog.dismiss();
-                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
 

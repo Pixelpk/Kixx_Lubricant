@@ -479,8 +479,6 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="update_average_pop">Do you want to Update Daily car Average or Keep the Old one</string>
 
 
-
-
     <string name="turtorial_2_desc">Sit Back and Relax, We Take Care of Your Car with Our One Stop Shop Solution.</string>
 
     <string name="turtorial_3_eng_title">Kixx One Stop Shop</string>
@@ -1091,5 +1089,6 @@ Can be used in:
     <string name="select_car_engine_type">Select Car Engine Type</string>
     <string name="enter_car_number_plate">Enter Car Number Plate</string>
     <string name="enter_car_daily_mileage">Enter Car Daily Mileage</string>
+    <string name="oil_change_successful">Oil Change Successful</string>
 
 </resources>

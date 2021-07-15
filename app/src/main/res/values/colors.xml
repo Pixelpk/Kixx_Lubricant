@@ -26,5 +26,6 @@
 
     <color name="sekizbit_switch_text_selected">@android:color/black</color>
     <color name="sekizbit_switch_text_unselected">@android:color/white</color>
+    <color name="blue">#004FD6</color>
 
 </resources>

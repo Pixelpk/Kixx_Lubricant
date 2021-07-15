@@ -401,7 +401,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_last_oil_change"
+            android:text="@string/currentmileagereading"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="40dp"
@@ -463,7 +463,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_car_daily_mileage"
+            android:text="@string/enterdailycarmileage"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="40dp"

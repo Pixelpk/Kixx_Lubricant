@@ -9,8 +9,8 @@ android {
         applicationId "com.pixelpk.kixxmobile"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 40
-        versionName "40"
+        versionCode 50
+        versionName "50"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndkVersion '21.3.6528147'
@@ -76,7 +76,7 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.0.3'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
-    implementation 'com.sha.kamel:multi-toggle-button:1.8.3@aar'
+//    implementation 'com.sha.kamel:multi-toggle-button:1.8.3@aar'
     // Declare the dependencies for the Dynamic Links and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-dynamic-links'
@@ -85,8 +85,8 @@ dependencies {
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:2.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
 
-    implementation 'com.clevertap.android:clevertap-geofence-sdk:1.0.0'
-    implementation 'com.clevertap.android:clevertap-android-sdk:3.9.0' // 3.9.0 and above
+//    implementation 'com.clevertap.android:clevertap-geofence-sdk:1.0.0'
+//    implementation 'com.clevertap.android:clevertap-android-sdk:3.9.0' // 3.9.0 and above
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'androidx.work:work-runtime:2.3.4' // required for FETCH_LAST_LOCATION_PERIODIC
     implementation 'androidx.concurrent:concurrent-futures:1.0.0'

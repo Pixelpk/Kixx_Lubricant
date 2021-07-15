@@ -154,6 +154,7 @@ public class EditCarInfo extends AppCompatActivity {
                     else
                     {
                         daily_mileage = AddCarInfo_dailycarmileage_ET.getText().toString();
+                        editor.putString("shared_daily_mileage",daily_mileage).apply();
                     }
 
                     if( Year_manufacture == null || Year_manufacture.equals("") )
