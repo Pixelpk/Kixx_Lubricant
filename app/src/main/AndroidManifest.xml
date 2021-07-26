@@ -35,7 +35,7 @@
 <!--    <uses-feature android:name="android.hardware.location.gps" /> &lt;!&ndash;-->
     <meta-data
         android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyDKymeBXNeiFWY5jRUejv6zItpmr2MVyQ0" />
+        android:value="AIzaSyCOmduu_jzGzLANrMDudKnKCt_ut7QswOY" />
 
     <uses-feature
         android:name="android.hardware.camera"
