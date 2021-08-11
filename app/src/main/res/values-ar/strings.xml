@@ -407,7 +407,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
 
     </string-array>
 
-    <string name="User_id">الهوية الوطنية، أو الإقامة</string>
+    <string name="User_id">رقم المستخدم</string>
 
     <string name="carnotfound_title"> آسف! لم يتم العثور على بيانات</string>
     <string name="carnotfound_desc">سيتم عرض السجل بعد أول تغيير للزيت</string>
@@ -622,7 +622,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="redeem_point">استبدل نقاطك</string>
     <string name="earn_points">كيف احصل على النقاط</string>
     <string name="how_to_earn_badges">كيف أحصل على العضوية؟</string>
-    <string name="platinum_badge">عضوية بلاتينية</string>
+    <string name="platinum_badge">عضوية ماسية</string>
     <string name="gold_badge">عضوية ذهبية</string>
     <string name="silver_badge">عضوية فضية</string>
     <string name="bronze_badge">عضوية برونزية</string>

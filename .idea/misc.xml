@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_about_us_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_add_car_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_claim_reward_points_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_claims_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_contact_us.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_edit_car_info.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_faq_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_feedback.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_forgot_pass__change_password.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_forgot_password.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_home_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_howtochooseoil.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_language_selection_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_location_permission.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_login.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_main.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_maps.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_o_il__recommendation.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_o_t_p_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_product_portfolio.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_product_portfolio__detils.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_promo_details_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_q_r_scanner.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_sales__update_profile.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_salesman_home_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_signin.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_signup2.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_terms_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_tutorial_screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/activity_update_user_profile.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/bottomappbar.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/bottomappbarsales.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/car_list_item.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/cardetails.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/claimedcars_item.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/custom_barcode_scanner.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_notifications.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_promo.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_sales__q_r.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_sales_notifications.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_salesman__login.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_tutorial_second__screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_tutorial_third__screen.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_user_login.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/imagesliderlayout.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/mapfrag_recycleritem.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/milage_dialog.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/nodatafound_layout.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/notification_list_item.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/oil_change_popup.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/oilrecommendationitem.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/popup.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/product_portfolio_item.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/promo_item.xml" value="0.6" />
+        <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/settings_list_item.xml" value="0.6" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

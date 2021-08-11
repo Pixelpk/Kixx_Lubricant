@@ -401,6 +401,7 @@ public class Splash extends AppCompatActivity {
         final AlertDialog deleteDialog = new AlertDialog.Builder(this).create();
         deleteDialog.setCanceledOnTouchOutside(false);
         deleteDialog.setView(deleteDialogView);
+
         deleteDialogView.findViewById(R.id.Custom_prominent_disclouser_Yes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

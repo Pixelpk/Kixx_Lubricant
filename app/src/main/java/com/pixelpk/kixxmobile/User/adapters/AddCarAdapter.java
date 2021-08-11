@@ -63,12 +63,14 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(AddCarAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(AddCarAdapter.ViewHolder holder, int position)
+    {
         final AddCarList myListData = listdata.get(position);
 
         holder.AddCar_CarNumber_TV.setText(myListData.getCar_Number());
         holder.AddCar_CarBrand_TV.setText(myListData.getCar_Manufacturer()/*+ " " + myListData.getCar_Brand()*/);
-        if(!myListData.getYear_of_manufacture().equals("0")) {
+        if(!myListData.getYear_of_manufacture().equals("0"))
+        {
             holder.AddCar_CarModel_TV.setText(myListData.getCar_Model() + " / " + myListData.getYear_of_manufacture());
         }
         else

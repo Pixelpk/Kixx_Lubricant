@@ -123,6 +123,8 @@ public class MapsFragment extends Fragment  implements
 
     List<AddLangLatList> addLangLatLists;
 
+    MarkerOptions options;
+
     List<MapFragmentRecyclerList> mapFragmentRecyclerLists;
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -137,6 +139,7 @@ public class MapsFragment extends Fragment  implements
 
     Location center;
     Location test;
+    Location location;
 
     LatLng origin;
 
@@ -244,14 +247,14 @@ public class MapsFragment extends Fragment  implements
         builder.setCancelable(false);
         builder.setPositiveButton("Permit Manually", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 dialog.dismiss();
                 Intent intent = new Intent();
                 intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                 Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
                 intent.setData(uri);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -376,19 +379,10 @@ public class MapsFragment extends Fragment  implements
                                         {
                                             MapFragmentRecyclerList mapdatalist = new MapFragmentRecyclerList(R.drawable.caltex,counter.getTitle(),counter.getShopemail(),counter.getOrigin(),counter.getArea(),counter.getImageurl());
                                             mapFragmentRecyclerLists.add(mapdatalist);
-
                                         }
+
                                         count++;
-
                                     }
-
-                                  /*  while(distanceModelClasses.size()>count)
-                                    {
-                                        if(count<4)
-                                        {
-
-                                        }
-                                    }*/
                                 }
 
                                 for (LatLng point : latlngs) {
@@ -531,7 +525,8 @@ public class MapsFragment extends Fragment  implements
 
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(Location location)
+    {
 
         double val1 = 31.4469;
         double val2 = 74.2682;
@@ -550,7 +545,7 @@ public class MapsFragment extends Fragment  implements
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         mCurrLocationMarker = mMap.addMarker(markerOptions);
         origin = latLng;
-        MarkerOptions options = new MarkerOptions();
+        options = new MarkerOptions();
 
         get_shop_locations(token, options, map, origin);
         /*if(getlocation_flag==false) {

@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/mapfrag_item_layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/mapfragment_rectangleshape_rv"
@@ -96,28 +96,31 @@
                             android:text="@string/distancefromcurrentlocation"
                             android:textSize="10sp" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                app:srcCompat="@drawable/ic_mapicon" />
-
-                            <TextView
-                                android:id="@+id/mapfrag_item_distancecal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="1dp"
-                                android:text="5.3 KM"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            app:srcCompat="@drawable/ic_mapicon" />
+
+                        <TextView
+                            android:id="@+id/mapfrag_item_distancecal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:text="5.3 KM"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/mapfrag_item_gotogooglemap_tv"

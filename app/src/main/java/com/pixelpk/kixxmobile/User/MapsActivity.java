@@ -299,24 +299,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                    //         Toast.makeText(MapsActivity.this, resp, Toast.LENGTH_SHORT).show();
                             String message = jsonObj.getString("status");
 
-                            if (message.contains("success")) {
+                            if (message.contains("success"))
+                            {
                                 Toast.makeText(MapsActivity.this, getResources().getString(R.string.foroilchange), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MapsActivity.this, Login.class);
                                 startActivity(intent);
-                            } else if (resp.contains("Duplicate")) {
+                            }
+
+                            else if (resp.contains("Duplicate"))
+                            {
                                 Toast.makeText(MapsActivity.this, getResources().getString(R.string.useralreadyregisteredunregistered), Toast.LENGTH_SHORT).show();
-                            } else
+                            }
+
+                            else
                             {
                                 Toast.makeText(MapsActivity.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                             }
-                        } catch (JSONException e) {
+                        }
+
+                        catch (JSONException e)
+                        {
                             e.printStackTrace();
                         }
 
 
 
                         progressDialog.dismiss();
-                        // Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
+                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -325,8 +334,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                  //      Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                       progressDialog.dismiss();
                     }
                 })
         {

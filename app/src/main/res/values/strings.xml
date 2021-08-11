@@ -426,7 +426,7 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
 
     </string-array>
 
-    <string name="User_id">ID</string>
+    <string name="User_id">User number</string>
 
 
     <string name="carnotfound_title">Sorry! No data found</string>
@@ -625,7 +625,7 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="redeem_point">Redeem your points</string>
     <string name="earn_points">How to earn points</string>
     <string name="how_to_earn_badges">How to earn badges</string>
-    <string name="platinum_badge">Platinum Badge</string>
+    <string name="platinum_badge">Diamond Badge</string>
     <string name="gold_badge">Gold Badge</string>
     <string name="silver_badge">Silver Badge</string>
     <string name="bronze_badge">Bronze Badge</string>
