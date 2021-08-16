@@ -9,11 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -61,7 +63,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.github.angads25.toggle.interfaces.OnToggledListener;
 import com.github.angads25.toggle.model.ToggleableView;
 import com.github.angads25.toggle.widget.LabeledSwitch;
@@ -128,11 +134,12 @@ import static com.pixelpk.kixxmobile.URLs.update_car_mileage;
 public class HomeFragment extends Fragment {
 
     ViewPager viewPager;
-    LinearLayout sliderDotspanel, HomeFragment_findnearbyshop;
+    LinearLayout sliderDotspanel, HomeFragment_findnearbyshop,layout_profile;
     private int dotscount;
     private ImageView[] dots;
     CarStatus carStatus;
     // Switch HomeFragment_changelanguage;
+
 
 
     ImageView HomeFragment_badges_IV;
@@ -370,7 +377,7 @@ public class HomeFragment extends Fragment {
             //    Toast.makeText(activity, user_loyality_points, Toast.LENGTH_SHORT).show();
         }
 
-        HomeFragment_editprofile.setOnClickListener(new View.OnClickListener()
+        layout_profile.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -641,6 +648,8 @@ public class HomeFragment extends Fragment {
         HomeFragment_badgegroup = view.findViewById(R.id.HomeFragment_badgegroup);
         HomeScreen_EditCar_LL = view.findViewById(R.id.HomeScreen_EditCar_LL);
 
+        layout_profile = view.findViewById(R.id.layout_edit_profile);
+
 //        car_change_history = view.findViewById(R.id.textView_car_history);
         //  HomeFragment_odometer = (TextView) view.findViewById(R.id.HomeFragment_odometer);
         // ViewUtils.isLayoutRtl(HomeFragment_username);
@@ -834,13 +843,9 @@ public class HomeFragment extends Fragment {
                 }
             }).start();*/
 
-                Glide.with(getContext())
-                        .load(URLs.USER_IMAGE_URL + profile_image)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true)
-                        .dontTransform()
-                        .dontAnimate()
-                        .into(user_profile_image);
+                load_img_profile(profile_image);
+
+
             }
             //  Log.d("profile",URLs.USER_IMAGE_URL + profile_image);
         } else {
@@ -861,6 +866,36 @@ public class HomeFragment extends Fragment {
         progressDialog.dismiss();
 
 
+    }
+
+    private void load_img_profile(String profile_image)
+    {
+        progressDialog.setMessage("Please Wait While We Are Loading the Image");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        Log.d("profile_user_tag",URLs.USER_IMAGE_URL + profile_image);
+
+        Glide.with(getContext())
+                .load(URLs.USER_IMAGE_URL + profile_image)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource)
+                    {
+                        progressDialog.dismiss();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        progressDialog.dismiss();
+                        return false;
+                    }
+                })
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .into(user_profile_image);
     }
 
 
@@ -894,6 +929,7 @@ public class HomeFragment extends Fragment {
                                 //    Toast.makeText(activity, promodata, Toast.LENGTH_SHORT).show();
 
                                 badge_activity_count = jsonObj.getString("activity_count");
+//                                badge_activity_count = "30";
 
                                 //     Toast.makeText(getContext(), badge_activity_count, Toast.LENGTH_SHORT).show();
                                 if (getActivity() != null) {

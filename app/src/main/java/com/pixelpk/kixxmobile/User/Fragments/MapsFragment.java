@@ -298,6 +298,7 @@ public class MapsFragment extends Fragment  implements
     {
         distanceModelClasses.clear();
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SHOPS,
                 new Response.Listener<String>() {
@@ -506,13 +507,14 @@ public class MapsFragment extends Fragment  implements
             statusCheck();
         }
 
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED)
-        {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
+        if (getActivity() != null) {
 
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            }
+        }
 
 
 
@@ -546,8 +548,10 @@ public class MapsFragment extends Fragment  implements
         mCurrLocationMarker = mMap.addMarker(markerOptions);
         origin = latLng;
         options = new MarkerOptions();
-
-        get_shop_locations(token, options, map, origin);
+        if (getActivity() != null)
+        {
+            get_shop_locations(token, options, map, origin);
+        }
         /*if(getlocation_flag==false) {
             getlocation_flag=true;
             get_shop_locations(token, options, map, origin);

@@ -1,6 +1,7 @@
 package com.pixelpk.kixxmobile.User;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +21,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -52,7 +54,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.pixelpk.kixxmobile.R;
@@ -133,10 +139,10 @@ public class UpdateUserProfile extends AppCompatActivity {
     String user_id,user_name,user_email,user_ph,user_dp,user_gender,user_fcm_id,user_loyality_points = "0000";
     String user_occupation_id,user_occupation_name,user_category,user_user_role,user_odometer = "0000000";
 
-    String uname;
-    String uphone;
-    String uemail;
-    String ucity;
+    String uname  =" ";
+    String uphone =" ";
+    String uemail =" ";
+    String ucity  =" ";
 
     String[] occupation_array = {"Select Occupation","Others","Business","Job holder","Student"};
 
@@ -145,7 +151,7 @@ public class UpdateUserProfile extends AppCompatActivity {
     List<String> user_cars_list,car_id_list;
     List<CarDetailsList> myListData;
     byte[] byteArray;
-    String ConvertImage;
+    String ConvertImage ="";
 
     //  private static final int MY_CAMERA_REQUEST_CODE = 100;
 
@@ -174,7 +180,7 @@ public class UpdateUserProfile extends AppCompatActivity {
     String user_profile_image = "";
     String loggedIn_user_city = "";
 
-    String username,usercontact,useroccupation,usergender,usercity,useremail;
+    String username,usercontact,useroccupation,usergender="",usercity,useremail;
 
     LinearLayout updateprofile_back;
 
@@ -233,131 +239,257 @@ public class UpdateUserProfile extends AppCompatActivity {
                                     //    Toast.makeText(UpdateUserProfile.this,"CAMERA permission allows us to Access CAMERA app", Toast.LENGTH_LONG).show();
 
 
-                                } else {
-                                    getimagefromcamera();
-
-
                                 }
 
-
-                             /*   if (ContextCompat.checkSelfPermission(UpdateUserProfile.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                                else
                                 {
-                                    if (ActivityCompat.shouldShowRequestPermissionRationale(UpdateUserProfile.this, Manifest.permission.CAMERA))
-                                    {
-                                        getimagefromcamera();
-                                    }
-                                    else
-                                    {
-                                        ActivityCompat.requestPermissions(UpdateUserProfile.this,new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA );
-                                        getimagefromcamera();
-                                        // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                                        // app-defined int constant. The callback method gets the
-                                        // result of the request.
-                                    }
-                                }*/
-                                // Toast.makeText(UpdateUserProfile.this, "Camera", Toast.LENGTH_SHORT).show();
-
+                                    getimagefromcamera();
+                                }
                             }
                         })
                         .show();
             }
         });
 
-        Updatebtn.setOnClickListener(new View.OnClickListener() {
+        Updatebtn.setOnClickListener(new View.OnClickListener()
+        {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v)
             {
-                //     Update_User(jwt_token);
-//                Toast.makeText(UpdateUserProfile.this, "in upload", Toast.LENGTH_SHORT).show();
-                UploadImageToServer();
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                uname  = name.getText().toString();
+                uemail = email.getText().toString();
+                uphone = mobile.getText().toString();
+
+                if(!uname.isEmpty())
+                {
+                    username = uname;
+                }
+                else
+                {
+                    username = "";
+                }
+                if(!uphone.isEmpty())
+                {
+                    usercontact = uphone;
+                }
+                else
+                {
+                    usercontact = "";
+                }
+
+                if(!occupation_id.equals(""))
+                {
+                    useroccupation = occupation_id;
+                }
+                else
+                {
+                    useroccupation = "";
+                }
+
+
+                if(!city_str.equals("") )
+                {
+                    city_str = city_str;
+                }
+                else
+                {
+                    city_str = "";
+                }
+
+                if(usergender!=null)
+                {
+                    if (usergender.equals("") | !gender_str.equals("Select Gender"))
+                    {
+                        usergender = gender_str;
+                    }
+
+                    else if(!usergender.equals("") | gender_str.equals("Select Gender"))
+                    {
+                        usergender = user_gender;
+                    }
+
+                    else if(!usergender.equals("") | !gender_str.equals("Select Gender"))
+                    {
+                        usergender = user_gender;
+                    }
+
+                    else
+                    {
+                        usergender = "";
+                    }
+
+                }
+
+                else
+                {
+                    if(gender_str.equals("Select Gender"))
+                    {
+                        usergender = "";
+                    }
+                    else
+                    {
+                        usergender = gender_str;
+                    }
+                }
+
+                if(!uemail.isEmpty())
+                {
+                    if (!uemail.matches(emailPattern))
+                    {
+                        email.setError("Invalid email address");
+                    }
+                    else
+                    {
+                        email.setError(null);
+                        useremail = uemail;
+                        UploadImageToServer();
+                    }
+                }
+                else
+                {
+                    email.setError(null);
+                    useremail = "";
+                    UploadImageToServer();
+                }
 
             }
         });
 
-        AddCarBtn.setOnClickListener(new View.OnClickListener() {
+        AddCarBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
-
-
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(UpdateUserProfile.this, AddCarScreen.class);
                 startActivity(intent);
-
             }
         });
 
-
-       /* gender.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-               // Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-                gender_str = item;
-            }
-        });*/
-
-        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 gender_str = gender.getSelectedItem().toString();
                 //   Toast.makeText(UpdateUserProfile.this, gender_str, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> parent)
+            {
 
             }
         });
 
-        spinnerDialog_city.bindOnSpinerListener(new OnSpinerItemClick() {
+        spinnerDialog_city.bindOnSpinerListener(new OnSpinerItemClick()
+        {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
                 Updateuserprofile_City_TV.setText(item);
                 city_str = item;
                 //           Toast.makeText(UpdateUserProfile.this, city_str, Toast.LENGTH_SHORT).show();
             }
         });
 
-        Updateuserprofile_City_LL.setOnClickListener(new View.OnClickListener() {
+        Updateuserprofile_City_LL.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_city.showSpinerDialog();
             }
         });
-        /*occupation_sp.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-               // Toast.makeText(UpdateUserProfile.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-                occupation_str = item;
-                occupation_id = String.valueOf(id+1);
-            }
-        });*/
-
-
-        occupation_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        occupation_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 occupation_str = occupation_sp.getSelectedItem().toString();
                 occupation_id = String.valueOf(position);
-                //      Toast.makeText(UpdateUserProfile.this, occupation_id, Toast.LENGTH_SHORT).show();
-                // Toast.makeText(UpdateUserProfile.this, occupation_str, Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> parent)
+            {
 
             }
         });
 
-        UpdateUserProfile_backarrow.setOnClickListener(new View.OnClickListener() {
+        UpdateUserProfile_backarrow.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });
 
     }
+
+    private void UploadImageToServer()
+    {
+            progressDialog.show();
+            progressDialog.setMessage("Updating Profile Please Wait");
+            progressDialog.setCanceledOnTouchOutside(false);
+
+        if(city_str.equals("null"))
+        {
+            city_str = "";
+        }
+
+        if(usergender == null)
+        {
+            usergender = "";
+        }
+
+            if (FixBitmap != null)
+            {
+                FixBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byteArray = byteArrayOutputStream.toByteArray();
+                ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                String convert_str = ConvertImage.replace("/", "");
+
+                Log.d("tag_img_profile", ConvertImage);
+                Log.d("tag_img_profile_ch", convert_str);
+
+                editor.putString("shared_convert_img",ConvertImage).apply();
+
+//                writeToFile(ConvertImage,getApplicationContext());
+
+                new Update_Profile().execute();
+            }
+
+            else
+            {
+                new Update_Profile().execute();
+            }
+    }
+
+
+    private void writeToFile(String data,Context context)
+    {
+
+        try
+        {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+            Toast.makeText(context, "file created", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException e)
+        {
+            Log.e("Exception", "File write failed: " + e.toString());
+            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void InitializeViews()
@@ -377,11 +509,7 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         adapter.setDropDownViewResource(R.layout.spinner_style);
 
-        /*ArrayAdapter<String> adapter_occupat = new ArrayAdapter<String>(this,
-                R.layout.spinner_white_text,occupat);*/
-
         rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
-        //    Toast.makeText(this, strcity, Toast.LENGTH_SHORT).show();
 
         ArrayAdapter<String> adapter_occupat;
 
@@ -400,13 +528,9 @@ public class UpdateUserProfile extends AppCompatActivity {
         {
             adapter_occupat = new ArrayAdapter<String>(this,
                     R.layout.spinner_white_text,occupat);
-
             adapter_occupat.setDropDownViewResource(R.layout.spinner_style);
-            /*adapter_occupat = new ArrayAdapter<String>(this,
-                    R.layout.spinner_white_text,occupat);*/
         }
 
-        // gender.setItems(getResources().getString(R.string.select_gender),getResources().getString(R.string.male),getResources().getString(R.string.female));
         gender.setAdapter(adapter);
         occupation_sp.setAdapter(adapter_occupat);
         email = findViewById(R.id.Updateuserprofile_email_ET);
@@ -417,14 +541,8 @@ public class UpdateUserProfile extends AppCompatActivity {
         updateprofile_back = findViewById(R.id.updateprofile_back);
 
         occupation_data = new ArrayList<>();
-        //  occupation_data.add("Select Occupation");
-        //  occupation_sp.setItems("Select Occupation","Others","Student","Job holder","Business");
-        //occupation_sp.setItems("Select Occupation","Others","Student","Job holder","Business");
-        // occupation_data.set(getResources().getString(R.array.User_occupation));
         city_list = new ArrayList(Arrays.asList(city_array_list));
         progressDialog = new ProgressDialog(UpdateUserProfile.this);
-
-
 
         jwt_token = sharedPreferences.getString(Shared.loggedIn_jwt,"0");
         //  Toast.makeText(this, jwt_token, Toast.LENGTH_SHORT).show();
@@ -439,18 +557,16 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         get_occupation_data(jwt_token);
 
-
-
         imageSliderLists = new ArrayList<>();
         user_cars_list = new ArrayList<>();
         car_id_list = new ArrayList<>();
         myListData = new ArrayList<>();
 
-        uname = sharedPreferences.getString(Shared.loggedIn_user_name,"0");
-        uphone = sharedPreferences.getString(Shared.loggedIn_user_ph,"0");
-        uemail = sharedPreferences.getString(Shared.loggedIn_user_email,"0");
-        ucity = sharedPreferences.getString(Shared.loggedIn_user_city,"0");
-        user_id =sharedPreferences.getString(Shared.loggedIn_user_id,"0");
+        uname   = sharedPreferences.getString(Shared.loggedIn_user_name,"0");
+        uphone  = sharedPreferences.getString(Shared.loggedIn_user_ph,"0");
+        uemail  = sharedPreferences.getString(Shared.loggedIn_user_email,"0");
+        ucity   = sharedPreferences.getString(Shared.loggedIn_user_city,"0");
+        user_id = sharedPreferences.getString(Shared.loggedIn_user_id,"0");
 
         if(ucity.equals(""))
         {
@@ -463,27 +579,12 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         if(rtl.equals("1"))
         {
-            /*name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);
-            adapter_occupat = new ArrayAdapter<String>(this,
-                    R.layout.spinner_white_text,occupation_array_ar);*/
-
             Updateuserprofile_City_TV.setGravity(Gravity.START);
             occupation_sp.setGravity(Gravity.START);
             email.setGravity(Gravity.END);
             name.setGravity(Gravity.END);
             occupation_sp.setGravity(Gravity.END);
-
-
         }
-        else
-        {
-            /*adapter_occupat = new ArrayAdapter<String>(this,
-                    R.layout.spinner_white_text,occupat);*/
-        }
-
-        //Toast.makeText(this, ucity, Toast.LENGTH_SHORT).show();
 
         checkUserDate(uname,uphone,ucity,uemail);
 
@@ -496,47 +597,24 @@ public class UpdateUserProfile extends AppCompatActivity {
         occupation_id = sharedPreferences.getString(Shared.loggedIn_user_occupation_id,"0");
         gender_str_sharepref = sharedPreferences.getString(Shared.loggedIn_user_gender,"0");
 
-        //  Toast.makeText(this, occupation_id, Toast.LENGTH_SHORT).show();
+
 
         if(gender_str_sharepref.equals("null"))
         {
             usergender = gender_str;
         }
+
         else
         {
             usergender = gender_str_sharepref;
         }
 
-        //      Toast.makeText(this, gender_str_sharepref, Toast.LENGTH_SHORT).show();
-        //  Toast.makeText(this, user_profile_image, Toast.LENGTH_SHORT).show();
-
-        if(user_profile_image.equals("null"))
-        {
-
-        }
-        else
-        {
-
-
-            //Glide.with(UpdateUserProfile.this).load(URLs.USER_IMAGE_URL + user_profile_image).into(Updateuserprofile_user_profile_image);
-            //       Glide.get(UpdateUserProfile.this).clearDiskCache();
-            Glide.with(UpdateUserProfile.this)
-                    .load(URLs.USER_IMAGE_URL + user_profile_image)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .dontTransform()
-                    .dontAnimate()
-                    .into(Updateuserprofile_user_profile_image);
-        }
-
-
-
-
+        load_profile_img();
 
         if(!gender_str_sharepref.equals("null"))
         {
-            if(gender_str_sharepref.equals(getResources().getString(R.string.male_gender))) {
-
+            if(gender_str_sharepref.equals(getResources().getString(R.string.male_gender)))
+            {
                 gender.setSelection(adapter.getPosition(getResources().getString(R.string.male_gender)));
             }
             else if(gender_str_sharepref.equals(getResources().getString(R.string.female_gender)))
@@ -548,324 +626,267 @@ public class UpdateUserProfile extends AppCompatActivity {
                 gender.setSelection(adapter.getPosition("Select Gender"));
             }
         }
-        else{
 
+        else
+        {
             gender.setSelection(adapter.getPosition("Select Gender"));
 
         }
 
-        //Toast.makeText(this, String.valueOf(gender.length()), Toast.LENGTH_SHORT).show();
-        //    Toast.makeText(this, String.valueOf(occupation_sp.length()), Toast.LENGTH_SHORT).show();
-
-        //   Toast.makeText(this, occupation_id, Toast.LENGTH_SHORT).show();
-
         if(occupation_id!=null || !occupation_id.equals("null"))
         {
-
-
-            //         Toast.makeText(this, occupation_id, Toast.LENGTH_SHORT).show();
-            if(occupation_id.equals("0")) {
-
-                /*if(rtl.equals("1"))
-                {
-         *//*   name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);*//*
-               //     String[] occupation_array_ar = {"","آخر","طالب علم","صاحب الوظيفة","اعمال"};
-                    occupation_sp.setSelection(adapter_occupat.getPosition("حدد المهنة"));
-
-
-                }
-                else
-                {
-                    occupation_sp.setSelection(adapter_occupat.getPosition("Select Occupation"));
-                }*/
-
-
-
+            if(occupation_id.equals("0"))
+            {
                 if(rtl.equals("1"))
                 {
-            /*name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);
-            adapter_occupat = new ArrayAdapter<String>(this,
-                    R.layout.spinner_white_text,occupation_array_ar);*/
-
-                    /*Updateuserprofile_City_TV.setGravity(Gravity.START);
-                    occupation_sp.setGravity(Gravity.START);*/
                     occupation_sp.setSelection(adapter_occupat.getPosition("Select Occupation"));
-
                 }
                 else
                 {
                     occupation_sp.setSelection(adapter_occupat.getPosition("Select Occupation"));
-            /*adapter_occupat = new ArrayAdapter<String>(this,
-                    R.layout.spinner_white_text,occupat);*/
                 }
             }
             else if(occupation_id.equals("1"))
             {
-
-                /*if(rtl.equals("1"))
-                {
-         *//*   name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);*//*
-                  //  String[] occupation_array_ar = {"","","طالب علم","صاحب الوظيفة","اعمال"};
-                    occupation_sp.setSelection(adapter_occupat.getPosition("آخر"));
-
-
-                }
-                else
-                {
-                    occupation_sp.setSelection(adapter_occupat.getPosition("Others"));
-                }*/
-
                 occupation_sp.setSelection(adapter_occupat.getPosition("Others"));
-            }
-            else if(occupation_id.equals("4"))
-            {
-                /*if(rtl.equals("1"))
-                {
-         *//*   name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);*//*
-                    //  String[] occupation_array_ar = {"","","طالب علم","صاحب الوظيفة",""};
-                    occupation_sp.setSelection(adapter_occupat.getPosition("اعمال"));
-
-
-                }
-                else
-                {
-                    occupation_sp.setSelection(adapter_occupat.getPosition("Business"));
-                }*/
-                occupation_sp.setSelection(adapter_occupat.getPosition("Business"));
-
-            }
-            else if(occupation_id.equals("3"))
-            {
-                /*if(rtl.equals("1"))
-                {
-         *//*   name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);*//*
-                    //  String[] occupation_array_ar = {"","","طالب علم","",""};
-                    occupation_sp.setSelection(adapter_occupat.getPosition("صاحب الوظيفة"));
-
-
-                }
-                else
-                {
-
-                    occupation_sp.setSelection(adapter_occupat.getPosition("Job holder"));
-                }*/
-
-                occupation_sp.setSelection(adapter_occupat.getPosition("Job holder"));
-
-
             }
             else if(occupation_id.equals("2"))
             {
-                /*if(rtl.equals("1"))
-                {
-         *//*   name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);*//*
-                    //  String[] occupation_array_ar = {"","","","",""};
-                    occupation_sp.setSelection(adapter_occupat.getPosition("طالب علم"));
-
-
-                }
-                else
-                {
-
-                    occupation_sp.setSelection(adapter_occupat.getPosition("Student"));
-                }*/
                 occupation_sp.setSelection(adapter_occupat.getPosition("Student"));
+            }
+            else if(occupation_id.equals("3"))
+            {
+                occupation_sp.setSelection(adapter_occupat.getPosition("Job holder"));
+            }
+            else if(occupation_id.equals("4"))
+            {
+                occupation_sp.setSelection(adapter_occupat.getPosition("Business"));
+
             }
         }
         else
         {
-           /* if(rtl.equals("1"))
-            {
-         *//*   name.setGravity(Gravity.END);
-            email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);*//*
-                //  String[] occupation_array_ar = {"","","","",""};
-                occupation_sp.setSelection(adapter_occupat.getPosition("حدد المهنة"));
-
-
-            }
-            else
-            {
-
-                occupation_sp.setSelection(adapter_occupat.getPosition("Select Occupation"));
-            }*/
             occupation_sp.setSelection(adapter_occupat.getPosition("Select Occupation"));
         }
+        // With Animation
+
+        spinnerDialog_city=new SpinnerDialog(UpdateUserProfile.this, city_list,"Select or Search City",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));
+    }
+
+    private void load_profile_img()
+    {
+        progressDialog.setMessage("Please Wait! image is being Loaded");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        Glide.with(getApplicationContext())
+                .load(URLs.USER_IMAGE_URL + user_profile_image)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource)
+                    {
+                        progressDialog.dismiss();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        progressDialog.dismiss();
+                        return false;
+                    }
+                })
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .into(Updateuserprofile_user_profile_image);
+    }
 
 
-        spinnerDialog_city=new SpinnerDialog(UpdateUserProfile.this, city_list,"Select or Search City",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+    class Update_Profile extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
+        }
 
-        //city.setText(loggedIn_user_city);
+        @Override
+        protected void onPostExecute(String string1)
+        {
+
+            super.onPostExecute(string1);
+            JSONObject jsonObj = null;
+
+            Log.d("profile_user_tag",string1);
+
+            try
+            {
+                jsonObj = new JSONObject(string1);
+                String message = jsonObj.getString("status");
+
+                if(message.equals("success"))
+                {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Profile Updated Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else
+                {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Profile Update Failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            ImageProcessClass imageProcessClass = new ImageProcessClass();
+
+            HashMap<String, String> HashMapParams = new HashMap<String, String>();
+
+            HashMapParams.put("name", username);
+            HashMapParams.put("email", useremail);
+            HashMapParams.put("occupation", occupation_id);
+            HashMapParams.put("city", city_str);
+            HashMapParams.put("gender", usergender);
+            HashMapParams.put("image", ConvertImage);
 
 
+            String FinalData = imageProcessClass.ImageHttpRequest(url, HashMapParams);
+            return FinalData;
+        }
+    }
+
+    class Update_Profile_Data extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
+        }
+
+        @Override
+        protected void onPostExecute(String string1)
+        {
+
+            super.onPostExecute(string1);
+            JSONObject jsonObj = null;
+
+            Log.d("profile_user_tag",string1);
+
+            try
+            {
+                jsonObj = new JSONObject(string1);
+                String message = jsonObj.getString("status");
+
+                if(message.equals("success"))
+                {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Profile Updated Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else
+                {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Profile Update Failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            ImageProcessClass imageProcessClass = new ImageProcessClass();
+
+            HashMap<String, String> HashMapParams = new HashMap<String, String>();
+
+            HashMapParams.put("name", username);
+            HashMapParams.put("email", useremail);
+            HashMapParams.put("occupation", occupation_id);
+            HashMapParams.put("city", city_str);
+            HashMapParams.put("gender", usergender);
+
+
+            String FinalData = imageProcessClass.ImageHttpRequest(url, HashMapParams);
+            return FinalData;
+        }
     }
 
     public void get_occupation_data(final String token)
     {
+        progressDialog.setMessage("Please Wait While We Are Loading The Data");
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_PROFILE_OCCUPATION,
-                new Response.Listener<String>() {
+                new Response.Listener<String>()
+                {
                     @Override
-                    public void onResponse(String response) {
-
+                    public void onResponse(String response)
+                    {
                         progressDialog.dismiss();
-                        //    Toast.makeText(UpdateUserProfile.this, response, Toast.LENGTH_SHORT).show();
-                        //  Log.d("HTTP_AUTHORIZATION",token);
-                        try {
-
+                        try
+                        {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
 
-
-
-                            //    Toast.makeText(getContext(), user_exist_check, Toast.LENGTH_SHORT).show();
-
-                            if(message.equals("success")) {
-
-
-
+                            if(message.equals("success"))
+                            {
                                 JSONArray data  = jsonObj.getJSONArray("resp");
 
-                                for (int i = 0; i < data.length(); i++) {
-
+                                for (int i = 0; i < data.length(); i++)
+                                {
                                     JSONObject c = data.getJSONObject(i);
-
-
                                     String occupation = c.getString("occupation");
-                                    //     Toast.makeText(UpdateUserProfile.this, occupation, Toast.LENGTH_SHORT).show();
                                     occupation_data.add(occupation);
                                 }
-
-                                //   occupation_sp.setItems(occupation_data);
-
                             }
                             else
                             {
                                 Toast.makeText(UpdateUserProfile.this,getResources().getString(R.string.user_not_found), Toast.LENGTH_SHORT).show();
                             }
-
-                        } catch (final JSONException e) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    /*Toast.makeText(UpdateUserProfile.this,
-                                            "Json parsing error: " + e.getMessage(),
-                                            Toast.LENGTH_LONG).show();*/
-                                }
-                            });
                         }
-//                      Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
 
-
-                        //      Toast.makeText(Signin.this, response, Toast.LENGTH_SHORT).show();
-
-
-                    }
-
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();\
-                        progressDialog.dismiss();
-                        //   Toast.makeText(UpdateUserProfile.this, error.toString(), Toast.LENGTH_LONG).show();
-                    }
-                }) {
-
-
-        /*
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("HTTP_AUTHORIZATION", "Bearer " + token);
-                return headers;
-            }*/
-
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Authorization", "Bearer " + token);
-                return headers;
-            }
-
-        };
-        int socketTimeout = 10000; // 10 seconds. You can change it
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        RequestQueue requestQueue = Volley.newRequestQueue(UpdateUserProfile.this);
-
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
-
-
-
-    }
-
-
-    public void Update_User(final String token)
-    {
-
-
-
-        //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_PROFILE_UPDATE,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-                        //     Toast.makeText(UpdateUserProfile.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
-
-                        progressDialog.dismiss();
-                        // Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
-                        get_user_data(user_id);
-
-
+                        catch (final JSONException e)
+                        {
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();
-//                        Toast.makeText(UpdateUserProfile.this, error.toString(), Toast.LENGTH_LONG).show();
+                    public void onErrorResponse(VolleyError error)
+                    {
                         progressDialog.dismiss();
                     }
                 })
         {
 
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> parameters = new HashMap<String, String>();
-
-
-                parameters.put("name", name.getText().toString());
-                parameters.put("email", email.getText().toString());
-                parameters.put("occupation", occupation_id);
-                parameters.put("city", city.getText().toString());
-                parameters.put("gender", gender_str);
-
-                return parameters;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
@@ -880,7 +901,9 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
+
     }
+
 
     public void checkUserDate(String strname,String strphone,String strcity,String stremail)
     {
@@ -892,15 +915,11 @@ public class UpdateUserProfile extends AppCompatActivity {
         {
             name.setGravity(Gravity.END);
             email.setGravity(Gravity.END);
-            //   mobile.setGravity(Gravity.END);
-
         }
 
         if(strname.equals("null"))
         {
 
-
-            name.setHint(getResources().getString(R.string.update_name));
         }
         else
         {
@@ -919,7 +938,6 @@ public class UpdateUserProfile extends AppCompatActivity {
         }
         else
         {
-            //Toast.makeText(this, strcity, Toast.LENGTH_SHORT).show();
             Updateuserprofile_City_TV.setText(strcity.trim());
         }
 
@@ -932,175 +950,15 @@ public class UpdateUserProfile extends AppCompatActivity {
             email.setText(stremail);
         }
 
-
-
-
     }
 
 
-    private void get_user_data(final String id) {
-
-        progressDialog.show();
-        //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.END_USER,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                  //          Toast.makeText(UpdateUserProfile.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-
-                        try {
-                            JSONObject jsonObj = new JSONObject(response);
-                            String message = jsonObj.getString("status");
-
-                            if(message.contains("success"))
-                            {
-                                JSONArray data  = jsonObj.getJSONArray("user");
-                                String cardata = jsonObj.getString("cars");
-                                String adsdata = jsonObj.getString("ads");
-
-
-                                if(!cardata.equals("null")) {
-                                    cars = jsonObj.getJSONArray("cars");
-
-                                    for (int i = 0; i < cars.length(); i++) {
-
-                                        objcars = cars.getJSONObject(i);
-                                        String id = objcars.getString("id");
-                                        String car_number = objcars.getString("car_number");
-                                        String company = objcars.getString("company");
-                                        String name = objcars.getString("name");
-
-                                        user_cars_list.add(car_number + " " + company + " " + name);
-                                        car_id_list.add(id);
-
-                                    }
-
-                                    //  spinner.setItems(user_cars_list);
-
-
-                                }
-
-
-                                if(!adsdata.equals("null")) {
-                                    ads = jsonObj.getJSONArray("ads");
-
-                                    for (int i = 0; i < ads.length(); i++) {
-                                        objads = ads.getJSONObject(i);
-                                        String imagename = objads.getString("banner");
-                                        // Toast.makeText(getActivity(), URLs.BANNER_IMAGES+imagename, Toast.LENGTH_SHORT).show();
-                                        String url = URLs.BANNER_IMAGES + imagename;
-                                        ImageSliderList imageSliderList = new ImageSliderList(url,"1");
-                                        imageSliderLists.add(imageSliderList);
-
-                                        Log.d("ImageURl",URLs.BANNER_IMAGES + imagename);
-
-                                    }
-
-                                    /*ImageSlidingAdapter adapter = new ImageSlidingAdapter(imageSliderLists,getActivity());
-                                    HomeFragment_imageslider_RV.setHasFixedSize(true);
-                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                                    HomeFragment_imageslider_RV.setLayoutManager(linearLayoutManager);
-                                    //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                    HomeFragment_imageslider_RV.setAdapter(adapter);*/
-
-                                }
-
-
-
-                                for (int i = 0; i < data.length(); i++) {
-
-                                    JSONObject c = data.getJSONObject(i);
-
-                                    if(!cardata.equals("null")) {
-
-                                        objcars = cars.getJSONObject(i);
-                                        user_odometer = objcars.getString("odometer");
-                                        editor.putString(Shared.loggedIn_user_odometer,user_id);
-                                    }
-                                    user_name = c.getString("name");
-                                    user_email = c.getString("email");
-                                    user_ph = c.getString("phone");
-                                    user_gender = c.getString("gender");
-                                    user_occupation_id = c.getString("occupation_id");
-                                    user_occupation_name = c.getString("occupation_name");
-
-                                    editor.putString(Shared.loggedIn_user_id,user_id);
-                                    editor.putString(Shared.loggedIn_user_name,user_name);
-                                    editor.putString(Shared.loggedIn_user_email,user_email);
-                                    editor.putString(Shared.loggedIn_user_ph,user_ph);
-                                    editor.putString(Shared.loggedIn_user_dp,user_dp);
-                                    editor.putString(Shared.loggedIn_user_gender,user_gender);
-                                    editor.putString(Shared.loggedIn_user_fcm_id,user_fcm_id);
-                                    editor.putString(Shared.loggedIn_loyality_points,user_loyality_points);
-                                    editor.putString(Shared.loggedIn_user_occupation_id,user_occupation_id);
-                                    editor.putString(Shared.loggedIn_user_occupation_name,user_occupation_name);
-                                    editor.putString(Shared.loggedIn_user_category,user_category);
-                                    editor.putString(Shared.loggedIn_user_user_role,user_user_role);
-                                    editor.apply();
-
-                                }
-
-
-
-                            }
-                            else
-                            {
-                                Toast.makeText(UpdateUserProfile.this, getResources().getString(R.string.user_not_found), Toast.LENGTH_SHORT).show();
-                            }
-
-                        } catch (final JSONException e) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressDialog.dismiss();
-                                    /*Toast.makeText(UpdateUserProfile.this,
-                                            "Json parsing error: " + e.getMessage(),
-                                            Toast.LENGTH_LONG).show();*/
-                                }
-                            });
-                        }
-
-
-                        //      Toast.makeText(Signin.this, response, Toast.LENGTH_SHORT).show();
-
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();
-                        progressDialog.dismiss();
-                     //   Toast.makeText(UpdateUserProfile.this, error.toString(), Toast.LENGTH_LONG).show();
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> parameters = new HashMap<String, String>();
-
-                parameters.put("id", id);
-
-
-                return parameters;
-            }
-
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(UpdateUserProfile.this);
-        requestQueue.add(stringRequest);
-
-
-    }
-
-    private void disableEditText(EditText editText) {
+    private void disableEditText(EditText editText)
+    {
         editText.setFocusable(false);
         editText.setEnabled(false);
         editText.setCursorVisible(false);
         editText.setKeyListener(null);
-        // editText.setBackgroundColor(Color.TRANSPARENT);
-        // editText.setGravity(Gravity.LEFT);
-        //editText.setPadding(0,10,0,0);
     }
 
     public void getimagefromgallery()
@@ -1118,12 +976,7 @@ public class UpdateUserProfile extends AppCompatActivity {
 
     public void getimagefromcamera()
     {
-
         captureImage();
-     /*   Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        startActivityForResult(Intent.createChooser(takePictureIntent, "Select Image From Camera"), 1);*/
-
     }
 
     @Override
@@ -1134,625 +987,71 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         if (RC == 1 && RQC == RESULT_OK && I != null && I.getData() != null)
         {
-
             Uri uri = I.getData();
-          /*  Updateuserprofile_user_profile_image.setImageURI(uri);
-            Toast.makeText(this, uri.toString(), Toast.LENGTH_SHORT).show();*/
 
-
-            try {
-
+            try
+            {
                 FixBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
                 Updateuserprofile_user_profile_image.setImageBitmap(FixBitmap);
+            }
 
-            } catch (IOException e) {
-
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }
-        else    if (RC == 7 && RQC == RESULT_OK) {
 
+        else    if (RC == 7 && RQC == RESULT_OK)
+        {
             Bitmap bitmap = (Bitmap) I.getExtras().get("data");
 
             FixBitmap = bitmap;
 
             Updateuserprofile_user_profile_image.setImageBitmap(bitmap);
         }
-          /*  Updateuserprofile_user_profile_image.setImageURI(uri);
-            Toast.makeText(this, uri.toString(), Toast.LENGTH_SHORT).show();*/
-
-
-           /* try {
-
-                FixBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
-                Updateuserprofile_user_profile_image.setImageBitmap(FixBitmap);
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            }*/
-
     }
 
+    private Boolean validateUsernam()
+    {
+        String val_name = name.getText().toString();
 
-
-
-
-    @SuppressLint("NewApi")
-    public void UploadImageToServer(){
-
-
-//        Toast.makeText(this, "Before image", Toast.LENGTH_SHORT).show();
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
-//        Toast.makeText(this, "After image", Toast.LENGTH_SHORT).show();
-
-
-        if(!name.getText().toString().equals(""))
-        {
-            username = name.getText().toString();
-        }
-        else
+        if(val_name.isEmpty())
         {
             username = "";
+            return false;
         }
-        if(!email.getText().toString().equals(""))
-        {
-            useremail = email.getText().toString();
-        }
+
         else
         {
-            useremail = "";
-        }
-
-        if(!mobile.getText().toString().equals(""))
-        {
-            usercontact = mobile.getText().toString();
-        }
-        else
-        {
-            usercontact = "";
-        }
-
-        if(!occupation_id.equals(""))
-        {
-            useroccupation = occupation_id;
-        }
-        else
-        {
-            useroccupation = "";
-        }
-
-
-        if(!city_str.equals("") )
-        {
-            city_str = city_str;
-        }
-        else
-        {
-            city_str = "";
-        }
-
-
-
-
-        if(usergender!=null) {
-
-            if (usergender.equals("") | !gender_str.equals("Select Gender"))
-            {
-                usergender = gender_str;
-            }
-
-            else if(!usergender.equals("") | gender_str.equals("Select Gender"))
-            {
-                usergender = user_gender;
-            }
-
-            else if(!usergender.equals("") | !gender_str.equals("Select Gender"))
-            {
-                usergender = user_gender;
-            }
-
-            else
-            {
-                usergender = "";
-            }
-
-        }
-        else
-        {
-            if(gender_str.equals("Select Gender"))
-            {
-                usergender = "";
-            }
-            else
-            {
-                usergender = gender_str;
-            }
-
-        }
-        if(FixBitmap!=null)
-        {
-
-//            Toast.makeText(this, "in bitmap", Toast.LENGTH_SHORT).show();
-            FixBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-
-            byteArray = byteArrayOutputStream.toByteArray();
-
-            ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-            Log.d("up_img",ConvertImage);
-
-
-
-            class AsyncTaskUploadClass extends AsyncTask<Void,Void,String>
-            {
-
-                @Override
-                protected void onPreExecute()
-                {
-                    super.onPreExecute();
-                    //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
-                }
-
-                @Override
-                protected void onPostExecute(String string1) {
-
-                    super.onPostExecute(string1);
-
-           //         Toast.makeText(UpdateUserProfile.this, string1, Toast.LENGTH_SHORT).show();
-                    //        Toast.makeText(UpdateUserProfile.this,string1,Toast.LENGTH_LONG).show();
-
-        /*            //       progressDialog.dismiss();
-
-                        Toast.makeText(UpdateUserProfile.this,"User Updated Successfully",Toast.LENGTH_LONG).show();
-
-
-
-                    JSONObject jsonObj = null;
-                    try {
-                        jsonObj = new JSONObject(string1);
-                        String message = jsonObj.getString("status");
-
-//                        Toast.makeText(UpdateUserProfile.this, message, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(UpdateUserProfile.this,"User Updated Successfully",Toast.LENGTH_LONG).show();
-
-                        editor.putString(Shared.loggedIn_user_name,username);
-                        editor.putString(Shared.loggedIn_user_email,useremail);
-                        editor.putString(Shared.loggedIn_user_ph,usercontact);
-                        editor.putString(Shared.loggedIn_user_gender,usergender);
-                        editor.putString(Shared.loggedIn_user_occupation_id,useroccupation);
-                        editor.apply();
-
-
-                        Intent intent= new Intent(UpdateUserProfile.this,HomeScreen.class);
-                        startActivity(intent);
-                        finish();
-
-                    } catch (JSONException e) {
-
-
-                    }*/
-
-
-
-                    JSONObject jsonObj = null;
-                    try
-                    {
-
-                        jsonObj = new JSONObject(string1);
-                        String message = jsonObj.getString("status");
-
-
-                        if(message.equals("success"))
-                        {
-////                            Toast.makeText(UpdateUserProfile.this, usergender, Toast.LENGTH_SHORT).show();
-
-
-                            Toast.makeText(UpdateUserProfile.this,getResources().getString(R.string.user_updated_Success),Toast.LENGTH_LONG).show();
-
-                            editor.putString(Shared.loggedIn_user_name,username);
-                            editor.putString(Shared.loggedIn_user_email,useremail);
-                            editor.putString(Shared.loggedIn_user_ph,usercontact);
-                            editor.putString(Shared.loggedIn_user_gender,usergender);
-                            editor.putString(Shared.loggedIn_user_occupation_id,useroccupation);
-                            editor.putString(Shared.loggedIn_user_city,city_str);
-                            editor.apply();
-
-
-
-
-                            //       progressDialog.dismiss();
-
-                            //         Toast.makeText(UpdateUserProfile.this,string1,Toast.LENGTH_LONG).show();
-                            Intent intent= new Intent(UpdateUserProfile.this,HomeScreen.class);
-                            startActivity(intent);
-                            finish();
-
-                            progressDialog.dismiss();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(UpdateUserProfile.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (JSONException e) {
-                        //         Toast.makeText(UpdateUserProfile.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                        progressDialog.dismiss();
-                    }
-
-
-
-
-                }
-
-                @Override
-                protected String doInBackground(Void... params) {
-
-                    UpdateUserProfile.ImageProcessClass imageProcessClass = new UpdateUserProfile.ImageProcessClass();
-
-                    HashMap<String,String> HashMapParams = new HashMap<String,String>();
-
-                    // HashMapParams.put("image_tag", "image");
-                    HashMapParams.put("image", ConvertImage);
-                    HashMapParams.put("name", username);
-                    HashMapParams.put("email", useremail);
-                    HashMapParams.put("occupation", occupation_id);
-                    HashMapParams.put("city", city_str);
-                    HashMapParams.put("gender", usergender);
-
-
-
-                    String FinalData = imageProcessClass.ImageHttpRequest(url, HashMapParams);
-
-                    return FinalData;
-                }
-            }
-            AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-            AsyncTaskUploadClassOBJ.execute();
-        }
-        else
-        {
-
-            drawable = (BitmapDrawable) Updateuserprofile_user_profile_image.getDrawable();
-
-            if(drawable!= null)
-            {
-                FixBitmap = drawable.getBitmap();
-
-
-                FixBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-
-                byteArray = byteArrayOutputStream.toByteArray();
-
-                ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-                Log.d("up_img",ConvertImage);
-
-
-                if(!ConvertImage.equals(""))
-                {
-
-
-                    // Toast.makeText(this, ConvertImage, Toast.LENGTH_SHORT).show();
-/*            Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usercontact, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usercity, Toast.LENGTH_SHORT).show();*/
-                    //  Toast.makeText(this, useremail, Toast.LENGTH_SHORT).show();
-  /*          Toast.makeText(this, useroccupation, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usergender, Toast.LENGTH_SHORT).show();*/
-
-                    //   Toast.makeText(this, occupation_id, Toast.LENGTH_SHORT).show();
-
-                    class AsyncTaskUploadClass extends AsyncTask<Void,Void,String>
-                    {
-
-                        @Override
-                        protected void onPreExecute() {
-
-                            super.onPreExecute();
-
-                            //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
-                        }
-
-                        @Override
-                        protected void onPostExecute(String string1) {
-
-                            super.onPostExecute(string1);
-
-
-                   //         Toast.makeText(UpdateUserProfile.this, string1, Toast.LENGTH_SHORT).show();
-
-                            JSONObject jsonObj = null;
-                            try {
-
-
-                                jsonObj = new JSONObject(string1);
-                                String message = jsonObj.getString("status");
-
-                                if(message.equals("success"))
-                                {
-                                    progressDialog.dismiss();
-
-//                                    Toast.makeText(UpdateUserProfile.this, usergender, Toast.LENGTH_SHORT).show();
-
-                                    Toast.makeText(UpdateUserProfile.this,getResources().getString(R.string.user_updated_Success),Toast.LENGTH_LONG).show();
-                                    //        Toast.makeText(UpdateUserProfile.this, message, Toast.LENGTH_SHORT).show();
-                                    editor.putString(Shared.loggedIn_user_name,username);
-                                    editor.putString(Shared.loggedIn_user_email,useremail);
-                                    editor.putString(Shared.loggedIn_user_ph,usercontact);
-                                    editor.putString(Shared.loggedIn_user_gender,usergender);
-                                    editor.putString(Shared.loggedIn_user_occupation_id,useroccupation);
-                                    editor.apply();
-
-
-
-
-                                    //       progressDialog.dismiss();
-
-                                    //         Toast.makeText(UpdateUserProfile.this,string1,Toast.LENGTH_LONG).show();
-                                    Intent intent= new Intent(UpdateUserProfile.this,HomeScreen.class);
-                                    startActivity(intent);
-                                    finish();
-
-                                }
-                                else
-                                {
-                                    Toast.makeText(UpdateUserProfile.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-                                }
-
-                            } catch (JSONException e) {
-
-                                progressDialog.dismiss();
-                          //      Toast.makeText(UpdateUserProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
-
-
-
-                        }
-
-                        @Override
-                        protected String doInBackground(Void... params) {
-
-                            UpdateUserProfile.ImageProcessClass imageProcessClass = new UpdateUserProfile.ImageProcessClass();
-
-                            HashMap<String,String> HashMapParams = new HashMap<String,String>();
-
-                            // HashMapParams.put("image_tag", "image");
-                            HashMapParams.put("image", ConvertImage);
-                            HashMapParams.put("name", username);
-                            if(useremail.equals(""))
-                            {
-
-                            }
-                            else
-                            {
-                                HashMapParams.put("email", useremail);
-                            }
-                            HashMapParams.put("occupation", occupation_id);
-                            HashMapParams.put("city", city_str);
-                            HashMapParams.put("gender", usergender);
-
-                            String FinalData = imageProcessClass.ImageHttpRequest(url, HashMapParams);
-
-                            return FinalData;
-                        }
-                    }
-                    AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-                    AsyncTaskUploadClassOBJ.execute();
-                }
-                else
-                {
-                    // Toast.makeText(this, ConvertImage, Toast.LENGTH_SHORT).show();
-/*            Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usercontact, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usercity, Toast.LENGTH_SHORT).show();*/
-                    //  Toast.makeText(this, useremail, Toast.LENGTH_SHORT).show();
-  /*          Toast.makeText(this, useroccupation, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usergender, Toast.LENGTH_SHORT).show();*/
-
-                    //   Toast.makeText(this, occupation_id, Toast.LENGTH_SHORT).show();
-
-                    class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
-
-                        @Override
-                        protected void onPreExecute() {
-
-                            super.onPreExecute();
-
-                            //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
-                        }
-
-                        @Override
-                        protected void onPostExecute(String string1) {
-
-                            super.onPostExecute(string1);
-
-
-
-                            JSONObject jsonObj = null;
-                            try {
-
-
-                                jsonObj = new JSONObject(string1);
-                                String message = jsonObj.getString("status");
-
-                                if(message.equals("success"))
-                                {
-                                    progressDialog.dismiss();
-
-////                                    Toast.makeText(UpdateUserProfile.this, usergender, Toast.LENGTH_SHORT).show();
-
-
-                                    Toast.makeText(UpdateUserProfile.this,getResources().getString(R.string.user_updated_Success),Toast.LENGTH_LONG).show();
-
-                                    editor.putString(Shared.loggedIn_user_name,username);
-                                    editor.putString(Shared.loggedIn_user_email,useremail);
-                                    editor.putString(Shared.loggedIn_user_ph,usercontact);
-                                    editor.putString(Shared.loggedIn_user_gender,usergender);
-                                    editor.putString(Shared.loggedIn_user_occupation_id,useroccupation);
-                                    editor.apply();
-
-
-
-
-                                    //       progressDialog.dismiss();
-
-                                    //         Toast.makeText(UpdateUserProfile.this,string1,Toast.LENGTH_LONG).show();
-                                    Intent intent= new Intent(UpdateUserProfile.this,HomeScreen.class);
-                                    startActivity(intent);
-                                    finish();
-
-                                }
-                                else
-                                {
-                                    Toast.makeText(UpdateUserProfile.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-                                }
-
-                            } catch (JSONException e) {
-
-                                progressDialog.dismiss();
-                            }
-
-
-
-
-                        }
-
-                        @Override
-                        protected String doInBackground(Void... params) {
-
-                            UpdateUserProfile.ImageProcessClass imageProcessClass = new UpdateUserProfile.ImageProcessClass();
-
-                            HashMap<String,String> HashMapParams = new HashMap<String,String>();
-
-                            // HashMapParams.put("image_tag", "image");
-                            HashMapParams.put("image", "");
-                            HashMapParams.put("name", username);
-                            HashMapParams.put("email", useremail);
-                            HashMapParams.put("occupation", occupation_id);
-                            HashMapParams.put("city", city_str);
-                            HashMapParams.put("gender", usergender);
-
-                            String FinalData = imageProcessClass.ImageHttpRequest(url, HashMapParams);
-                            return FinalData;
-                        }
-                    }
-                    AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-                    AsyncTaskUploadClassOBJ.execute();
-                }
-            }
-            else
-            {
-                // Toast.makeText(this, ConvertImage, Toast.LENGTH_SHORT).show();
-/*            Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usercontact, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usercity, Toast.LENGTH_SHORT).show();*/
-                //  Toast.makeText(this, useremail, Toast.LENGTH_SHORT).show();
-  /*          Toast.makeText(this, useroccupation, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, usergender, Toast.LENGTH_SHORT).show();*/
-
-                //   Toast.makeText(this, occupation_id, Toast.LENGTH_SHORT).show();
-
-                class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
-
-                    @Override
-                    protected void onPreExecute() {
-
-                        super.onPreExecute();
-
-                        //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
-                    }
-
-                    @Override
-                    protected void onPostExecute(String string1) {
-
-                        super.onPostExecute(string1);
-
-
-                      //  Toast.makeText(UpdateUserProfile.this, string1, Toast.LENGTH_SHORT).show();
-
-                        JSONObject jsonObj = null;
-                        try {
-
-
-                            jsonObj = new JSONObject(string1);
-                            String message = jsonObj.getString("status");
-
-                            if(message.equals("success"))
-                            {
-                                progressDialog.dismiss();
-
-//                                Toast.makeText(UpdateUserProfile.this, usergender, Toast.LENGTH_SHORT).show();
-
-
-                                Toast.makeText(UpdateUserProfile.this,getResources().getString(R.string.user_updated_Success),Toast.LENGTH_LONG).show();
-                                //        Toast.makeText(UpdateUserProfile.this, message, Toast.LENGTH_SHORT).show();
-                                editor.putString(Shared.loggedIn_user_name,username);
-                                editor.putString(Shared.loggedIn_user_email,useremail);
-                                editor.putString(Shared.loggedIn_user_ph,usercontact);
-                                editor.putString(Shared.loggedIn_user_gender,usergender);
-                                editor.putString(Shared.loggedIn_user_occupation_id,useroccupation);
-                                editor.apply();
-
-
-
-
-                                //       progressDialog.dismiss();
-
-                                //         Toast.makeText(UpdateUserProfile.this,string1,Toast.LENGTH_LONG).show();
-                                Intent intent= new Intent(UpdateUserProfile.this,HomeScreen.class);
-                                startActivity(intent);
-                                finish();
-
-                            }
-                            else
-                            {
-                                Toast.makeText(UpdateUserProfile.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-                            }
-
-                        } catch (JSONException e) {
-
-                            progressDialog.dismiss();
-                         //   Toast.makeText(UpdateUserProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-
-
-
-                    }
-
-                    @Override
-                    protected String doInBackground(Void... params) {
-
-                        UpdateUserProfile.ImageProcessClass imageProcessClass = new UpdateUserProfile.ImageProcessClass();
-
-                        HashMap<String,String> HashMapParams = new HashMap<String,String>();
-
-                        // HashMapParams.put("image_tag", "image");
-                        HashMapParams.put("image", "");
-                        HashMapParams.put("name", username);
-                        HashMapParams.put("email", useremail);
-                        HashMapParams.put("occupation", occupation_id);
-                        HashMapParams.put("city", city_str);
-                        HashMapParams.put("gender", usergender);
-
-                        String FinalData = imageProcessClass.ImageHttpRequest(url, HashMapParams);
-
-                        return FinalData;
-                    }
-                }
-                AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-                AsyncTaskUploadClassOBJ.execute();
-            }
-
-
+            name.setError(null);
+            return true;
         }
     }
+
+    private Boolean validateEmail()
+    {
+        String val_mail     = email.getText().toString();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if(val_mail.isEmpty())
+        {
+            useremail =" ";
+            return false;
+        }
+
+        else if (!val_mail.matches(emailPattern))
+        {
+            email.setError("Invalid email address");
+            return false;
+        }
+
+        else
+        {
+            email.setError(null);
+            return true;
+        }
+    }
+
 
     public class ImageProcessClass
     {
@@ -1762,11 +1061,9 @@ public class UpdateUserProfile extends AppCompatActivity {
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            try {
+            try
+            {
                 newurl = new URL(requestURL);
-                //Toast.makeText(UpdateUserProfile.this, jwt_token, Toast.LENGTH_SHORT).show();
-                //Log.d("token","Authorization Bearer " + jwt_token);
-
 
                 httpURLConnection = (HttpURLConnection) newurl.openConnection();
 
@@ -1840,58 +1137,11 @@ public class UpdateUserProfile extends AppCompatActivity {
 
     }
 
-    public void captureImage() {
-
+    public void captureImage()
+    {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-
         startActivityForResult(intent, 7);
-
     }
-
-
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getimagefromcamera();
-               // Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
-            }
-        }
-    }*/
-
-
-  /*  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_IMAGE_REQUEST) {
-
-            Toast.makeText(getApplicationContext(), "Success",
-                    Toast.LENGTH_SHORT).show();
-
-            //Scan new image added
-            MediaScannerConnection.scanFile(getApplicationContext(), new String[]{new File(Environment.getExternalStorageDirectory()
-                    + "/AutoFare/" + imageName).getPath()}, new String[]{"image/png"}, null);
-
-
-            // Work in few phones
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-                getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(Environment.getExternalStorageDirectory()
-                        + "/AutoFare/" + imageName)));
-
-            } else {
-                getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse(Environment.getExternalStorageDirectory()
-                        + "/AutoFare/" + imageName)));
-            }
-        } else {
-            Toast.makeText(getApplicationContext(), "Take Picture Failed or canceled",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }*/
 
 
     public void EnableRuntimePermission(){
@@ -1932,10 +1182,12 @@ public class UpdateUserProfile extends AppCompatActivity {
     }
 
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
+    public Uri getImageUri(Context inContext, Bitmap inImage)
+    {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
+
 }

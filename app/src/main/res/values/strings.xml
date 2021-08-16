@@ -605,13 +605,13 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="bronze">Bronze</string>
     <string name="silver">Silver</string>
     <string name="back">Back</string>
-    <string name="platinum">Platinum</string>
+    <string name="platinum">Diamond</string>
 
     <string name="claim_reward_screen">Claim Reward Screen:</string>
     <string name="you_are_gold_user">Your are a Gold user.</string>
     <string name="your_are_a_bronze_user">Your are a Bronze user.</string>
     <string name="your_are_a_silver_user">Your are a Silver user.</string>
-    <string name="your_are_a_platinum_user">Your are a Platinum user.</string>
+    <string name="your_are_a_platinum_user">Your are a Diamond user.</string>
     <string name="liter_1">1 liter</string>
     <string name="liter_2">2 liters</string>
     <string name="liter_3">3 liters</string>

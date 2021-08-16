@@ -602,12 +602,12 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="bronze">البرونزية</string>
     <string name="silver">الفضية</string>
     <string name="back">العودة</string>
-    <string name="platinum">البلاتينية</string>
+    <string name="platinum">ماسية</string>
     <string name="claim_reward_screen">شاشة المطالبة بالمكافأة:</string>
     <string name="you_are_gold_user">أنت عضو ذهبي</string>
     <string name="your_are_a_bronze_user">هل أنت عضو برونزي</string>
     <string name="your_are_a_silver_user">هل أنت عضو فضي</string>
-    <string name="your_are_a_platinum_user">هل أنت عضو بلاتيني</string>
+    <string name="your_are_a_platinum_user">هل أنت عضو ماسية</string>
     <string name="liter_1">لتر واحد</string>
     <string name="liter_2">لتران</string>
     <string name="liter_3">ثلاث لترات</string>
