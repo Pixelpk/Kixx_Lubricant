@@ -310,6 +310,9 @@ public class MapsFragment extends Fragment  implements
                         // Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
                         //    Toast.makeText(UpdateUserProfile.this, response, Toast.LENGTH_SHORT).show();
                         //  Log.d("HTTP_AUTHORIZATION",token);
+
+                        Log.d("response_shops",response);
+
                         try {
 
                             JSONObject jsonObj = new JSONObject(response);

@@ -802,8 +802,8 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="oil_change_history">Oil Change History</string>
 
     <string name="mileagereading">Mileage Reading</string>
-    <string name="currentmileagereading">Last Oil Change Mileage Reading (KM’s)</string>
-    <string name="enterdailycarmileage">Enter Average Daily Car Mileage (KMs)</string>
+    <string name="currentmileagereading">Enter Last Oil Change Mileage Reading (KM’s)</string>
+    <string name="enterdailycarmileage">Enter Average Daily Car Mileage (KM’s)</string>
     <string name="yearofmanufacturing">Year Of Manufacturing/Model Year</string>
     <string name="selectcarenginetype">Select Car Engine Type</string>
     <string name="claimOilFromKixx">Claim Your Free Liters</string>
@@ -1087,7 +1087,7 @@ Can be used in:
     <string name="enter_car_brand">Enter Car Brand</string>
     <string name="select_year_of_manufacturing">Select Year of Manufacturing</string>
     <string name="select_car_engine_type">Select Car Engine Type</string>
-    <string name="enter_car_number_plate">Enter Car Number Plate</string>
+    <string name="enter_car_number_plate">Enter Number On License Plate</string>
     <string name="enter_car_daily_mileage">Enter Car Daily Mileage</string>
     <string name="oil_change_successful">Oil Change Successful</string>
 

@@ -33,7 +33,7 @@
         <string name="Product_portfolio">خط الإنتاج</string>
         <string name="Signout"> الخروج</string>
         <string name="Home">الصفحة الرئيسية</string>
-        <string name="Notifications">الإشعارات</string>
+        <string name="Notifications">إشعارات</string>
         <string name="Settings">الإعدادات</string>
         <string name="Update">تحديث</string>
         <string name="Name">الاسم</string>
@@ -42,7 +42,7 @@
         <string name="Select_Gender">اختر الجنس</string>
         <string name="Other">ألخرى</string>
         <string name="Next">التالي</string>
-        <string name="Mobile_number">رقم اجلوال</string>
+        <string name="Mobile_number">رقم الجوال</string>
         <string name="Sign_in">تسجيل الدخول</string>
         <string name="User">المستخدم</string>
         <string name="salesman">بائع</string>
@@ -113,8 +113,8 @@
   <!--  <string name="select_car_brand">حدد ماركة السيارة</string>
     <string name="select_car_manufacturer">حدد الشركة المصنعة للسيارة</string>
 -->
-    <string name="create_new_pass">أنشئ كلمة مرور جديدة</string>
-    <string name="confirm_pass">تأكيد كلمة المرور الجديدة</string>
+    <string name="create_new_pass">إنشاء كلمة مرور جديدة (الحد الأدنى ثلاثة أحرف)</string>
+    <string name="confirm_pass">تأكيد كلمة المرور (الحد الأدنى ثلاثة أحرف)</string>
 
     <string name="Aboutus_title">معلومات عنا</string>
     <string name="Aboutus_desc">جي ايس كالتكس (GS Caltex) هي شركة كورية جنوبية لتكرير النفط. قامت الشركة بتغيير اسمها من مؤسسة النفط ايل جي كالتكس (LG-Caltex Oil Corporation) إلى مؤسسة جي ايس كالتكس (GS Caltex Corporation) في 27 من شهر يناير عام 2006. وهي مملوكة بشكل مشترك من قبل شيفرون ومجموعة جي ايس. تم تأسيس شركة جي ايس كالتكس في شهر مايو عام 1967 كأول شركة نفط خاصة في كوريا.</string>
@@ -566,7 +566,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="car_info_screen">شاشة معلومات السيارة:</string>
     <string name="enter_user_id">قم بإدخال معرف المستخدم.</string>
     <string name="search">بحث</string>
-    <string name="select_car">اختر السيارة.</string>
+    <string name="select_car">اختر السيارة</string>
     <string name="if_applicable">إذا كان قابلا للتطبيق.</string>
     <string name="if_no_car_selected">إذا لم يتم اختيار أي سيارة.</string>
     <string name="QR_screen">شاشة الاستجابة السريعة (QR)</string>
@@ -618,7 +618,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="oneachoilchange">على كل تغيير زيت</string>
     <string name="refering_person_register_app">دعوة صديق للتسجيل في التطبيق</string>
     <string name="oil_change">تغيير الزيت</string>
-    <string name="oil_change_history">تغيير الزيت</string>
+    <string name="oil_change_history">تاريخ تغييرالزيت</string>
     <string name="redeem_point">استبدل نقاطك</string>
     <string name="earn_points">كيف احصل على النقاط</string>
     <string name="how_to_earn_badges">كيف أحصل على العضوية؟</string>
@@ -753,7 +753,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <!--New update words for kixx app (22/04/2021)-->
 
     <string name="mileagereading">قراءة الأميال</string>
-    <string name="currentmileagereading">آخر قراءة للأميال لتغيير الزيت (كم)</string>
+    <string name="currentmileagereading">أدخل آخر قراءة أميال تغيير الزيت (كم)</string>
     <string name="enterdailycarmileage">أدخل الأميال اليومية للسيارة (كم)</string>
     <string name="yearofmanufacturing">سنة التصنيع / سنة الموديل
 </string>
@@ -1045,7 +1045,7 @@ You can get more detailed information of all these standards and lubricants info
     <string name="enter_car_brand">أدخل ماركة السيارة</string>
     <string name="select_year_of_manufacturing">حدد سنة التصنيع</string>
     <string name="select_car_engine_type">حدد نوع محرك السيارة</string>
-    <string name="enter_car_number_plate">أدخل رقم لوحة السيارة</string>
+    <string name="enter_car_number_plate">أدخل الرقم على لوحة الترخيص</string>
     <string name="oil_change_successful">تغيير الزيت بنجاح</string>
     <string name="enter_car_daily_mileage">أدخل الأميال اليومية للسيارة</string>
 

@@ -325,7 +325,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                         progressDialog.dismiss();
-                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+//                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
 
 
                     }
