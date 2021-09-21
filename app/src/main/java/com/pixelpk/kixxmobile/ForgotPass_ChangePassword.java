@@ -69,16 +69,26 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
                 if (check == 3)
                 {
-                    if(newpass.equals(confpass))
+                    if(newpass.length()<3)
+                    {
+                        ChangePassword_newpassET_txt.setError("Password Must be 3 Characters Long");
+                    }
+
+                    else if(newpass.equals(confpass))
                     {
                         Changepassword(newpass);
                     }
+
                     else
                     {
                         alerbox();
                       //  Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.mismatchedpasswords), Toast.LENGTH_SHORT).show();
                     }
                 }
+
+
+
+
 
 
             }
@@ -171,6 +181,7 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
 
     }
+
 
     public int if_field_Empty(String pass,String confpass)
     {

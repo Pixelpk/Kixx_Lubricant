@@ -53,6 +53,7 @@
         <string name="request">طلب</string>
     <string name="or">أو</string>
 
+    <string name="user_already_exist_header">المستخدم موجود بالفعل</string>
 
  <!--   <string name="password">كلمه السر</string>
     <string name="forgot_password">هل نسيت كلمة المرور</string>
@@ -671,6 +672,9 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="are_you_sure_to_logout">هل أنت متأكد أنك تريد الخروج</string>
    <!-- <string name="record_will_shown_on_first">سيتم عرض السجل في أول تغيير للزيت</string>-->
 
+    <string name="invalid_email">عنوان البريد الإلكتروني غير صالح</string>
+
+
     <string name="onlyforksa">فقط للمملكة العربية السعودية</string>
     <string name="pleaseenterphonenumber">يرجى إدخال رقم الهاتف المحمول</string>
     <string name="pleaseenterpassword">يرجى إدخال كلمة المرور.</string>
@@ -679,7 +683,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="invalidreferralcode">رمز الإحالة غير صالح, لا يسمح بالفراغات.</string>
     <string name="phonenumbermuststartwith">يجب أن يبدأ رقم الهاتف 0</string>
     <string name="networkerror">لديك مشكلة في الشبكة! يرجى التحقق من اتصالك بالإنترنت وإعادة تشغيل التطبيق.</string>
-    <string name="useralreadyregistered">المستخدم مسجل سابقاً</string>
+    <string name="useralreadyregistered">الرجاء تسجيل الدخول أو النقر فوق نسيت كلمة المرور إذا كنت لا تتذكر كلمة المرور الخاصة بكً</string>
     <string name="usersuccessfullyregistered">تم تسجيل المستخدم بنجاح</string>
     <string name="servermaintainence">الخادم قيد الصيانة، يرجى المحاولة مرة أخرى في وقت لاحق.</string>
     <string name="incorrectdata">بيانات غير صحيحة</string>
@@ -1049,5 +1053,6 @@ You can get more detailed information of all these standards and lubricants info
     <string name="oil_change_successful">تغيير الزيت بنجاح</string>
     <string name="enter_car_daily_mileage">أدخل الأميال اليومية للسيارة</string>
 
+    <string name="zero_error">يجب ألا يبدأ الرقم بـ 0</string>
 
 </resources>

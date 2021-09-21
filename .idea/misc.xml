@@ -58,7 +58,20 @@
         <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/product_portfolio_item.xml" value="0.6" />
         <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/promo_item.xml" value="0.6" />
         <entry key="..\:/KixxMobile/KixxMobile/app/src/main/res/layout/settings_list_item.xml" value="0.6" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.16644951140065148" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_back_24_lft.xml" value="0.16644951140065148" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.16644951140065148" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24_white.xml" value="0.16644951140065148" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_forward_24_rt.xml" value="0.16644951140065148" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1680921052631579" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24_rdark.xml" value="0.1680921052631579" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24_rwhite.xml" value="0.16644951140065148" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24forward.xml" value="0.1680921052631579" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24right.xml" value="0.1680921052631579" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_about_us_screen.xml" value="0.1" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_aboutus_pdf.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_add_car_info_screen.xml" value="0.15789473684210525" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_add_car_screen.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_change_password.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_claim_reward_points_screen.xml" value="0.3225" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_claims_screen.xml" value="0.1" />
@@ -67,19 +80,23 @@
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_faq_screen.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_feedback.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_forgot_pass__change_password.xml" value="0.1" />
-        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_home_screen.xml" value="0.1" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_home_screen.xml" value="0.10400000000000001" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_login.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_maps.xml" value="0.15789473684210525" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_o_t_p_screen.xml" value="0.14802631578947367" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_signin.xml" value="0.15789473684210525" />
-        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_signup2.xml" value="0.15789473684210525" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_signup2.xml" value="0.176" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_terms_screen.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_tutorial_screen.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/activity_update_user_profile.xml" value="0.6" />
-        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/bottomappbar.xml" value="0.15789473684210525" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/bottomappbar.xml" value="0.536" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/bottomappbarsales.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/car_list_item.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/cardetails.xml" value="0.15789473684210525" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/custom_barcode_scanner.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_home_new.xml" value="0.6" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_salesman__login.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_tutorial_third__screen.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_user_login.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/imagesliderlayout.xml" value="0.15789473684210525" />

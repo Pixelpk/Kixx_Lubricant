@@ -67,7 +67,7 @@
     <string name="Select_Gender">Select Gender</string>
     <string name="Other">Other</string>
     <string name="Next">Next</string>
-    <string name="Mobile_number">Mobile number (05xxxxxxxx)</string>
+    <string name="Mobile_number">Mobile number (523xxxxxx)</string>
     <string name="Sign_in">Sign in</string>
     <string name="User">User</string>
     <string name="salesman">Shopkeeper</string>
@@ -691,7 +691,7 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="invalidreferralcode">Invalid Referral Code. No spaces allowed</string>
     <string name="phonenumbermuststartwith">Phone number must start with 0</string>
     <string name="networkerror">Network Problem! Please check your internet connection and restart app</string>
-    <string name="useralreadyregistered">User already registered</string>
+    <string name="useralreadyregistered">Please login or click on forgot password if you do not remember your password</string>
     <string name="usersuccessfullyregistered">User successfully registered</string>
     <string name="servermaintainence">Server Under Maintainence, Try again later</string>
     <string name="incorrectdata">Incorrect Data</string>
@@ -699,6 +699,19 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="incorrectunamepass">You Have Entered Username / Incorrect Password</string>
     <string name="agreetoterms">Agree to</string>
     <string name="pleaseagreetoterms">Agree to terms of use</string>
+
+
+    <string name="invalid_email">Invalid email address</string>
+
+
+
+    <string name="user_already_exist_header">User Already Exist</string>
+
+
+
+    <string name="zero_error">The number should not start with 0</string>
+
+
 
     <string name="mismatchedpasswords">Password does not match</string>
     <string name="entercarmilage">Enter car milage</string>

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.ModelClasses.CarDetailsList;
+import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 import com.pixelpk.kixxmobile.User.adapters.CardDetailsAdapter;
 import com.ybs.countrypicker.CountryPicker;
 import com.ybs.countrypicker.CountryPickerListener;
@@ -43,6 +45,8 @@ public class ForgotPassword extends AppCompatActivity {
     ProgressDialog progressDialog;
     int check_field;
 
+    ImageView back_btn;
+
     String phone;
 
     EditText ForgotPassword_countrycode_ET;
@@ -56,15 +60,27 @@ public class ForgotPassword extends AppCompatActivity {
 
     LinearLayout ForgotPass_back_LL;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
         InitializingView();
 
-        ForgotPassword_countrycode_ET.setOnClickListener(new View.OnClickListener() {
+        String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
+
+        if(rtl.equals("1"))
+        {
+            ForgotPassword_back_btn.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
+        }
+
+        ForgotPassword_countrycode_ET.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
@@ -94,23 +110,29 @@ public class ForgotPassword extends AppCompatActivity {
 
         ForgotPassword_userchangepassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                String only_phone = ForgotPassword_userphET_txt.getText().toString();
 
+                String s = only_phone.substring(0,1);
 
-
-                if (ForgotPassword_userphET_txt.getText().toString().equals("")) {
-
+                if (ForgotPassword_userphET_txt.getText().toString().equals(""))
+                {
                     ForgotPassword_userphET_txt.setError(getResources().getString(R.string.fill_fields));
+                }
+//                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
+                else if(s.equals("0"))
+                {
+                    Toast.makeText(getApplicationContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
                 }
                 /*else if (ForgotPassword_userphET_txt.getText().toString().charAt(0) != '0') {
 
                     ForgotPassword_userphET_txt.setError(getResources().getString(R.string.phone_number_start_warning));
 
                 }*/
-                else {
-
-
+                else
+                {
                     check_field = if_field_Empty();
 
                     if (check_field == 3) {
@@ -141,6 +163,8 @@ public class ForgotPassword extends AppCompatActivity {
 
         ForgotPassword_countrycode_ET.setText("+966");
 
+        sharedPreferences = getSharedPreferences("Shared",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     public int if_field_Empty()
@@ -257,7 +281,8 @@ public class ForgotPassword extends AppCompatActivity {
         }
     }
 
-    public String removeFirstChar(String s){
+    public String removeFirstChar(String s)
+    {
         return s.substring(1);
     }
 

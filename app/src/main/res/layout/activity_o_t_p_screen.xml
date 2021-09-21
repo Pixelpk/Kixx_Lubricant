@@ -165,7 +165,7 @@
             android:id="@+id/OTPScreen_nextbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_disabled"
+            android:background="@drawable/bottom_button"
             android:text="@string/Next"
             android:textColor="#ffffff" />
     </LinearLayout>

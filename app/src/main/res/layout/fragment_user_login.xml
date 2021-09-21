@@ -56,13 +56,18 @@
 
                     <EditText
                         android:id="@+id/Salesman_countrycode_ET"
-                        android:layout_width="100dp"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
+                        android:backgroundTint="#ffffff"
                         android:ems="10"
                         android:hint="code"
                         android:inputType="textPersonName"
-                        android:visibility="gone" />
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="14sp"
+                        android:visibility="visible" />
 
                     <EditText
                         android:id="@+id/Signin_salesphET_txt"
@@ -302,10 +307,9 @@
                             android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
                             android:drawablePadding="10dp"
                             android:hint="@string/password"
-                            android:password="true"
+                            android:inputType="textPassword"
                             android:textAlignment="viewStart"
                             android:textColor="#ffffff"
-                            android:textColorHighlight="#E3580B"
                             android:textColorHint="#ffffff"
                             android:textSize="14sp" />
                     </LinearLayout>

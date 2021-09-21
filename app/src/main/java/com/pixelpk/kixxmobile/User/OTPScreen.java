@@ -2,12 +2,10 @@ package com.pixelpk.kixxmobile.User;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.executor.TaskExecutor;
-import androidx.constraintlayout.widget.ConstraintSet;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,15 +33,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.pixelpk.kixxmobile.Constants;
 import com.pixelpk.kixxmobile.ForgotPass_ChangePassword;
@@ -83,7 +78,8 @@ public class OTPScreen extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_o_t_p_screen);
 
@@ -95,7 +91,15 @@ public class OTPScreen extends AppCompatActivity {
 
         // mCountDownTimer.start();
 
-        OTPScreen_nextbtn.setOnClickListener(new View.OnClickListener() {
+        // Restore instance state
+        // put this code after starting phone number verification
+        if (verificationId == null && savedInstanceState != null)
+        {
+            onRestoreInstanceState(savedInstanceState);
+        }
+
+        OTPScreen_nextbtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
 
@@ -109,17 +113,20 @@ public class OTPScreen extends AppCompatActivity {
                 else if(code.length()!=6){
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
                 }
-                else {
+                else
+                    {
                     //  loader.setVisibility(View.VISIBLE);
 
 
                     //  if (verificationId == null && savedInstanceState != null) {
                     //        onRestoreInstanceState(savedInstanceState);
-                       /* PhoneAuthCredential credential = PhoneAuthProvider.getCredential(id, code.replace(" ", ""));
-                        signInWithPhoneAuthCredential(credential);*/
 
-                    Toast.makeText(OTPScreen.this, getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
-                    // }
+                        verify_code(code);
+
+//                        Toast.makeText(getApplicationContext(), code, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+
+                        // }
 
                 }
 
@@ -157,13 +164,31 @@ public class OTPScreen extends AppCompatActivity {
 
         OTPScreen_coundown.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 sendVerificationCode();
             }
         });
 
 
 
+    }
+
+    private void verify_code(String code)
+    {
+        try
+        {
+            //creating the credential
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(id, code);
+            //signing the user
+            signInWithPhoneAuthCredential(credential);
+        }
+
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+            Log.d("tag-exception",e.toString());
+        }
     }
 
   /*  private void verifyCode(String code)
@@ -217,9 +242,10 @@ public class OTPScreen extends AppCompatActivity {
                     public void onCodeSent(@NonNull String id, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         OTPScreen.this.id = id;
                     }*/
-                    public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                        // super.onCodeSent(s, forceResendingToken);
-                        OTPScreen.this.id = id;
+                    public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken)
+                    {
+                        super.onCodeSent(s, forceResendingToken);
+                        id = s;
                         // progress.dismiss();
                     }
                     @Override
@@ -409,8 +435,8 @@ mAuth.signInAnonymously()
 
     public void RegisterUsernoreferral(final String contact, final String password, final String fcm_id,String referred_code)
     {
-
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
                 new Response.Listener<String>() {
                     @Override
@@ -419,15 +445,29 @@ mAuth.signInAnonymously()
                         //  Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
                         //      Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(OTPScreen.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
+
 
                         if(response.contains("Duplicate"))
                         {
-                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.useralreadyregistered), Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                            new AlertDialog.Builder(OTPScreen.this)
+                                    .setTitle(getResources().getString(R.string.user_already_exist_header))
+                                    .setMessage(getResources().getString(R.string.useralreadyregistered))
+                                    .setCancelable(false)
+                                    .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which)
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(),Signup.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+
                         }
                         else
                         {
-                            //            Toast.makeText(OTPScreen.this, getResources().getString(R.string.usersuccessfullyregistered), Toast.LENGTH_SHORT).show();
 
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -436,10 +476,15 @@ mAuth.signInAnonymously()
 
 
 
-                                if(user_exist_check.equals("Login Successfull")) {
+                                if(user_exist_check.equals("Login Successfull"))
+                                {
+                                    progressDialog.dismiss();
+
+                                    Toast.makeText(OTPScreen.this, getResources().getString(R.string.usersuccessfullyregistered), Toast.LENGTH_SHORT).show();
 
                                     String jwt_token = jsonObj.getString("jwt_token");
                                     String message = jsonObj.getString("message");
+
 
 
 
@@ -485,11 +530,11 @@ mAuth.signInAnonymously()
                                  /*   Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
                                     startActivity(intent);*/
 
+                                    Intent intent = new Intent(OTPScreen.this, Login.class);
+                                    alerbox_welcome();
+                                    startActivity(intent);
+
                                     (OTPScreen.this).finish();
-
-
-
-
                                 }
                                 else
                                 {
@@ -572,6 +617,7 @@ mAuth.signInAnonymously()
 //        Toast.makeText(this, "register_with_referal1", Toast.LENGTH_SHORT).show();
 
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
                 new Response.Listener<String>() {
                     @Override
@@ -588,7 +634,20 @@ mAuth.signInAnonymously()
 
                         if(response.contains("Duplicate"))
                         {
-                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.useralreadyregistered), Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(OTPScreen.this)
+                                    .setTitle(getResources().getString(R.string.user_already_exist_header))
+                                    .setMessage(getResources().getString(R.string.useralreadyregistered))
+                                    .setCancelable(false)
+                                    .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which)
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(),Signup.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+
                         }
                         else
                         {
@@ -647,6 +706,10 @@ mAuth.signInAnonymously()
                                     editor.putString(Shared.User_login_logout_status,"1");
                                     editor.putString(Shared.User_promo,"1");
                                     editor.apply();
+
+                                    Intent intent = new Intent(OTPScreen.this, Login.class);
+                                    alerbox_welcome();
+                                    startActivity(intent);
 
                                  /*   Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
                                     startActivity(intent);*/
@@ -763,20 +826,20 @@ mAuth.signInAnonymously()
 
                                     Log.d("tag_referal","no");
 //                                    Toast.makeText(OTPScreen.this, "no", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
+//                                    Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
                                     RegisterUsernoreferral(contact, password, fcm_id,referred_code);
-                                    alerbox_welcome();
-                                    startActivity(intent);
-
+                          /*          alerbox_welcome();
+                                    startActivity(intent);*/
                                 }
+
                                 else
                                 {
                                     Log.d("tag_referal","yes");
 //                                    Toast.makeText(OTPScreen.this, "yes", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
+//                                    Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
                                     RegisterUser(contact, password, fcm_id, referral,referred_code);
-                                    alerbox_welcome();
-                                    startActivity(intent);
+                                /*    alerbox_welcome();
+                                    startActivity(intent);*/
 
 //                                    Log.d("tag_referal","no");
 //                                    Intent intent = new Intent(OTPScreen.this, HomeScreen.class);
@@ -827,7 +890,14 @@ mAuth.signInAnonymously()
         new AlertDialog.Builder(this)
                 .setMessage(getResources().getText(R.string.verificationerror))
                 .setCancelable(false)
-                .setNegativeButton(getResources().getString(R.string.ok), null)
+                .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        Intent intent = new Intent(getApplicationContext(),Signup.class);
+                        startActivity(intent);
+                    }
+                })
                 .show();
     }
 
@@ -840,15 +910,17 @@ mAuth.signInAnonymously()
                 .show();
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+/*    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState)
+    {
         super.onSaveInstanceState(outState);
         outState.putString(id,verificationId);
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState)
+    {
         super.onRestoreInstanceState(savedInstanceState);
         verificationId = savedInstanceState.getString(id);
-    }
+    }*/
 }

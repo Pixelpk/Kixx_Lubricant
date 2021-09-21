@@ -52,6 +52,8 @@ import com.pixelpk.kixxmobile.Login;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
+import com.ybs.countrypicker.CountryPicker;
+import com.ybs.countrypicker.CountryPickerListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,12 +64,14 @@ import java.util.Map;
 
 import static com.pixelpk.kixxmobile.User.Fragments.MapsFragment.MY_PERMISSIONS_REQUEST_LOCATION;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, ConnectionCallbacks, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        LocationListener, ConnectionCallbacks, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
     private Marker markerCenter;
 
-    EditText MapsActivity_Contactnum_ET,MapsActivity_Email_ET,MapsActivity_Shopname_ET;
+    EditText MapsActivity_Contactnum_ET,MapsActivity_Email_ET,MapsActivity_Shopname_ET,signup_countrycode_ET_seller;
     Button MapsActivity_Submit_btn;
 
     ProgressDialog progressDialog;
@@ -80,20 +84,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker mCurrLocationMarker;
     TextView MapsActivity_seller_tv;
     ImageView Becomaseler_back_IV;
+    TextView back_txt_seller_signup;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    String countrycode = "+966";
+    String countrycode="+966" ;
 
     LinearLayout Becomeaseler_back;
 
     String rtl;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
         initiaizeviews();
+
+        if(rtl.equals("1"))
+        {
+            Becomaseler_back_IV.setImageResource(R.drawable.black_back_arrow_arabic);
+            Becomaseler_back_IV.setRotation(180);
+        }
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -103,16 +117,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSIONS_REQUEST_LOCATION);
 
-        MapsActivity_Submit_btn.setOnClickListener(new View.OnClickListener() {
+
+        signup_countrycode_ET_seller.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
+                picker.setListener(new CountryPickerListener()
+                {
+                    @Override
+                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+
+                        countrycode = dialCode;
+                        signup_countrycode_ET_seller.setText(countrycode);
+                        /* Toast.makeText(getContext(), code + " " + dialCode, Toast.LENGTH_SHORT).show();*/
+
+                        picker.dismiss();
+
+                    }
+                });
+
+
+                picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
+            }
+        });
+
+        MapsActivity_Submit_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
 
                 LatLng centerLatLang =
                         mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
 
-                String cont = countrycode + MapsActivity_Contactnum_ET.getText().toString();
-                String email = MapsActivity_Email_ET.getText().toString();
-                String shop = MapsActivity_Shopname_ET.getText().toString();
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                String cont   = countrycode + MapsActivity_Contactnum_ET.getText().toString();
+                String email  = MapsActivity_Email_ET.getText().toString();
+                String shop   = MapsActivity_Shopname_ET.getText().toString();
+
+                String only_phone = MapsActivity_Contactnum_ET.getText().toString();
+
+                String s = only_phone.substring(0,1);
 
             //    Toast.makeText(MapsActivity.this, cont, Toast.LENGTH_SHORT).show();
 
@@ -120,21 +167,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 {
                     MapsActivity_Contactnum_ET.setError(getResources().getString(R.string.fill_fields));
                 }
+
                 else if(email.equals(""))
                 {
                     MapsActivity_Email_ET.setError(getResources().getString(R.string.fill_fields));
                 }
+
+                else if (!email.matches(emailPattern))
+                {
+                    MapsActivity_Email_ET.setError(getResources().getString(R.string.invalid_email));
+                }
+
                 else if(shop.equals(""))
                 {
                     MapsActivity_Shopname_ET.setError(getResources().getString(R.string.fill_fields));
                 }
+
                 else if(cont.length() <9 ||  cont.length() > 16)
                 {
                     MapsActivity_Contactnum_ET.setError(getResources().getString(R.string.incorrect_data));
                 }
+
+                else if(s.equals("0"))
+                {
+                    Toast.makeText(getApplicationContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                }
+
                 else
                 {
-
                     Register_Shop_Request(String.valueOf(centerLatLang.longitude),String.valueOf(centerLatLang.latitude),shop,cont,email);
                 }
 
@@ -188,12 +248,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GPSTracker gps = new GPSTracker(getApplicationContext());
         buildGoogleApiClient();
         mGoogleApiClient.connect();
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
             if (ContextCompat.checkSelfPermission(getApplicationContext(),
                     Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
+                    == PackageManager.PERMISSION_GRANTED)
+            {
                 googleMap.setMyLocationEnabled(true);
             }
+
         }
         else {
             googleMap.setMyLocationEnabled(true);
@@ -219,8 +283,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MapsActivity_Email_ET = findViewById(R.id.MapsActivity_Email_ET);
         MapsActivity_Shopname_ET = findViewById(R.id.MapsActivity_Shopname_ET);
 
+        back_txt_seller_signup= findViewById(R.id.back_txt_seller_signup);
+
+        signup_countrycode_ET_seller = findViewById(R.id.signup_countrycode_ET_seller);
+
         MapsActivity_Submit_btn = findViewById(R.id.MapsActivity_Submit_btn);
         MapsActivity_seller_tv = findViewById(R.id.MapsActivity_seller_tv);
+
+
 
         progressDialog = new ProgressDialog(this);
 
@@ -229,20 +299,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
 
+        signup_countrycode_ET_seller.setFocusable(false);
+        signup_countrycode_ET_seller.setClickable(true);
+
+        signup_countrycode_ET_seller.setText("+966");
+
+
         Becomeaseler_back = findViewById(R.id.Becomeaseler_back);
 
-        if(rtl.equals("1"))
-        {
-
-
-            Becomaseler_back_IV.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
-
-
-        }
-        else
-        {
-
-        }
 
         String lang = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
         //  editor.putString(Shared.User_promo,"2").apply();
@@ -260,6 +324,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 MapsActivity_Email_ET.setHint(R.string.update_email);
                 MapsActivity_Shopname_ET.setHint(R.string.shop_name);
                 MapsActivity_Submit_btn.setText(R.string.Submit);
+                back_txt_seller_signup.setText(R.string.back);
 
             }
             else if(lang.equals("2"))
@@ -281,12 +346,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-    private void Register_Shop_Request(String longi,String lati,String shopname,String contact,String email) {
-
+    private void Register_Shop_Request(String longi,String lati,String shopname,String contact,String email)
+    {
         //  Toast.makeText(this, refreshedToken, Toast.LENGTH_SHORT).show();
-
-
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
+
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.REQUEST_SHOP,
                 new Response.Listener<String>() {
                     @Override
@@ -362,6 +427,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode,
+//                                           String permissions[], int[] grantResults)
+//    {
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_LOCATION: {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//                {
+//
+//                    // permission was granted, yay! Do the
+//                    // location-related task you need to do.
+//                    if (ContextCompat.checkSelfPermission(getApplicationContext(),
+//                            Manifest.permission.ACCESS_FINE_LOCATION)
+//                            == PackageManager.PERMISSION_GRANTED) {
+//
+//                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+//                        mMap.setMyLocationEnabled(true);
+//
+//                        //Request location updates:
+//                        //  locationManager.requestLocationUpdates(provider, 400, 1, this);
+//                    }
+//
+//                } else {
+//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.permissiondenied), Toast.LENGTH_SHORT).show();
+//
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//
+//                }
+//                return;
+//            }}}
+
 
 
 
@@ -392,49 +491,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(MapsActivity.this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-                        mMap.setMyLocationEnabled(true);
-
-                        //Request location updates:
-                        //  locationManager.requestLocationUpdates(provider, 400, 1, this);
-                    }
-
-                } else {
-                    Toast.makeText(MapsActivity.this, getResources().getString(R.string.permissiondenied), Toast.LENGTH_SHORT).show();
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-
-                }
-                return;
-            }}}
 
 
     @Override
-    public void onConnected(Bundle bundle) {
+    public void onConnected(Bundle bundle)
+    {
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
         if (ContextCompat.checkSelfPermission(MapsActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+                == PackageManager.PERMISSION_GRANTED)
+        {
 
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
 

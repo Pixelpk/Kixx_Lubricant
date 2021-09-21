@@ -1,5 +1,6 @@
 package com.pixelpk.kixxmobile.LoginFragments;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -11,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -67,6 +69,7 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
+import static com.pixelpk.kixxmobile.User.Fragments.MapsFragment.MY_PERMISSIONS_REQUEST_LOCATION;
 
 
 public class User_login extends Fragment {
@@ -112,6 +115,10 @@ public class User_login extends Fragment {
 
         InitializeView(view);
 
+        ActivityCompat.requestPermissions(getActivity(),
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                MY_PERMISSIONS_REQUEST_LOCATION);
+
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -134,19 +141,41 @@ public class User_login extends Fragment {
 
         InitializeViewSalesman(view);
 
-        Signin_requestTV.setOnClickListener(new View.OnClickListener() {
+        Signin_requestTV.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                showSettingsAlert();
+            }
+        });
+
+        Salesman_countrycode_ET.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
+                CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
+                picker.setListener(new CountryPickerListener() {
+                    @Override
+                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
 
-                showSettingsAlert();
+                        countrycode = dialCode;
+                        Salesman_countrycode_ET.setText(countrycode);
+                        /* Toast.makeText(getContext(), code + " " + dialCode, Toast.LENGTH_SHORT).show();*/
 
+                        picker.dismiss();
 
+                    }
+                });
+                picker.show(getFragmentManager(), "COUNTRY_PICKER");
             }
         });
 
 
 
-        Signin_countrycode_ET.setOnClickListener(new View.OnClickListener() {
+
+        Signin_countrycode_ET.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
@@ -340,58 +369,72 @@ public class User_login extends Fragment {
             }
         });
 
-        Signin_userSigninBtn.setOnClickListener(new View.OnClickListener() {
+        Signin_userSigninBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
-                usercontact = countrycode + Signin_userphET_txt.getText().toString();
-                userpassword = Signin_userpassET_txt.getText().toString();
+                String only_phone = Signin_userphET_txt.getText().toString();
 
+                String s = only_phone.substring(0,1);
 
+//                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
-                if(usercontact.equals(""))
+                if(s.equals("0"))
                 {
-                    Signin_userphET_txt.setError(getResources().getString(R.string.pleaseenterphonenumber));
+                    Toast.makeText(getActivity(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
                 }
-                else if (userpassword.equals(""))
+
+                else
                 {
-                    Signin_userpassET_txt.setError(getResources().getString(R.string.pleaseenterpassword));
-                }
-                else if(Signin_userphET_txt.getText().toString().equals(""))
-                {
-                    Signin_userphET_txt.setError(getResources().getString(R.string.fill_fields));
-                }
-                else if(userpassword.length()<3)
-                {
-                    Signin_userpassET_txt.setError(getResources().getString(R.string.passwordmusthavethreecharacters));
-                }
+                    usercontact = countrycode + Signin_userphET_txt.getText().toString();
+
+                    userpassword = Signin_userpassET_txt.getText().toString();
+
+                    if(usercontact.equals(""))
+                    {
+                        Signin_userphET_txt.setError(getResources().getString(R.string.pleaseenterphonenumber));
+                    }
+                    else if (userpassword.equals(""))
+                    {
+                        Signin_userpassET_txt.setError(getResources().getString(R.string.pleaseenterpassword));
+                    }
+                    else if(Signin_userphET_txt.getText().toString().equals(""))
+                    {
+                        Signin_userphET_txt.setError(getResources().getString(R.string.fill_fields));
+                    }
+                    else if(userpassword.length()<3)
+                    {
+                        Signin_userpassET_txt.setError(getResources().getString(R.string.passwordmusthavethreecharacters));
+                    }
                /* else if (Signin_userphET_txt.getText().toString().charAt(0) != '0') {
                     // Signup_userpassET_txt.setError("Please fill this field");
                     // Toast.makeText(getContext(), String.valueOf(Signin_userphET_txt.getText().toString().charAt(0)), Toast.LENGTH_SHORT).show();
                     Toast.makeText(getContext(), getResources().getString(R.string.phone_number_start_warning), Toast.LENGTH_SHORT).show();
                 }*/
-                else if(refreshedToken == null)
-                {
-                    Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-                }
-                else {
+                    else if(refreshedToken == null)
+                    {
+                        Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
 
-                    Log.d("fcm",refreshedToken);
+                        Log.d("fcm",refreshedToken);
 
-                    SigninUser(usercontact,userpassword,refreshedToken);
+                        SigninUser(usercontact,userpassword,refreshedToken);
 
+                    }
                 }
             }
         });
 
-        UserLogin_salesman_login.setOnClickListener(new View.OnClickListener() {
+        UserLogin_salesman_login.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 salesman_layout.setVisibility(View.VISIBLE);
                 user_layout.setVisibility(View.GONE);
-
-
             }
         });
 
@@ -404,7 +447,8 @@ public class User_login extends Fragment {
             usercontact = Signin_userphET_txt.getText().toString();
             userpassword = Signin_userpassET_txt.getText().toString();
 
-                if(!UserLogin_referral_ET.getText().toString().equals("")) {
+                if(!UserLogin_referral_ET.getText().toString().equals(""))
+                {
                     if(UserLogin_referral_ET.getText().toString().contains(" "))
                     {
                         Toast.makeText(getContext(), getResources().getString(R.string.invalidreferralcode), Toast.LENGTH_SHORT).show();
@@ -420,27 +464,20 @@ public class User_login extends Fragment {
                 {
                     User_Text_Field_Validity_check();
                 }
-
-
-
-
-
             }
         });
 
-
-
-        Salesman_countrycode_ET.setOnClickListener(new View.OnClickListener() {
+        Salesman_countrycode_ET.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
                 picker.setListener(new CountryPickerListener() {
                     @Override
-                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
-
+                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID)
+                    {
                         Salesman_countrycode_ET.setText(dialCode);
                         picker.dismiss();
-
                     }
                 });
                 picker.show(getFragmentManager(), "COUNTRY_PICKER");
@@ -449,9 +486,15 @@ public class User_login extends Fragment {
 
         Signin_salesSigninBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
              /*   Intent intent = new Intent(getContext(), HomeScreen.class);
                 startActivity(intent);*/
+
+                String only_phone = Signin_salesphET_txt.getText().toString();
+
+                String s = only_phone.substring(0,1);
+
                 if(Signin_salesphET_txt.getText().toString().equals(""))
                 {
                     Toast.makeText(getContext(),  getResources().getString(R.string.pleaseenterphonenumber), Toast.LENGTH_SHORT).show();
@@ -469,6 +512,12 @@ public class User_login extends Fragment {
                   //  Toast.makeText(getContext(), "Network Problem! Please check your internet connection and restart app", Toast.LENGTH_SHORT).show();
                     Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                 }
+
+                else if(s.equals("0"))
+                {
+                    Toast.makeText(getContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                }
+
                 else
                 {
                     String phone = countrycode + Signin_salesphET_txt.getText().toString();
@@ -510,6 +559,8 @@ public class User_login extends Fragment {
       //  Toast.makeText(getContext(), refreshedToken, Toast.LENGTH_SHORT).show();
         Signin_countrycode_ET = view.findViewById(R.id.Signin_countrycode_ET);
 
+        Salesman_countrycode_ET = view.findViewById(R.id.Salesman_countrycode_ET);
+
         Signin_countrycode_ET.setFocusable(false);
         Signin_countrycode_ET.setClickable(true);
 
@@ -525,6 +576,7 @@ public class User_login extends Fragment {
 
         Signin_countrycode_ET.setText("+966");
 
+        Salesman_countrycode_ET.setText("+966");
     }
 
 

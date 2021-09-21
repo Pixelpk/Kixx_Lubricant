@@ -301,13 +301,16 @@ public class Signup extends AppCompatActivity {
 
 
 
-        Signup_countrycode_ET.setOnClickListener(new View.OnClickListener() {
+        Signup_countrycode_ET.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
-                picker.setListener(new CountryPickerListener() {
+                picker.setListener(new CountryPickerListener()
+                {
                     @Override
-                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID)
+                    {
                         // Implement your code here
                         // Signup_countrycode_SP.setSel
 
@@ -327,7 +330,8 @@ public class Signup extends AppCompatActivity {
 
 
 
-        Signup_userSignupBtn.setOnClickListener(new View.OnClickListener() {
+        Signup_userSignupBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
 
@@ -337,37 +341,53 @@ public class Signup extends AppCompatActivity {
 
                 if(check_field == 4)
                 {
+                    String only_phone = Signup_userphET_txt.getText().toString();
+
+                    String s = only_phone.substring(0,1);
+
+//                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                    if(s.equals("0"))
+                    {
+                        Toast.makeText(getApplicationContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else
+                    {
+                        phone = countycode + only_phone;
 
 
-                    phone = countycode + Signup_userphET_txt.getText().toString();
-                    zeroexcludedphonenumber = countycode + Signup_userphET_txt.getText().toString().substring(1);
 
-                    if(!editTextNumber4.getText().toString().equals("") || !editTextNumber4.getText().toString().equals("") || !editTextNumber4.getText().toString().equals("") || !editTextNumber4.getText().toString().equals("")) {
+                        zeroexcludedphonenumber = countycode + Signup_userphET_txt.getText().toString().substring(1);
 
-                        referral_code = editTextNumber4.getText().toString() +
-                                editTextNumber3.getText().toString() +
-                                editTextNumber2.getText().toString() +
-                                editTextNumber.getText().toString();
-
-               //         Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
-
-                        if(referral_code.equals(""))
+                        if(!editTextNumber4.getText().toString().equals("") || !editTextNumber4.getText().toString().equals("") ||
+                                !editTextNumber4.getText().toString().equals("") || !editTextNumber4.getText().toString().equals(""))
                         {
-                            Toast.makeText(Signup.this, getResources().getString(R.string.invalidreferralcode), Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
+
+                            referral_code = editTextNumber4.getText().toString() +
+                                    editTextNumber3.getText().toString() +
+                                    editTextNumber2.getText().toString() +
+                                    editTextNumber.getText().toString();
+
+                            //         Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
+
+                            if(referral_code.equals(""))
+                            {
+                                Toast.makeText(Signup.this, getResources().getString(R.string.invalidreferralcode), Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
 
 
-                            if(termsandcondition_set == true) {
-                                usercontact = Signup_userphET_txt.getText().toString();
-                                userpassword = Signup_userpassET_txt.getText().toString();
+                                if(termsandcondition_set == true) {
+                                    usercontact = Signup_userphET_txt.getText().toString();
+                                    userpassword = Signup_userpassET_txt.getText().toString();
 
 
 
 
 
-                                //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
+                                    //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
 
                                     progressDialog.show();
@@ -375,39 +395,39 @@ public class Signup extends AppCompatActivity {
 
                            /* Intent intent = new Intent(Signup.this,HomeScreen.class);
                             startActivity(intent);*/
+                                }
+                                else
+                                {
+                                    Toast.makeText(Signup.this, getResources().getString(R.string.pleaseagreetoterms), Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            else
-                            {
-                                Toast.makeText(Signup.this, getResources().getString(R.string.pleaseagreetoterms), Toast.LENGTH_SHORT).show();
-                            }
+
                         }
+                        else
+                        {
 
-                    }
-                    else
-                    {
-
-                        if(termsandcondition_set == true) {
-                            usercontact = Signup_userphET_txt.getText().toString();
-                            userpassword = Signup_userpassET_txt.getText().toString();
+                            if(termsandcondition_set == true) {
+                                usercontact = Signup_userphET_txt.getText().toString();
+                                userpassword = Signup_userpassET_txt.getText().toString();
 
 
-                            //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
 
                                 progressDialog.show();
                                 AuthenticateContactNumber(usercontact, userpassword, refreshedToken, referral_code);
 
 
-                        }
-                        else
-                        {
-                            Toast.makeText(Signup.this,  getResources().getString(R.string.pleaseagreetoterms), Toast.LENGTH_SHORT).show();
-                        }
+                            }
+
+                            else
+                            {
+                                Toast.makeText(Signup.this,  getResources().getString(R.string.pleaseagreetoterms), Toast.LENGTH_SHORT).show();
+                            }
                         /*Intent intent = new Intent(Signup.this,HomeScreen.class);
                         startActivity(intent);*/
+                        }
                     }
-
-
                 }
 
 
@@ -431,6 +451,8 @@ public class Signup extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         Signup_countrycode_ET = findViewById(R.id.Signup_countrycode_ET);
+
+
 
         Signup_countrycode_ET.setFocusable(false);
         Signup_countrycode_ET.setClickable(true);
@@ -583,10 +605,12 @@ public class Signup extends AppCompatActivity {
 
             Toast.makeText(this, "Please Select Country Code", Toast.LENGTH_SHORT).show();
 
-        } else {
-            if (completecontact.length() <= 8 || completecontact.length() >= 16) {
+        } else
+            {
+            if (completecontact.length() <= 8 || completecontact.length() >= 16)
+            {
               //  progressDialog.dismiss();
-                Signup_userphET_txt.setError( getResources().getString(R.string.onlyforksa));
+                /*Signup_userphET_txt.setError( getResources().getString(R.string.onlyforksa));*/
             } else {
              //   progressDialog.dismiss();
               //  Toast.makeText(this, completecontact, Toast.LENGTH_SHORT).show();
