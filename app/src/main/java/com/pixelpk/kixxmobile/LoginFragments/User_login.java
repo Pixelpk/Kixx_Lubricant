@@ -383,7 +383,7 @@ public class User_login extends Fragment {
 
                 if(s.equals("0"))
                 {
-                    Toast.makeText(getActivity(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                 }
 
                 else
@@ -503,10 +503,6 @@ public class User_login extends Fragment {
                 {
                     Toast.makeText(getContext(),  getResources().getString(R.string.pleaseenterpassword), Toast.LENGTH_SHORT).show();
                 }
-                else if (Signin_salesphET_txt.getText().toString().charAt(0) != '0') {
-                    // Signup_userpassET_txt.setError("Please fill this field");
-                    Toast.makeText(getContext(),  getResources().getString(R.string.phonenumbermuststartwith), Toast.LENGTH_SHORT).show();
-                }
                 else if(refreshedToken.equals(""))
                 {
                   //  Toast.makeText(getContext(), "Network Problem! Please check your internet connection and restart app", Toast.LENGTH_SHORT).show();
@@ -515,7 +511,7 @@ public class User_login extends Fragment {
 
                 else if(s.equals("0"))
                 {
-                    Toast.makeText(getContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                 }
 
                 else
@@ -524,7 +520,7 @@ public class User_login extends Fragment {
 
                  //   Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
 
-               //     Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
 
                     SigninSales(phone,Signin_salespassET_txt.getText().toString(),refreshedToken);
                 }
@@ -772,25 +768,21 @@ public class User_login extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNIN,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-
+                    public void onResponse(String response)
+                    {
+                        Log.d("tag_login_res",response);
              //          Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
-                        //        Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
 
-                        if (response.equals("")) {
-
-//                            Toast.makeText(getContext(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
-
-                        } else {
-
-                            try {
+                            try
+                            {
                                 JSONObject jsonObj = new JSONObject(response);
                                 // JSONObject jsonObj_userexist = new JSONObject(response);
                                 String user_exist_check = jsonObj.getString("message");
 
 
-                                if (user_exist_check.equals("Login Successfull")) {
+                                if (user_exist_check.equals("Login Successfull"))
+                                {
 
                                     String jwt_token = jsonObj.getString("jwt_token");
                                     String message = jsonObj.getString("message");
@@ -833,8 +825,10 @@ public class User_login extends Fragment {
                                     ((Activity) getActivity()).finish();
                                     Toast.makeText(getContext(), getResources().getString(R.string.welcometokixx), Toast.LENGTH_LONG).show();
 
+                                }
 
-                                } else {
+                                else
+                                {
                                     //  Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
                                   Toast.makeText(getContext(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
                                 }
@@ -857,7 +851,7 @@ public class User_login extends Fragment {
                             //      Toast.makeText(Signin.this, response, Toast.LENGTH_SHORT).show();
 
 
-                        }
+
                     }
 
                 },

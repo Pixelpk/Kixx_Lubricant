@@ -531,6 +531,7 @@ public class Sales_QRFragment extends Fragment {
         user_car_id.add("select car");
 
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_CARS_USER,
                 new Response.Listener<String>() {
@@ -539,7 +540,9 @@ public class Sales_QRFragment extends Fragment {
 
                           //    Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
-                        try {
+
+                        try
+                        {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
 
@@ -581,8 +584,6 @@ public class Sales_QRFragment extends Fragment {
                                 user_cars_list_adapter.setDropDownViewResource(R.layout.spinner_style);
 
                                 SalesQR_CarSelect_SP.setAdapter(user_cars_list_adapter);
-
-
 
                             }
                             else
@@ -1094,6 +1095,8 @@ public class Sales_QRFragment extends Fragment {
         cars_list.clear();
         carid_list.clear();
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        progressDialog.setMessage("Please wait while we are fetching your car data");
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.specific_car,
@@ -1277,7 +1280,9 @@ public class Sales_QRFragment extends Fragment {
     public void get_car_oil_change_data(final String car_identity)
     {
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CAR_OIL_CHANGE,
                 new Response.Listener<String>() {
@@ -1313,7 +1318,7 @@ public class Sales_QRFragment extends Fragment {
                                         int rem = 10 - total;
 
                                         new AlertDialog.Builder(getContext())
-                                                .setMessage(getResources().getString(R.string.oilalreadychanged) + String.valueOf(rem) + getResources().getString(R.string.days))
+                                                .setMessage(getResources().getString(R.string.oilalreadychanged)+" "+ String.valueOf(rem)+" "+getResources().getString(R.string.days))
                                                 .setCancelable(false)
                                                 .setNegativeButton("ok", null)
                                                 .show();

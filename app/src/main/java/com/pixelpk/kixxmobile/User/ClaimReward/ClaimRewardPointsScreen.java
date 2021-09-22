@@ -234,6 +234,7 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
                             {
                                 String resp = jsonObj.getString("resp");
                              //   Toast.makeText(ClaimRewardPointsScreen.this, resp, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Points claimed successful", Toast.LENGTH_SHORT).show();
                                 String remainingPoints = jsonObj.getString("remainingPoints");
                                 ClaimReward_Totalpoints.setText(remainingPoints);
                                 progressDialog.dismiss();

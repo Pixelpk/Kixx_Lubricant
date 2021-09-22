@@ -879,7 +879,8 @@ public class HomeFragment extends Fragment {
         Glide.with(getContext())
                 .load(URLs.USER_IMAGE_URL + profile_image)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .listener(new RequestListener<Drawable>() {
+                .listener(new RequestListener<Drawable>()
+                {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource)
                     {
@@ -903,6 +904,8 @@ public class HomeFragment extends Fragment {
         user_car_status.clear();
 
         progressDialog.show();
+        progressDialog.setMessage("Please Wait! while we load the data");
+        progressDialog.setCanceledOnTouchOutside(false);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.END_USER,
                 new Response.Listener<String>() {
@@ -918,7 +921,8 @@ public class HomeFragment extends Fragment {
                             String message = jsonObj.getString("status");
                             String car_number_globe = "";
                             car_id_list.add("-1");
-                            if (message.contains("success")) {
+                            if (message.contains("success"))
+                            {
                                 JSONArray data = jsonObj.getJSONArray("user");
                                 // JSONArray points  = jsonObj.getJSONArray("points");
                                 String cardata = jsonObj.getString("cars");
@@ -1132,7 +1136,7 @@ public class HomeFragment extends Fragment {
 
 
                                     //   Toast.makeText(getContext(), badge_activity_count, Toast.LENGTH_SHORT).show();
-
+                                    HomeFragment_User_id.setText(getResources().getString(R.string.User_id) + ": " + user_id);
                                     editor.putString(Shared.loggedIn_user_city, user_user_role);
                                     editor.putString(Shared.loggedIn_user_id, user_id);
                                     editor.putString(Shared.loggedIn_user_name, user_name);
@@ -1864,7 +1868,8 @@ public class HomeFragment extends Fragment {
                                 HomeFragment_ads_RV.setAdapter(adapter);
 
 
-                                HomeFragment_ads_RV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                               /* HomeFragment_ads_RV.addOnScrollListener(new RecyclerView.OnScrollListener()
+                                {
                                     @Override
                                     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                                         super.onScrolled(recyclerView, dx, dy);
@@ -1884,7 +1889,7 @@ public class HomeFragment extends Fragment {
                                         }
                                     }
                                 });
-                                mHandler.postDelayed(SCROLLING_RUNNABLE, 5000);
+                                mHandler.postDelayed(SCROLLING_RUNNABLE, 5000);*/
 
 
                                 //      adapter.notifyDataSetChanged();

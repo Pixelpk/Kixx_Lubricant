@@ -124,7 +124,7 @@ public class ForgotPassword extends AppCompatActivity {
 
                 else if(s.equals("0"))
                 {
-                    Toast.makeText(getApplicationContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                 }
                 /*else if (ForgotPassword_userphET_txt.getText().toString().charAt(0) != '0') {
 

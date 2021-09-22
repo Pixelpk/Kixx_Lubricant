@@ -701,6 +701,13 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="pleaseagreetoterms">Agree to terms of use</string>
 
 
+
+    <string name="timed_out_alert">Your OTP timed out, Kindly resend and try again</string>
+
+
+    <string name="timed_out_header">Your OTP timed out</string>
+
+
     <string name="invalid_email">Invalid email address</string>
 
 
@@ -1103,5 +1110,208 @@ Can be used in:
     <string name="enter_car_number_plate">Enter Number On License Plate</string>
     <string name="enter_car_daily_mileage">Enter Car Daily Mileage</string>
     <string name="oil_change_successful">Oil Change Successful</string>
+
+
+    <string name="enter_car_mileage">Enter Car Mileage</string>
+
+
+    <!--Dialogues on home screen-->
+
+    <string name="select_search_car_model">Select or Search Car Model</string>
+    <string name="select_search_car_brand">Select or Search Car Brand</string>
+    <string name="select_search_car_model_year">Select or Search Model/Year</string>
+    <string name="select_search_car_engine_type">Select or Search Engine type</string>
+
+
+
+
+    <string name="select_car_model">Select Car Model</string>
+
+
+    <!--FAQ Translation-->
+
+   <!-- FAQ 1 -->
+
+    <string name="faq_ques_1">What are Kixx products?</string>
+    <string name="faq_ans_1">KIXX is Korea’s leading lubricant and Global Brand under the umbrella of GS (founded jointly by Korean group and American Caltex), sold in more than 63 countries worldwide including Saudi Arabia. KIXX lubricants are recognized for their superior quality and technology.We have all kind of Automitive Engine Oils for all types of vehicles including
+      -  Petrol Cars / Passanger cars Premium Engine Oil
+      -  Diesel Vehicles Engine Oil</string>
+
+    <!-- FAQ 2 -->
+
+    <string name="faq_ques_2">What kind of services does Kixx provide?</string>
+    <string name="faq_ans_2">We are keen to provide our customers with the best care for their car by providing them with
+        <br></br>
+        <br> 1. No. 1 Engine oil to keep the engine safe from wear and enhance fuel economy</br>
+        <br></br>
+        <br> 2. We guide you to the nearest oil change shops through our KIXX APP to make sure that our services are available near to you and accessible easily all the time no matter where you are.</br>
+        <br></br>
+        <br> 3. We provide all our users to keep log of oil change maintenance for all your cars seperately, no matter what the numbers are; individuals and corporate, so that you always know what your car needs</br>
+        <br></br>
+        <br> 4. We also aim to provide you with a good technical knowledge of what engine oils really do and why you need the best quality oil.</br>
+    </string>
+
+
+
+    <!-- FAQ 3 -->
+
+    <string name="faq_ques_3">What types of oils does Kixx provide?</string>
+    <string name="faq_ans_3">you name it and we have it!
+        <br></br>
+        <br></br>
+We have full range of engine oils needed for your cars
+        <br></br>
+        <br></br>
+1. Gasoline Engine Oils:
+0W20, 0W40, 5W20, 5W30, 5W40, 10W30, 10W40, 20W50
+        <br></br>
+        <br></br>
+2. Diesel Engine Oils:
+15W40 CI4
+        <br></br>
+        <br></br>
+3. Automatic Transmission Fluids:
+ATF III, ATF VI, CVTF
+        <br></br>
+        <br></br>
+4. Gear Oils:
+n80W90 (GL5), 85W140 (GL5l
+    <br></br>
+        <br></br>
+    </string>
+
+
+    <!-- FAQ 4 -->
+
+    <string name="faq_ques_4">How do I know the best type of oil for my car?</string>
+    <string name="faq_ans_4"><![CDATA[Go to Home Screen and Follow the Steps Given Below ]]>
+        <br></br>
+        <br>1. Click on the Oil Recommendation icon</br>
+        <br></br>
+        <br>2. Select the Car </br>
+        <br></br>
+        <br>3. Scroll Down and You will See a button Labeled</br>
+
+        <br><b>How to choose best oil for My Car</b></br></string>
+
+
+    <!-- FAQ 5 -->
+
+    <string name="faq_ques_5">How can I obtain Kixx oils?</string>
+    <string name="faq_ans_5">
+        1. We are already present on most of oil change shops in Riyadh nad Dammam Regions. In case you need any assistance for your nearby shop. Please advise your area nad we can share with you the nearest locations. Or you can also get us online through our mobile APP. YOu can download it from the following links........ add App links for IOS and Android or barcodes
+        <br></br>
+        <br></br>
+        2. You can also find us on noon.com
+    </string>
+
+    <string name="faq_ans_5_web">
+      https://www.noon.com/saudi-en/p-29072
+    </string>
+
+
+
+    <!-- FAQ 6 -->
+
+    <string name="faq_ques_6">Are Kixx oils available in the stations?</string>
+    <string name="faq_ans_6">
+       Yes!
+        We are already present on most of oil change shops in Riyadh and Dammam Regions.
+        In case you need any assistance for your nearby shop.
+        Please advise your area and we can share with you the nearest locations.
+        Or you can also get us online through our mobile APP.
+        You can download it from the following links........ add App links for IOS and Android or barcodes"
+    </string>
+
+    <!-- FAQ 7 -->
+
+    <string name="faq_ques_7">When do I have to change the car oil?</string>
+    <string name="faq_ans_7">
+        Depending on vehicle age, type of oil and driving conditions, oil change intervals will vary. It used to be normal to change the oil every 3,000 miles, but with modern lubricants most engines today have recommended oil change intervals of 5,000 to 7,500 miles.
+        Moreover, if your car engine requires full-synthetic motor oil, it might go as far as 10,000 miles between services!
+        You cannot judge engine oil condition by color, so follow the factory maintenance schedule for oil changes.
+        Tip: early oil change enhances the life of your engine and saves cost on a longer run.
+    </string>
+
+
+    <!-- FAQ 8 -->
+
+    <string name="faq_ques_8">What are the advantages of Kixx oil?</string>
+    <string name="faq_ans_8">
+     Kixx automotive lubricants are formulated with Triple Double Technology, an exclusive and unique technology developed through extensive research and testing at GS Caltex.
+     Consisting of Triple Anti Technology and Double Boosting Technology, our Triple Double Technology delivers optimized performance anytime, anywhere.
+     <br></br>
+     <br></br>
+     1. Triple Anti Technology significantly reduces friction within the engine through friction modifiers, ultimately improving fuel economy.
+        <br></br>
+        <br></br>
+     2. Triple Anti Technology prevents and eliminates formation of varnish and sludge that are caused by thermal oxidation of lubricants in high temperatures.
+        <br></br>
+        <br></br>
+     3. Triple Anti Technology protects and prolongs engine life through anti-wear additives that forms lubricating film between moving parts.
+        <br></br>
+        <br></br>
+     4. Double Boosting Technology allows temperature stability to be maintained in a wide spectrum of temperatures
+        <br></br>
+        <br></br>
+     5. Double Boosting Technology boosts shear stability and enhanced shear stability of Kixx products allows the required properties and viscosity to be maintained consistently throughout usage.
+        <br></br>
+        <br></br>
+    </string>
+
+
+    <!-- FAQ 9 -->
+
+    <string name="faq_ques_9">What is the appropriate answer when inquiring about prices?</string>
+    <string name="faq_ans_9">https://www.noon.com/saudi-en/p-29072</string>
+
+
+    <!-- FAQ 10 -->
+
+    <string name="faq_ques_10">How to apply for jobs?</string>
+    <string name="faq_ans_10">Not Yet</string>
+
+
+    <!-- FAQ 11 -->
+
+    <string name="faq_ques_11">Are there new stations where your oils are available?</string>
+    <string name="faq_ans_11">Yes, Please download our KIXX APP from playstore or Apple store and it will guide you the nearest locations through google map</string>
+
+
+    <!-- FAQ 12 -->
+
+    <string name="faq_ques_12">Do you have express shops for change car oil?</string>
+    <string name="faq_ans_12">Not yet.</string>
+
+    <!-- FAQ 13 -->
+
+    <string name="faq_ques_13">When someone criticizing kixx products or complain (after-sales services)?</string>
+    <string name="faq_ans_13">Apologize from The customer, and informed him that he will be contacted through the private  .... Then contact him on private messages, inquire about the problem, collect all the necessary information ( name, number, the problem, the gasstation,...) and transfer it to customer service team.</string>
+
+    <!-- FAQ 14 -->
+
+    <string name="faq_ques_14">When receiving any positive praise or opinion?</string>
+    <string name="faq_ans_14">Thank you for your kind words, we appreciate it.</string>
+
+
+    <!-- FAQ 15 -->
+
+    <string name="faq_ques_15">Bad and indecent comments?</string>
+    <string name="faq_ans_15">It will be delete immediately or blocked the user.</string>
+
+    <!-- FAQ 16 -->
+
+    <string name="faq_ques_16">When posting ads?</string>
+    <string name="faq_ans_16">Delete it</string>
+
+    <!-- FAQ 17 -->
+
+    <string name="faq_ques_17">When asked about discounts?</string>
+    <string name="faq_ans_17">All new Promotions related to Kixx products will be announced on our Social Media pages, Stay close!</string>
+
+
+
+
+
 
 </resources>

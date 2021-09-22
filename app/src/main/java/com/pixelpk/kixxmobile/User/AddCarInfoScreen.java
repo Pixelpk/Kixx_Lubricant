@@ -66,7 +66,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
     String token,car_idnumber="null";
 
-    String uid,manufact_id;
+    String uid,manufact_id="null";
     ImageView AddCarInfo_backarrow;
 
     SpinnerDialog spinnerDialog;
@@ -100,19 +100,29 @@ public class AddCarInfoScreen extends AppCompatActivity {
         InitializeViews();
 
 
-        AddCarInfo_addcar_Btn.setOnClickListener(new View.OnClickListener() {
+        AddCarInfo_addcar_Btn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
-                if(car_idnumber.equals("null"))
-                {
-                    //Toast.makeText(AddCarInfoScreen.this, "Please Check your internet Connection and try again", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.select_car), Toast.LENGTH_SHORT).show();
-                }
-                else if(AddCarInfo_carnumber_ET.getText().toString().equals(""))
+                if(AddCarInfo_carnumber_ET.getText().toString().equals(""))
                 {
                     Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.entercarnumber), Toast.LENGTH_SHORT).show();
                 }
+
+                else if(manufact_id.equals("null"))
+                {
+                    //Toast.makeText(AddCarInfoScreen.this, "Please Check your internet Connection and try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
+                }
+
+                else if(car_idnumber.equals("null"))
+                {
+                    //Toast.makeText(AddCarInfoScreen.this, "Please Check your internet Connection and try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.select_car_model), Toast.LENGTH_SHORT).show();
+                }
+
                 else if (AddCarInfo_carnumber_ET.getText().toString().contains(" "))
                 {
                     AddCarInfo_carnumber_ET.setError(getResources().getString(R.string.spacingerror));
@@ -131,16 +141,20 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
                     if(AddCarInfo_Mileage_ET.getText().toString().equals(""))
                     {
+                        AddCarInfo_Mileage_ET.setError(getResources().getString(R.string.enter_car_mileage));
                         car_odometer = "";
                     }
+
                     else
                     {
                         car_odometer = AddCarInfo_Mileage_ET.getText().toString();
                     }
+
                     if(AddCarInfo_dailycarmileage_ET.getText().toString().equals(""))
                     {
                         daily_mileage = "";
                     }
+
                     else
                     {
                         daily_mileage = AddCarInfo_dailycarmileage_ET.getText().toString();
@@ -414,10 +428,10 @@ public class AddCarInfoScreen extends AppCompatActivity {
       //  carid_list.add("select car brand");
         manufacture_id.add("select manufacturer");
 
-        spinnerDialog=new SpinnerDialog(AddCarInfoScreen.this,cars_list,"Select or Search Car Brand",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
-        spinnerDialog_carmanufact=new SpinnerDialog(AddCarInfoScreen.this,manufacturer_list,"Select or Search Car Manufacturer",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
-        spinnerDialog_year =new SpinnerDialog(AddCarInfoScreen.this, years_list,"Select or Search Model/Year",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
-        spinnerDialog_enginetype =new SpinnerDialog(AddCarInfoScreen.this,  enginetype_list,"Select or Search Engine type",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog=new SpinnerDialog(AddCarInfoScreen.this,cars_list,getResources().getString(R.string.select_search_car_model),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog_carmanufact=new SpinnerDialog(AddCarInfoScreen.this,manufacturer_list,getResources().getString(R.string.select_search_car_brand),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog_year =new SpinnerDialog(AddCarInfoScreen.this, years_list,getResources().getString(R.string.select_search_car_model_year),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog_enginetype =new SpinnerDialog(AddCarInfoScreen.this,  enginetype_list,getResources().getString(R.string.select_search_car_model_year),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
 
         get_cars_data(token);
 
@@ -437,6 +451,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
     {
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
         progressDialog.show();
+        progressDialog.setMessage("Please Wait! while we are getting Car Data");
+        progressDialog.setCanceledOnTouchOutside(false);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CARS,
                 new Response.Listener<String>() {

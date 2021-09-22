@@ -261,11 +261,45 @@ public class OTPScreen extends AppCompatActivity {
                         //       Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
                         //        Toast.makeText(OTPScreen.this, "Error Message =" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         //   Toast.makeText(OTPScreen.this, getResources().getString(R.string.verificationerror), Toast.LENGTH_SHORT).show();
-                        if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.invalidphone), Toast.LENGTH_SHORT).show();
+                        if (e instanceof FirebaseAuthInvalidCredentialsException)
+                        {
+                            new AlertDialog.Builder(OTPScreen.this)
+                                    .setMessage(getResources().getText(R.string.invalidphone))
+                                    .setCancelable(false)
+                                    .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
+                                    {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which)
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    })
+                                    .show();
+
                             // Invalid request
-                        } else if (e instanceof FirebaseTooManyRequestsException) {
-                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.toomanyattempts), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (e instanceof FirebaseTooManyRequestsException)
+                        {
+//                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.toomanyattempts), Toast.LENGTH_SHORT).show();
+
+                            new AlertDialog.Builder(OTPScreen.this)
+                                    .setMessage(getResources().getText(R.string.toomanyattempts))
+                                    .setCancelable(false)
+                                    .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
+                                    {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which)
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    })
+                                    .show();
+
                             // The SMS quota for the project has been exceeded
                         }
                         // Toast.makeText(OTPScreen.this, "", Toast.LENGTH_SHORT).show();
@@ -275,6 +309,9 @@ public class OTPScreen extends AppCompatActivity {
                     public void onCodeAutoRetrievalTimeOut(@NonNull String s)
                     {
                         super.onCodeAutoRetrievalTimeOut(s);
+
+//                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
                         //      Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
 
                         alerbox();
@@ -435,6 +472,7 @@ mAuth.signInAnonymously()
 
     public void RegisterUsernoreferral(final String contact, final String password, final String fcm_id,String referred_code)
     {
+        progressDialog.setMessage("Please Wait! we are signing you up");
         progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
@@ -615,7 +653,7 @@ mAuth.signInAnonymously()
     {
 
 //        Toast.makeText(this, "register_with_referal1", Toast.LENGTH_SHORT).show();
-
+        progressDialog.setMessage("Please Wait! we are signing you up");
         progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
@@ -879,7 +917,8 @@ mAuth.signInAnonymously()
     public void alerbox()
     {
         new AlertDialog.Builder(this)
-                .setMessage(getResources().getText(R.string.networkerror))
+                .setTitle(getResources().getText(R.string.timed_out_header))
+                .setMessage(getResources().getText(R.string.timed_out_alert))
                 .setCancelable(false)
                 .setNegativeButton(getResources().getString(R.string.ok), null)
                 .show();
@@ -890,14 +929,7 @@ mAuth.signInAnonymously()
         new AlertDialog.Builder(this)
                 .setMessage(getResources().getText(R.string.verificationerror))
                 .setCancelable(false)
-                .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        Intent intent = new Intent(getApplicationContext(),Signup.class);
-                        startActivity(intent);
-                    }
-                })
+                .setNegativeButton(getResources().getString(R.string.ok),null)
                 .show();
     }
 

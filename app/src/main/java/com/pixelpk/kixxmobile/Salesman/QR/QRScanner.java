@@ -835,6 +835,7 @@ public class QRScanner extends AppCompatActivity {
         //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
 
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CHANGE_OIL_SALES,
                 new Response.Listener<String>() {
                     @Override

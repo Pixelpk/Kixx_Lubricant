@@ -77,7 +77,7 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:textAlignment="viewStart"
-            android:hint="@string/please_add_car_num"
+            android:hint="@string/enter_car_number_plate"
             android:inputType="textPersonName"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff" />
@@ -112,7 +112,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_car_manufacturer"
+            android:text="@string/select_car_brand"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="40dp"
@@ -160,7 +160,7 @@
                 android:id="@+id/EditCarInfo_carmanufact_TV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/select_car_manufacturer"
+                android:text="@string/select_car_brand"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:textAlignment="viewStart"
@@ -182,7 +182,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_car_brand"
+            android:text="@string/select_car_model"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="40dp"
@@ -232,7 +232,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:textAlignment="viewStart"
-                android:text="@string/select_car_brand"
+                android:text="@string/select_car_model"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
@@ -299,7 +299,7 @@
                 android:id="@+id/EditCarInfo_modelyear_TV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/yearofmanufacturing"
+                android:text="@string/select_year_of_manufacturing"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:textAlignment="viewStart"

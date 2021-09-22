@@ -168,16 +168,23 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                             String message = jsonObj.getString("status");
 
 
-                            if (message.contains("success")) {
+                            if (message.contains("success"))
+                            {
+                                //  Toast.makeText(context, "Car deleted successfully", Toast.LENGTH_SHORT).show();
 
-                              //  Toast.makeText(context, "Car deleted successfully", Toast.LENGTH_SHORT).show();
+                                getCarsData();
 
-                                new AlertDialog.Builder(context)
+                             /*   new AlertDialog.Builder(context)
                                         .setMessage(context.getResources().getString(R.string.cardeletedsuccessfully))
                                         .setCancelable(false)
-                                        .setNegativeButton(context.getResources().getString(R.string.ok), null)
-                                        .show();
-                                getCarsData();
+                                        .setNegativeButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which)
+                                            {
+
+                                            }
+                                        })
+                                        .show();*/
                             }
                             else
                             {
@@ -244,18 +251,16 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_CARS_USER,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-
-                        //         Toast.makeText(AddCarScreen.this, response, Toast.LENGTH_SHORT).show();
-                     //   progressDialog.dismiss();
-                        try {
+                    public void onResponse(String response)
+                    {
+                        try
+                        {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
 
 
                             if(message.contains("success"))
                             {
-
                                 JSONArray manufacturer  = jsonObj.getJSONArray("resp");
 
                                 for (int i = 0; i < manufacturer.length(); i++) {
@@ -278,10 +283,7 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                                     //  new AddCarList("ABC 876","Jaguar","XF","2015")
                                     AddCarList promosList = new AddCarList(car_name,company,name,model,car_id,odometer,daily_mileage,year_of_manufacture,engine_type,cid);
                                     listdata.add(promosList);
-
                                 }
-
-
                                 AddCarAdapter adapter = new AddCarAdapter(listdata, context,token,uid,recyclerView);
                                 recyclerView.setHasFixedSize(true);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -293,6 +295,7 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                             }
                             else
                             {
+                                notifyDataSetChanged();
                                 alerbox();
                                 // Toast.makeText(AddCarScreen.this, getResources().getString(R.string.no_data_error), Toast.LENGTH_SHORT).show();
                                 //  progressDialog.dismiss();

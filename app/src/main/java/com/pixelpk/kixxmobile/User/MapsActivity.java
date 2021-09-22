@@ -149,8 +149,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v)
             {
 
-                LatLng centerLatLang =
-                        mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
+                LatLng centerLatLang = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 String cont   = countrycode + MapsActivity_Contactnum_ET.getText().toString();
@@ -190,11 +189,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 else if(s.equals("0"))
                 {
-                    Toast.makeText(getApplicationContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                 }
 
                 else
                 {
+//                    Toast.makeText(getApplicationContext(), cont, Toast.LENGTH_SHORT).show();
                     Register_Shop_Request(String.valueOf(centerLatLang.longitude),String.valueOf(centerLatLang.latitude),shop,cont,email);
                 }
 
@@ -223,7 +223,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap)
+    {
         mMap = googleMap;
 
        /* // Add a marker in Sydney and move the camera
@@ -238,9 +239,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerCenter = mMap.addMarker(markerOptions);
 
         mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
-            public void onCameraMove() {
-
-
+            public void onCameraMove()
+            {
                 markerCenter.setPosition(mMap.getCameraPosition().target);
             }
         });
@@ -427,42 +427,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode,
-//                                           String permissions[], int[] grantResults)
-//    {
-//        switch (requestCode) {
-//            case MY_PERMISSIONS_REQUEST_LOCATION: {
-//                // If request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-//                {
-//
-//                    // permission was granted, yay! Do the
-//                    // location-related task you need to do.
-//                    if (ContextCompat.checkSelfPermission(getApplicationContext(),
-//                            Manifest.permission.ACCESS_FINE_LOCATION)
-//                            == PackageManager.PERMISSION_GRANTED) {
-//
-//                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-//                        mMap.setMyLocationEnabled(true);
-//
-//                        //Request location updates:
-//                        //  locationManager.requestLocationUpdates(provider, 400, 1, this);
-//                    }
-//
-//                } else {
-//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.permissiondenied), Toast.LENGTH_SHORT).show();
-//
-//                    // permission denied, boo! Disable the
-//                    // functionality that depends on this permission.
-//
-//                }
-//                return;
-//            }}}
+/*    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+    {
+        switch (requestCode)
+        {
+            case MY_PERMISSIONS_REQUEST_LOCATION:
+                {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
 
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(MapsActivity.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED)
+                    {
+                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                        mMap.setMyLocationEnabled(true);
+                        //Request location updates:
+                        //  locationManager.requestLocationUpdates(provider, 400, 1, this);
+                    }
+                }
 
+                else
+                {
+                    Toast.makeText(MapsActivity.this, getResources().getString(R.string.permissiondenied), Toast.LENGTH_SHORT).show();
+                }
 
+                return;
+            }}}*/
 
     @Override
     public void onLocationChanged(Location location) {

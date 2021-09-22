@@ -300,7 +300,8 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="10dp"
                                     android:layout_weight="1"
-                                    android:text="@string/select_car_manufacturer"
+                                    android:hint="@string/select_car_brand"
+                                    android:textColorHint="@color/gray_color"
                                     android:textColor="#ffffff"
                                     android:textSize="18sp" />
 
@@ -363,7 +364,8 @@
                                     android:layout_marginStart="10dp"
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
-                                    android:text="@string/select_car_brand"
+                                    android:hint="@string/select_car_model"
+                                    android:textColorHint="@color/gray_color"
                                     android:textColor="#ffffff"
                                     android:textSize="18sp" />
 

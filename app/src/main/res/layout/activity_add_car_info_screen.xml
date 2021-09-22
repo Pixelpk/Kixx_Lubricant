@@ -82,10 +82,10 @@
             android:drawablePadding="10dp"
             android:textAlignment="viewStart"
             android:ems="10"
-            android:hint="@string/please_add_car_num"
+            android:hint="@string/enter_car_number_plate"
             android:inputType="textPersonName"
             android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
+            android:textColorHint="@color/gray_color"
             android:textSize="16sp" />
 
         <EditText
@@ -118,7 +118,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_car_manufacturer"
+            android:text="@string/select_car_brand"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="40dp"
@@ -170,7 +170,8 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:textAlignment="viewStart"
-                android:text="@string/select_car_manufacturer"
+                android:textColorHint="@color/gray_color"
+                android:hint="@string/select_car_brand"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
 
@@ -179,6 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ms__arrow" />
+
         </LinearLayout>
 
         <View
@@ -189,7 +191,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_car_brand"
+            android:text="@string/select_car_model"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="40dp"
@@ -241,7 +243,8 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:textAlignment="viewStart"
-                android:text="@string/select_car_brand"
+                android:textColorHint="@color/gray_color"
+                android:hint="@string/select_car_model"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
 
@@ -311,7 +314,8 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:textAlignment="viewStart"
-                android:text="@string/yearofmanufacturing"
+                android:textColorHint="@color/gray_color"
+                android:hint="@string/select_year_of_manufacturing"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
 
@@ -383,8 +387,9 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:textAlignment="viewStart"
-                android:text="@string/selectcarenginetype"
                 android:textColor="#ffffff"
+                android:textColorHint="@color/gray_color"
+                android:hint="@string/selectcarenginetype"
                 android:textSize="16sp" />
 
             <ImageView
@@ -421,8 +426,8 @@
             android:hint="@string/currentmileagereading"
             android:inputType="textPersonName"
             android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
-            android:textSize="16sp" />
+            android:textColorHint="@color/gray_color"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -446,8 +451,8 @@
             android:hint="@string/enterdailycarmileage"
             android:inputType="textPersonName"
             android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
-            android:textSize="16sp" />
+            android:textColorHint="@color/gray_color"
+            android:textSize="14sp" />
 
 
         <!--<LinearLayout

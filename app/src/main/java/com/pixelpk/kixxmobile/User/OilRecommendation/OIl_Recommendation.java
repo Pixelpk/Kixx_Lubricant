@@ -662,6 +662,8 @@ public class OIl_Recommendation extends AppCompatActivity {
     private void getCarsData() {
 
         myListData.clear();
+        progressDialog.setMessage("Please Wait! while we are loading the car data");
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_CARS_USER,
