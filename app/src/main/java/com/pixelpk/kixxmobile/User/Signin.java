@@ -69,7 +69,10 @@ public class Signin extends AppCompatActivity {
 
                 if(check_field == 3)
                 {
+                    progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
+                    progressDialog.setContentView(R.layout.progress_layout);
+                    progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                     login_user();
 
                 //    Toast.makeText(Signin.this, "User Login", Toast.LENGTH_SHORT).show();

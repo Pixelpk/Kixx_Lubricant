@@ -556,7 +556,10 @@ public class EditCarInfo extends AppCompatActivity {
         Log.d("token",token);
 
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CARS,
                 new Response.Listener<String>() {
@@ -759,7 +762,10 @@ public class EditCarInfo extends AppCompatActivity {
         cars_list.clear();
         carid_list.clear();
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.specific_car,
                 new Response.Listener<String>() {

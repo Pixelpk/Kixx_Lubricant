@@ -77,12 +77,12 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
         {
             holder.AddCar_CarModel_TV.setText(myListData.getCar_Model());
         }
-        car_id = myListData.getCar_id();
 
         holder.AddCar_editcar_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                car_id = myListData.getCar_id();
                 Intent intent = new Intent(context, EditCarInfo.class);
                 intent.putExtra("Carnumber",myListData.getCar_Number());
                 intent.putExtra("CarId",myListData.getCar_id());
@@ -107,8 +107,9 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
 
         holder.Addcar_carlist_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                car_id = myListData.getCar_id();
                 new AlertDialog.Builder(context)
                         .setMessage(context.getResources().getString(R.string.deletecar))
                         .setCancelable(false)

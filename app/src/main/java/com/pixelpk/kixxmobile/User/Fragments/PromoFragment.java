@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,11 @@ public class PromoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_promo, container, false);
 
+
         InitializeViews(view);
+
+
+
 
         String value = getArguments().getString("promotion");
 
@@ -193,7 +198,13 @@ public class PromoFragment extends Fragment {
 
 //        Toast.makeText(getActivity(), "promos_data", Toast.LENGTH_SHORT).show();
         promos.clear();
+        progressDialog.setCanceledOnTouchOutside(false);
+/*
+        progressDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+*/
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>() {
@@ -220,7 +231,7 @@ public class PromoFragment extends Fragment {
                                     String promo_id = c.getString("id");
 
                                     PromosList promosList = new PromosList(banner,promo_id);
-                                    promos.add(promosList);
+                                    promos.add(0,promosList);
 
                                  //   Toast.makeText(getContext(), banner , Toast.LENGTH_SHORT).show();
                                     Log.d("Error",banner);
@@ -229,7 +240,7 @@ public class PromoFragment extends Fragment {
 
                                 PromosAdapter adapter = new PromosAdapter(promos,getActivity(),"promos","user");
                                 recyclerView.setHasFixedSize(true);
-                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,true);
+                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
                              //   linearLayoutManager.setReverseLayout(true);
                                 recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -292,7 +303,10 @@ public class PromoFragment extends Fragment {
 
         promos.clear();
 //        Toast.makeText(getContext(), "ads_data", Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>()
@@ -319,7 +333,7 @@ public class PromoFragment extends Fragment {
                                     String promo_id = c.getString("id");
 
                                     PromosList promosList = new PromosList(banner,promo_id);
-                                    promos.add(promosList);
+                                    promos.add(0,promosList);
 
                                     //   Toast.makeText(getContext(), banner , Toast.LENGTH_SHORT).show();
                                     Log.d("Error",banner);
@@ -328,7 +342,7 @@ public class PromoFragment extends Fragment {
 
                                 PromosAdapter adapter = new PromosAdapter(promos,getActivity(),"ads","user");
                                 recyclerView.setHasFixedSize(true);
-                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,true);
+                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
                               //  linearLayoutManager.setReverseLayout(true);
                                 recyclerView.setLayoutManager(linearLayoutManager);
 

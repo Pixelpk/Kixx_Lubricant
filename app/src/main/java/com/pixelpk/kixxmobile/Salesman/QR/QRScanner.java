@@ -267,7 +267,8 @@ public class QRScanner extends AppCompatActivity {
 
         QRScanner_caroil_SP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 product_id = productid_list.get(position);
                 //   product_milage = get_milage_by_productid(product_id);
                 product_milage = milage_list.get(position);
@@ -433,7 +434,10 @@ public class QRScanner extends AppCompatActivity {
 
     private void getProductsData()
     {
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_PRODUCT_SALES,
                 new Response.Listener<String>() {
@@ -553,10 +557,11 @@ public class QRScanner extends AppCompatActivity {
 
     public void QR_authentication(String user_id,String promo_code)
     {
-
         //   Toast.makeText(getContext(), referral, Toast.LENGTH_SHORT).show();
-
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.QR_AUTH,
                 new Response.Listener<String>() {
                     @Override
@@ -741,15 +746,17 @@ public class QRScanner extends AppCompatActivity {
     public void update_user_data_qr_id(String qr_id,String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
       //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
-
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CHANGE_OIL_SALES,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
 
-                        Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
 
                         progressDialog.dismiss();
 
@@ -762,11 +769,13 @@ public class QRScanner extends AppCompatActivity {
                         else if (response.contains("Expired"))
                         {
                             Toast.makeText(QRScanner.this, getResources().getString(R.string.qrinvalid), Toast.LENGTH_SHORT).show();
+                            mCodeScanner.startPreview();
                         }
                         else if(response.contains("Already Redeemed"))
                         {
 
                             Toast.makeText(QRScanner.this, "QR already redeemed", Toast.LENGTH_SHORT).show();
+                            mCodeScanner.startPreview();
                         }
                         else
                         {
@@ -831,11 +840,11 @@ public class QRScanner extends AppCompatActivity {
 
     public void update_user_data(String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
-
         //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
-
-        progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CHANGE_OIL_SALES,
                 new Response.Listener<String>() {
                     @Override

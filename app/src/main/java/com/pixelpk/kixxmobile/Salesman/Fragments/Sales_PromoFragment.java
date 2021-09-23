@@ -131,7 +131,10 @@ public class Sales_PromoFragment extends Fragment {
     private void getPromoData() {
 
         promos.clear();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>() {
@@ -225,10 +228,12 @@ public class Sales_PromoFragment extends Fragment {
 
 
 
-    private void getAdsData() {
-
-
+    private void getAdsData()
+    {
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>() {
@@ -329,7 +334,10 @@ public class Sales_PromoFragment extends Fragment {
 
         promos.clear();
 //        Toast.makeText(getContext(), "ads_data", Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>()

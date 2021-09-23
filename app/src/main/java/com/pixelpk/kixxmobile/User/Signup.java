@@ -390,7 +390,10 @@ public class Signup extends AppCompatActivity {
                                     //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
 
+                                    progressDialog.setCanceledOnTouchOutside(false);
                                     progressDialog.show();
+                                    progressDialog.setContentView(R.layout.progress_layout);
+                                    progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                                     AuthenticateContactNumber(usercontact, userpassword, refreshedToken, referral_code);
 
                            /* Intent intent = new Intent(Signup.this,HomeScreen.class);
@@ -414,7 +417,10 @@ public class Signup extends AppCompatActivity {
                                 //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
 
+                                progressDialog.setCanceledOnTouchOutside(false);
                                 progressDialog.show();
+                                progressDialog.setContentView(R.layout.progress_layout);
+                                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                                 AuthenticateContactNumber(usercontact, userpassword, refreshedToken, referral_code);
 
 

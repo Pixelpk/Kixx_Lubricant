@@ -176,6 +176,7 @@ public class Sales_HomeFragment extends Fragment {
       if(rtl.equals("1"))
       {
           Sales_HomeFragment_shopname_ET.setGravity(Gravity.END);
+          Sales_HomeFragment_shopcontact_ET.setGravity(Gravity.NO_GRAVITY);
           Sales_HomeFrag_titlebar_kixxlogo.setImageResource(R.mipmap.kixx_ar);
       }
 
@@ -314,22 +315,27 @@ public class Sales_HomeFragment extends Fragment {
 
     }
 
-    private void get_user_data(final String id) {
-
+    private void get_user_data(final String id)
+    {
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SALES_END,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                   //   Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
 
                             if(message.contains("success"))
                             {
+
+                                progressDialog.dismiss();
                                 JSONArray data  = jsonObj.getJSONArray("user");
                             //    String cardata = jsonObj.getString("cars");
                                 String adsdata = jsonObj.getString("ads");
@@ -386,6 +392,7 @@ public class Sales_HomeFragment extends Fragment {
 
 
                                 }
+
                                 else
                                 {
                                     //HomeFragment_carnotfound_IV.setVisibility(View.VISIBLE);
@@ -593,16 +600,18 @@ public class Sales_HomeFragment extends Fragment {
 
 
 
-    private void get_claims_data(String id) {
-
+    private void get_claims_data(String id)
+    {
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SALES_SHOP_CLAIMS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //         Toast.makeText(ClaimsScreen.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
 
                         try {
                             JSONObject jsonObj = new JSONObject(response);
@@ -611,11 +620,13 @@ public class Sales_HomeFragment extends Fragment {
 
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
                                 JSONArray claims  = jsonObj.getJSONArray("resp");
                                 String claimable_litres = jsonObj.getString("claimable_litres");
                                // Toast.makeText(getContext(), claimable_litres, Toast.LENGTH_SHORT).show();
 
-                                if(!claims.equals("null")) {
+                                if(!claims.equals("null"))
+                                {
 
                                  //   Toast.makeText(getActivity(), String.valueOf(claims.length()), Toast.LENGTH_SHORT).show();
 

@@ -115,6 +115,9 @@ public class Sales_QRFragment extends Fragment {
 
         InitializeView(view);
 
+        Sales_AddCarInfo_carmanufact_LL.setClickable(false);
+        Sales_AddCarInfo_carbrand_LL.setClickable(false);
+
         String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE, "0");
 
         if(rtl.equals("1"))
@@ -264,8 +267,10 @@ public class Sales_QRFragment extends Fragment {
 
         Sales_AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
+
                 Sales_spinnerDialog.showSpinerDialog();
             }
         });
@@ -424,7 +429,7 @@ public class Sales_QRFragment extends Fragment {
                    // Toast.makeText(getContext(), getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
-                            .setMessage(getResources().getString(R.string.incorrect_data))
+                            .setMessage(getResources().getString(R.string.spacingerror))
                             .setCancelable(false)
                             .setNegativeButton(getResources().getString(R.string.ok), null)
                             .show();
@@ -524,39 +529,50 @@ public class Sales_QRFragment extends Fragment {
 
     }
 
-    private void getCarsData(String userid) {
+    private void getCarsData(String userid)
+    {
         user_cars_list.clear();
         user_cars_list.add(getResources().getString(R.string.select_car));
         user_car_id.clear();
         user_car_id.add("select car");
 
-        progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_CARS_USER,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response)
+                    {
 
                           //    Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
+
+                        Log.d("tag_sales_qr",response);
 
                         try
                         {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
+                            String resp_str = jsonObj.getString("resp");
 
                            // Toast.makeText(getActivity(), redeemed_points, Toast.LENGTH_SHORT).show();
 
 
                             if(message.contains("success"))
                             {
-
+                                progressDialog.dismiss();
                                 JSONArray manufacturer  = jsonObj.getJSONArray("resp");
                                 redeemed_points = jsonObj.getString("redeemed_points");
 
-                                for (int i = 0; i < manufacturer.length(); i++) {
+                                SalesQR_carnumber_SP.setEnabled(true);
+                                SalesQR_carcurrentodometer_SP.setEnabled(true);
+                                Sales_AddCarInfo_carmanufact_LL.setClickable(true);
+                                Sales_AddCarInfo_carbrand_LL.setClickable(true);
 
+                                for (int i = 0; i < manufacturer.length(); i++)
+                                {
                                     JSONObject m = manufacturer.getJSONObject(i);
 
                                     String car_name = m.getString("car_number");
@@ -574,10 +590,8 @@ public class Sales_QRFragment extends Fragment {
                                     //  new AddCarList("ABC 876","Jaguar","XF","2015")
                                     user_cars_list.add(user_car);
                                     user_car_id.add(car_identity_number);
-
-
-
                                 }
+
                                 ArrayAdapter<String> user_cars_list_adapter = new ArrayAdapter<String>(getContext(),
                                         R.layout.spinner_white_text,user_cars_list);
 
@@ -589,21 +603,43 @@ public class Sales_QRFragment extends Fragment {
                             else
                             {
                             //    Toast.makeText(getActivity(), getResources().getString(R.string.nocaradded), Toast.LENGTH_SHORT).show();
-
-                                new AlertDialog.Builder(getContext())
-                                        .setMessage(getResources().getString(R.string.nocaradded))
-                                        .setCancelable(false)
-                                        .setNegativeButton(getResources().getString(R.string.ok), null)
-                                        .show();
-
-
                                 progressDialog.dismiss();
+
+                                if(resp_str.equals("User Not Found"))
+                                {
+                                    new AlertDialog.Builder(getContext())
+                                            .setMessage(getResources().getString(R.string.user_does_not_exist))
+                                            .setCancelable(false)
+                                            .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which)
+                                                {
+                                                    SalesQR_userid_txt.setText("");
+                                                }
+                                            })
+                                            .show();
+                                }
+
+                                else
+                                {
+
+                                    new AlertDialog.Builder(getContext())
+                                            .setMessage(getResources().getString(R.string.nocaradded))
+                                            .setCancelable(false)
+                                            .setNegativeButton(getResources().getString(R.string.ok), null)
+                                            .show();
+                                }
                             }
 
-                        } catch (final JSONException e) {
-                            getActivity().runOnUiThread(new Runnable() {
+                        }
+
+                        catch (final JSONException e)
+                        {
+                            getActivity().runOnUiThread(new Runnable()
+                            {
                                 @Override
-                                public void run() {
+                                public void run()
+                                {
                                     progressDialog.dismiss();
                                     /*Toast.makeText(getActivity(),
                                             "Json parsing error: " + e.getMessage(),
@@ -922,7 +958,10 @@ public class Sales_QRFragment extends Fragment {
     public void get_cars_data(final String token)
     {
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CARS,
                 new Response.Listener<String>() {
@@ -1095,9 +1134,10 @@ public class Sales_QRFragment extends Fragment {
         cars_list.clear();
         carid_list.clear();
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
-        progressDialog.setMessage("Please wait while we are fetching your car data");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.specific_car,
                 new Response.Listener<String>() {
@@ -1282,7 +1322,8 @@ public class Sales_QRFragment extends Fragment {
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CAR_OIL_CHANGE,
                 new Response.Listener<String>() {

@@ -214,9 +214,10 @@ public class Feedback extends AppCompatActivity {
 
     public void sendFeedback(String rate,String Feedback,String user_id,String shop_id)
     {
-
-
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SHOP_FEEDBACK,
                 new Response.Listener<String>() {
                     @Override

@@ -434,9 +434,11 @@ public class UpdateUserProfile extends AppCompatActivity {
 
     private void UploadImageToServer()
     {
-            progressDialog.show();
-            progressDialog.setMessage("Updating Profile Please Wait");
-            progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+//            progressDialog.setMessage("Updating Profile Please Wait");
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         if(city_str.equals("null"))
         {
@@ -520,6 +522,9 @@ public class UpdateUserProfile extends AppCompatActivity {
                     R.layout.spinner_white_text,occupat_ar_title);
 
             adapter_occupat.setDropDownViewResource(R.layout.spinner_style);
+
+            mobile.setGravity(Gravity.END);
+
 
             UpdateUserProfile_backarrow.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
         }
@@ -675,9 +680,11 @@ public class UpdateUserProfile extends AppCompatActivity {
 
     private void load_profile_img()
     {
-        progressDialog.setMessage("Please Wait! image is being Loaded");
+//        progressDialog.setMessage("Please Wait! image is being Loaded");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         Glide.with(getApplicationContext())
                 .load(URLs.USER_IMAGE_URL + user_profile_image)
@@ -835,9 +842,11 @@ public class UpdateUserProfile extends AppCompatActivity {
 
     public void get_occupation_data(final String token)
     {
-        progressDialog.setMessage("Please Wait While We Are Loading The Data");
+//        progressDialog.setMessage("Please Wait While We Are Loading The Data");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_PROFILE_OCCUPATION,
                 new Response.Listener<String>()

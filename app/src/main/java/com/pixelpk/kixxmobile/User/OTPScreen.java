@@ -472,9 +472,11 @@ mAuth.signInAnonymously()
 
     public void RegisterUsernoreferral(final String contact, final String password, final String fcm_id,String referred_code)
     {
-        progressDialog.setMessage("Please Wait! we are signing you up");
-        progressDialog.show();
+//        progressDialog.setMessage("Please Wait! we are signing you up");
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
                 new Response.Listener<String>() {
                     @Override
@@ -653,9 +655,11 @@ mAuth.signInAnonymously()
     {
 
 //        Toast.makeText(this, "register_with_referal1", Toast.LENGTH_SHORT).show();
-        progressDialog.setMessage("Please Wait! we are signing you up");
-        progressDialog.show();
+//        progressDialog.setMessage("Please Wait! we are signing you up");
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
                 new Response.Listener<String>() {
                     @Override

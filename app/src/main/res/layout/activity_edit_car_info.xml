@@ -406,7 +406,7 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/currentmileagereading"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="16sp" />
@@ -468,7 +468,7 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/enterdailycarmileage"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="16sp" />

@@ -147,9 +147,11 @@ public class AddCarScreen extends AppCompatActivity {
 
     //    Toast.makeText(this, userid, Toast.LENGTH_SHORT).show();
         myListData.clear();
-        progressDialog.setMessage("Please Wait! while we are getting car data");
+//        progressDialog.setMessage("Please Wait! while we are getting car data");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.GET_CARS_USER,
                 new Response.Listener<String>() {

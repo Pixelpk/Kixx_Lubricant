@@ -74,6 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/shopProfile"
             android:textColor="#ffffff"
             android:textSize="18sp"
@@ -97,13 +98,26 @@
                 app:civ_border_width="1dp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/settingsprofile"
+                />
+
         <EditText
             android:id="@+id/sales_salesprofile_name_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="#ffffff"
-            android:drawableStart="@drawable/settingsprofile"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/Name"
@@ -111,20 +125,35 @@
             android:textColor="#ffffff"
             android:textColorHint="#c3c3c3" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/callicon"
+            />
+
         <EditText
             android:id="@+id/sales_salesprofile_contact_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#ffffff"
-            android:drawableStart="@drawable/callicon"
             android:drawablePadding="10dp"
+            android:layoutDirection="ltr"
             android:ems="10"
             android:hint="@string/Mobile_number"
             android:inputType="textPersonName"
             android:textColor="#ffffff"
             android:textColorHint="#c3c3c3" />
 
-
+        </LinearLayout>
     </LinearLayout>
 
 

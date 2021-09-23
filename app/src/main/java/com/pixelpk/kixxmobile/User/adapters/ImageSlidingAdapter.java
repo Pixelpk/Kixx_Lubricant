@@ -56,7 +56,8 @@ public class ImageSlidingAdapter extends RecyclerView.Adapter<ImageSlidingAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position)
+    {
         ImageSliderList myListData = listdata.get(position);
 
         sharedPreferences = context.getSharedPreferences("Shared",Context.MODE_PRIVATE);

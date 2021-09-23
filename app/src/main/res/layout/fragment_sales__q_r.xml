@@ -10,8 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight=".2"
+        android:layout_height="50dp"
         android:background="#E3580B"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -127,6 +126,11 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
@@ -214,6 +218,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="2"
+                                android:enabled="false"
                                 android:background="#00000000"
                                 android:backgroundTint="#ffffff"
                                 android:drawableStart="@drawable/carselect"
@@ -237,12 +242,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:layout_weight="2"
+                                android:enabled="false"
                                 android:background="#00000000"
                                 android:backgroundTint="#ffffff"
                                 android:drawableStart="@drawable/carselect"
                                 android:drawablePadding="10dp"
                                 android:hint="@string/mileage_reading"
-                                android:inputType="text"
+                                android:inputType="number"
                                 android:textColor="#ffffff"
                                 android:textColorHint="#c3c3c3" />
 
@@ -261,6 +267,7 @@
                                 android:layout_marginTop="10dp"
                                 android:orientation="horizontal"
                                 android:paddingTop="5dp"
+                                android:clickable="false"
                                 android:paddingBottom="5dp"
                                 android:paddingEnd="5dp"
                                 >
@@ -300,6 +307,8 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="10dp"
                                     android:layout_weight="1"
+                                    android:clickable="false"
+                                    android:enabled="false"
                                     android:hint="@string/select_car_brand"
                                     android:textColorHint="@color/gray_color"
                                     android:textColor="#ffffff"
@@ -323,6 +332,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:gravity="center_vertical"
+                                android:clickable="false"
                                 android:orientation="horizontal"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
@@ -363,6 +373,8 @@
                                     android:layout_height="65dp"
                                     android:layout_marginStart="10dp"
                                     android:layout_weight="1"
+                                    android:enabled="false"
+                                    android:clickable="false"
                                     android:gravity="center_vertical"
                                     android:hint="@string/select_car_model"
                                     android:textColorHint="@color/gray_color"
@@ -469,6 +481,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+
                     android:background="@drawable/bottom_button"
                     android:text="@string/Continue"
                     android:textColor="#ffffff" />
@@ -483,6 +496,8 @@
                     android:text="@string/add_car"
                     android:textColor="#ffffff"
                     android:visibility="gone" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

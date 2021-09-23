@@ -735,7 +735,7 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="salesmanid">Select salesman</string>
     <string name="declinedcamerapermission">You have declined camera permission</string>
     <string name="qrnotfound">QR Not found</string>
-    <string name="qrinvalid">QR has expired or is invalid </string>
+    <string name="qrinvalid">QR has expired or is invalid, Please scan with new QR</string>
     <string name="totallitersgreater">Total liters should be equal or greater then discounted liters</string>
     <string name="claim1liter">Are you sure you want to Redeem 1000 points for 1 Liter?</string>
     <string name="claim2liter">Are you sure you want to Redeem 2000 points for 2 Liters?</string>
@@ -757,6 +757,12 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="delete">Delete</string>
     <string name="cardeletedsuccessfully">Car deleted successfully</string>
     <string name="cannotdeletecar">Cannot delete! Activity exists for the selected car</string>
+
+
+
+    <string name="user_does_not_exist">User does not exist, Please try Another User</string>
+
+
 
     <string-array name="cities">
 

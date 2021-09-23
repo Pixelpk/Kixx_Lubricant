@@ -601,8 +601,11 @@ public class User_login extends Fragment {
     {
 
      //   Toast.makeText(getContext(), referral, Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getContext(), fcm_id, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNUP,
                 new Response.Listener<String>() {
                     @Override
@@ -763,7 +766,10 @@ public class User_login extends Fragment {
 
 
      //  Toast.makeText(getContext(), password, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SIGNIN,
                 new Response.Listener<String>() {
@@ -956,7 +962,10 @@ public class User_login extends Fragment {
 
     public void SigninSales(final String contact, final String password, final String fcm_id)
     {
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SALES_LOGIN,
                 new Response.Listener<String>() {
@@ -965,7 +974,6 @@ public class User_login extends Fragment {
 
                         //            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
 
-                        progressDialog.dismiss();
 
                         try {
                             JSONObject jsonObj = new JSONObject(response);
@@ -973,8 +981,9 @@ public class User_login extends Fragment {
                             String user_exist_check = jsonObj.getString("message");
 
 
-                            if(user_exist_check.equals("Login Successfull")) {
-
+                            if(user_exist_check.equals("Login Successfull"))
+                            {
+                                progressDialog.dismiss();
                                 String jwt_token = jsonObj.getString("jwt_token");
                                 String message = jsonObj.getString("message");
 
@@ -1028,6 +1037,7 @@ public class User_login extends Fragment {
                             }
                             else
                             {
+                                progressDialog.dismiss();
                                 Toast.makeText(getContext(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
                             }
 

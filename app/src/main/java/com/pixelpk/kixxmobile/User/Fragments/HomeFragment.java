@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -27,6 +28,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -81,6 +83,7 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.pixelpk.kixxmobile.Constants;
+import com.pixelpk.kixxmobile.Image_Sliding_adapter;
 import com.pixelpk.kixxmobile.Location_Permission;
 import com.pixelpk.kixxmobile.PermissionUtils;
 import com.pixelpk.kixxmobile.R;
@@ -108,6 +111,9 @@ import com.pixelpk.kixxmobile.User.adapters.ImageSlidingAdapter;
 import com.pixelpk.kixxmobile.User.adapters.NotificationAdapter;
 import com.pixelpk.kixxmobile.User.adapters.PromosAdapter;
 import com.pixelpk.kixxmobile.User.adapters.ViewPagerAdapter;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -189,6 +195,9 @@ public class HomeFragment extends Fragment {
     ArrayList<ImageSliderList> imageSliderLists;
     ArrayList<ImageSliderList> adslist;
 
+    SliderView sliderView;
+    SliderView sliderView_ads;
+
     ArrayList<Integer> arrayList_date1;
     ArrayList<Integer> arrayList_date2;
 
@@ -204,6 +213,8 @@ public class HomeFragment extends Fragment {
     String KX_formatted_userid;
 
     String car_identity;
+
+    CardDetailsAdapter adapter2;
 
     TextView HomeFragment_User_id;
     LinearLayout HomeScreen_EditCar_LL;
@@ -252,6 +263,11 @@ public class HomeFragment extends Fragment {
     Button btn;
     private RecyclerView rv_autoScroll;
     int scrollY = 0;
+
+
+    //swipe refresh
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private final Runnable SCROLLING_RUNNABLE = new Runnable() {
 
@@ -445,6 +461,30 @@ public class HomeFragment extends Fragment {
 
         getPromoData();
         getadsData();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                swipeRefreshLayout.setRefreshing(false);
+                if (activity != null && isAdded())
+                {
+                    imageslider();
+                    get_user_data(userid);
+                }
+
+                getPromoData();
+                getadsData();
+
+                myListData.clear();
+                user_car_status.clear();
+                user_cars_list.clear();
+
+                //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+            }
+        });
 
 
        /*// spinner.setItems("BMW", "Chevrolette", "KIA", "Nissan", "Mercedes Benz");
@@ -650,6 +690,8 @@ public class HomeFragment extends Fragment {
 
         layout_profile = view.findViewById(R.id.layout_edit_profile);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipe);
+
 //        car_change_history = view.findViewById(R.id.textView_car_history);
         //  HomeFragment_odometer = (TextView) view.findViewById(R.id.HomeFragment_odometer);
         // ViewUtils.isLayoutRtl(HomeFragment_username);
@@ -729,7 +771,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        CardDetailsAdapter adapter2 = new CardDetailsAdapter(myListData, getContext());
+        adapter2 = new CardDetailsAdapter(myListData, getContext());
         HomeFragment_history_RV.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext());
         HomeFragment_history_RV.setLayoutManager(linearLayoutManager2);
@@ -739,6 +781,8 @@ public class HomeFragment extends Fragment {
 
         HomeFragment_carnotfound_IV = view.findViewById(R.id.HomeFragment_carnotfound_IV);
 
+        sliderView     = view.findViewById(R.id.imageSlider);
+        sliderView_ads = view.findViewById(R.id.imageSlider_ads);
 
     }
 
@@ -870,9 +914,11 @@ public class HomeFragment extends Fragment {
 
     private void load_img_profile(String profile_image)
     {
-        progressDialog.setMessage("Please Wait While We Are Loading the Image");
+//        progressDialog.setMessage("Please Wait While We Are Loading the Image");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         Log.d("profile_user_tag",URLs.USER_IMAGE_URL + profile_image);
 
@@ -902,10 +948,11 @@ public class HomeFragment extends Fragment {
 
     private void get_user_data(final String id) {
         user_car_status.clear();
-
-        progressDialog.show();
-        progressDialog.setMessage("Please Wait! while we load the data");
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+//        progressDialog.setMessage("Please Wait! while we load the data");
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.END_USER,
                 new Response.Listener<String>() {
@@ -923,6 +970,7 @@ public class HomeFragment extends Fragment {
                             car_id_list.add("-1");
                             if (message.contains("success"))
                             {
+                                progressDialog.dismiss();
                                 JSONArray data = jsonObj.getJSONArray("user");
                                 // JSONArray points  = jsonObj.getJSONArray("points");
                                 String cardata = jsonObj.getString("cars");
@@ -986,7 +1034,8 @@ public class HomeFragment extends Fragment {
 
                                 } else {
 
-                                    if (getActivity() != null) {
+                                    if (getActivity() != null)
+                                    {
                                         please_select_car.add(getResources().getString(R.string.select_your_car));
                                     }
                                     //   please_select_car.add("Please select a car");
@@ -1178,7 +1227,11 @@ public class HomeFragment extends Fragment {
                                 setdata_to_fields(user_name, user_ph, user_loyality_points, user_odometer, user_dp);
 
 
-                            } else {
+                            }
+
+                            else
+                            {
+                                progressDialog.dismiss();
                                 Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                             }
 
@@ -1263,7 +1316,10 @@ public class HomeFragment extends Fragment {
     public void get_user_car_activity(String car_id)
     {
         myListData.clear();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_GET_CAR_ACTIVITY_DATA,
                 new Response.Listener<String>() {
@@ -1271,8 +1327,6 @@ public class HomeFragment extends Fragment {
                     public void onResponse(String response)
                     {
                         //     Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        progressDialog.setCanceledOnTouchOutside(false);
 
                         try {
                             JSONObject jsonObj = new JSONObject(response);
@@ -1280,6 +1334,7 @@ public class HomeFragment extends Fragment {
 
                             if (message.contains("success"))
                             {
+                                progressDialog.dismiss();
                                 JSONArray data = jsonObj.getJSONArray("resp");
                                 date_differ = jsonObj.getString("date_difference_between_last_two_activities");
                                 status_average = jsonObj.getString("average_status");
@@ -1445,6 +1500,7 @@ public class HomeFragment extends Fragment {
 
                             else
                             {
+                                progressDialog.dismiss();
                                 HomeFragment_carhist_IV.setVisibility(View.VISIBLE);
                                 HomeFragment_history_RV.setVisibility(View.GONE);
                       /*          Toast.makeText(getActivity(), "No Car Activity", Toast.LENGTH_SHORT).show();
@@ -1514,8 +1570,10 @@ public class HomeFragment extends Fragment {
     private void update_car_data(String car_id, String result_div_str)
     {
 //        myListData.clear();
-
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, update_link,
                 new Response.Listener<String>()
                 {
@@ -1523,7 +1581,6 @@ public class HomeFragment extends Fragment {
                     public void onResponse(String response)
                     {
                         //     Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
 
                         try
                         {
@@ -1532,6 +1589,7 @@ public class HomeFragment extends Fragment {
 
                             if(status_car.equals("success"))
                             {
+                                progressDialog.dismiss();
                                 Toast.makeText(activity, "Mileage Updated Successfully", Toast.LENGTH_SHORT).show();
                             }
 //                            Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
@@ -1739,7 +1797,10 @@ public class HomeFragment extends Fragment {
     private void getPromoData() {
         imageSliderLists.clear();
         // promos.clear();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>() {
@@ -1770,12 +1831,17 @@ public class HomeFragment extends Fragment {
                                 ArrayList<ImageSliderList> list = imageSliderLists;
                                 Collections.reverse(list);
 
-                                ImageSlidingAdapter adapter = new ImageSlidingAdapter(imageSliderLists, getContext(), "promos", "user");
+                               /* ImageSlidingAdapter adapter = new ImageSlidingAdapter(imageSliderLists, getContext(), "promos", "user");
                                 HomeFragment_imageslider_RV.setHasFixedSize(true);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                                 HomeFragment_imageslider_RV.setLayoutManager(linearLayoutManager);
                                 //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                HomeFragment_imageslider_RV.setAdapter(adapter);
+                                HomeFragment_imageslider_RV.setAdapter(adapter);*/
+
+                                Image_Sliding_adapter adapter = new Image_Sliding_adapter(imageSliderLists, getContext(), "promos", "user");
+                                //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                sliderView.setSliderAdapter(adapter);
+                                sliderView.startAutoCycle();
 
                                 progressDialog.dismiss();
 
@@ -1827,7 +1893,10 @@ public class HomeFragment extends Fragment {
     private void getadsData() {
         adslist.clear();
         //   promos.clear();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>() {
@@ -1859,13 +1928,14 @@ public class HomeFragment extends Fragment {
                                 ArrayList<ImageSliderList> list = adslist;
                                 Collections.reverse(list);
 
-                                ImageSlidingAdapter adapter = new ImageSlidingAdapter(adslist, getContext(), "ads", "user");
+                                Image_Sliding_adapter adapter = new Image_Sliding_adapter(adslist, getContext(), "ads", "user");
+                                //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                sliderView_ads.setSliderAdapter(adapter);
+                                sliderView_ads.startAutoCycle();
+                       /*         ImageSlidingAdapter adapter = new ImageSlidingAdapter(adslist, getContext(), "ads", "user");
                                 HomeFragment_ads_RV.setHasFixedSize(true);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-                                HomeFragment_ads_RV.setLayoutManager(linearLayoutManager);
-
-
-                                HomeFragment_ads_RV.setAdapter(adapter);
+                                HomeFragment_ads_RV.setLayoutManager(linearLayoutManager);*/
 
 
                                /* HomeFragment_ads_RV.addOnScrollListener(new RecyclerView.OnScrollListener()
@@ -2017,8 +2087,10 @@ public class HomeFragment extends Fragment {
     private void updatemileagestatus(String status, String car_id, String mileage, String val) {
 
         //  Toast.makeText(activity, status+" "+car_id+" "+mileage, Toast.LENGTH_SHORT).show();
-
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, update_car_mileage,
                 new Response.Listener<String>() {

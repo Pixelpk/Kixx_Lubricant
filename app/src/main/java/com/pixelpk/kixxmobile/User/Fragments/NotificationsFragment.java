@@ -149,7 +149,10 @@ public class NotificationsFragment extends Fragment {
 
     private void get_user_data(String id) {
 
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.END_USER,
                 new Response.Listener<String>() {

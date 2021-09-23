@@ -100,7 +100,11 @@ public class ClaimsScreen extends AppCompatActivity {
 
     private void get_user_data(String id) {
 
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SALES_SHOP_CLAIMS,
                 new Response.Listener<String>() {

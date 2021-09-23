@@ -706,7 +706,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="salesmanid">الرجاء تحديد معرف بائع</string>
     <string name="declinedcamerapermission">لقد رفضت إذن الكاميرا</string>
     <string name="qrnotfound">QR غير موجود</string>
-    <string name="qrinvalid"> أو غير صالح QR انتهت صلاحية</string>
+    <string name="qrinvalid">انتهت صلاحية QR أو أنه غير صالح ، يرجى مسح ضوئي باستخدام QR جديد</string>
     <string name="totallitersgreater">يجب أن يكون إجمالي اللترات مساوياً أو أكبر من اللترات المخصومة</string>
     <string name="claim1liter">هل أنت متأكد أنك تريد استبدال 1000 نقطة بـلتر من الزيت؟</string>
     <string name="claim2liter">هل أنت متأكد أنك تريد استبدال 2000 نقطة بـلتر من الزيت؟</string>
@@ -775,6 +775,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
 
     <string name="update_average_pop">هل تريد تحديث متوسط السيارة اليومي أو الاحتفاظ بالمعدل القديم</string>
 
+    <string name="user_does_not_exist">المستخدم غير موجود ، يرجى تجربة مستخدم آخر</string>
 
 
     <string name="oil_recommendation">توصية الزيت</string>
@@ -1030,7 +1031,7 @@ You can get more detailed information of all these standards and lubricants info
     <string name="editcar">تحرير السيارة</string>
 
     <string name="link">https://www.kixxoil.com/support/categoryByPerformance</string>
-    <string name="spacingerror">Please Add Car Number Without Spaces</string>
+    <string name="spacingerror">الرجاء إضافة رقم السيارة بدون مسافات</string>
     <string name="steps_to_choose_str"><![CDATA[Go to Home Screen and Follow the Steps Given Below \n\n1. Click on the Oil Recommendation icon \n\n1. Select the Car \n\n1. Scroll Down and You will See a button Labeled <b>How to choose best oil for My Car</b> \n\n1. Click on the Oil Recommendation icon]]></string>
 
 

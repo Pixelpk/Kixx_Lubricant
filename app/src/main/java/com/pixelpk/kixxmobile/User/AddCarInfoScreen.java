@@ -85,8 +85,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
     List<String> carid_list;
     String rtl;
 
-    String Year_manufacture = "";
-    String engine_type = "";
+    String Year_manufacture = "null";
+    String engine_type = "null";
 
     String get_intentval = "";
 
@@ -123,6 +123,12 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.select_car_model), Toast.LENGTH_SHORT).show();
                 }
 
+           /*     else if(Year_manufacture.equals("null"))
+                {
+                    //Toast.makeText(AddCarInfoScreen.this, "Please Check your internet Connection and try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.select_year_of_manufacturing), Toast.LENGTH_SHORT).show();
+                } */
+
                 else if (AddCarInfo_carnumber_ET.getText().toString().contains(" "))
                 {
                     AddCarInfo_carnumber_ET.setError(getResources().getString(R.string.spacingerror));
@@ -141,7 +147,6 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
                     if(AddCarInfo_Mileage_ET.getText().toString().equals(""))
                     {
-                        AddCarInfo_Mileage_ET.setError(getResources().getString(R.string.enter_car_mileage));
                         car_odometer = "";
                     }
 
@@ -450,9 +455,11 @@ public class AddCarInfoScreen extends AppCompatActivity {
     public void get_cars_data(final String token)
     {
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
-        progressDialog.show();
-        progressDialog.setMessage("Please Wait! while we are getting Car Data");
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+//        progressDialog.setMessage("Please Wait! while we are getting Car Data");
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CARS,
                 new Response.Listener<String>() {
@@ -616,7 +623,10 @@ public class AddCarInfoScreen extends AppCompatActivity {
     {
         cars_list.clear();
         //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.specific_car,
                 new Response.Listener<String>() {

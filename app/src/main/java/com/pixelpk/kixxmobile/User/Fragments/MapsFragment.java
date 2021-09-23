@@ -297,8 +297,10 @@ public class MapsFragment extends Fragment  implements
     public void get_shop_locations(String token,MarkerOptions options,GoogleMap googleMap,LatLng origin)
     {
         distanceModelClasses.clear();
-        progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SHOPS,
                 new Response.Listener<String>() {
