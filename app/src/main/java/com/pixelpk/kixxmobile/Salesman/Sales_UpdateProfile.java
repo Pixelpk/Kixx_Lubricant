@@ -42,6 +42,10 @@ public class Sales_UpdateProfile extends AppCompatActivity {
         if(rtl.equals("1"))
         {
             back_btn.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
+
+            sales_salesprofile_name_ET.setGravity(Gravity.END);
+            sales_salesprofile_contact_ET.setGravity(Gravity.END);
+
         }
 
         Sales_profile_back_LL.setOnClickListener(new View.OnClickListener() {

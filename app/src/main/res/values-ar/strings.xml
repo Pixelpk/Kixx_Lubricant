@@ -107,6 +107,8 @@
     <string name="Change_lang">تغيير اللغة</string>
 
     <string name="Cars_list">قائمة سيارات المستخدم</string>
+    <string name="car_delete_item">انقر فوق عنصر القائمة لحذف السيارة</string>
+
     <string name="please_add_car">إضافة سيارتك</string>
     <string name="please_add_car_num">رقم السيارة</string>
     <string name="please_add_current_odometer">المسافة المقطوعة بالميل الحالي للسيارة</string>
@@ -776,6 +778,8 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="update_average_pop">هل تريد تحديث متوسط السيارة اليومي أو الاحتفاظ بالمعدل القديم</string>
 
     <string name="user_does_not_exist">المستخدم غير موجود ، يرجى تجربة مستخدم آخر</string>
+
+    <string name="user_found_seller">يرجى تحديد أو إضافة سيارة للمضي قدما</string>
 
 
     <string name="oil_recommendation">توصية الزيت</string>

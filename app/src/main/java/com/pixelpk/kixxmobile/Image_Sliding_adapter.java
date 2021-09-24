@@ -36,6 +36,8 @@ public class Image_Sliding_adapter extends SliderViewAdapter<Image_Sliding_adapt
     String banner_type;
     String user_type;
 
+    private boolean doNotifyDataSetChangedOnce = false;
+
     public Image_Sliding_adapter(List<ImageSliderList> listdata, Context context,String banner_type,String user_type )
     {
         this.listdata = listdata;
@@ -203,6 +205,7 @@ public class Image_Sliding_adapter extends SliderViewAdapter<Image_Sliding_adapt
     {
         //slider view count could be dynamic size
         return listdata.size();
+
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {

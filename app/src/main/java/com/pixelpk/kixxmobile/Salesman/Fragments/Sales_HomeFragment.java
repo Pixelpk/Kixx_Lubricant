@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.AuthFailureError;
@@ -37,6 +38,7 @@ import com.bumptech.glide.Glide;
 import com.github.angads25.toggle.interfaces.OnToggledListener;
 import com.github.angads25.toggle.model.ToggleableView;
 import com.github.angads25.toggle.widget.LabeledSwitch;
+import com.pixelpk.kixxmobile.Image_Sliding_adapter;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.Salesman.ClaimsScreen;
 import com.pixelpk.kixxmobile.Salesman.ModelClasses.ClaimsList;
@@ -48,6 +50,7 @@ import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 import com.pixelpk.kixxmobile.User.Splash;
 import com.pixelpk.kixxmobile.User.adapters.ImageSlidingAdapter;
 import com.pixelpk.kixxmobile.User.adapters.ViewPagerAdapter;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,6 +104,12 @@ public class Sales_HomeFragment extends Fragment {
 
     LinearLayout Sales_HomeScreen_Shopprofile;
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    SliderView sliderView;
+
+    String shopidforclaim;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,6 +118,21 @@ public class Sales_HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.sales_fragment_home_new, container, false);
 
         initializers(view);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                swipeRefreshLayout.setRefreshing(false);
+
+                get_user_data(sales_userid);
+                get_claims_data(shopidforclaim);
+                //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+            }
+        });
+
 
         Sales_HomeFragment_claimoil_ET.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,7 +221,8 @@ public class Sales_HomeFragment extends Fragment {
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
 
-        for (int i = 0; i < dotscount; i++) {
+        for (int i = 0; i < dotscount; i++)
+        {
 
             dots[i] = new ImageView(getActivity());
             dots[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
@@ -252,7 +277,7 @@ public class Sales_HomeFragment extends Fragment {
 
         editor = sharedPreferences.edit();
   //      user_profile_image = view.findViewById(R.id.user_profile_image);
-        String shopidforclaim = sharedPreferences.getString(Shared.loggedIn_sales_shopid,"0");
+        shopidforclaim = sharedPreferences.getString(Shared.loggedIn_sales_shopid,"0");
    //     sliderDotspanel = (LinearLayout) view.findViewById(R.id.SliderDots);
        // Toast.makeText(getContext(), shopidforclaim, Toast.LENGTH_SHORT).show();
         Sales_HomeFragment_shopname_ET = (TextView) view.findViewById(R.id.Sales_HomeFragment_shopname_ET);
@@ -285,6 +310,10 @@ public class Sales_HomeFragment extends Fragment {
         labeledSwitch = view.findViewById(R.id.Sales_HomeFragment_changelang);
         String lang = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
 
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_seller);
+
+        sliderView = view.findViewById(R.id.imageSlider_seller_home);
+
        /* if(lang!=null)
         {
             if(lang.equals("1"))
@@ -311,6 +340,8 @@ public class Sales_HomeFragment extends Fragment {
             }
         }
 
+
+
     //  Toast.makeText(getContext(), bearer_token, Toast.LENGTH_SHORT).show();
 
     }
@@ -326,7 +357,9 @@ public class Sales_HomeFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.SALES_END,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response)
+                    {
+                        Log.d("tag_response_home",response);
                   //   Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
@@ -360,7 +393,8 @@ public class Sales_HomeFragment extends Fragment {
 
                                     promodata_json = jsonObj.getJSONArray("promo");
 
-                                    for (int i = 0; i < 1; i++) {
+                                    for (int i = 0; i < promodata_json.length(); i++)
+                                    {
                                         promodata_jsonobj = promodata_json.getJSONObject(i);
 
                                         id = promodata_jsonobj.getString("id");
@@ -369,19 +403,16 @@ public class Sales_HomeFragment extends Fragment {
                                         banner = promodata_jsonobj.getString("banner");
                                         String qr_image = promodata_jsonobj.getString("qr_image");
 
-
+                                        ImageSliderList imageSliderList = new ImageSliderList(URLs.USER_Active_promo+banner,id);
+                                        imageSliderLists.add(imageSliderList);
                                     }
 
-                                    ImageSliderList imageSliderList = new ImageSliderList(URLs.USER_Active_promo+banner,id);
-                                    imageSliderLists.add(imageSliderList);
 
-                                    ImageSlidingAdapter adapter = new ImageSlidingAdapter(imageSliderLists,getContext(),"promos","sales");
-                                    Sales_HomeFragment_imageslider_RV.setHasFixedSize(true);
-                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-                                    Sales_HomeFragment_imageslider_RV.setLayoutManager(linearLayoutManager);
+
+                                    Image_Sliding_adapter adapter = new Image_Sliding_adapter(imageSliderLists, getContext(), "promos", "user");
                                     //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                    Sales_HomeFragment_imageslider_RV.setAdapter(adapter);
-
+                                    sliderView.setSliderAdapter(adapter);
+                                    sliderView.startAutoCycle();
                                         /*user_cars_list.add(car_number + " " + company + " " + name);
                                         car_id_list.add(id);*/
 

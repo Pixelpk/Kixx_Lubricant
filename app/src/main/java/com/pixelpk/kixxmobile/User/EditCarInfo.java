@@ -117,7 +117,7 @@ public class EditCarInfo extends AppCompatActivity {
                 if(car_idnumber.equals("null"))
                 {
                     //Toast.makeText(AddCarInfoScreen.this, "Please Check your internet Connection and try again", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(EditCarInfo.this, getResources().getString(R.string.select_car), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditCarInfo.this, getResources().getString(R.string.select_car_model), Toast.LENGTH_SHORT).show();
                 }
                 else if(AddCarInfo_carnumber_ET.getText().toString().equals(""))
                 {
@@ -256,6 +256,11 @@ public class EditCarInfo extends AppCompatActivity {
 
                 //        Toast.makeText(AddCarInfoScreen.this, manufact_id, Toast.LENGTH_SHORT).show();
                 get_specific_cars(manufact_id);
+
+
+                AddCar_carbrand_seletion_TV.setText("");
+                car_idnumber = "null";
+
                 AddCarInfo_carmanufact_TV.setText(item);
                 // selectedItems.setText(item + " Position: " + position);
             }
@@ -277,18 +282,23 @@ public class EditCarInfo extends AppCompatActivity {
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
                 //car_idnumber = String.valueOf(position);
                 car_idnumber = carid_list.get(position);
+
             //    Toast.makeText(EditCarInfo.this, car_idnumber, Toast.LENGTH_SHORT).show();
               /*  Toast.makeText(EditCarInfo.this, car_idnumber, Toast.LENGTH_SHORT).show();
                 preselectedbrand_id = car_idnumber;*/
               //  get_specific_cars(manufact_id);
                 //     Toast.makeText(AddCarInfoScreen.this, car_idnumber, Toast.LENGTH_SHORT).show();
                 //   Toast.makeText(AddCarInfoScreen.this, String.valueOf(car_idnumber), Toast.LENGTH_SHORT).show();
+
+//                AddCarInfo_carmanufact_TV.setText("");
+
                 AddCar_carbrand_seletion_TV.setText(item);
                 // selectedItems.setText(item + " Position: " + position);
             }
         });
 
-        AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener() {
+        AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
@@ -400,10 +410,10 @@ public class EditCarInfo extends AppCompatActivity {
         //  carid_list.add("select car brand");
         manufacture_id.add("select manufacturer");
 
-        spinnerDialog = new SpinnerDialog(EditCarInfo.this, cars_list, "Select or Search Car Brand", R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
-        spinnerDialog_carmanufact = new SpinnerDialog(EditCarInfo.this, manufacturer_list, "Select or Search Car Manufacturer", R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
-        spinnerDialog_year = new SpinnerDialog(EditCarInfo.this, years_list, "Select or Search Model/Year", R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
-        spinnerDialog_enginetype = new SpinnerDialog(EditCarInfo.this, enginetype_list, "Select or Search Engine type", R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog = new SpinnerDialog(EditCarInfo.this, cars_list, getResources().getString(R.string.select_search_car_model), R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog_carmanufact = new SpinnerDialog(EditCarInfo.this, manufacturer_list, getResources().getString(R.string.select_search_car_brand), R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog_year = new SpinnerDialog(EditCarInfo.this, years_list, getResources().getString(R.string.select_search_car_model_year), R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
+        spinnerDialog_enginetype = new SpinnerDialog(EditCarInfo.this, enginetype_list, getResources().getString(R.string.select_search_car_model_year), R.style.DialogAnimations_SmileWindow, getResources().getString(R.string.cancel));// With 	Animation
 
         get_cars_data(token);
 
@@ -438,11 +448,13 @@ public class EditCarInfo extends AppCompatActivity {
             }
 
         }
-        if (!getIntent().getStringExtra("Carbrand").equals("null")) {
-
+        if (!getIntent().getStringExtra("Carbrand").equals("null"))
+        {
             EditCarInfo_carbrand_seletion_TV.setText(getIntent().getStringExtra("Carbrand"));
         }
-        if (!getIntent().getStringExtra("Carmanufacturer").equals("null")) {
+
+        if (!getIntent().getStringExtra("Carmanufacturer").equals("null"))
+        {
             EditCarInfo_carmanufact_TV.setText(getIntent().getStringExtra("Carmanufacturer"));
         }
         /*if(getIntent().getStringExtra("CarModel")!=null)

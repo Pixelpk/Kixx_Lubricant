@@ -131,6 +131,7 @@
     <string name="Select_lang">Select Language</string>
     <string name="Tutorials_Screen">Tutorials Screen</string>
     <string name="Cars_list">User Car list</string>
+    <string name="car_delete_item">Click on the list item to delete the car</string>
 
     <string name="please_add_car">Add Your Car</string>
     <string name="please_add_car_num">Car Number (number plate)</string>
@@ -761,6 +762,10 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
 
 
     <string name="user_does_not_exist">User does not exist, Please try Another User</string>
+
+
+
+    <string name="user_found_seller">Please Select or Add Car to proceed further</string>
 
 
 

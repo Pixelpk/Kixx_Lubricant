@@ -32,6 +32,7 @@ import android.provider.MediaStore;
 import android.transition.CircularPropagation;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -257,7 +258,6 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 uname  = name.getText().toString();
                 uemail = email.getText().toString();
                 uphone = mobile.getText().toString();
@@ -336,10 +336,11 @@ public class UpdateUserProfile extends AppCompatActivity {
 
                 if(!uemail.isEmpty())
                 {
-                    if (!uemail.matches(emailPattern))
+                    if (!Patterns.EMAIL_ADDRESS.matcher(uemail).matches())
                     {
                         email.setError("Invalid email address");
                     }
+
                     else
                     {
                         email.setError(null);

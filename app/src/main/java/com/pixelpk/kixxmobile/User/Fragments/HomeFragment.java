@@ -165,6 +165,7 @@ public class HomeFragment extends Fragment {
 
     String id_car;
 
+
     String car_number_str;
     String car_current_mileage;
     String status_average;
@@ -240,12 +241,14 @@ public class HomeFragment extends Fragment {
 
     ProgressDialog createlink_progress;
 
+    Button try_again_button;
+
 //    TextView car_change_history;
 
     LinearLayout HomeFragment_badgegroup, HomeFragment_userid;
 
     ScrollView HomeFragment_LL;
-    ConstraintLayout HomeFragment_nonet_LL;
+    LinearLayout HomeFragment_nonet_LL;
     int index = 0;
     float result_sub = 0;
     float diff_date = 0;
@@ -470,22 +473,39 @@ public class HomeFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 if (activity != null && isAdded())
                 {
-                    imageslider();
+//                    imageslider();
+//                    myListData.clear();
+//                    user_car_status.clear();
+//                    user_cars_list.clear();
+//                    adslist.clear();
+//                    imageSliderLists.clear();
                     get_user_data(userid);
                 }
 
                 getPromoData();
                 getadsData();
-
-                myListData.clear();
-                user_car_status.clear();
-                user_cars_list.clear();
-
-                //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
             }
         });
 
+        try_again_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (activity != null && isAdded())
+                {
+//                    imageslider();
+//                    myListData.clear();
+//                    user_car_status.clear();
+//                    user_cars_list.clear();
+//                    adslist.clear();
+//                    imageSliderLists.clear();
+                    get_user_data(userid);
+                }
+
+                getPromoData();
+                getadsData();
+            }
+        });
 
        /*// spinner.setItems("BMW", "Chevrolette", "KIA", "Nissan", "Mercedes Benz");
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
@@ -735,6 +755,8 @@ public class HomeFragment extends Fragment {
 
         HomeFragment_editprofile = view.findViewById(R.id.HomeFragment_editprofile);
         HomeFragment_userid = view.findViewById(R.id.HomeFragment_userid);
+
+        try_again_button = view.findViewById(R.id.try_again_button);
 
      /*   CarDetailsList list  = new CarDetailsList("25-12-2020","20000","25000");
         CarDetailsList list2 = new CarDetailsList("14-04-2021","25000","30000");
@@ -1253,9 +1275,11 @@ public class HomeFragment extends Fragment {
 
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
@@ -1928,7 +1952,7 @@ public class HomeFragment extends Fragment {
                                 ArrayList<ImageSliderList> list = adslist;
                                 Collections.reverse(list);
 
-                                Image_Sliding_adapter adapter = new Image_Sliding_adapter(adslist, getContext(), "ads", "user");
+                                Image_Sliding_adapter adapter = new Image_Sliding_adapter(list, getContext(), "ads", "user");
                                 //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                 sliderView_ads.setSliderAdapter(adapter);
                                 sliderView_ads.startAutoCycle();

@@ -40,8 +40,8 @@
 
             <ImageView
                 android:id="@+id/mapfrag_item_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:adjustViewBounds="true"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"

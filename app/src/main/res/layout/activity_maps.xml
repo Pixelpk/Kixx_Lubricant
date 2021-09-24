@@ -100,6 +100,7 @@
                         android:backgroundTint="@color/black"
                         android:ems="10"
                         android:hint="+966"
+                        android:layoutDirection="ltr"
                         android:inputType="textPersonName"
                         android:textAlignment="center"
                         android:textColor="@color/black"

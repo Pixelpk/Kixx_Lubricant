@@ -80,7 +80,7 @@
             android:hint="@string/enter_car_number_plate"
             android:inputType="textPersonName"
             android:textColor="#ffffff"
-            android:textColorHint="#ffffff" />
+            android:textColorHint="@color/gray_color" />
 
         <EditText
             android:id="@+id/EditCarInfo_carodometer_ET"
@@ -160,11 +160,12 @@
                 android:id="@+id/EditCarInfo_carmanufact_TV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/select_car_brand"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:textAlignment="viewStart"
                 android:textColor="#ffffff"
+                android:hint="@string/select_car_brand"
+                android:textColorHint="@color/gray_color"
                 android:textSize="18sp" />
 
             <ImageView
@@ -232,7 +233,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:textAlignment="viewStart"
-                android:text="@string/select_car_model"
+                android:hint="@string/select_car_model"
+                android:textColorHint="@color/gray_color"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
@@ -299,10 +301,11 @@
                 android:id="@+id/EditCarInfo_modelyear_TV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/select_year_of_manufacturing"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:textAlignment="viewStart"
+                android:hint="@string/select_year_of_manufacturing"
+                android:textColorHint="@color/gray_color"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
@@ -369,9 +372,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
-                android:textAlignment="viewStart"
                 android:layout_weight="1"
-                android:text="@string/selectcarenginetype"
+                android:textAlignment="viewStart"
+                android:hint="@string/select_car_engine_type"
+                android:textColorHint="@color/gray_color"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
@@ -408,7 +412,7 @@
             android:hint="@string/currentmileagereading"
             android:inputType="number"
             android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
+            android:textColorHint="@color/gray_color"
             android:textSize="16sp" />
 
         <!--<LinearLayout
@@ -470,7 +474,7 @@
             android:hint="@string/enterdailycarmileage"
             android:inputType="number"
             android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
+            android:textColorHint="@color/gray_color"
             android:textSize="16sp" />
 
         <com.jaredrummler.materialspinner.MaterialSpinner

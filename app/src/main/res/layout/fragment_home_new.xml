@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/home_bg"
     android:orientation="vertical"
+    android:layout_gravity="center"
     tools:context=".User.Fragments.HomeFragment">
 
     <LinearLayout
@@ -62,14 +63,21 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/HomeFragment_LL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight=".1"
-        android:visibility="visible">
+        android:visibility="visible"
+       >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -609,7 +617,7 @@
                         <com.smarteist.autoimageslider.SliderView
                             android:id="@+id/imageSlider_ads"
                             android:layout_width="match_parent"
-                            android:layout_height="160dp"
+                            android:layout_height="144dp"
                             app:sliderAnimationDuration="600"
                             app:sliderAutoCycleDirection="back_and_forth"
                             app:sliderAutoCycleEnabled="true"
@@ -644,26 +652,67 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/HomeFragment_nonet_LL"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginTop="130dp"
+                android:background="@drawable/back_no_network"
+                android:gravity="center"
+                android:layout_gravity="center|center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageView40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_no_wifi"
+                    android:visibility="visible"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check your connection"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You don't seems to have an active internet connection. Please check your connection and try again"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:textSize="12sp"
+                    />
+
+                <Button
+                    android:id="@+id/try_again_button"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/no_net_button"
+                    android:text="Try Again"
+                    android:textAllCaps="false"
+                    android:visibility="visible"
+                    android:textColor="#ffffff" />
+
+
+
+            </LinearLayout>
+        </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/HomeFragment_nonet_LL"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".1"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/imageView40"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/nonet"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

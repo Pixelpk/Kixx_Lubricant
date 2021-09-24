@@ -115,8 +115,10 @@ public class Sales_QRFragment extends Fragment {
 
         InitializeView(view);
 
-        Sales_AddCarInfo_carmanufact_LL.setClickable(false);
-        Sales_AddCarInfo_carbrand_LL.setClickable(false);
+        Sales_AddCarInfo_carmanufact_LL.setEnabled(false);
+        Sales_AddCarInfo_carbrand_LL.setEnabled(false);
+
+
 
         String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE, "0");
 
@@ -563,13 +565,27 @@ public class Sales_QRFragment extends Fragment {
                             if(message.contains("success"))
                             {
                                 progressDialog.dismiss();
+
                                 JSONArray manufacturer  = jsonObj.getJSONArray("resp");
                                 redeemed_points = jsonObj.getString("redeemed_points");
 
                                 SalesQR_carnumber_SP.setEnabled(true);
                                 SalesQR_carcurrentodometer_SP.setEnabled(true);
-                                Sales_AddCarInfo_carmanufact_LL.setClickable(true);
-                                Sales_AddCarInfo_carbrand_LL.setClickable(true);
+                                Sales_AddCarInfo_carmanufact_LL.setEnabled(true);
+                                Sales_AddCarInfo_carbrand_LL.setEnabled(true);
+                                SalesQR_CarSelect_SP.setEnabled(true);
+
+//                                new AlertDialog.Builder(getContext())
+//                                        .setMessage(getResources().getString(R.string.user_found_seller))
+//                                        .setCancelable(false)
+//                                        .setNegativeButton(getResources().getString(R.string.ok),null)
+//                                        .show();
+
+                                SalesQR_carcurrentodometer_SP.setText("");
+                                Sales_AddCar_carbrand_seletion_TV.setText("");
+                                Sales_AddCarInfo_carmanufact_TV.setText("");
+
+
 
                                 for (int i = 0; i < manufacturer.length(); i++)
                                 {
@@ -618,6 +634,12 @@ public class Sales_QRFragment extends Fragment {
                                                 }
                                             })
                                             .show();
+
+                                    SalesQR_carnumber_SP.setEnabled(false);
+                                    SalesQR_carcurrentodometer_SP.setEnabled(false);
+                                    Sales_AddCarInfo_carmanufact_LL.setEnabled(false);
+                                    Sales_AddCarInfo_carbrand_LL.setEnabled(false);
+                                    SalesQR_CarSelect_SP.setEnabled(false);
                                 }
 
                                 else

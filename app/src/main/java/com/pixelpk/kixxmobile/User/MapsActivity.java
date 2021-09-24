@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -151,7 +152,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng centerLatLang = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
 
-                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 String cont   = countrycode + MapsActivity_Contactnum_ET.getText().toString();
                 String email  = MapsActivity_Email_ET.getText().toString();
                 String shop   = MapsActivity_Shopname_ET.getText().toString();
@@ -172,7 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     MapsActivity_Email_ET.setError(getResources().getString(R.string.fill_fields));
                 }
 
-                else if (!email.matches(emailPattern))
+                else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
                 {
                     MapsActivity_Email_ET.setError(getResources().getString(R.string.invalid_email));
                 }

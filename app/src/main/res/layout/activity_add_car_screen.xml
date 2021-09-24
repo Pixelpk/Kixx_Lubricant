@@ -67,6 +67,16 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+               <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/car_delete_item"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/AddCar_carlist_RV"
                 android:layout_width="match_parent"

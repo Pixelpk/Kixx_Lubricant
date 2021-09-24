@@ -272,7 +272,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
             }
         });
 
-        spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick() {
+        spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick()
+        {
             @Override
             public void onClick(String item, int position) {
               //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
