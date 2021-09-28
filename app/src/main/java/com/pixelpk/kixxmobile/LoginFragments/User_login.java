@@ -89,9 +89,12 @@ public class User_login extends Fragment {
     Button signin_userSignunBtn;
     String visibility = "0";
 
+    String phone;
+
     EditText Signin_countrycode_ET;
 
     String countrycode = "+966";
+    String countrycode_seller = "+966";
     Fragment selectedFragment = null;
 
     EditText Signin_salesphET_txt,Signin_salespassET_txt;
@@ -159,10 +162,9 @@ public class User_login extends Fragment {
                     @Override
                     public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
 
-                        countrycode = dialCode;
-                        Salesman_countrycode_ET.setText(countrycode);
+                        countrycode_seller = dialCode;
+                        Salesman_countrycode_ET.setText(countrycode_seller);
                         /* Toast.makeText(getContext(), code + " " + dialCode, Toast.LENGTH_SHORT).show();*/
-
                         picker.dismiss();
 
                     }
@@ -375,31 +377,34 @@ public class User_login extends Fragment {
             public void onClick(View v)
             {
 
+                usercontact = countrycode + Signin_userphET_txt.getText().toString();
+                userpassword = Signin_userpassET_txt.getText().toString();
                 String only_phone = Signin_userphET_txt.getText().toString();
-
-                String s = only_phone.substring(0,1);
 
 //                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
-                if(s.equals("0"))
+                if(usercontact.equals(""))
                 {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
+                    Signin_userphET_txt.setError(getResources().getString(R.string.pleaseenterphonenumber));
                 }
+                else if (userpassword.equals(""))
+                {
+                    Signin_userpassET_txt.setError(getResources().getString(R.string.pleaseenterpassword));
+                }
+
+
 
                 else
                 {
-                    usercontact = countrycode + Signin_userphET_txt.getText().toString();
 
-                    userpassword = Signin_userpassET_txt.getText().toString();
 
-                    if(usercontact.equals(""))
+                    String s = only_phone.substring(0,1);
+
+                    if(s.equals("0"))
                     {
-                        Signin_userphET_txt.setError(getResources().getString(R.string.pleaseenterphonenumber));
+                        Toast.makeText(getActivity(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                     }
-                    else if (userpassword.equals(""))
-                    {
-                        Signin_userpassET_txt.setError(getResources().getString(R.string.pleaseenterpassword));
-                    }
+
                     else if(Signin_userphET_txt.getText().toString().equals(""))
                     {
                         Signin_userphET_txt.setError(getResources().getString(R.string.fill_fields));
@@ -467,22 +472,22 @@ public class User_login extends Fragment {
             }
         });
 
-        Salesman_countrycode_ET.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
-                picker.setListener(new CountryPickerListener() {
-                    @Override
-                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID)
-                    {
-                        Salesman_countrycode_ET.setText(dialCode);
-                        picker.dismiss();
-                    }
-                });
-                picker.show(getFragmentManager(), "COUNTRY_PICKER");
-            }
-        });
+//        Salesman_countrycode_ET.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
+//                picker.setListener(new CountryPickerListener() {
+//                    @Override
+//                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID)
+//                    {
+//                        Salesman_countrycode_ET.setText(dialCode);
+//                        picker.dismiss();
+//                    }
+//                });
+//                picker.show(getFragmentManager(), "COUNTRY_PICKER");
+//            }
+//        });
 
         Signin_salesSigninBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -491,9 +496,12 @@ public class User_login extends Fragment {
              /*   Intent intent = new Intent(getContext(), HomeScreen.class);
                 startActivity(intent);*/
 
+
                 String only_phone = Signin_salesphET_txt.getText().toString();
 
-                String s = only_phone.substring(0,1);
+                phone = countrycode_seller + Signin_salesphET_txt.getText().toString();
+
+
 
                 if(Signin_salesphET_txt.getText().toString().equals(""))
                 {
@@ -509,20 +517,24 @@ public class User_login extends Fragment {
                     Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                 }
 
-                else if(s.equals("0"))
-                {
-                    Toast.makeText(getContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
-                }
+
 
                 else
                 {
-                    String phone = countrycode + Signin_salesphET_txt.getText().toString();
+                String s = only_phone.substring(0,1);
 
+                if(s.equals("0"))
+                {
+                    Toast.makeText(getContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
+                }
                  //   Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
 
 //                    Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
-
+                else
+                {
                     SigninSales(phone,Signin_salespassET_txt.getText().toString(),refreshedToken);
+
+                }
                 }
 
             }
@@ -624,15 +636,14 @@ public class User_login extends Fragment {
                      {
                          Toast.makeText(getActivity(), getResources().getString(R.string.usersuccessfullyregistered), Toast.LENGTH_SHORT).show();
 
-                         try {
+                         try
+                         {
                              JSONObject jsonObj = new JSONObject(response);
                              // JSONObject jsonObj_userexist = new JSONObject(response);
                              String user_exist_check = jsonObj.getString("message");
 
-
-
-
-                             if(user_exist_check.equals("Login Successfull")) {
+                             if(user_exist_check.equals("Login Successfull"))
+                             {
 
                                  String jwt_token = jsonObj.getString("jwt_token");
                                  String message = jsonObj.getString("message");
@@ -962,6 +973,8 @@ public class User_login extends Fragment {
 
     public void SigninSales(final String contact, final String password, final String fcm_id)
     {
+//        Toast.makeText(getActivity(), contact, Toast.LENGTH_SHORT).show();
+
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -990,6 +1003,8 @@ public class User_login extends Fragment {
                                 // Toast.makeText(getActivity(), jwt_token, Toast.LENGTH_SHORT).show();
 
                                 editor.putString(Shared.sales_loggedIn_jwt,jwt_token).apply();
+
+                                Log.d("tag_token_jwt",jwt_token);
 
                                 //  Toast.makeText(getContext(), jwt_token, Toast.LENGTH_SHORT).show();
                                 //      Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();

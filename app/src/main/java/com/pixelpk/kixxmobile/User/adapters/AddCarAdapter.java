@@ -1,10 +1,14 @@
 package com.pixelpk.kixxmobile.User.adapters;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.pixelpk.kixxmobile.R;
@@ -29,6 +39,7 @@ import com.pixelpk.kixxmobile.User.EditCarInfo;
 import com.pixelpk.kixxmobile.User.HomeScreen;
 import com.pixelpk.kixxmobile.User.ModelClasses.AddCarList;
 import com.pixelpk.kixxmobile.User.ModelClasses.CarDetailsList;
+import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,12 +50,18 @@ import java.util.List;
 import java.util.Map;
 
 public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder>{
+
     private List<AddCarList> listdata;
     Context context;
     String token;
     String uid;
     String car_id;
     RecyclerView recyclerView;
+    String rtl;
+    ProgressDialog progressDialog;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     // RecyclerView recyclerView;
     public AddCarAdapter(List<AddCarList> listdata, Context context,String token,String uid,RecyclerView recyclerView) {
@@ -53,6 +70,8 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
         this.token = token;
         this.uid = uid;
         this.recyclerView = recyclerView;
+
+
     }
     @Override
     public AddCarAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -69,9 +88,22 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
 
         holder.AddCar_CarNumber_TV.setText(myListData.getCar_Number());
         holder.AddCar_CarBrand_TV.setText(myListData.getCar_Manufacturer()/*+ " " + myListData.getCar_Brand()*/);
+
+        sharedPreferences = context.getSharedPreferences("Shared",MODE_PRIVATE);
+
+        rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
+
+
+
         if(!myListData.getYear_of_manufacture().equals("0"))
         {
             holder.AddCar_CarModel_TV.setText(myListData.getCar_Model() + " / " + myListData.getYear_of_manufacture());
+
+            if(rtl.equals("1"))
+            {
+                holder.AddCar_CarModel_TV.setText(myListData.getYear_of_manufacture() + " / " +myListData.getCar_Model() );
+            }
+
         }
         else
         {
@@ -152,11 +184,18 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
 
 
 
-    private void deletecar(String uid,String car_id,String token) {
+    private void deletecar(String uid,String car_id,String token)
+    {
 
         /*Toast.makeText(context, uid, Toast.LENGTH_SHORT).show();
         Toast.makeText(context, car_id, Toast.LENGTH_SHORT).show();
         Toast.makeText(context, token, Toast.LENGTH_SHORT).show();*/
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
          StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.Delete_CARS_USER,
                 new Response.Listener<String>() {
@@ -173,6 +212,7 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                             {
                                 //  Toast.makeText(context, "Car deleted successfully", Toast.LENGTH_SHORT).show();
 
+                                progressDialog.dismiss();
                                 getCarsData();
 
                              /*   new AlertDialog.Builder(context)
@@ -189,6 +229,7 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                             }
                             else
                             {
+                                progressDialog.dismiss();
                                 new AlertDialog.Builder(context)
                                       //  .setMessage("Cannot delete! Activity exists for the selected car")
                                         .setMessage(context.getResources().getString(R.string.cannotdeletecar))
@@ -200,9 +241,9 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                         }catch (final JSONException e) {
 
                                  //   progressDialog.dismiss();
-                                    Toast.makeText(context,
-                                            "Json parsing error: " + e.getMessage(),
-                                            Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(context,
+//                                            "Json parsing error: " + e.getMessage(),
+//                                            Toast.LENGTH_LONG).show();
 
                         }
                     //          Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
@@ -210,10 +251,32 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                    Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                }) {
+                 new Response.ErrorListener() {
+                     @Override
+                     public void onErrorResponse(VolleyError error) {
+                         //   progressDialog.dismiss();
+                         progressDialog.dismiss();
+                         if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                         {
+                             Toast.makeText(context, context.getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                         } else if (error instanceof AuthFailureError) {
+                             //TODO
+                             //   Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                             //        Toast.makeText(context, R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                         } else if (error instanceof ServerError) {
+                             //TODO
+                             Toast.makeText(context, context.getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                         } else if (error instanceof NetworkError) {
+                             //TODO
+                             Toast.makeText(context, context.getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                         } else if (error instanceof ParseError) {
+                             //TODO
+                             Toast.makeText(context, context.getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                         }
+                     }
+                 }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -290,7 +353,7 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                                 recyclerView.setLayoutManager(linearLayoutManager);
                                 adapter.notifyDataSetChanged();
-                                //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                //    recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                 recyclerView.setAdapter(adapter);
 
                             }

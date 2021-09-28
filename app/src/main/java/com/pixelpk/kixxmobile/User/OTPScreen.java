@@ -314,7 +314,7 @@ public class OTPScreen extends AppCompatActivity {
 
                         //      Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
 
-                        alerbox();
+//                        alerbox();
                         // Toast.makeText(OTPScreen.this, getResources().getText(R.string.network_problem_warning), Toast.LENGTH_SHORT).show();
                         //      Toast.makeText(OTPScreen.this, s, Toast.LENGTH_SHORT).show();
                     }
@@ -501,6 +501,7 @@ mAuth.signInAnonymously()
                                         {
                                             Intent intent = new Intent(getApplicationContext(),Signup.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     })
                                     .show();
@@ -686,6 +687,7 @@ mAuth.signInAnonymously()
                                         {
                                             Intent intent = new Intent(getApplicationContext(),Signup.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     })
                                     .show();
@@ -836,6 +838,8 @@ mAuth.signInAnonymously()
     public void onBackPressed()
     {
         super.onBackPressed();
+        Intent intent = new Intent(OTPScreen.this, Login.class);
+        startActivity(intent);
         finish();
         progressDialog.dismiss();
     }
@@ -959,4 +963,5 @@ mAuth.signInAnonymously()
         super.onRestoreInstanceState(savedInstanceState);
         verificationId = savedInstanceState.getString(id);
     }*/
+
 }

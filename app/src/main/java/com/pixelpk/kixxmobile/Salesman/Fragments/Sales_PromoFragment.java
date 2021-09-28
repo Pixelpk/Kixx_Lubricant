@@ -15,9 +15,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.pixelpk.kixxmobile.R;
@@ -205,9 +212,44 @@ public class Sales_PromoFragment extends Fragment {
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                //    Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
             @Override
             protected Map<String, String> getParams() {
@@ -306,9 +348,44 @@ public class Sales_PromoFragment extends Fragment {
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                  //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
             @Override
             protected Map<String, String> getParams() {
@@ -406,9 +483,44 @@ public class Sales_PromoFragment extends Fragment {
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                  //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
             @Override
             protected Map<String, String> getParams() {

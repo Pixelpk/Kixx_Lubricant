@@ -33,6 +33,15 @@ public class URLs {
     public static String USER_CHANGE_PASSWORD = BASE_URL + "Kixx-App/Secure-Portal/api/user/change-password.php";
     public static String USER_SHOP_FEEDBACK = BASE_URL + "Kixx-App/Secure-Portal/api/user/feedback.php";
     public static String USER_SHOP_NOTIFICATION = BASE_URL + "Kixx-App/Secure-Portal/api/shop-user/notifications.php";
+
+    // On Sales notification Part
+    public static String seller_notification_url = BASE_URL + "Kixx-App/Secure-Portal/api/shop-user/shop-user-notifications.php";
+
+    //On Signup
+    public static String signup_user_validation_url = BASE_URL + "Kixx-App/Secure-Portal/api/check-auth.php";
+
+
+
     public static String SALES_SHOP_CLAIMS = BASE_URL + "Kixx-App/Secure-Portal/api/kixx-shops/claims.php";
     public static String USER_FORGOT_PASSWORD = BASE_URL + "Kixx-App/Secure-Portal/api/user/check-user-phone.php";
     public static String USER_FORGOT_PASS_CHANGE_PASSWORD = BASE_URL + "Kixx-App/Secure-Portal/api/user/forget-password-auth";

@@ -65,7 +65,7 @@
             android:layout_height="match_parent"
             android:text="@string/notification_desc"
             android:textColor="#c3c3c3"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
     </LinearLayout>
 

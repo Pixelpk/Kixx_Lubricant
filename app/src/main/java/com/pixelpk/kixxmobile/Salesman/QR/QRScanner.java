@@ -23,9 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -445,7 +450,6 @@ public class QRScanner extends AppCompatActivity {
                     public void onResponse(String response) {
 
                          //    Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
@@ -455,6 +459,7 @@ public class QRScanner extends AppCompatActivity {
                             productid_list.add("Select");
                             if(message.equals("success"))
                             {
+                                progressDialog.dismiss();
 
                                 JSONArray manufacturer  = jsonObj.getJSONArray("resp");
 
@@ -505,10 +510,15 @@ public class QRScanner extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                        } catch (final JSONException e) {
-                            runOnUiThread(new Runnable() {
+                        }
+
+                        catch (final JSONException e)
+                        {
+                            runOnUiThread(new Runnable()
+                            {
                                 @Override
-                                public void run() {
+                                public void run()
+                                {
                                     progressDialog.dismiss();
                            /*         Toast.makeText(QRScanner.this,
                                             "Json parsing error: " + e.getMessage(),
@@ -516,16 +526,47 @@ public class QRScanner extends AppCompatActivity {
                                 }
                             });
                         }
-
-
                         //      Toast.makeText(Signin.this, response, Toast.LENGTH_SHORT).show();
-
-
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                 //   Toast.makeText(QRScanner.this, error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getApplicationContext()(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getApplicationContext()(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
 
             @Override
@@ -570,7 +611,6 @@ public class QRScanner extends AppCompatActivity {
 
                   //     Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
 
-                        progressDialog.dismiss();
 
                         try {
                             JSONObject jsonObj = new JSONObject(response);
@@ -579,10 +619,11 @@ public class QRScanner extends AppCompatActivity {
 
                             if(message.contains("success"))
                             {
-
+                                progressDialog.dismiss();
                                 JSONArray manufacturer  = jsonObj.getJSONArray("resp");
 
-                                for (int i = 0; i < manufacturer.length(); i++) {
+                                for (int i = 0; i < manufacturer.length(); i++)
+                                {
 
                                     JSONObject m = manufacturer.getJSONObject(i);
 
@@ -602,20 +643,15 @@ public class QRScanner extends AppCompatActivity {
                                     //  new AddCarList("ABC 876","Jaguar","XF","2015")
                                     // product_list.add(user_car);
 
-
-
                                 }
 
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(QRScanner.this,
                                         R.layout.spinner_white_text,product_list);
 
-
-
                            //     QRScanner_caroil_SP.setAdapter(adapter);
 
-
-
                             }
+
                             else
                             {
                                 qrid = "";
@@ -623,10 +659,15 @@ public class QRScanner extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                        } catch (final JSONException e) {
-                            runOnUiThread(new Runnable() {
+                        }
+
+                        catch (final JSONException e)
+                        {
+                            runOnUiThread(new Runnable()
+                            {
                                 @Override
-                                public void run() {
+                                public void run()
+                                {
                                     progressDialog.dismiss();
                                    /* Toast.makeText(QRScanner.this,
                                             "Json parsing error: " + e.getMessage(),
@@ -641,10 +682,41 @@ public class QRScanner extends AppCompatActivity {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
-                    //    Toast.makeText(QRScanner.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getApplicationContext()(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getApplicationContext()(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {
@@ -745,7 +817,7 @@ public class QRScanner extends AppCompatActivity {
 
     public void update_user_data_qr_id(String qr_id,String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
-      //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -758,31 +830,28 @@ public class QRScanner extends AppCompatActivity {
 
 //                        Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
 
-                        progressDialog.dismiss();
 
                         if (response.contains("success"))
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(QRScanner.this, getResources().getString(R.string.oil_change_successful), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(QRScanner.this, HomeScreen.class);
                             startActivity(intent);
                         }
                         else if (response.contains("Expired"))
                         {
+                            progressDialog.dismiss();
+
                             Toast.makeText(QRScanner.this, getResources().getString(R.string.qrinvalid), Toast.LENGTH_SHORT).show();
                             mCodeScanner.startPreview();
                         }
                         else if(response.contains("Already Redeemed"))
                         {
+                            progressDialog.dismiss();
 
                             Toast.makeText(QRScanner.this, "QR already redeemed", Toast.LENGTH_SHORT).show();
                             mCodeScanner.startPreview();
                         }
-                        else
-                        {
-                            Toast.makeText(QRScanner.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
-                        }
-
 
                         // Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
 
@@ -791,10 +860,42 @@ public class QRScanner extends AppCompatActivity {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
-                   //     Toast.makeText(QRScanner.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getApplicationContext()(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getApplicationContext()(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {
@@ -840,12 +941,13 @@ public class QRScanner extends AppCompatActivity {
 
     public void update_user_data(String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
-        //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show()
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CHANGE_OIL_SALES,
+
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -853,26 +955,25 @@ public class QRScanner extends AppCompatActivity {
 
                       //  Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
 
-                        progressDialog.dismiss();
 
                         if (response.contains("success"))
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(QRScanner.this, getResources().getString(R.string.oil_change_successful), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(QRScanner.this, HomeScreen.class);
                             startActivity(intent);
                         }
+
                         else if (response.contains("Expired"))
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(QRScanner.this, getResources().getString(R.string.qrinvalid), Toast.LENGTH_SHORT).show();
                         }
+
                         else if(response.contains("Already Redeemed"))
                         {
-
+                            progressDialog.dismiss();
                             Toast.makeText(QRScanner.this, "QR already redeemed", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(QRScanner.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -883,10 +984,42 @@ public class QRScanner extends AppCompatActivity {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
-                 //       Toast.makeText(QRScanner.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getApplicationContext()(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getApplicationContext()(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {

@@ -47,10 +47,15 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -504,6 +509,15 @@ public class UpdateUserProfile extends AppCompatActivity {
         gender = findViewById(R.id.Updateuserprofile_gender_SP);
         occupation_sp = findViewById(R.id.Updateuserprofile_occupation_SP);
 
+        mobile = findViewById(R.id.Updateuserprofile_mobile_ET);
+
+        email = findViewById(R.id.Updateuserprofile_email_ET);
+        Updateuserprofile_City_TV = findViewById(R.id.Updateuserprofile_City_TV);
+        Updatebtn = findViewById(R.id.Updateuserprofile_update_Btn);
+        AddCarBtn = findViewById(R.id.Updateuserprofile_addcar_Btn);
+        updateprofile_back = findViewById(R.id.updateprofile_back);
+
+
 
         sharedPreferences = getSharedPreferences("Shared",MODE_PRIVATE);
 
@@ -539,12 +553,7 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         gender.setAdapter(adapter);
         occupation_sp.setAdapter(adapter_occupat);
-        email = findViewById(R.id.Updateuserprofile_email_ET);
-        mobile = findViewById(R.id.Updateuserprofile_mobile_ET);
-        Updateuserprofile_City_TV = findViewById(R.id.Updateuserprofile_City_TV);
-        Updatebtn = findViewById(R.id.Updateuserprofile_update_Btn);
-        AddCarBtn = findViewById(R.id.Updateuserprofile_addcar_Btn);
-        updateprofile_back = findViewById(R.id.updateprofile_back);
+
 
         occupation_data = new ArrayList<>();
         city_list = new ArrayList(Arrays.asList(city_array_list));
@@ -884,12 +893,30 @@ public class UpdateUserProfile extends AppCompatActivity {
                         }
                     }
                 },
-                new Response.ErrorListener()
-                {
+                new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
+                    public void onErrorResponse(VolleyError error) {
+                        //   progressDialog.dismiss();
                         progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {

@@ -153,8 +153,8 @@ public class NotificationsFragment extends Fragment {
     }
 
 
-    private void get_user_data(String id) {
-
+    private void get_user_data(String id)
+    {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -192,7 +192,8 @@ public class NotificationsFragment extends Fragment {
 
                                 }
 
-                                if(!all_notifications.equals("null")) {
+                                if(!all_notifications.equals("null"))
+                                {
 
                                     for (int i = 0; i < all_notifications.length(); i++) {
                                         JSONObject objads = all_notifications.getJSONObject(i);

@@ -3,19 +3,26 @@ package com.pixelpk.kixxmobile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -23,6 +30,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.pixelpk.kixxmobile.User.ChangePassword;
 import com.pixelpk.kixxmobile.User.HomeScreen;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +47,8 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
     String getdata;
 
+    ProgressDialog progressDialog;
+
     String visibility = "0";
 
     @Override
@@ -47,6 +59,8 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
         ChangePassword_changepassBtn = findViewById(R.id.ForgotPass_ChangePassword_changepassBtn);
         ChangePassword_newpassET_txt = findViewById(R.id.ForgotPass_ChangePassword_newpassET_txt);
         ChangePassword_confpassET_txt = findViewById(R.id.ForgotPass_ChangePassword_confpassET_txt);
+
+        progressDialog = new ProgressDialog(this);
 
         getdata = getIntent().getStringExtra("phone");
 
@@ -71,7 +85,7 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
                 {
                     if(newpass.length()<3)
                     {
-                        ChangePassword_newpassET_txt.setError("Password Must be 3 Characters Long");
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.password_must_have_error), Toast.LENGTH_SHORT).show();
                     }
 
                     else if(newpass.equals(confpass))
@@ -134,18 +148,54 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
 
 
-    private void Changepassword(final String ch_pass) {
+    private void Changepassword(final String ch_pass)
+    {
 
      //   Toast.makeText(this, getdata, Toast.LENGTH_SHORT).show();
      //   Toast.makeText(this, ch_pass, Toast.LENGTH_SHORT).show();
 
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_FORGOT_PASS_CHANGE_PASSWORD,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
 
-                //       Toast.makeText(ForgotPass_ChangePassword.this, response, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_FORGOT_PASS_CHANGE_PASSWORD,
+
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Log.d("tag_change_pass",response);
+
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            String message        = jsonObject.getString("status");
+
+                            if(message.equals("success"))
+                            {
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.passwordchangedsuccessfully), Toast.LENGTH_SHORT).show();
+                            }
+
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.passwordchangedfailed), Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }
+
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+
+                        //       Toast.makeText(ForgotPass_ChangePassword.this, response, Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(ForgotPass_ChangePassword.this, HomeScreen.class);
                         startActivity(intent);
@@ -156,9 +206,30 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();
-//                        Toast.makeText(ForgotPass_ChangePassword.this, error.toString(), Toast.LENGTH_LONG).show();
+                    public void onErrorResponse(VolleyError error)
+                    {
+
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.incorrectunamepass), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+//                            Toast.makeText(ForgotPass_ChangePassword.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 

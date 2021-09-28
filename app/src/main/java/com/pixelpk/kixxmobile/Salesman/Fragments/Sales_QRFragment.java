@@ -29,10 +29,15 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -676,9 +681,45 @@ public class Sales_QRFragment extends Fragment {
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                   // Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
 
             @Override
@@ -772,7 +813,7 @@ public class Sales_QRFragment extends Fragment {
                                  //   Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                                     new AlertDialog.Builder(getContext())
-                                            .setMessage(getResources().getString(R.string.networkerror))
+                                            .setMessage(getResources().getString(R.string.enter_user_id))
                                             .setCancelable(false)
                                             .setNegativeButton(getResources().getString(R.string.ok), null)
                                             .show();
@@ -795,20 +836,47 @@ public class Sales_QRFragment extends Fragment {
 
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();
-                 //       Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
 
-                        new AlertDialog.Builder(getContext())
-                                .setMessage(getResources().getString(R.string.enter_user_id))
-                                .setCancelable(false)
-                                .setNegativeButton(getResources().getString(R.string.ok), null)
-                                .show();
-                        progressDialog.dismiss();
-                    }
-                })
+                new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //   progressDialog.dismiss();
+                progressDialog.dismiss();
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if(error instanceof AuthFailureError)
+                {
+                    //TODO
+                    //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                }
+
+                else if (error instanceof ServerError)
+                {
+                    //TODO
+                    Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                }
+
+                else if (error instanceof NetworkError)
+                {
+                    //TODO
+                    Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if (error instanceof ParseError)
+                {
+                    //TODO
+                    Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                }
+            }
+        })
         {
 
             @Override
@@ -990,7 +1058,6 @@ public class Sales_QRFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
 
-                        progressDialog.dismiss();
                         //      Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                         //     Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                         //  Log.d("HTTP_AUTHORIZATION",token);
@@ -1003,10 +1070,9 @@ public class Sales_QRFragment extends Fragment {
 
                             //    Toast.makeText(getContext(), user_exist_check, Toast.LENGTH_SHORT).show();
 
-                            if(message.equals("success")) {
-
-
-
+                            if(message.equals("success"))
+                            {
+                                progressDialog.dismiss();
                                 //      JSONArray cars  = jsonObj.getJSONArray("cars");
                                 JSONArray manufact  = jsonObj.getJSONArray("manufacturer");
 
@@ -1106,11 +1172,42 @@ public class Sales_QRFragment extends Fragment {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();\
-                        error.printStackTrace();
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                       // Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -1166,7 +1263,6 @@ public class Sales_QRFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
 
-                        progressDialog.dismiss();
                         //      Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                         //     Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                         //  Log.d("HTTP_AUTHORIZATION",token);
@@ -1182,9 +1278,11 @@ public class Sales_QRFragment extends Fragment {
 
                             //        Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
 
-                            if(message.equals("success")) {
+                            if(message.equals("success"))
+                            {
                                 //          carid_list.add("select car brand");
 
+                                progressDialog.dismiss();
 
                                 JSONArray cars  = jsonObj.getJSONArray("cars");
                                 // JSONArray manufact  = jsonObj.getJSONArray("manufacturer");
@@ -1284,15 +1382,43 @@ public class Sales_QRFragment extends Fragment {
 
                 },
                 new Response.ErrorListener() {
-
-
-
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();\
-                        error.printStackTrace();
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                      //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -1354,7 +1480,6 @@ public class Sales_QRFragment extends Fragment {
 
                     //    Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
 
-                        progressDialog.dismiss();
                         //      Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                         //     Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                         //  Log.d("HTTP_AUTHORIZATION",token);
@@ -1368,7 +1493,10 @@ public class Sales_QRFragment extends Fragment {
 
                             //    Toast.makeText(getContext(), user_exist_check, Toast.LENGTH_SHORT).show();
 
-                            if(message.equals("success")) {
+                            if(message.equals("success"))
+                            {
+                                progressDialog.dismiss();
+
                                 String total_days = jsonObj.getString("days_since_last_activity");
                   //              if()
                                 if(total_days!="null") {
@@ -1443,11 +1571,42 @@ public class Sales_QRFragment extends Fragment {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();\
-                        error.printStackTrace();
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                      //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 

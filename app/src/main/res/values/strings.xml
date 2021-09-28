@@ -520,6 +520,16 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="referal_code_error">Invalid Referral Code. No spaces allowed</string>
     <string name="agree_to_term">Agree to terms of use</string>
     <string name="fill_fields">Fill this field</string>
+
+
+
+
+    <string name="rate_your_experience">Kindly rate your experience with us</string>
+
+
+
+
+
     <string name="password_must_have_error">Password must have atleast 3 characters</string>
     <string name="shopkeeper_signin_screen">Shopkeeper Signin Screen:</string>
     <string name="already_a_shopkeeper">Already a Shopkeeper?</string>
@@ -691,7 +701,7 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="pleasecheckinternetconnection">Network issue</string>
     <string name="invalidreferralcode">Invalid Referral Code. No spaces allowed</string>
     <string name="phonenumbermuststartwith">Phone number must start with 0</string>
-    <string name="networkerror">Network Problem! Please check your internet connection and restart app</string>
+    <string name="networkerror">Network Problem! Please check your internet connection it may be slow. Kindly try again with better internet</string>
     <string name="useralreadyregistered">Please login or click on forgot password if you do not remember your password</string>
     <string name="usersuccessfullyregistered">User successfully registered</string>
     <string name="servermaintainence">Server Under Maintainence, Try again later</string>
@@ -745,8 +755,28 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="redeem">Redeem</string>
     <string name="notenoughpoints">Not enough points for Free liters claim.</string>
     <string name="passwordchangedsuccessfully">Your password changed successfully</string>
+
+
+    <string name="passwordchangedfailed">Update password failed, Kindly check your internet connection and try again</string>
+
+
+
+    <string name="points_claimed">Points claimed successful</string>
+
+
+
     <string name="thankyouforresponse">Thank you! Your response is valueable for us.</string>
+
+    <string name="response_customer_failed">There was an error while contacting to Kixx</string>
+
+
     <string name="feedbacksubmitted">Feedback submitted successfully</string>
+
+
+    <string name="feedbacksubmittedfailed">Feedback submitted successfully</string>
+
+
+
     <string name="languageconfirmation">أتكد</string>
     <string name="verificationerror">Code Verification Error, Try again</string>
     <string name="nocaradded">No Car Added. Add your cars</string>

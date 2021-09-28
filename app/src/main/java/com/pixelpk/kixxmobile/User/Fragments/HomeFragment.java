@@ -1,6 +1,7 @@
 package com.pixelpk.kixxmobile.User.Fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -470,20 +471,23 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefresh()
             {
-                swipeRefreshLayout.setRefreshing(false);
                 if (activity != null && isAdded())
                 {
 //                    imageslider();
-//                    myListData.clear();
-//                    user_car_status.clear();
-//                    user_cars_list.clear();
-//                    adslist.clear();
-//                    imageSliderLists.clear();
                     get_user_data(userid);
                 }
 
                 getPromoData();
                 getadsData();
+                swipeRefreshLayout.setRefreshing(false);
+
+                myListData.clear();
+                user_car_status.clear();
+                user_cars_list.clear();
+                adslist.clear();
+                imageSliderLists.clear();
+                please_select_car.clear();
+
             }
         });
 
@@ -972,12 +976,12 @@ public class HomeFragment extends Fragment {
         user_car_status.clear();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-//        progressDialog.setMessage("Please Wait! while we load the data");
         progressDialog.setContentView(R.layout.progress_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.END_USER,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
 
@@ -1179,12 +1183,13 @@ public class HomeFragment extends Fragment {
                                 }*/
 
 
-                                for (int i = 0; i < data.length(); i++) {
+                                for (int i = 0; i < data.length(); i++)
+                                {
 
                                     JSONObject c = data.getJSONObject(i);
 
-                                    if (!cardata.equals("null")) {
-
+                                    if (!cardata.equals("null"))
+                                    {
                                         objcars = cars.getJSONObject(i);
                                         user_odometer = objcars.getString("odometer");
                                         editor.putString(Shared.loggedIn_user_odometer, user_id);
@@ -1207,7 +1212,6 @@ public class HomeFragment extends Fragment {
 
 
                                     //   Toast.makeText(getContext(), badge_activity_count, Toast.LENGTH_SHORT).show();
-                                    HomeFragment_User_id.setText(getResources().getString(R.string.User_id) + ": " + user_id);
                                     editor.putString(Shared.loggedIn_user_city, user_user_role);
                                     editor.putString(Shared.loggedIn_user_id, user_id);
                                     editor.putString(Shared.loggedIn_user_name, user_name);
@@ -1230,24 +1234,37 @@ public class HomeFragment extends Fragment {
                                 if (user_status.equals("1")) {
                                     /*ViewDialog alert = new ViewDialog();
                                     alert.showDialog(getActivity());*/
-                                } else {
+                                }
+
+                                else
+                                {
                                     ViewDialog alert = new ViewDialog();
                                     alert.showDialog(getActivity());
                                 }
 
                                 //   Toast.makeText(activity, user_dp, Toast.LENGTH_SHORT).show();
 
-                                if (Integer.parseInt(badge_activity_count) == 0) {
+                                if (Integer.parseInt(badge_activity_count) == 0)
+                                {
                                     current_badge("Bronze");
-                                } else if (Integer.parseInt(badge_activity_count) >= 1 && Integer.parseInt(badge_activity_count) < 10) {
+                                }
+
+                                else if (Integer.parseInt(badge_activity_count) >= 1 && Integer.parseInt(badge_activity_count) < 10)
+                                {
                                     current_badge("Silver");
-                                } else if (Integer.parseInt(badge_activity_count) >= 10 && Integer.parseInt(badge_activity_count) < 25) {
+                                }
+
+                                else if (Integer.parseInt(badge_activity_count) >= 10 && Integer.parseInt(badge_activity_count) < 25)
+                                {
                                     current_badge("Gold");
-                                } else if (Integer.parseInt(badge_activity_count) >= 25) {
+                                }
+
+                                else if (Integer.parseInt(badge_activity_count) >= 25)
+                                {
                                     current_badge("Platinum");
                                 }
-                                setdata_to_fields(user_name, user_ph, user_loyality_points, user_odometer, user_dp);
 
+                                setdata_to_fields(user_name, user_ph, user_loyality_points, user_odometer, user_dp);
 
                             }
 
@@ -1865,7 +1882,7 @@ public class HomeFragment extends Fragment {
                                 Image_Sliding_adapter adapter = new Image_Sliding_adapter(imageSliderLists, getContext(), "promos", "user");
                                 //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                 sliderView.setSliderAdapter(adapter);
-                                sliderView.startAutoCycle();
+//                                sliderView.startAutoCycle();
 
                                 progressDialog.dismiss();
 
@@ -1925,17 +1942,20 @@ public class HomeFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.PROMOS,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-
-                        try {
+                    public void onResponse(String response)
+                    {
+                        try
+                        {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
 
                             //       Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-                            if (message.contains("success")) {
+                            if (message.contains("success"))
+                            {
                                 JSONArray data = jsonObj.getJSONArray("ads");
 
-                                for (int i = 0; i < data.length(); i++) {
+                                for (int i = 0; i < data.length(); i++)
+                                {
 
                                     JSONObject c = data.getJSONObject(i);
 
@@ -1955,7 +1975,7 @@ public class HomeFragment extends Fragment {
                                 Image_Sliding_adapter adapter = new Image_Sliding_adapter(list, getContext(), "ads", "user");
                                 //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                 sliderView_ads.setSliderAdapter(adapter);
-                                sliderView_ads.startAutoCycle();
+//                                sliderView_ads.startAutoCycle();
                        /*         ImageSlidingAdapter adapter = new ImageSlidingAdapter(adslist, getContext(), "ads", "user");
                                 HomeFragment_ads_RV.setHasFixedSize(true);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -1989,15 +2009,22 @@ public class HomeFragment extends Fragment {
                                 //      adapter.notifyDataSetChanged();
                                 progressDialog.dismiss();
 
-                            } else {
+                            }
+
+                            else
+                            {
                                 Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
+                        }
 
-                        } catch (final JSONException e) {
-                            getActivity().runOnUiThread(new Runnable() {
+                        catch (final JSONException e)
+                        {
+                            getActivity().runOnUiThread(new Runnable()
+                            {
                                 @Override
-                                public void run() {
+                                public void run()
+                                {
                                     progressDialog.dismiss();
                                     /*Toast.makeText(getContext(),
                                             "Json parsing error: " + e.getMessage(),
@@ -2008,8 +2035,6 @@ public class HomeFragment extends Fragment {
 
 
                         //      Toast.makeText(Signin.this, response, Toast.LENGTH_SHORT).show();
-
-
                     }
                 },
                 error ->
@@ -2048,7 +2073,8 @@ public class HomeFragment extends Fragment {
             //   Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
             pop_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v)
+                {
                     dialog.dismiss();
                 }
             });
@@ -2072,7 +2098,7 @@ public class HomeFragment extends Fragment {
 
     public void Mileage_dialogbox(String car_id, String status, String car_number, int index)
     {
-        LayoutInflater factory = LayoutInflater.from(getContext());
+        LayoutInflater factory = LayoutInflater.from(getActivity());
         final View milage_dialog = factory.inflate(R.layout.milage_dialog, null);
         final AlertDialog deleteDialog = new AlertDialog.Builder(getContext()).create();
         deleteDialog.setTitle("Average Daily Car Travel ( " + car_number + " )");
@@ -2081,10 +2107,11 @@ public class HomeFragment extends Fragment {
 
         EditText mileage = milage_dialog.findViewById(R.id.HomeScreen_dialog_carmileage_ET);
 
-        milage_dialog.findViewById(R.id.HomeScreen_dialog_update_btn).setOnClickListener(new View.OnClickListener() {
+        milage_dialog.findViewById(R.id.HomeScreen_dialog_update_btn).setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 String val = mileage.getEditableText().toString();
                 //     Toast.makeText(getContext(),  car_id+" "+status+" "+val, Toast.LENGTH_SHORT).show();
                 Log.d("calculation", car_id + " " + status + " " + val);

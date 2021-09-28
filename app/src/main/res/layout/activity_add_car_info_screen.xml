@@ -86,7 +86,7 @@
             android:inputType="textPersonName"
             android:textColor="#ffffff"
             android:textColorHint="@color/gray_color"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/AddCarInfo_carodometer_ET"
@@ -173,7 +173,7 @@
                 android:textColorHint="@color/gray_color"
                 android:hint="@string/select_car_brand"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/AddCarInfo_carmanufact_dropIV"
@@ -246,7 +246,7 @@
                 android:textColorHint="@color/gray_color"
                 android:hint="@string/select_car_model"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/imageView39"
@@ -317,7 +317,7 @@
                 android:textColorHint="@color/gray_color"
                 android:hint="@string/select_year_of_manufacturing"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/imageView319"
@@ -390,7 +390,7 @@
                 android:textColor="#ffffff"
                 android:textColorHint="@color/gray_color"
                 android:hint="@string/selectcarenginetype"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/imageView391"

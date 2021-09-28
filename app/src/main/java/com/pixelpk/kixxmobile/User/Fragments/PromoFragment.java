@@ -201,13 +201,8 @@ public class PromoFragment extends Fragment {
 
     private void getPromoData()
     {
-
-//        Toast.makeText(getActivity(), "promos_data", Toast.LENGTH_SHORT).show();
         promos.clear();
         progressDialog.setCanceledOnTouchOutside(false);
-/*
-        progressDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-*/
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);

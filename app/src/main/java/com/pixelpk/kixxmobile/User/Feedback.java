@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,9 +23,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -32,6 +38,9 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,20 +96,16 @@ public class Feedback extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                feeds = ContactUs_feedback_description.getText().toString();
 
-
-                if(!ContactUs_feedback_description.getText().toString().equals(""))
+                if(feeds.isEmpty())
                 {
-                    feeds = ContactUs_feedback_description.getText().toString();
-                }
-                else
-                {
-                    feeds = "null";
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.fill_fields), Toast.LENGTH_SHORT).show();
                 }
 
-                if(ratingBar.getRating() == 0)
+                else if(ratingBar.getRating() == 0)
                 {
-
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.rate_your_experience), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -221,16 +226,37 @@ public class Feedback extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_SHOP_FEEDBACK,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response)
+                    {
+                        Log.d("tag_feed_res",response);
 
-                        Toast.makeText(Feedback.this, getResources().getString(R.string.feedbacksubmitted), Toast.LENGTH_SHORT).show();
-                        //       Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
-                        finish();
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            String message = jsonObject.getString("status");
 
 
-                        progressDialog.dismiss();
-                    //    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                            if(message.equals("success"))
+                            {
+                                progressDialog.dismiss();
 
+                                Toast.makeText(Feedback.this, getResources().getString(R.string.feedbacksubmitted), Toast.LENGTH_SHORT).show();
+                                //       Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            else
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(Feedback.this, getResources().getString(R.string.feedbacksubmittedfailed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
 
                     }
                 },
@@ -238,8 +264,26 @@ public class Feedback extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                     //   Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {

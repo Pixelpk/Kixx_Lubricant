@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,9 +29,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -108,8 +114,13 @@ public class Sales_HomeFragment extends Fragment {
 
     SliderView sliderView;
 
+    ScrollView seller_home_data;
+
     String shopidforclaim;
 
+    LinearLayout seller_nonet_LL;
+
+    Button try_again_button_seller;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,6 +141,16 @@ public class Sales_HomeFragment extends Fragment {
                 get_claims_data(shopidforclaim);
                 //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+            }
+        });
+
+
+        try_again_button_seller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                get_user_data(sales_userid);
+                get_claims_data(shopidforclaim);
             }
         });
 
@@ -298,6 +319,12 @@ public class Sales_HomeFragment extends Fragment {
     //    dotscount = viewPagerAdapter.getCount();
     //    dots = new ImageView[dotscount];
 
+        seller_home_data = view.findViewById(R.id.seller_home_data);
+
+        seller_nonet_LL = view.findViewById(R.id.seller_nonet_LL);
+
+        try_again_button_seller = view.findViewById(R.id.try_again_button_seller);
+
         Sales_HomeFragment_carclaim_ET = view.findViewById(R.id.Sales_HomeFragment_carclaim_ET);
 
 
@@ -369,6 +396,10 @@ public class Sales_HomeFragment extends Fragment {
                             {
 
                                 progressDialog.dismiss();
+
+                                seller_home_data.setVisibility(View.VISIBLE);
+                                seller_nonet_LL.setVisibility(View.GONE);
+
                                 JSONArray data  = jsonObj.getJSONArray("user");
                             //    String cardata = jsonObj.getString("cars");
                                 String adsdata = jsonObj.getString("ads");
@@ -535,10 +566,43 @@ public class Sales_HomeFragment extends Fragment {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                       // Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+//                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                            seller_home_data.setVisibility(View.GONE);
+                            seller_nonet_LL.setVisibility(View.VISIBLE);
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -701,10 +765,41 @@ public class Sales_HomeFragment extends Fragment {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
                         progressDialog.dismiss();
-//                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 

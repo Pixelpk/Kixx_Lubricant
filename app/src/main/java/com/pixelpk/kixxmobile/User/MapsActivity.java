@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,9 +30,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -53,6 +60,7 @@ import com.pixelpk.kixxmobile.Login;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
+import com.sun.mail.imap.Rights;
 import com.ybs.countrypicker.CountryPicker;
 import com.ybs.countrypicker.CountryPickerListener;
 
@@ -94,6 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     String rtl;
 
+    @SuppressLint("RtlHardcoded")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -107,6 +116,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         {
             Becomaseler_back_IV.setImageResource(R.drawable.black_back_arrow_arabic);
             Becomaseler_back_IV.setRotation(180);
+
+            MapsActivity_Email_ET.setGravity(Gravity.RIGHT);
+            MapsActivity_Shopname_ET.setGravity(Gravity.RIGHT);
         }
 
 
@@ -158,7 +170,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String only_phone = MapsActivity_Contactnum_ET.getText().toString();
 
-                String s = only_phone.substring(0,1);
+
 
             //    Toast.makeText(MapsActivity.this, cont, Toast.LENGTH_SHORT).show();
 
@@ -187,15 +199,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     MapsActivity_Contactnum_ET.setError(getResources().getString(R.string.incorrect_data));
                 }
 
-                else if(s.equals("0"))
-                {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
-                }
+
 
                 else
                 {
+
+                    String s = only_phone.substring(0,1);
+                    if(s.equals("0"))
+                {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
+                }
+                    else
+                    {
+                        Register_Shop_Request(String.valueOf(centerLatLang.longitude),String.valueOf(centerLatLang.latitude),shop,cont,email);
+
+                    }
 //                    Toast.makeText(getApplicationContext(), cont, Toast.LENGTH_SHORT).show();
-                    Register_Shop_Request(String.valueOf(centerLatLang.longitude),String.valueOf(centerLatLang.latitude),shop,cont,email);
                 }
 
          //       Toast.makeText(MapsActivity.this, String.valueOf(centerLatLang.longitude) + "" + String.valueOf(centerLatLang.latitude), Toast.LENGTH_SHORT).show();
@@ -348,6 +367,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void Register_Shop_Request(String longi,String lati,String shopname,String contact,String email)
     {
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         //  Toast.makeText(this, refreshedToken, Toast.LENGTH_SHORT).show();
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
 
@@ -366,6 +389,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             if (message.contains("success"))
                             {
+                                progressDialog.dismiss();
                                 Toast.makeText(MapsActivity.this, getResources().getString(R.string.foroilchange), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MapsActivity.this, Login.class);
                                 startActivity(intent);
@@ -373,12 +397,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             else if (resp.contains("Duplicate"))
                             {
+                                progressDialog.dismiss();
                                 Toast.makeText(MapsActivity.this, getResources().getString(R.string.useralreadyregisteredunregistered), Toast.LENGTH_SHORT).show();
-                            }
-
-                            else
-                            {
-                                Toast.makeText(MapsActivity.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -399,8 +419,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                       progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {

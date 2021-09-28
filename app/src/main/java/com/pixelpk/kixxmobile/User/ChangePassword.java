@@ -2,10 +2,12 @@ package com.pixelpk.kixxmobile.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -25,6 +32,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,11 +53,14 @@ public class ChangePassword extends AppCompatActivity {
 
     ImageView ContactUs_backbtn;
 
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+        progressDialog = new ProgressDialog(this);
         ChangePassword_changepassBtn = findViewById(R.id.ChangePassword_changepassBtn);
         ChangePassword_newpassET_txt = findViewById(R.id.ChangePassword_newpassET_txt);
         ChangePassword_confpassET_txt = findViewById(R.id.ChangePassword_confpassET_txt);
@@ -205,31 +218,85 @@ public class ChangePassword extends AppCompatActivity {
 
     }
 
-    private void Changepassword(final String ch_pass) {
+    private void Changepassword(final String ch_pass)
+    {
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_CHANGE_PASSWORD,
-                new Response.Listener<String>() {
+                new Response.Listener<String>()
+                {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response)
+                    {
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            String message = jsonObject.getString("status");
+
+
+                            if(message.equals("success"))
+                            {
+                                progressDialog.dismiss();
+
+                                Toast.makeText(ChangePassword.this,  getResources().getString(R.string.passwordchangedsuccessfully), Toast.LENGTH_SHORT).show();
+                                //       Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            else
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(ChangePassword.this, getResources().getString(R.string.passwordchangedfailed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+
+                        Log.d("tag_change_pass",response);
 
                       //  Toast.makeText(ChangePassword.this, response, Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(ChangePassword.this,  getResources().getString(R.string.passwordchangedsuccessfully), Toast.LENGTH_SHORT).show();
                      //   Toast.makeText(ChangePassword.this, "Your password changed successfully", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(ChangePassword.this,HomeScreen.class);
-                        startActivity(intent);
                         finish();
 
 
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                  //      Toast.makeText(ChangePassword.this, error.toString(), Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -242,12 +309,11 @@ public class ChangePassword extends AppCompatActivity {
 
 
             @Override
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams()
+            {
                 Map<String, String> parameters = new HashMap<String, String>();
 
                 parameters.put("password", ch_pass);
-
-
                 return parameters;
             }
 
@@ -269,7 +335,7 @@ public class ChangePassword extends AppCompatActivity {
         }
         else if(pass.length()<3)
         {
-            ChangePassword_newpassET_txt.setError(getResources().getString(R.string.password_must_have_error));
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.password_must_have_error), Toast.LENGTH_SHORT).show();
             return 4;
         }
         else if(confpass.equals(""))
@@ -287,9 +353,4 @@ public class ChangePassword extends AppCompatActivity {
             return  3;
         }
     }
-
-
-
-
-
 }

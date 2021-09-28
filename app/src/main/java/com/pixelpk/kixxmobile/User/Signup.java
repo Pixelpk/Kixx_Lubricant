@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -16,6 +18,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -389,12 +392,7 @@ public class Signup extends AppCompatActivity {
 
                                     //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
-
-                                    progressDialog.setCanceledOnTouchOutside(false);
-                                    progressDialog.show();
-                                    progressDialog.setContentView(R.layout.progress_layout);
-                                    progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                                    AuthenticateContactNumber(usercontact, userpassword, refreshedToken, referral_code);
+                                    AuthenticateContactNumber(phone, userpassword, refreshedToken, referral_code);
 
                            /* Intent intent = new Intent(Signup.this,HomeScreen.class);
                             startActivity(intent);*/
@@ -409,20 +407,18 @@ public class Signup extends AppCompatActivity {
                         else
                         {
 
-                            if(termsandcondition_set == true) {
+                            if(termsandcondition_set == true)
+                            {
                                 usercontact = Signup_userphET_txt.getText().toString();
                                 userpassword = Signup_userpassET_txt.getText().toString();
 
-
                                 //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
-
-                                progressDialog.setCanceledOnTouchOutside(false);
-                                progressDialog.show();
-                                progressDialog.setContentView(R.layout.progress_layout);
-                                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                                AuthenticateContactNumber(usercontact, userpassword, refreshedToken, referral_code);
-
+//                                progressDialog.setCanceledOnTouchOutside(false);
+//                                progressDialog.show();
+//                                progressDialog.setContentView(R.layout.progress_layout);
+//                                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                AuthenticateContactNumber(phone, userpassword, refreshedToken, referral_code);
 
                             }
 
@@ -591,17 +587,111 @@ public class Signup extends AppCompatActivity {
     }*/
 
 
+
     public void AuthenticateContactNumber(final String contact, final String password, final String fcm_id, final String referral)
     {
+        Toast.makeText(getApplicationContext(), contact, Toast.LENGTH_SHORT).show();
+//        progressDialog.setMessage("Please Wait! we are signing you up");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.signup_user_validation_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Log.d("tag_signup_user",response);
 
-        editor.putString(Constants.Signup_cont,phone);
-        editor.putString(Constants.Signup_password,password);
-        editor.putString(Constants.Signup_fcmid,fcm_id);
-        editor.putString(Constants.Signup_referral,referral);
-        editor.apply();
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
 
-        sendcode(phone,zeroexcludedphonenumber);
+                            String message = jsonObject.getString("status");
 
+                            if(message.equals("success"))
+                            {
+                                progressDialog.dismiss();
+                                new AlertDialog.Builder(Signup.this)
+                                        .setTitle(getResources().getString(R.string.user_already_exist_header))
+                                        .setMessage(getResources().getString(R.string.useralreadyregistered))
+                                        .setCancelable(false)
+                                        .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which)
+                                            {
+                                                finish();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                            else
+                            {
+                                progressDialog.dismiss();
+
+                                editor.putString(Constants.Signup_cont,phone);
+                                editor.putString(Constants.Signup_password,password);
+                                editor.putString(Constants.Signup_fcmid,fcm_id);
+                                editor.putString(Constants.Signup_referral,referral);
+                                editor.apply();
+
+                                sendcode(phone,zeroexcludedphonenumber);
+                            }
+
+
+
+                        }
+
+
+                        catch (JSONException e)
+                        {
+                            progressDialog.dismiss();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(Signup.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            Toast.makeText(Signup.this, getResources().getString(R.string.incorrectunamepass), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(Signup.this, getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(Signup.this, getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(Signup.this, getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                })
+        {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<String, String>();
+
+
+                parameters.put("phone", contact);
+
+                return parameters;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(Signup.this);
+        requestQueue.add(stringRequest);
     }
 
     public void sendcode(String completecontact,String zeroexcludedphonenumber) {
@@ -613,11 +703,12 @@ public class Signup extends AppCompatActivity {
 
         } else
             {
-            if (completecontact.length() <= 8 || completecontact.length() >= 16)
-            {
+//            if (completecontact.length() <= 8 || completecontact.length() >= 16)
+//            {
               //  progressDialog.dismiss();
                 /*Signup_userphET_txt.setError( getResources().getString(R.string.onlyforksa));*/
-            } else {
+//            }
+//            else {
              //   progressDialog.dismiss();
               //  Toast.makeText(this, completecontact, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Signup.this, OTPScreen.class);
@@ -625,8 +716,9 @@ public class Signup extends AppCompatActivity {
                 intent.putExtra("withoutzeroAuthPhone",zeroexcludedphonenumber);
                 intent.putExtra("Screen", "1");
                 startActivity(intent);
+                finish();
                 //Toast.makeText(Signup.this, "User Login", Toast.LENGTH_SHORT).show();
-            }
+//            }
         }
     }
 

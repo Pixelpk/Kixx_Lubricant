@@ -17,10 +17,15 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -28,6 +33,9 @@ import com.pixelpk.kixxmobile.GMailSender;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.PasswordAuthentication;
 import java.util.HashMap;
@@ -126,36 +134,73 @@ public class ContactUs extends AppCompatActivity {
 
     public void sendContactData(String uid,String subject,String description)
     {
-        //  Toast.makeText(this, refreshedToken, Toast.LENGTH_SHORT).show();
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        sendEmail();
-
-
-        //final ProgressDialog loading = ProgressDialog.show(this,"Please wait...","",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.USER_CONTACT_US,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response)
+                    {
+                        Log.d("tag_contact_res",response);
+
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            String message = jsonObject.getString("status");
 
 
-                        Toast.makeText(ContactUs.this, getResources().getString(R.string.thankyouforresponse), Toast.LENGTH_SHORT).show();
+                            if(message.equals("success"))
+                            {
+                                progressDialog.dismiss();
 
-                        progressDialog.dismiss();
-                        // Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
-                        finish();
+                                Toast.makeText(ContactUs.this, getResources().getString(R.string.thankyouforresponse), Toast.LENGTH_SHORT).show();
+                                //       Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
 
+                            else
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(ContactUs.this, getResources().getString(R.string.response_customer_failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                    //    Toast.makeText(ContactUs.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
-                })
-        {
+                }) {
 
             @Override
             protected Map<String, String> getParams() {

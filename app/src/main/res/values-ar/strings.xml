@@ -516,6 +516,10 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="referal_code_error"> رمز إحالة غير صالح, لا يسمح بالمساحات.</string>
     <string name="agree_to_term">يرجى الموافقة على شروط الاستخدام.</string>
     <string name="fill_fields">يرجى تعبئة هذا الحقل</string>
+
+    <string name="passwordchangedfailed">فشل تحديث كلمة المرور ، يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى</string>
+
+
     <string name="password_must_have_error">يجب أن تحتوي كلمة المرور على ثلاثة أحرف على الأقل.</string>
     <string name="shopkeeper_signin_screen">شاشة تسجيل دخول صاحب متجر:</string>
     <string name="already_a_shopkeeper">مسجل مسبقاً كصاحب متجر؟</string>
@@ -684,7 +688,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="pleasecheckinternetconnection">يرجى التحقق من اتصال الإنترنت الخاص بك وإعادة تشغيل التطبيق.</string>
     <string name="invalidreferralcode">رمز الإحالة غير صالح, لا يسمح بالفراغات.</string>
     <string name="phonenumbermuststartwith">يجب أن يبدأ رقم الهاتف 0</string>
-    <string name="networkerror">لديك مشكلة في الشبكة! يرجى التحقق من اتصالك بالإنترنت وإعادة تشغيل التطبيق.</string>
+    <string name="networkerror">مشكلة شبكة! يرجى التحقق من اتصالك بالإنترنت قد يكون بطيئًا. يرجى المحاولة مرة أخرى مع إنترنت أفضل</string>
     <string name="useralreadyregistered">الرجاء تسجيل الدخول أو النقر فوق نسيت كلمة المرور إذا كنت لا تتذكر كلمة المرور الخاصة بكً</string>
     <string name="usersuccessfullyregistered">تم تسجيل المستخدم بنجاح</string>
     <string name="servermaintainence">الخادم قيد الصيانة، يرجى المحاولة مرة أخرى في وقت لاحق.</string>
@@ -716,9 +720,20 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="claim4liter">هل أنت متأكد أنك تريد استبدال 4000 نقطة بـلتر من الزيت؟</string>
     <string name="redeem">استبدال</string>
     <string name="notenoughpoints">لا توجد نقاط كافية للمطالبة باللترات المجانية.</string>
+
+    <string name="points_claimed">تمت المطالبة بالنقاط بنجاح</string>
+
+    <string name="rate_your_experience">يرجى تقييم تجربتك معنا</string>
+
+
     <string name="passwordchangedsuccessfully">تم تغيير كلمة المرور بنجاح</string>
     <string name="thankyouforresponse">شكرا جزيلاً! استجابتك قيمة بالنسبة لنا</string>
+
     <string name="feedbacksubmitted">تم إرسال الملاحظات والاقتراحات بنجاح</string>
+    <string name="feedbacksubmittedfailed">تم إرسال الملاحظات بنجاح</string>
+
+    <string name="response_customer_failed">حدث خطأ أثناء الاتصال بـ Kixx</string>
+
     <string name="languageconfirmation">أتكد</string>
     <string name="verificationerror">رمز التحقق خطأ، يرجى المحاولة مرة أخرى</string>
     <string name="nocaradded">لا توجد سيارة مضافة.الرجاء إضافة سيارتك</string>
