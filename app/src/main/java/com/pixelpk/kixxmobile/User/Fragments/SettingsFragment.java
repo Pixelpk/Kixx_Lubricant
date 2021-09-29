@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,9 @@ public class SettingsFragment extends Fragment {
 
     LinearLayout Settings_id;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,8 +60,13 @@ public class SettingsFragment extends Fragment {
 
         Settings_id.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(getActivity()!=null)
                 {
@@ -68,7 +77,14 @@ public class SettingsFragment extends Fragment {
         });
         SettingsFragment_titlebar_kixxlogo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), TutorialScreen.class);
                 editor.putString(Constants.Tutorial_Screen_id,"0").apply();
                 startActivity(intent);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.se.omapi.Session;
 import android.util.Log;
 import android.view.View;
@@ -55,6 +56,10 @@ public class ContactUs extends AppCompatActivity {
 
     ImageView ContactUs_backbtn;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
 
 
     @Override
@@ -66,8 +71,13 @@ public class ContactUs extends AppCompatActivity {
 
         ContactUs_form_submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(ContactUs_form_subject.getText().toString().equals(""))
                 {
@@ -89,7 +99,14 @@ public class ContactUs extends AppCompatActivity {
 
         ContactUs_backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });

@@ -598,7 +598,7 @@ public class QRScanner extends AppCompatActivity {
 
     public void QR_authentication(String user_id,String promo_code)
     {
-        //   Toast.makeText(getContext(), referral, Toast.LENGTH_SHORT).show();
+           Toast.makeText(getApplicationContext(), user_id, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -767,7 +767,7 @@ public class QRScanner extends AppCompatActivity {
                             String QR = jsonObj.getString("QR");
                             String Discount = jsonObj.getString("Discount");
 
-                            //   Toast.makeText(QRScanner.this, QR+" "+Discount, Toast.LENGTH_SHORT).show();
+//                               Toast.makeText(QRScanner.this, QR +"  "+ Discount, Toast.LENGTH_SHORT).show();
                             QR_authentication(uid,QR);
 
 
@@ -779,9 +779,11 @@ public class QRScanner extends AppCompatActivity {
             //                Toast.makeText(QRScanner.this, String.valueOf(qr_discount), Toast.LENGTH_SHORT).show();
 
 
-                            if(QRScanner_discountedqty_SP.getText().toString()!="0") {
+                            if(QRScanner_discountedqty_SP.getText().toString()!="0")
+                            {
                                 QRScanner_discountedqty_SP.setText(String.valueOf(qr_discount));
                             }
+
                             else
                             {
                                 QRScanner_discountedqty_SP.setText(String.valueOf(0));
@@ -817,7 +819,8 @@ public class QRScanner extends AppCompatActivity {
 
     public void update_user_data_qr_id(String qr_id,String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
-        //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
+//          Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), qr_discount, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -825,8 +828,8 @@ public class QRScanner extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CHANGE_OIL_SALES,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-
+                    public void onResponse(String response)
+                    {
 
 //                        Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
 

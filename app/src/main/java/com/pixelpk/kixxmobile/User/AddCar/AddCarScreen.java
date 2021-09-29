@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -63,6 +64,8 @@ public class AddCarScreen extends AppCompatActivity {
 
     String token;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -86,7 +89,13 @@ public class AddCarScreen extends AppCompatActivity {
 
         AddCar_addcar_FAB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(AddCarScreen.this, AddCarInfoScreen.class);
                 intent.putExtra("oilchange","2");
@@ -97,7 +106,14 @@ public class AddCarScreen extends AppCompatActivity {
 
         AddCar_backarrow_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });
@@ -190,6 +206,11 @@ public class AddCarScreen extends AppCompatActivity {
                                     //Toast.makeText(AddCarScreen.this, car_name +" "+ company + " "+ name + " " + model, Toast.LENGTH_SHORT).show();
 
                                   //  new AddCarList("ABC 876","Jaguar","XF","2015")
+                                    if(year_of_manufacture.equals("null"))
+                                    {
+                                        year_of_manufacture = "0";
+                                    }
+
                                     AddCarList promosList = new AddCarList(car_name,company,name,model,car_id,odometer,daily_mileage,year_of_manufacture,engine_type,cid);
                                     myListData.add(promosList);
 

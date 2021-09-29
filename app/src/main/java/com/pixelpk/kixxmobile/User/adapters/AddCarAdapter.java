@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,9 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     // RecyclerView recyclerView;
     public AddCarAdapter(List<AddCarList> listdata, Context context,String token,String uid,RecyclerView recyclerView) {
         this.listdata = listdata;
@@ -103,8 +107,8 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
             {
                 holder.AddCar_CarModel_TV.setText(myListData.getYear_of_manufacture() + " / " +myListData.getCar_Model() );
             }
-
         }
+
         else
         {
             holder.AddCar_CarModel_TV.setText(myListData.getCar_Model());
@@ -114,6 +118,12 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 car_id = myListData.getCar_id();
                 Intent intent = new Intent(context, EditCarInfo.class);
                 intent.putExtra("Carnumber",myListData.getCar_Number());
@@ -141,6 +151,12 @@ public class AddCarAdapter extends RecyclerView.Adapter<AddCarAdapter.ViewHolder
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 car_id = myListData.getCar_id();
                 new AlertDialog.Builder(context)
                         .setMessage(context.getResources().getString(R.string.deletecar))

@@ -20,6 +20,8 @@ public class CardDetailsAdapter extends RecyclerView.Adapter<CardDetailsAdapter.
     private List<CarDetailsList> listdata;
     Context context;
 
+
+
     // RecyclerView recyclerView;
     public CardDetailsAdapter(List<CarDetailsList> listdata, Context context) {
         this.listdata = listdata;

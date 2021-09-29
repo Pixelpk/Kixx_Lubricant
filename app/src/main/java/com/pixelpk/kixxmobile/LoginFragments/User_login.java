@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -109,6 +110,10 @@ public class User_login extends Fragment {
 
     EditText Salesman_countrycode_ET;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,6 +154,11 @@ public class User_login extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 showSettingsAlert();
             }
         });
@@ -156,7 +166,13 @@ public class User_login extends Fragment {
         Salesman_countrycode_ET.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
                 picker.setListener(new CountryPickerListener() {
                     @Override
@@ -179,11 +195,19 @@ public class User_login extends Fragment {
         Signin_countrycode_ET.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
                 picker.setListener(new CountryPickerListener() {
                     @Override
-                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID)
+                    {
 
                         countrycode = dialCode;
                         Signin_countrycode_ET.setText(countrycode);
@@ -199,7 +223,14 @@ public class User_login extends Fragment {
 
         UserLogin_user_login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 user_layout.setVisibility(View.VISIBLE);
                 salesman_layout.setVisibility(View.GONE);
             }
@@ -349,7 +380,14 @@ public class User_login extends Fragment {
 
         signin_userSignunBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(),Signup.class);
                 startActivity(intent);
             }
@@ -357,7 +395,13 @@ public class User_login extends Fragment {
 
         Signin_forgotpass_TV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(getContext(), ForgotPassword.class);
                 startActivity(intent);
@@ -366,7 +410,15 @@ public class User_login extends Fragment {
 
         Signin_userphET_txt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+            {
+                return;
+            }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Signin_userphET_txt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E3580B")));
             }
         });
@@ -376,28 +428,31 @@ public class User_login extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
-                usercontact = countrycode + Signin_userphET_txt.getText().toString();
-                userpassword = Signin_userpassET_txt.getText().toString();
-                String only_phone = Signin_userphET_txt.getText().toString();
+                usercontact       =  Signin_userphET_txt.getText().toString();
+                userpassword      =  Signin_userpassET_txt.getText().toString();
+                String only_phone =  Signin_userphET_txt.getText().toString();
+                usercontact  = countrycode + only_phone;
 
 //                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
-                if(usercontact.equals(""))
+                if(only_phone.equals(""))
                 {
-                    Signin_userphET_txt.setError(getResources().getString(R.string.pleaseenterphonenumber));
+                    Toast.makeText(getActivity(), getResources().getString(R.string.pleaseenterphonenumber), Toast.LENGTH_SHORT).show();
                 }
+
                 else if (userpassword.equals(""))
                 {
-                    Signin_userpassET_txt.setError(getResources().getString(R.string.pleaseenterpassword));
+                    Toast.makeText(getActivity(), getResources().getString(R.string.pleaseenterpassword), Toast.LENGTH_SHORT).show();
                 }
-
-
 
                 else
                 {
-
-
                     String s = only_phone.substring(0,1);
 
                     if(s.equals("0"))
@@ -405,24 +460,19 @@ public class User_login extends Fragment {
                         Toast.makeText(getActivity(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                     }
 
-                    else if(Signin_userphET_txt.getText().toString().equals(""))
-                    {
-                        Signin_userphET_txt.setError(getResources().getString(R.string.fill_fields));
-                    }
                     else if(userpassword.length()<3)
                     {
-                        Signin_userpassET_txt.setError(getResources().getString(R.string.passwordmusthavethreecharacters));
+//                        Signin_userpassET_txt.setError();
+                        Toast.makeText(getActivity(),getResources().getString(R.string.passwordmusthavethreecharacters) , Toast.LENGTH_SHORT).show();
                     }
-               /* else if (Signin_userphET_txt.getText().toString().charAt(0) != '0') {
-                    // Signup_userpassET_txt.setError("Please fill this field");
-                    // Toast.makeText(getContext(), String.valueOf(Signin_userphET_txt.getText().toString().charAt(0)), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(), getResources().getString(R.string.phone_number_start_warning), Toast.LENGTH_SHORT).show();
-                }*/
+
                     else if(refreshedToken == null)
                     {
                         Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                     }
-                    else {
+
+                    else
+                    {
 
                         Log.d("fcm",refreshedToken);
 
@@ -438,6 +488,12 @@ public class User_login extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 salesman_layout.setVisibility(View.VISIBLE);
                 user_layout.setVisibility(View.GONE);
             }
@@ -445,7 +501,13 @@ public class User_login extends Fragment {
 
         signin_userSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 // Send Data to server
                 // Register User
 
@@ -463,7 +525,6 @@ public class User_login extends Fragment {
                         referral_code = UserLogin_referral_ET.getText().toString();
                         User_Text_Field_Validity_check();
                     }
-
                 }
                 else
                 {
@@ -496,6 +557,11 @@ public class User_login extends Fragment {
              /*   Intent intent = new Intent(getContext(), HomeScreen.class);
                 startActivity(intent);*/
 
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 String only_phone = Signin_salesphET_txt.getText().toString();
 
@@ -521,6 +587,7 @@ public class User_login extends Fragment {
 
                 else
                 {
+
                 String s = only_phone.substring(0,1);
 
                 if(s.equals("0"))
@@ -529,12 +596,11 @@ public class User_login extends Fragment {
                 }
                  //   Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
 
-//                    Toast.makeText(getContext(), phone, Toast.LENGTH_SHORT).show();
                 else
                 {
                     SigninSales(phone,Signin_salespassET_txt.getText().toString(),refreshedToken);
-
                 }
+
                 }
 
             }
@@ -774,8 +840,6 @@ public class User_login extends Fragment {
 
     public void SigninUser(final String contact, final String password, final String fcm_id)
     {
-
-
      //  Toast.makeText(getContext(), password, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
@@ -918,7 +982,6 @@ public class User_login extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
 
-
     }
 
 
@@ -952,7 +1015,14 @@ public class User_login extends Fragment {
 
         // On pressing the Settings button.
         alertDialog.setPositiveButton(R.string.proceed, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
+            public void onClick(DialogInterface dialog,int which)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), MapsActivity.class);
                 startActivity(intent);
             }

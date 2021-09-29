@@ -2,6 +2,7 @@ package com.pixelpk.kixxmobile.User.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,10 @@ public class PromosAdapter extends RecyclerView.Adapter<PromosAdapter.ViewHolder
     Context context;
     String type;
     String user_type;
+
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     // RecyclerView recyclerView;
     public PromosAdapter(List<PromosList> listdata, Context context,String type,String user_type) {
         this.listdata = listdata;
@@ -48,7 +53,13 @@ public class PromosAdapter extends RecyclerView.Adapter<PromosAdapter.ViewHolder
       //  holder.Promos_promoImage.setImageResource(myListData.getImageid());
         holder.notification_layout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 /*Intent intent = new Intent(context,PromoDetailsScreen.class);
                 intent.putExtra("promo_id",myListData.getId());

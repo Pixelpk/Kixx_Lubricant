@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +16,9 @@ public class AboutUsScreen extends AppCompatActivity {
 
     ImageView Aboutus_twitter_IV,Aboutus_instagram_IV,Aboutus_facebook_IV,Aboutus_backarrow,Aboutus_linkedin_IV;
     LinearLayout Aboutus_backarrow_LL;
+
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,14 @@ public class AboutUsScreen extends AppCompatActivity {
 
         Aboutus_backarrow_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });

@@ -1,8 +1,10 @@
 package com.pixelpk.kixxmobile.User.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,9 @@ public class ProductPortfolioAdapter extends RecyclerView.Adapter<ProductPortfol
     SharedPreferences sharedPreferences;
     ImageView back_btn;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
 
     // RecyclerView recyclerView;
     public ProductPortfolioAdapter(List<ProductPortfolioList> listdata, Context context) {
@@ -49,7 +54,7 @@ public class ProductPortfolioAdapter extends RecyclerView.Adapter<ProductPortfol
     }
 
     @Override
-    public void onBindViewHolder(ProductPortfolioAdapter.ViewHolder holder, int position)
+    public void onBindViewHolder(ProductPortfolioAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position)
     {
         final ProductPortfolioList myListData = listdata.get(position);
 
@@ -86,18 +91,36 @@ public class ProductPortfolioAdapter extends RecyclerView.Adapter<ProductPortfol
 
                 if(position == 0)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","1");
                     context.startActivity(intent);
                 }
                 else if(position == 1)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","2");
                     context.startActivity(intent);
                 }
                 else if(position == 2)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","3");
                     context.startActivity(intent);
@@ -105,6 +128,12 @@ public class ProductPortfolioAdapter extends RecyclerView.Adapter<ProductPortfol
 
                 else if(position == 3)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","4");
                     context.startActivity(intent);
@@ -113,105 +142,208 @@ public class ProductPortfolioAdapter extends RecyclerView.Adapter<ProductPortfol
 
                 else if(position == 4)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","5");
                     context.startActivity(intent);
                 }
                 else if(position == 5)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","6");
                     context.startActivity(intent);
                 }
                 else if(position == 6)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","7");
                     context.startActivity(intent);
                 }
                 else if(position == 7)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","8");
                     context.startActivity(intent);
                 }
                 else if(position == 8)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","9");
                     context.startActivity(intent);
                 }
                 else if(position == 9)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","10");
                     context.startActivity(intent);
                 }
                 else if(position == 10)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","11");
                     context.startActivity(intent);
 
-                }else if(position == 11)
+                }
+
+                else if(position == 11)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","12");
                     context.startActivity(intent);
 
-                }else if(position == 12)
+                }
+
+                else if(position == 12)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","13");
                     context.startActivity(intent);
 
-                }else if(position == 13)
+                }
+
+                else if(position == 13)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","14");
                     context.startActivity(intent);
                 }
+
                 else if(position == 14)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","15");
                     context.startActivity(intent);
                 }
+
                 else if(position == 15)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","16");
                     context.startActivity(intent);
                 }
+
                 else if(position == 16)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","17");
                     context.startActivity(intent);
                 }
+
                 else if(position == 17)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","18");
                     context.startActivity(intent);
                 }
+
                 else if(position == 18)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","19");
                     context.startActivity(intent);
                 }
+
                 else if(position == 19)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","20");
                     context.startActivity(intent);
                 }
-
-
-
-
-
             }
         });
 
@@ -223,8 +355,8 @@ public class ProductPortfolioAdapter extends RecyclerView.Adapter<ProductPortfol
         return listdata.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
+    public static class ViewHolder extends RecyclerView.ViewHolder
+    {
         public LinearLayout Productportfolio_mainframe;
         public ImageView Productportfolio_products_IV,arrow_img;
         TextView Productportfolio_title, Productportfolio_desc,Productportfolio_price;

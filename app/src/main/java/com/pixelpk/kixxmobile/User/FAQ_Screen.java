@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,9 @@ public class FAQ_Screen extends AppCompatActivity
     TextView faq_screen_back,faq_choose;
 
     ImageView faq_image_back;
+
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -43,6 +47,12 @@ public class FAQ_Screen extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.noon.com/saudi-en/p-29072"));
                 startActivity(browserIntent);
             }
@@ -53,6 +63,12 @@ public class FAQ_Screen extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.noon.com/saudi-en/p-29072"));
                 startActivity(browserIntent);
             }

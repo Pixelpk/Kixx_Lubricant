@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -100,6 +101,9 @@ public class EditCarInfo extends AppCompatActivity {
     String preselectedManufacture_id="";
     String preselectedbrand_id="";
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -112,7 +116,13 @@ public class EditCarInfo extends AppCompatActivity {
 
         AddCarInfo_addcar_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(car_idnumber.equals("null"))
                 {
@@ -227,7 +237,13 @@ public class EditCarInfo extends AppCompatActivity {
 
         AddCarInfo_backarrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(get_intent_val.equals("1"))
                 {
@@ -247,7 +263,14 @@ public class EditCarInfo extends AppCompatActivity {
 
         spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
               /*  car_idnumber = String.valueOf(position);
                 Toast.makeText(AddCarInfoScreen.this, String.valueOf(car_idnumber), Toast.LENGTH_SHORT).show();
@@ -268,7 +291,14 @@ public class EditCarInfo extends AppCompatActivity {
 
         AddCarInfo_carmanufact_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_carmanufact.showSpinerDialog();
             }
@@ -278,7 +308,14 @@ public class EditCarInfo extends AppCompatActivity {
 
         spinnerDialog.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
                 //car_idnumber = String.valueOf(position);
                 car_idnumber = carid_list.get(position);
@@ -300,7 +337,14 @@ public class EditCarInfo extends AppCompatActivity {
         AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog.showSpinerDialog();
             }
@@ -308,7 +352,13 @@ public class EditCarInfo extends AppCompatActivity {
 
         spinnerDialog_year.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 AddCar_modelyear_TV.setText(item);
                 Year_manufacture = item;
@@ -317,7 +367,14 @@ public class EditCarInfo extends AppCompatActivity {
 
         AddCarInfo_yearofmanufacturing_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_year.showSpinerDialog();
             }
@@ -325,7 +382,14 @@ public class EditCarInfo extends AppCompatActivity {
 
         AddCarInfo_enginetype_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_enginetype.showSpinerDialog();
             }
@@ -333,7 +397,13 @@ public class EditCarInfo extends AppCompatActivity {
 
         spinnerDialog_enginetype.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 AddCar_enginetype_TV.setText(item);
                 engine_type = String.valueOf(position+1);

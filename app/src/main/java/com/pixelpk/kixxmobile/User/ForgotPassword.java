@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -63,6 +69,9 @@ public class ForgotPassword extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -82,7 +91,16 @@ public class ForgotPassword extends AppCompatActivity {
         ForgotPassword_countrycode_ET.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
                 picker.setListener(new CountryPickerListener() {
                     @Override
@@ -102,7 +120,16 @@ public class ForgotPassword extends AppCompatActivity {
 
         ForgotPass_back_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });
@@ -112,9 +139,15 @@ public class ForgotPassword extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                String only_phone = ForgotPassword_userphET_txt.getText().toString();
+                // Button Handling
 
-                String s = only_phone.substring(0,1);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
+                String only_phone = ForgotPassword_userphET_txt.getText().toString();
 
                 if (ForgotPassword_userphET_txt.getText().toString().equals(""))
                 {
@@ -122,10 +155,7 @@ public class ForgotPassword extends AppCompatActivity {
                 }
 //                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
-                else if(s.equals("0"))
-                {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
-                }
+
                 /*else if (ForgotPassword_userphET_txt.getText().toString().charAt(0) != '0') {
 
                     ForgotPassword_userphET_txt.setError(getResources().getString(R.string.phone_number_start_warning));
@@ -133,12 +163,18 @@ public class ForgotPassword extends AppCompatActivity {
                 }*/
                 else
                 {
+                    String s = only_phone.substring(0,1);
+
                     check_field = if_field_Empty();
 
-                    if (check_field == 3) {
-
+                    if (check_field == 3)
+                    {
                         get_user_car_activity();
+                    }
 
+                    else if(s.equals("0"))
+                    {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -190,7 +226,10 @@ public class ForgotPassword extends AppCompatActivity {
 
     public void get_user_car_activity()
     {
-
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         phone = countrycode + ForgotPassword_userphET_txt.getText().toString();
         zeroexcludednumber = ForgotPassword_userphET_txt.getText().toString().substring(1);
@@ -203,7 +242,6 @@ public class ForgotPassword extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                     //            Toast.makeText(ForgotPassword.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
@@ -212,10 +250,12 @@ public class ForgotPassword extends AppCompatActivity {
 
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
                                 sendcode(phone,zeroexcludednumber);
                             }
                             else
                             {
+                                progressDialog.dismiss();
                                 Toast.makeText(ForgotPassword.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
                             }
 
@@ -240,9 +280,28 @@ public class ForgotPassword extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();
+                        //  Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+                        //   progressDialog.dismiss();\
                         progressDialog.dismiss();
-                     //   Toast.makeText(ForgotPassword.this, error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.usernotfound), Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                            //       Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -287,8 +346,16 @@ public class ForgotPassword extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         super.onBackPressed();
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+        {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         finish();
     }
 

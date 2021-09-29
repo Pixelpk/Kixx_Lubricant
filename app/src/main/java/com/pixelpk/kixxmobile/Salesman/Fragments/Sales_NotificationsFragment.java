@@ -68,6 +68,9 @@ public class Sales_NotificationsFragment extends Fragment {
 
     Boolean check_flag = false;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)

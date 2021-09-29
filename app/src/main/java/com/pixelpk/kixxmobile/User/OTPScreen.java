@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +77,8 @@ public class OTPScreen extends AppCompatActivity {
 
     String intentData;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -101,7 +104,15 @@ public class OTPScreen extends AppCompatActivity {
         OTPScreen_nextbtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 String code = OTPScreen_codedigit1.getText().toString();
 
@@ -146,7 +157,16 @@ public class OTPScreen extends AppCompatActivity {
 
         OTPScreen_editcontnumber.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(OTPScreen.this,ForgotPassword.class);
                 startActivity(intent);
                 finish();
@@ -155,7 +175,16 @@ public class OTPScreen extends AppCompatActivity {
 
         OPTScreen_backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(OTPScreen.this, Login.class);
                 startActivity(intent);
                 finish();
@@ -166,6 +195,14 @@ public class OTPScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 sendVerificationCode();
             }
         });
@@ -271,6 +308,14 @@ public class OTPScreen extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which)
                                         {
+                                            // Button Handling
+
+                                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                            {
+                                                return;
+                                            }
+                                            mLastClickTime = SystemClock.elapsedRealtime();
+
                                             Intent intent = new Intent(getApplicationContext(), Login.class);
                                             startActivity(intent);
                                             finish();
@@ -293,6 +338,14 @@ public class OTPScreen extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which)
                                         {
+                                            // Button Handling
+
+                                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                            {
+                                                return;
+                                            }
+                                            mLastClickTime = SystemClock.elapsedRealtime();
+
                                             Intent intent = new Intent(getApplicationContext(), Login.class);
                                             startActivity(intent);
                                             finish();
@@ -499,6 +552,14 @@ mAuth.signInAnonymously()
                                         @Override
                                         public void onClick(DialogInterface dialog, int which)
                                         {
+                                            // Button Handling
+
+                                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                            {
+                                                return;
+                                            }
+                                            mLastClickTime = SystemClock.elapsedRealtime();
+
                                             Intent intent = new Intent(getApplicationContext(),Signup.class);
                                             startActivity(intent);
                                             finish();
@@ -685,6 +746,14 @@ mAuth.signInAnonymously()
                                         @Override
                                         public void onClick(DialogInterface dialog, int which)
                                         {
+                                            // Button Handling
+
+                                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                            {
+                                                return;
+                                            }
+                                            mLastClickTime = SystemClock.elapsedRealtime();
+
                                             Intent intent = new Intent(getApplicationContext(),Signup.class);
                                             startActivity(intent);
                                             finish();
@@ -838,6 +907,15 @@ mAuth.signInAnonymously()
     public void onBackPressed()
     {
         super.onBackPressed();
+
+        // Button Handling
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+        {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         Intent intent = new Intent(OTPScreen.this, Login.class);
         startActivity(intent);
         finish();

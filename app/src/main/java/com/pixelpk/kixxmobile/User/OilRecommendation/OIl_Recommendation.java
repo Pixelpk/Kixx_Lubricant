@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +92,8 @@ public class OIl_Recommendation extends AppCompatActivity {
 
     String getCar_Number="",getCar_id="",getCar_Manufacturer="",getCar_Brand="",getCar_Model="",getYear_of_manufacture="",getOdometer="",getDaily_mileage="",getEngine_type="",getCarid="";
 
-
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,14 +116,27 @@ public class OIl_Recommendation extends AppCompatActivity {
 
         Oil_recommendation_select_car_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 spinnerDialog_select_car.showSpinerDialog();
             }
         });
 
         Oil_recommendation_add_car_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(OIl_Recommendation.this, AddCarInfoScreen.class);
                 intent.putExtra("oilchange","1");
@@ -135,7 +150,14 @@ public class OIl_Recommendation extends AppCompatActivity {
 
         Oil_recommendation_Update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(OIl_Recommendation.this, EditCarInfo.class);
                 intent.putExtra("Carnumber",getCar_Number);
                 intent.putExtra("CarId",getCar_id);
@@ -155,7 +177,14 @@ public class OIl_Recommendation extends AppCompatActivity {
 
         spinnerDialog_select_car.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Oil_recommendation_select_car_TV.setText(item);
                 //city_str = item;
 
@@ -304,7 +333,13 @@ public class OIl_Recommendation extends AppCompatActivity {
 
         Oil_recommendation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(OIl_Recommendation.this,Howtochooseoil.class);
                 startActivity(intent);
@@ -312,6 +347,7 @@ public class OIl_Recommendation extends AppCompatActivity {
 
             }
         });
+
 
         /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

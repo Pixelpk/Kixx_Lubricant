@@ -18,6 +18,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Patterns;
 import android.view.Gravity;
@@ -102,6 +103,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     String rtl;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @SuppressLint("RtlHardcoded")
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -136,6 +140,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v)
             {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
                 picker.setListener(new CountryPickerListener()
                 {
@@ -161,20 +173,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 LatLng centerLatLang = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
 
-                String cont   = countrycode + MapsActivity_Contactnum_ET.getText().toString();
                 String email  = MapsActivity_Email_ET.getText().toString();
                 String shop   = MapsActivity_Shopname_ET.getText().toString();
 
                 String only_phone = MapsActivity_Contactnum_ET.getText().toString();
 
+                String cont   = countrycode + MapsActivity_Contactnum_ET.getText().toString();
 
 
             //    Toast.makeText(MapsActivity.this, cont, Toast.LENGTH_SHORT).show();
 
-                if(cont.equals(""))
+                if(only_phone.equals(""))
                 {
                     MapsActivity_Contactnum_ET.setError(getResources().getString(R.string.fill_fields));
                 }
@@ -194,12 +211,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     MapsActivity_Shopname_ET.setError(getResources().getString(R.string.fill_fields));
                 }
 
-                else if(cont.length() <9 ||  cont.length() > 16)
+         /*       else if(cont.length() <9 ||  cont.length() > 16)
                 {
                     MapsActivity_Contactnum_ET.setError(getResources().getString(R.string.incorrect_data));
-                }
-
-
+                }*/
 
                 else
                 {
@@ -223,7 +238,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Becomeaseler_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });

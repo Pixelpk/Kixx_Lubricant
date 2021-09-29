@@ -1,11 +1,13 @@
 package com.pixelpk.kixxmobile.Salesman;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +44,9 @@ public class Sales_SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.
     SharedPreferences.Editor editor;
     String rtl;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     public Sales_SettingsAdapter(SettingsList[] listdata, Context context) {
         this.listdata = listdata;
         this.context = context;
@@ -61,7 +66,7 @@ public class Sales_SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(SettingsAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(SettingsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final SettingsList myListData = listdata[position];
 
         if(rtl.equals("1"))
@@ -86,38 +91,65 @@ public class Sales_SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.
 
         holder.Settings_layout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-               /* if(position == 0)
+            public void onClick(View view)
+            {
+                if (position == 0)
                 {
-                    Intent intent = new Intent(context, AddCarScreen.class);
-                    context.startActivity(intent);
-                }
-                else */
-                if (position == 0) {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, Sales_UpdateProfile.class);
                     context.startActivity(intent);
                     //  Toast.makeText(context, "Module Under Development", Toast.LENGTH_SHORT).show();
                 }
-                else if (position == 1) {
+                else if (position == 1)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, LanguageSelectionScreen.class);
                     context.startActivity(intent);
                     editor.putString(Shared.KIXX_APP_LANGUAGE_ISSET,"0").apply();
                     //dule Under Development", Toast.LENGTH_SHORT).show();
                 }
-                else if (position == 2) {
+                else if (position == 2)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, aboutus_pdf.class);
                     context.startActivity(intent);
                 } /*else if (position == 3) {
                     Intent intent = new Intent(context, ContactUs.class);
                     context.startActivity(intent);
-                }*/ else if (position == 3) {
+                }*/ else if (position == 3)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
 
                     new AlertDialog.Builder(context)
                             .setMessage(context.getResources().getString(R.string.are_you_sure_to_logout))
                             .setCancelable(false)
                             .setPositiveButton(context.getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+                                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                    {
+                                        return;
+                                    }
+                                    mLastClickTime = SystemClock.elapsedRealtime();
 
                                     editor.putString(Shared.sales_loggedIn_user_status,"0").apply();
                                     Intent intent = new Intent(context, Login.class);

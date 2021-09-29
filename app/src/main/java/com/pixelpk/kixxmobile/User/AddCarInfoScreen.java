@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,6 +93,9 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
     String car_odometer,daily_mileage,year_of_manufacture;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +109,11 @@ public class AddCarInfoScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(AddCarInfo_carnumber_ET.getText().toString().equals(""))
                 {
@@ -189,12 +198,24 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
                 if(get_intentval.equals("1"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(AddCarInfoScreen.this, OIl_Recommendation.class);
                     startActivity(intent);
                     finish();
                 }
                 else
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(AddCarInfoScreen.this,AddCarScreen.class);
                     startActivity(intent);
                     finish();
@@ -257,12 +278,24 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
                 if(get_intentval.equals("1"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(AddCarInfoScreen.this, OIl_Recommendation.class);
                     startActivity(intent);
                     finish();
                 }
                 else
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(AddCarInfoScreen.this,AddCarScreen.class);
                     startActivity(intent);
                     finish();
@@ -275,7 +308,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
         spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick()
         {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
               //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
               /*  car_idnumber = String.valueOf(position);
                 Toast.makeText(AddCarInfoScreen.this, String.valueOf(car_idnumber), Toast.LENGTH_SHORT).show();
@@ -291,7 +331,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         AddCarInfo_carmanufact_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
            //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_carmanufact.showSpinerDialog();
             }
@@ -299,7 +346,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         AddCarInfo_yearofmanufacturing_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
            //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_year.showSpinerDialog();
             }
@@ -307,7 +361,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         AddCarInfo_enginetype_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
            //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_enginetype.showSpinerDialog();
             }
@@ -317,7 +378,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         spinnerDialog.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
                 //car_idnumber = String.valueOf(position);
                 car_idnumber = carid_list.get(position);
@@ -330,7 +398,13 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         spinnerDialog_enginetype.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 AddCar_enginetype_TV.setText(item);
                 engine_type = String.valueOf(position+1);
@@ -341,7 +415,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         spinnerDialog_year.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
 
                 AddCar_modelyear_TV.setText(item);
                 Year_manufacture = item;
@@ -350,7 +431,14 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog.showSpinerDialog();
             }
@@ -780,17 +868,6 @@ public class AddCarInfoScreen extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public void Add_User_Car(final String car_idnumber, String car_odometer, final String carnumberplate, String daily_mileage, String year_of_manufacture, String engine_type)
     {

@@ -19,11 +19,14 @@ import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 
 import java.util.List;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>
+{
     private List<Notificationlist> listdata;
     Context context;
     SharedPreferences sharedPreferences;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
     // RecyclerView recyclerView;
     public NotificationAdapter(List<Notificationlist> listdata, Context context) {

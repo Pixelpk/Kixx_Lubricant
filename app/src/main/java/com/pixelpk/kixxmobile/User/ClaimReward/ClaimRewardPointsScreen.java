@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,6 +54,9 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
     SharedPreferences.Editor editor;
     Intent intent;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,28 +78,37 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
 
         Claimscreen_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(ClaimRewardPointsScreen.this,HomeScreen.class);
                 startActivity(intent);
                 finish();
-
-
             }
         });
 
 
         ClaimReward_1liter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 new AlertDialog.Builder(ClaimRewardPointsScreen.this)
                         .setMessage(getResources().getString(R.string.claim1liter))
                         .setCancelable(false)
                         .setPositiveButton(getResources().getString(R.string.redeem), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
 
                                 Redeempoints("1000","1");
 
@@ -113,7 +126,13 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
 
         ClaimReward_2liter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 new AlertDialog.Builder(ClaimRewardPointsScreen.this)
                         .setMessage(getResources().getString(R.string.claim2liter))
@@ -138,7 +157,13 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
 
         ClaimReward_3liter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 new AlertDialog.Builder(ClaimRewardPointsScreen.this)
                         .setMessage(getResources().getString(R.string.claim3liter))
@@ -163,7 +188,13 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
 
         ClaimReward_4liter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 new AlertDialog.Builder(ClaimRewardPointsScreen.this)
                         .setMessage(getResources().getString(R.string.claim4liter))
@@ -384,8 +415,10 @@ public class ClaimRewardPointsScreen extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         super.onBackPressed();
+
         Intent intent = new Intent(ClaimRewardPointsScreen.this, HomeScreen.class);
         startActivity(intent);
     }

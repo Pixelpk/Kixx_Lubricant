@@ -2,6 +2,7 @@ package com.pixelpk.kixxmobile.User.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,9 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
     public List<ImageSliderList> listdata;
     Context context;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     // RecyclerView recyclerView;
     public ImageSliderAdapter(List<ImageSliderList> listdata, Context context) {
         this.listdata = listdata;
@@ -45,7 +49,13 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
 
         holder.ImageSliderLayout_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(context, HomeScreen.class);
                 intent.putExtra("promotion","2");

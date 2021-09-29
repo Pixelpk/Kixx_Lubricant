@@ -14,6 +14,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -96,6 +97,10 @@ public class Signup extends AppCompatActivity {
 
     String visibility = "0";
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,9 +113,13 @@ public class Signup extends AppCompatActivity {
       //  Toast.makeText(this, refreshedToken, Toast.LENGTH_SHORT).show();
         Signup_termsandconditions_tv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 String lang = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
                 //  editor.putString(Shared.User_promo,"2").apply();
@@ -141,7 +150,13 @@ public class Signup extends AppCompatActivity {
 
         Signup_signinTV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(Signup.this, Login.class);
                 startActivity(intent);
@@ -307,7 +322,14 @@ public class Signup extends AppCompatActivity {
         Signup_countrycode_ET.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
                 picker.setListener(new CountryPickerListener()
                 {
@@ -336,7 +358,13 @@ public class Signup extends AppCompatActivity {
         Signup_userSignupBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 check_field = if_field_Empty();
 
@@ -590,7 +618,7 @@ public class Signup extends AppCompatActivity {
 
     public void AuthenticateContactNumber(final String contact, final String password, final String fcm_id, final String referral)
     {
-        Toast.makeText(getApplicationContext(), contact, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), contact, Toast.LENGTH_SHORT).show();
 //        progressDialog.setMessage("Please Wait! we are signing you up");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();

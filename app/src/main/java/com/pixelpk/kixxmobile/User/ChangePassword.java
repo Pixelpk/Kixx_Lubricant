@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -55,6 +56,10 @@ public class ChangePassword extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +89,13 @@ public class ChangePassword extends AppCompatActivity {
 
         ChangePassword_changepassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 String newpass = ChangePassword_newpassET_txt.getText().toString();
                 String confpass = ChangePassword_confpassET_txt.getText().toString();
@@ -110,7 +121,14 @@ public class ChangePassword extends AppCompatActivity {
 
         ChangePassword_backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });

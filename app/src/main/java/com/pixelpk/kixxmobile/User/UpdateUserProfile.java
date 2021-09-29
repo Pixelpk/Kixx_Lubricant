@@ -28,6 +28,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.transition.CircularPropagation;
 import android.util.Base64;
@@ -202,6 +203,9 @@ public class UpdateUserProfile extends AppCompatActivity {
     String city_str="";
     String rtl;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,20 +216,40 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         updateprofile_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });
 
         Updateuserprofile_user_profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 new AlertDialog.Builder(UpdateUserProfile.this)
                         .setMessage(getResources().getString(R.string.please_select_image_type))
                         .setCancelable(false)
                         .setPositiveButton(getResources().getString(R.string.Gallery), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                {
+                                    return;
+                                }
+                                mLastClickTime = SystemClock.elapsedRealtime();
+
                                 //   Toast.makeText(UpdateUserProfile.this, "Gallery", Toast.LENGTH_SHORT).show();
                                 getimagefromgallery();
                             }
@@ -233,8 +257,13 @@ public class UpdateUserProfile extends AppCompatActivity {
                         .setNegativeButton(getResources().getString(R.string.Camera), new DialogInterface.OnClickListener() {
                             @RequiresApi(api = Build.VERSION_CODES.M)
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                                {
+                                    return;
+                                }
+                                mLastClickTime = SystemClock.elapsedRealtime();
 
                                 if (ActivityCompat.shouldShowRequestPermissionRationale(UpdateUserProfile.this,
                                         Manifest.permission.CAMERA))
@@ -263,6 +292,12 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 uname  = name.getText().toString();
                 uemail = email.getText().toString();
                 uphone = mobile.getText().toString();
@@ -368,6 +403,12 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(UpdateUserProfile.this, AddCarScreen.class);
                 startActivity(intent);
             }
@@ -394,6 +435,12 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(String item, int position)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Updateuserprofile_City_TV.setText(item);
                 city_str = item;
                 //           Toast.makeText(UpdateUserProfile.this, city_str, Toast.LENGTH_SHORT).show();
@@ -405,6 +452,12 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 spinnerDialog_city.showSpinerDialog();
             }
@@ -432,6 +485,12 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });
@@ -445,6 +504,7 @@ public class UpdateUserProfile extends AppCompatActivity {
 //            progressDialog.setMessage("Updating Profile Please Wait");
         progressDialog.setContentView(R.layout.progress_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
 
         if(city_str.equals("null"))
         {
@@ -612,40 +672,42 @@ public class UpdateUserProfile extends AppCompatActivity {
         occupation_id = sharedPreferences.getString(Shared.loggedIn_user_occupation_id,"0");
         gender_str_sharepref = sharedPreferences.getString(Shared.loggedIn_user_gender,"0");
 
+//        Toast.makeText(getApplicationContext(), gender_str_sharepref, Toast.LENGTH_SHORT).show();
+
 
 
         if(gender_str_sharepref.equals("null"))
         {
             usergender = gender_str;
+//            Toast.makeText(getApplicationContext(), "1 "+usergender, Toast.LENGTH_SHORT).show();
         }
 
         else
         {
             usergender = gender_str_sharepref;
+//            Toast.makeText(getApplicationContext(), "2 "+usergender, Toast.LENGTH_SHORT).show();
         }
 
         load_profile_img();
 
         if(!gender_str_sharepref.equals("null"))
         {
-            if(gender_str_sharepref.equals(getResources().getString(R.string.male_gender)))
+            switch (gender_str_sharepref)
             {
-                gender.setSelection(adapter.getPosition(getResources().getString(R.string.male_gender)));
-            }
-            else if(gender_str_sharepref.equals(getResources().getString(R.string.female_gender)))
-            {
-                gender.setSelection(adapter.getPosition(getResources().getString(R.string.female_gender)));
-            }
-            else
-            {
-                gender.setSelection(adapter.getPosition("Select Gender"));
+                case "ذكر":
+                case "Male":
+                    gender.setSelection(adapter.getPosition(getResources().getString(R.string.male_gender)));
+                    break;
+                case "أنثى":
+                case "Female":
+                    gender.setSelection(adapter.getPosition(getResources().getString(R.string.female_gender)));
+                    break;
             }
         }
 
         else
         {
             gender.setSelection(adapter.getPosition("Select Gender"));
-
         }
 
         if(occupation_id!=null || !occupation_id.equals("null"))
@@ -725,6 +787,9 @@ public class UpdateUserProfile extends AppCompatActivity {
         protected void onPreExecute()
         {
             super.onPreExecute();
+
+//            Toast.makeText(getApplicationContext(), usergender, Toast.LENGTH_SHORT).show();
+
             //         progressDialog = ProgressDialog.show(Academy_Reg.this,"Image is Uploading","Please Wait",false,false);
         }
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +25,9 @@ public class Howtochooseoil extends AppCompatActivity
 
     ImageView back_btn;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,6 +41,12 @@ public class Howtochooseoil extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });
@@ -46,6 +56,12 @@ public class Howtochooseoil extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kixxoil.com/support/categoryByPerformance"));
                 startActivity(browserIntent);
             }

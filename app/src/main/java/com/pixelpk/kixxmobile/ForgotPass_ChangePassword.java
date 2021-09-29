@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -27,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.pixelpk.kixxmobile.LoginFragments.User_login;
 import com.pixelpk.kixxmobile.User.ChangePassword;
 import com.pixelpk.kixxmobile.User.HomeScreen;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
@@ -51,8 +53,13 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
     String visibility = "0";
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass__change_password);
 
@@ -74,7 +81,15 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
         ChangePassword_changepassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                // Button Handling
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 String newpass = ChangePassword_newpassET_txt.getText().toString();
                 String confpass = ChangePassword_confpassET_txt.getText().toString();
@@ -179,6 +194,10 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
                             if(message.equals("success"))
                             {
                                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.passwordchangedsuccessfully), Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(ForgotPass_ChangePassword.this, Login.class);
+                                startActivity(intent);
+                                finish();
                             }
 
                             else
@@ -197,9 +216,7 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
 
                         //       Toast.makeText(ForgotPass_ChangePassword.this, response, Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(ForgotPass_ChangePassword.this, HomeScreen.class);
-                        startActivity(intent);
-                        finish();
+
 
 
                     }

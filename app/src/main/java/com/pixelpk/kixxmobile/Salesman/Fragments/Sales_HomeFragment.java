@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -68,8 +69,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Sales_HomeFragment extends Fragment {
-
+public class Sales_HomeFragment extends Fragment
+{
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
     private int dotscount;
@@ -122,9 +123,13 @@ public class Sales_HomeFragment extends Fragment {
 
     Button try_again_button_seller;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.sales_fragment_home_new, container, false);
 
@@ -135,10 +140,18 @@ public class Sales_HomeFragment extends Fragment {
             @Override
             public void onRefresh()
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 swipeRefreshLayout.setRefreshing(false);
 
                 get_user_data(sales_userid);
                 get_claims_data(shopidforclaim);
+
+                imageSliderLists.clear();
                 //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             }
@@ -149,6 +162,12 @@ public class Sales_HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 get_user_data(sales_userid);
                 get_claims_data(shopidforclaim);
             }
@@ -157,14 +176,28 @@ public class Sales_HomeFragment extends Fragment {
 
         Sales_HomeFragment_claimoil_ET.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 openweb("https://syedu1.sg-host.com/Kixx-App/Kixx-Shop/auth-login");
             }
         });
 
         Sales_HomeScreen_Shopprofile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), Sales_UpdateProfile.class);
                 startActivity(intent);
             }
@@ -232,7 +265,14 @@ public class Sales_HomeFragment extends Fragment {
 
         Sales_HomeFrag_Claims.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), ClaimsScreen.class);
                 startActivity(intent);
             }
@@ -437,13 +477,11 @@ public class Sales_HomeFragment extends Fragment {
                                         ImageSliderList imageSliderList = new ImageSliderList(URLs.USER_Active_promo+banner,id);
                                         imageSliderLists.add(imageSliderList);
                                     }
-
-
-
-                                    Image_Sliding_adapter adapter = new Image_Sliding_adapter(imageSliderLists, getContext(), "promos", "user");
+                                    
+                                    Image_Sliding_adapter adapter = new Image_Sliding_adapter(imageSliderLists, getContext(), "promos", "seller");
                                     //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                     sliderView.setSliderAdapter(adapter);
-                                    sliderView.startAutoCycle();
+//                                    sliderView.startAutoCycle();
                                         /*user_cars_list.add(car_number + " " + company + " " + name);
                                         car_id_list.add(id);*/
 

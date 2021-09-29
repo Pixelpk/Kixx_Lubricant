@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,9 @@ public class ImageSlidingAdapter extends RecyclerView.Adapter<ImageSlidingAdapte
     String banner_type;
     String user_type;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     // RecyclerView recyclerView;
     public ImageSlidingAdapter(List<ImageSliderList> listdata, Context context,String banner_type,String user_type ) {
         this.listdata = listdata;
@@ -67,7 +71,14 @@ public class ImageSlidingAdapter extends RecyclerView.Adapter<ImageSlidingAdapte
 
         holder.ImageSliderLayout_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
              /*   Intent intent = new Intent(context, PromoDetailsScreen.class);
                // intent.putExtra("promo_id",myListData.getId());
                 context.startActivity(intent);*/

@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +29,10 @@ public class TutorialScreen extends AppCompatActivity {
     PageIndicatorView pageIndicatorView;
     Button TutorialScreen_next_btn,tutorial_first_screen_skip_TV,tutorialScreen_finish;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +45,14 @@ public class TutorialScreen extends AppCompatActivity {
 
         tutorial_first_screen_skip_TV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(TutorialScreen.this, LanguageSelectionScreen.class);
                 startActivity(intent);
                 finish();
@@ -49,7 +61,14 @@ public class TutorialScreen extends AppCompatActivity {
 
         tutorialScreen_finish.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(TutorialScreen.this, LanguageSelectionScreen.class);
                 startActivity(intent);
                 finish();
@@ -58,7 +77,14 @@ public class TutorialScreen extends AppCompatActivity {
 
         TutorialScreen_next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 viewPager.setCurrentItem(getItem(+1), true);
             }
         });

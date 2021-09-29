@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -112,6 +113,10 @@ public class Sales_QRFragment extends Fragment {
     TextView Sales_AddCarInfo_carmanufact_TV,Sales_AddCar_carbrand_seletion_TV;
     String manufact_id;
 
+
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -139,7 +144,14 @@ public class Sales_QRFragment extends Fragment {
 
         SalesQR_search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 uid = SalesQR_userid_txt.getText().toString();
 
                 if(uid.equals(""))
@@ -256,7 +268,14 @@ public class Sales_QRFragment extends Fragment {
 
         Sales_spinnerDialog.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
                 //car_idnumber = String.valueOf(position);
                 SalesQR_next_Btn.setVisibility(View.GONE);
@@ -278,6 +297,12 @@ public class Sales_QRFragment extends Fragment {
             {
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
 
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Sales_spinnerDialog.showSpinerDialog();
             }
         });
@@ -285,7 +310,14 @@ public class Sales_QRFragment extends Fragment {
 
         Sales_spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick() {
             @Override
-            public void onClick(String item, int position) {
+            public void onClick(String item, int position)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
               /*  car_idnumber = String.valueOf(position);
                 Toast.makeText(AddCarInfoScreen.this, String.valueOf(car_idnumber), Toast.LENGTH_SHORT).show();
@@ -303,7 +335,14 @@ public class Sales_QRFragment extends Fragment {
 
         Sales_AddCarInfo_carmanufact_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
                 Sales_spinnerDialog_carmanufact.showSpinerDialog();
             }
@@ -352,10 +391,22 @@ public class Sales_QRFragment extends Fragment {
 
         SalesQR_next_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(SalesQR_userid_txt.getText().toString().equals(""))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                    // Toast.makeText(getContext(), getResources().getString(R.string.enter_id), Toast.LENGTH_SHORT).show();
                     new AlertDialog.Builder(getContext())
                             .setMessage(getResources().getString(R.string.enter_id))
@@ -365,6 +416,12 @@ public class Sales_QRFragment extends Fragment {
                 }
                 else if(pre_added_user_cars.equals("Select Car"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                    // Toast.makeText(getContext(), getResources().getString(R.string.select_your_car), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -375,6 +432,12 @@ public class Sales_QRFragment extends Fragment {
                 }
                 else if(pre_added_user_cars.equals("0"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                   //  Toast.makeText(getContext(), getResources().getString(R.string.select_your_car), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -399,10 +462,21 @@ public class Sales_QRFragment extends Fragment {
 
         SalesQR_addcar_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(SalesQR_carnumber_SP.getText().toString().equals(""))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                  //   Toast.makeText(getContext(), getResources().getString(R.string.car_number), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -413,6 +487,11 @@ public class Sales_QRFragment extends Fragment {
                 }
                 else if(SalesQR_carcurrentodometer_SP.getText().toString().equals(""))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     //Toast.makeText(getContext(), getResources().getString(R.string.please_add_current_odometer), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -423,6 +502,11 @@ public class Sales_QRFragment extends Fragment {
                 }
                 else if (car_idnumber.equals("null"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                //     Toast.makeText(getContext(), getResources().getString(R.string.select_car), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -433,6 +517,12 @@ public class Sales_QRFragment extends Fragment {
                 }
                 else  if(SalesQR_carnumber_SP.getText().toString().contains(" "))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                    // Toast.makeText(getContext(), getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -807,6 +897,10 @@ public class Sales_QRFragment extends Fragment {
                                         .setCancelable(false)
                                         .setNegativeButton(getResources().getString(R.string.ok), null)
                                         .show();
+
+                                    uid = SalesQR_userid_txt.getText().toString();
+                                    user_cars_list.clear();
+                                    getCarsData(uid);
                                 }
                                 else
                                 {

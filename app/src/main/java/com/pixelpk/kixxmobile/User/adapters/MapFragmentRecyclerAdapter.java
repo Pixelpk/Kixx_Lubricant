@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -69,6 +70,10 @@ public class MapFragmentRecyclerAdapter extends RecyclerView.Adapter<MapFragment
     String parsedDistance;
     public GoogleMap mMap;
     String response;
+
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     // RecyclerView recyclerView;
     public MapFragmentRecyclerAdapter(List<MapFragmentRecyclerList> listdata, Context context,GoogleMap mMap) {
         this.listdata = listdata;
@@ -198,8 +203,13 @@ public class MapFragmentRecyclerAdapter extends RecyclerView.Adapter<MapFragment
         holder.mapfrag_item_mainframe.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View view)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 LatLng me = myListData.getLatlngdestin();
 
@@ -207,8 +217,6 @@ public class MapFragmentRecyclerAdapter extends RecyclerView.Adapter<MapFragment
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 context.startActivity(mapIntent);
-
-
             }
         });
 

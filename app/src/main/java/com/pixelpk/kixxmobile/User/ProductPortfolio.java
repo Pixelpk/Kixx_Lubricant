@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,8 +22,8 @@ import com.pixelpk.kixxmobile.User.adapters.ProductPortfolioAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductPortfolio extends AppCompatActivity {
-
+public class ProductPortfolio extends AppCompatActivity
+{
     RecyclerView ProductPortfolio_productlist_RV;
     ImageView Productporfolio_backarrow;
     List<ProductPortfolioList> myListData;
@@ -32,8 +33,13 @@ public class ProductPortfolio extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_portfolio);
 
@@ -51,13 +57,16 @@ public class ProductPortfolio extends AppCompatActivity {
             Productporfolio_backarrow.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
         }
 
-
-
-
-
         Productportfolio_backarrow_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });

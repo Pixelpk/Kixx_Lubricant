@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.SystemClock;
 import android.service.notification.NotificationListenerService;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,6 +76,9 @@ public class NotificationsFragment extends Fragment {
 
     LinearLayout Notification_id;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,7 +92,14 @@ public class NotificationsFragment extends Fragment {
 //            Toast.makeText(getContext(),rtl, Toast.LENGTH_SHORT).show();
         NotificationsFragment_titlebar_kixxlogo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), TutorialScreen.class);
                 editor.putString(Constants.Tutorial_Screen_id,"0").apply();
                 startActivity(intent);
@@ -103,33 +114,29 @@ public class NotificationsFragment extends Fragment {
 
         Notification_id.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(getActivity()!=null)
                 {
                     Intent intent = new Intent(getActivity(), UpdateUserProfile.class);
                     startActivity(intent);
                 }
-
-
-
             }
         });
 
-
-
         get_user_data(uid);
-
-
-
-
-
 
         return view;
     }
 
-    private void InitializeViews(View view) {
-
+    private void InitializeViews(View view)
+    {
         sharedPreferences = getActivity().getSharedPreferences("Shared",MODE_PRIVATE);
         editor = sharedPreferences.edit();
 

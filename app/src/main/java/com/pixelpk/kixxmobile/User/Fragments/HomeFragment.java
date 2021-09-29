@@ -34,12 +34,14 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -138,16 +140,14 @@ import static com.pixelpk.kixxmobile.URLs.BASE_URL;
 import static com.pixelpk.kixxmobile.URLs.update_car_mileage;
 
 
-public class HomeFragment extends Fragment {
-
+public class HomeFragment extends Fragment
+{
     ViewPager viewPager;
     LinearLayout sliderDotspanel, HomeFragment_findnearbyshop,layout_profile;
     private int dotscount;
     private ImageView[] dots;
     CarStatus carStatus;
     // Switch HomeFragment_changelanguage;
-
-
 
     ImageView HomeFragment_badges_IV;
     TextView HomeFragment_badges_TV;
@@ -165,8 +165,6 @@ public class HomeFragment extends Fragment {
     String shared_daily_mileage_str;
 
     String id_car;
-
-
     String car_number_str;
     String car_current_mileage;
     String status_average;
@@ -268,6 +266,13 @@ public class HomeFragment extends Fragment {
     private RecyclerView rv_autoScroll;
     int scrollY = 0;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
+
 
     //swipe refresh
 
@@ -308,12 +313,14 @@ public class HomeFragment extends Fragment {
         HomeFragment_oilchangebtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
-                /*Intent intent = new Intent(getContext(),HomeScreen.class);
-                intent.putExtra("oilchange","map");
-                startActivity(intent);*/
-                //  MapsFragment mapsFragment = new MapsFragment();
                 replaceFragments();
             }
         });
@@ -344,17 +351,33 @@ public class HomeFragment extends Fragment {
 
         });
 
-        HomeFragment_userid.setOnClickListener(new View.OnClickListener() {
+        HomeFragment_userid.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
         });
 
-        HomeFragment_titlebar_kixxlogo.setOnClickListener(new View.OnClickListener() {
+        HomeFragment_titlebar_kixxlogo.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), TutorialScreen.class);
                 editor.putString(Constants.Tutorial_Screen_id, "0").apply();
                 startActivity(intent);
@@ -363,7 +386,14 @@ public class HomeFragment extends Fragment {
 
         HomeFragment_badgegroup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), ClaimRewardPointsScreen.class);
                 intent.putExtra("points", user_loyality_points);
                 intent.putExtra("badge", badge_activity_count);
@@ -375,8 +405,19 @@ public class HomeFragment extends Fragment {
 
         HomeFragment_refertoafriend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
+                createlink_progress.setCanceledOnTouchOutside(false);
                 createlink_progress.show();
+                createlink_progress.setContentView(R.layout.progress_layout);
+                createlink_progress.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
                 createlink();
             }
         });
@@ -402,6 +443,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
@@ -412,6 +459,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
@@ -434,6 +487,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), AddCarInfoScreen.class);
                 intent.putExtra("oilchange", "2");
                 startActivity(intent);
@@ -445,6 +504,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), ClaimRewardPointsScreen.class);
                 intent.putExtra("points", user_loyality_points);
                 intent.putExtra("badge", badge_activity_count);
@@ -458,6 +523,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), UpdateUserProfile.class);
                 startActivity(intent);
             }
@@ -471,15 +542,23 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefresh()
             {
+
+                getPromoData();
+                getadsData();
+
+                swipeRefreshLayout.setRefreshing(false);
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 if (activity != null && isAdded())
                 {
 //                    imageslider();
                     get_user_data(userid);
                 }
-
-                getPromoData();
-                getadsData();
-                swipeRefreshLayout.setRefreshing(false);
 
                 myListData.clear();
                 user_car_status.clear();
@@ -495,6 +574,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 if (activity != null && isAdded())
                 {
 //                    imageslider();
@@ -597,7 +682,14 @@ public class HomeFragment extends Fragment {
 
         HomeFragment_carnotfound_IV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), AddCarInfoScreen.class);
                 intent.putExtra("oilchange", "2");
                 startActivity(intent);
@@ -606,7 +698,14 @@ public class HomeFragment extends Fragment {
 
         HomeFragment_oilrecommendation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), OIl_Recommendation.class);
                 startActivity(intent);
             }
@@ -614,7 +713,14 @@ public class HomeFragment extends Fragment {
 
         HomeScreen_EditCar_LL.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), AddCarScreen.class);
                 startActivity(intent);
             }
@@ -2112,6 +2218,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 String val = mileage.getEditableText().toString();
                 //     Toast.makeText(getContext(),  car_id+" "+status+" "+val, Toast.LENGTH_SHORT).show();
                 Log.d("calculation", car_id + " " + status + " " + val);
@@ -2126,6 +2238,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 updatemileagestatus("1", car_id, shared_daily_mileage_str, "2");
                 deleteDialog.dismiss();
             }

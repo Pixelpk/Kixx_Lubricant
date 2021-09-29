@@ -32,6 +32,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -154,6 +155,9 @@ public class MapsFragment extends Fragment  implements
 
     boolean getlocation_flag = false;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
 
     @Nullable
     @Override
@@ -254,6 +258,12 @@ public class MapsFragment extends Fragment  implements
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 dialog.dismiss();
                 Intent intent = new Intent();
                 intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -266,6 +276,12 @@ public class MapsFragment extends Fragment  implements
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getActivity(),HomeScreen.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -662,6 +678,7 @@ public class MapsFragment extends Fragment  implements
                 public boolean onMarkerClick(Marker marker)
                 {
 
+
              /*       Toast.makeText(getContext(), String.valueOf(marker.getPosition().longitude), Toast.LENGTH_SHORT).show();
                     Toast.makeText(getContext(), String.valueOf(marker.getPosition().latitude), Toast.LENGTH_SHORT).show();*/
 
@@ -675,6 +692,7 @@ public class MapsFragment extends Fragment  implements
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
                         mapIntent.setPackage("com.google.android.apps.maps");
                         startActivity(mapIntent);*/
+
 
                         Uri navigationIntentUri = Uri.parse("google.navigation:q=" + marker.getPosition().latitude +"," + marker.getPosition().longitude);//creating intent with latlng
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
@@ -1125,7 +1143,14 @@ public class MapsFragment extends Fragment  implements
         builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                        {
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
+
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })

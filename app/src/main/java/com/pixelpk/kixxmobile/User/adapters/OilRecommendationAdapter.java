@@ -3,6 +3,7 @@ package com.pixelpk.kixxmobile.User.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,14 @@ import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 
 import java.util.List;
 
-public class OilRecommendationAdapter extends RecyclerView.Adapter<OilRecommendationAdapter.ViewHolder> {
+public class OilRecommendationAdapter extends RecyclerView.Adapter<OilRecommendationAdapter.ViewHolder>
+{
     private List<CarRecommendationlistModelClass> listdata;
     Context context;
     SharedPreferences sharedPreferences;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
 
     // RecyclerView recyclerView;
     public OilRecommendationAdapter(List<CarRecommendationlistModelClass> listdata, Context context) {
@@ -73,7 +77,8 @@ public class OilRecommendationAdapter extends RecyclerView.Adapter<OilRecommenda
 
         holder.oilrecommend_mainframe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 // Toast.makeText(context, "Notification Clicked", Toast.LENGTH_SHORT).show();
 
                 String val = myListData.getId();
@@ -81,60 +86,120 @@ public class OilRecommendationAdapter extends RecyclerView.Adapter<OilRecommenda
 
                 if(val.equals("1") || val.equals("4") || val.equals("6"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","17");
                     context.startActivity(intent);
                 }
                 else if(val.equals("3") || val.equals("5") || val.equals("7"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","20");
                     context.startActivity(intent);
                 }
                 else if(val.equals("10") || val.equals("14") || val.equals("16"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","5");
                     context.startActivity(intent);
                 }
                 else if(val.equals("8") || val.equals("13"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","15");
                     context.startActivity(intent);
                 }
                 else if(val.equals("11") || val.equals("15"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","19");
                     context.startActivity(intent);
                 }
                 else if(val.equals("9"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","4");
                     context.startActivity(intent);
                 }
                 else if(val.equals("12"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","6");
                     context.startActivity(intent);
                 }
                 else if(val.equals("17"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","16");
                     context.startActivity(intent);
                 }
                 else if(val.equals("2"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","18");
                     context.startActivity(intent);
                 }
                 else if(val.equals("18"))
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context,ProductPortfolio_Detils.class);
                     intent.putExtra("products_numb","10");
                     context.startActivity(intent);

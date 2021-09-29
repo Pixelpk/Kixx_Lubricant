@@ -1,5 +1,6 @@
 package com.pixelpk.kixxmobile.User.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -58,6 +60,9 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
     String uid;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     // RecyclerView recyclerView;
     public SettingsAdapter(SettingsList[] listdata, Context context) {
         this.listdata = listdata;
@@ -81,7 +86,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final SettingsList myListData = listdata[position];
 
         holder.Settings_optionsIV.setImageResource(myListData.getImageid());
@@ -107,33 +112,63 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
         holder.Settings_layout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
                 if(position == 2)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, TutorialScreen.class);
                     editor.putString(Constants.Tutorial_Screen_id,"0").apply();
                     context.startActivity(intent);
                 }
                 else  if(position == 0)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, UpdateUserProfile.class);
                     context.startActivity(intent);
                   //  Toast.makeText(context, "Module Under Development", Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 7)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ChangePassword.class);
                     context.startActivity(intent);
                     //  Toast.makeText(context, "Module Under Development", Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 8)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, TermsScreen.class);
                     context.startActivity(intent);
                 }
                 else if(position == 3)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
 
                     Intent intent = new Intent(context, ProductPortfolio.class);
                     context.startActivity(intent);
@@ -150,11 +185,23 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 }*/
                 else if(position == 5)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, ContactUs.class);
                     context.startActivity(intent);
                 }
                 else if(position == 6)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     //Toast.makeText(context, "Module Under Development", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, LanguageSelectionScreen.class);
                     context.startActivity(intent);
@@ -162,12 +209,23 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 }
                 else if(position == 4)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, Feedback.class);
                     context.startActivity(intent);
                  //   Toast.makeText(context, "Module Under Development", Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 1)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
 
                     Intent intent = new Intent(context, aboutus_pdf.class);
                     context.startActivity(intent);
@@ -179,6 +237,12 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
                 else if(position == 9)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(context, FAQ_Screen.class);
                     context.startActivity(intent);
                     /*Intent intent = new Intent(context, HomeScreen.class);
@@ -191,12 +255,18 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 else if(position == 10)
                 {
 
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     new AlertDialog.Builder(context)
                             .setMessage(context.getResources().getString(R.string.are_you_sure_to_logout))
                             .setCancelable(false)
                             .setPositiveButton(context.getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
+                                public void onClick(DialogInterface dialog, int id)
+                                {
                                     editor.putString(Shared.User_login_logout_status,"0");
                                     Intent intent = new Intent(context, Login.class);
                                     editor.putString(Shared.User_promo,"2");

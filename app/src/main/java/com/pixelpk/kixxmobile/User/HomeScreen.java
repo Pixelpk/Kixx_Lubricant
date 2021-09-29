@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +39,9 @@ public class HomeScreen extends AppCompatActivity {
     String set_frag;
 
     TextView oilchange_button_TV;
+
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +92,8 @@ public class HomeScreen extends AppCompatActivity {
             // bottomNav.setOnMenuItemClickListener(navListener);
             //I added this if statement to keep the selected fragment when rotating the device
 
-            if (set_frag.equals("1")) {
+            if (set_frag.equals("1"))
+            {
                 selectedFragment = new HomeFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         selectedFragment).commit();
@@ -104,7 +109,14 @@ public class HomeScreen extends AppCompatActivity {
 
             explore_frag_fab.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     selectedFragment = new MapsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
@@ -113,7 +125,14 @@ public class HomeScreen extends AppCompatActivity {
 
             ccard.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     selectedFragment = new HomeFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
@@ -122,7 +141,14 @@ public class HomeScreen extends AppCompatActivity {
 
             mydeck.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     selectedFragment = new NotificationsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
@@ -131,7 +157,13 @@ public class HomeScreen extends AppCompatActivity {
 
             dropdeck.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                   /*  selectedFragment = new PromoFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();*/
@@ -148,7 +180,14 @@ public class HomeScreen extends AppCompatActivity {
 
             more.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view)
+                {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     selectedFragment = new SettingsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
@@ -172,6 +211,12 @@ public class HomeScreen extends AppCompatActivity {
         }
         else
         {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+            {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+
             Intent intent = new Intent(HomeScreen.this, Login.class);
             startActivity(intent);
             finish();
@@ -186,7 +231,8 @@ public class HomeScreen extends AppCompatActivity {
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
                         HomeScreen.super.onBackPressed();
                         finishAffinity();
                         finish();

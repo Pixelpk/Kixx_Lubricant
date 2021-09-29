@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -75,6 +76,9 @@ public class PromoFragment extends Fragment {
 
     LinearLayout Promo_id;
 
+    //Handle Button Clicks
+    private long mLastClickTime = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -121,6 +125,12 @@ public class PromoFragment extends Fragment {
             public void onClick(View v) {
                 if(getActivity()!=null)
                 {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                    {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     Intent intent = new Intent(getActivity(), UpdateUserProfile.class);
                     startActivity(intent);
                 }
@@ -130,7 +140,14 @@ public class PromoFragment extends Fragment {
 
         PromoFragment_titlebar_kixxlogo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+                {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getContext(), TutorialScreen.class);
                 editor.putString(Constants.Tutorial_Screen_id,"0").apply();
                 startActivity(intent);
