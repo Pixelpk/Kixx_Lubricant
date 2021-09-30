@@ -15,6 +15,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -303,12 +304,22 @@ public class Sales_QRFragment extends Fragment {
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
 
-                Sales_spinnerDialog.showSpinerDialog();
+                if(Sales_AddCarInfo_carmanufact_TV.getText().toString().equals(""))
+                {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    Sales_spinnerDialog.showSpinerDialog();
+                }
+
             }
         });
 
 
-        Sales_spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick() {
+        Sales_spinnerDialog_carmanufact.bindOnSpinerListener(new OnSpinerItemClick()
+        {
             @Override
             public void onClick(String item, int position)
             {
@@ -332,6 +343,29 @@ public class Sales_QRFragment extends Fragment {
                 // selectedItems.setText(item + " Position: " + position);
             }
         });
+
+        SalesQR_carnumber_SP.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                SalesQR_next_Btn.setVisibility(View.GONE);
+                SalesQR_addcar_Btn.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+            Sales_AddCarInfo_carbrand_LL.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event)
+                {
+
+
+                    return false;
+                }
+            });
+
+
+
 
         Sales_AddCarInfo_carmanufact_LL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -397,16 +431,11 @@ public class Sales_QRFragment extends Fragment {
                 {
                     return;
                 }
+
                 mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(SalesQR_userid_txt.getText().toString().equals(""))
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
                    // Toast.makeText(getContext(), getResources().getString(R.string.enter_id), Toast.LENGTH_SHORT).show();
                     new AlertDialog.Builder(getContext())
                             .setMessage(getResources().getString(R.string.enter_id))
@@ -414,14 +443,9 @@ public class Sales_QRFragment extends Fragment {
                             .setNegativeButton(getResources().getString(R.string.ok), null)
                             .show();
                 }
+
                 else if(pre_added_user_cars.equals("Select Car"))
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
                    // Toast.makeText(getContext(), getResources().getString(R.string.select_your_car), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -430,14 +454,9 @@ public class Sales_QRFragment extends Fragment {
                             .setNegativeButton(getResources().getString(R.string.ok), null)
                             .show();
                 }
+
                 else if(pre_added_user_cars.equals("0"))
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
                   //  Toast.makeText(getContext(), getResources().getString(R.string.select_your_car), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -446,11 +465,9 @@ public class Sales_QRFragment extends Fragment {
                             .setNegativeButton(getResources().getString(R.string.ok), null)
                             .show();
                 }
-                else {
-
+                else
+                {
                     get_car_oil_change_data(car_id);
-
-
                 }
 
 
@@ -472,11 +489,6 @@ public class Sales_QRFragment extends Fragment {
 
                 if(SalesQR_carnumber_SP.getText().toString().equals(""))
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
                  //   Toast.makeText(getContext(), getResources().getString(R.string.car_number), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -487,11 +499,6 @@ public class Sales_QRFragment extends Fragment {
                 }
                 else if(SalesQR_carcurrentodometer_SP.getText().toString().equals(""))
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
                     //Toast.makeText(getContext(), getResources().getString(R.string.please_add_current_odometer), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -500,29 +507,8 @@ public class Sales_QRFragment extends Fragment {
                             .setNegativeButton(getResources().getString(R.string.ok), null)
                             .show();
                 }
-                else if (car_idnumber.equals("null"))
-                {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-               //     Toast.makeText(getContext(), getResources().getString(R.string.select_car), Toast.LENGTH_SHORT).show();
-
-                    new AlertDialog.Builder(getContext())
-                            .setMessage(getResources().getString(R.string.select_car))
-                            .setCancelable(false)
-                            .setNegativeButton(getResources().getString(R.string.ok), null)
-                            .show();
-                }
                 else  if(SalesQR_carnumber_SP.getText().toString().contains(" "))
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
                    // Toast.makeText(getContext(), getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(getContext())
@@ -532,6 +518,25 @@ public class Sales_QRFragment extends Fragment {
                             .show();
 
                 }
+
+                else if(Sales_AddCarInfo_carmanufact_TV.getText().toString().equals(""))
+                {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(getResources().getString(R.string.select_car_brand))
+                            .setCancelable(false)
+                            .setNegativeButton(getResources().getString(R.string.ok), null)
+                            .show();
+                }
+
+                else if(Sales_AddCar_carbrand_seletion_TV.getText().toString().equals(""))
+                {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(getResources().getString(R.string.select_car_model))
+                            .setCancelable(false)
+                            .setNegativeButton(getResources().getString(R.string.ok), null)
+                            .show();
+                }
+
                 else
                 {
                     Add_User_Car(car_idnumber, SalesQR_carnumber_SP.getText().toString(),SalesQR_carcurrentodometer_SP.getText().toString());
@@ -619,8 +624,8 @@ public class Sales_QRFragment extends Fragment {
 
       //  editor.putString(Shared.Sales_loggedIn_user_id,"").apply();
         user_car_id.add("select car");
-        Sales_spinnerDialog=new SpinnerDialog(getActivity(),cars_list,"Select or Search Car Brand",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
-        Sales_spinnerDialog_carmanufact=new SpinnerDialog(getActivity(),manufacturer_list,"Select or Search Car Manufacturer",R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+        Sales_spinnerDialog=new SpinnerDialog(getActivity(),cars_list,getResources().getString(R.string.select_car_model),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
+        Sales_spinnerDialog_carmanufact=new SpinnerDialog(getActivity(),manufacturer_list,getResources().getString(R.string.select_car_brand),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
 
         get_cars_data(token);
 
@@ -730,21 +735,48 @@ public class Sales_QRFragment extends Fragment {
                                             })
                                             .show();
 
+                                    SalesQR_carcurrentodometer_SP.setText("");
+                                    Sales_AddCar_carbrand_seletion_TV.setText("");
+                                    Sales_AddCarInfo_carmanufact_TV.setText("");
+
                                     SalesQR_carnumber_SP.setEnabled(false);
                                     SalesQR_carcurrentodometer_SP.setEnabled(false);
                                     Sales_AddCarInfo_carmanufact_LL.setEnabled(false);
                                     Sales_AddCarInfo_carbrand_LL.setEnabled(false);
                                     SalesQR_CarSelect_SP.setEnabled(false);
+
+
+
+                                    user_cars_list.clear();
+                                    user_cars_list.add(getResources().getString(R.string.select_car));
+
+
                                 }
 
                                 else
                                 {
+
+                                    progressDialog.dismiss();
 
                                     new AlertDialog.Builder(getContext())
                                             .setMessage(getResources().getString(R.string.nocaradded))
                                             .setCancelable(false)
                                             .setNegativeButton(getResources().getString(R.string.ok), null)
                                             .show();
+
+                                    SalesQR_carnumber_SP.setEnabled(true);
+                                    SalesQR_carcurrentodometer_SP.setEnabled(true);
+                                    Sales_AddCarInfo_carmanufact_LL.setEnabled(true);
+                                    Sales_AddCarInfo_carbrand_LL.setEnabled(true);
+                                    SalesQR_CarSelect_SP.setEnabled(true);
+
+                                    SalesQR_carcurrentodometer_SP.setText("");
+                                    Sales_AddCar_carbrand_seletion_TV.setText("");
+                                    Sales_AddCarInfo_carmanufact_TV.setText("");
+                                    SalesQR_carnumber_SP.setText("");
+
+                                    user_cars_list.clear();
+                                    user_cars_list.add(getResources().getString(R.string.select_car));
                                 }
                             }
 
@@ -842,6 +874,10 @@ public class Sales_QRFragment extends Fragment {
 
     public void Add_User_Car(final String car_idnumber, final String carnumberplate,final String milage)
     {
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         //  Toast.makeText(this, refreshedToken, Toast.LENGTH_SHORT).show();
        /* Toast.makeText(getContext(), uid, Toast.LENGTH_SHORT).show();
@@ -867,23 +903,26 @@ public class Sales_QRFragment extends Fragment {
                             jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
                             String response1 = jsonObj.getString("response");
+
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
 
                          //       Toast.makeText(getContext(), getResources().getString(R.string.caraddedsuccessfully), Toast.LENGTH_SHORT).show();
 
                                 new AlertDialog.Builder(getContext())
                                         .setMessage(getResources().getString(R.string.caraddedsuccessfully))
                                         .setCancelable(false)
-                                        .setNegativeButton(getResources().getString(R.string.ok), null)
+                                        .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which)
+                                            {
+                                                uid = SalesQR_userid_txt.getText().toString();
+                                                user_cars_list.clear();
+                                                getCarsData(uid);
+                                            }
+                                        })
                                         .show();
-
-
-                                progressDialog.dismiss();
-
-                                uid = SalesQR_userid_txt.getText().toString();
-                                user_cars_list.clear();
-                                getCarsData(uid);
 
                             }
                             else
@@ -891,20 +930,27 @@ public class Sales_QRFragment extends Fragment {
                                 if(response1.contains("Duplicate"))
                                 {
                                   //  Toast.makeText(getContext(), getResources().getString(R.string.caralreadyexists), Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
 
                                     new AlertDialog.Builder(getContext())
                                         .setMessage(getResources().getString(R.string.caralreadyexists))
                                         .setCancelable(false)
-                                        .setNegativeButton(getResources().getString(R.string.ok), null)
+                                        .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which)
+                                            {
+                                                uid = SalesQR_userid_txt.getText().toString();
+                                                user_cars_list.clear();
+                                                getCarsData(uid);
+                                            }
+                                        })
                                         .show();
-
-                                    uid = SalesQR_userid_txt.getText().toString();
-                                    user_cars_list.clear();
-                                    getCarsData(uid);
                                 }
                                 else
                                 {
                                  //   Toast.makeText(getContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                                    progressDialog.dismiss();
 
                                     new AlertDialog.Builder(getContext())
                                             .setMessage(getResources().getString(R.string.enter_user_id))

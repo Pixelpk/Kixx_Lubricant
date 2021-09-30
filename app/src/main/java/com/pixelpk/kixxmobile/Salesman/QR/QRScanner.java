@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,14 +50,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class QRScanner extends AppCompatActivity {
 
-    private CodeScanner mCodeScanner;
+    CodeScanner mCodeScanner;
 
     EditText QRScanner_carodometer_ET;
 
@@ -108,12 +113,29 @@ public class QRScanner extends AppCompatActivity {
     String prod_milage = "";
     int total_lit = 0;
 
+    String qr_scan ="0";
+
+    CodeScannerView scannerView;
+
+    String date_end;
+
+    String rtl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q_r_scanner);
+        InitializeViews();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
+
+        if(rtl.equals("1"))
+        {
+            QRScanner_backbtn.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[] {Manifest.permission.CAMERA}, 1);
             }
@@ -123,9 +145,6 @@ public class QRScanner extends AppCompatActivity {
             }
         }
 
-
-
-        InitializeViews();
         getProductsData();
 
         QRScanner_back_LL.setOnClickListener(new View.OnClickListener() {
@@ -135,13 +154,20 @@ public class QRScanner extends AppCompatActivity {
             }
         });
 
+        scannerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+              mCodeScanner.startPreview();
+            }
+        });
+
 
 
         QRScanner_finish_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
+            public void onClick(View v)
+            {
                 String current_odometer = QRScanner_carodometer_ET.getText().toString();
                // Toast.makeText(QRScanner.this, current_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
 
@@ -149,6 +175,7 @@ public class QRScanner extends AppCompatActivity {
                 {
                     Toast.makeText(QRScanner.this, getResources().getString(R.string.select_product), Toast.LENGTH_SHORT).show();
                 }
+
                 else if(uid.equals(""))
                 {
                     Toast.makeText(QRScanner.this, getResources().getString(R.string.enter_id), Toast.LENGTH_SHORT).show();
@@ -177,6 +204,19 @@ public class QRScanner extends AppCompatActivity {
                 {
                     Toast.makeText(QRScanner.this, getResources().getString(R.string.current_odometer), Toast.LENGTH_SHORT).show();
                 }
+
+                else if(QRScanner_caroil_SP.getSelectedItem().equals("Select Product") | QRScanner_caroil_SP.getSelectedItem().equals("اختر المنتج"))
+                {
+                    Toast.makeText(QRScanner.this, getResources().getString(R.string.productid), Toast.LENGTH_SHORT).show();
+                }
+
+                else if(QRScanner_carquantity_SP.getSelectedItem().equals("Select Quantity") | QRScanner_carquantity_SP.getSelectedItem().equals("اختر الكمية"))
+                {
+                    Toast.makeText(QRScanner.this, getResources().getString(R.string.select_quantity), Toast.LENGTH_SHORT).show();
+                }
+
+
+
                 else
                 {
                 //    Toast.makeText(QRScanner.this, qrid, Toast.LENGTH_SHORT).show();
@@ -192,26 +232,21 @@ public class QRScanner extends AppCompatActivity {
 
                     int consumed_points = Discounted_Liters(total_lit,qr_discount,discounted_lit);
 
-                    if(consumed_points != -1) {
-                   //     Toast.makeText(QRScanner.this, String.valueOf(total_lit), Toast.LENGTH_SHORT).show();
-
+                    if(consumed_points != -1)
+                    {
                         String next_odometer = String.valueOf(Integer.valueOf(current_odometer) + Integer.valueOf(prod_milage));
                         if (qrid.equals(""))
                         {
-                                   update_user_data(uid,car_id,product_id,shop_id,salesman_id,oil_selected_qty,current_odometer,next_odometer);
+                           update_user_data(uid,car_id,product_id,shop_id,salesman_id,oil_selected_qty,current_odometer,next_odometer);
                         }
 
                         else
-                            {
-                                update_user_data_qr_id(qrid,uid,car_id,product_id,shop_id,salesman_id,oil_selected_qty,current_odometer,next_odometer);
+                        {
+                           update_user_data_qr_id(qrid,uid,car_id,product_id,shop_id,salesman_id,oil_selected_qty,current_odometer,next_odometer);
                         }
                     }
-
                 }
-
             }
-
-
         });
 
 
@@ -432,7 +467,8 @@ public class QRScanner extends AppCompatActivity {
 
         QRScanner_backbtn = findViewById(R.id.QRScanner_backbtn);
 
-
+        scannerView = findViewById(R.id.scanner_view);
+        mCodeScanner = new CodeScanner(this, scannerView);
 
     }
 
@@ -598,7 +634,6 @@ public class QRScanner extends AppCompatActivity {
 
     public void QR_authentication(String user_id,String promo_code)
     {
-           Toast.makeText(getApplicationContext(), user_id, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -606,8 +641,9 @@ public class QRScanner extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.QR_AUTH,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-
+                    public void onResponse(String response)
+                    {
+//                        Log.d("qr_res_tag",response);
 
                   //     Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
 
@@ -748,66 +784,87 @@ public class QRScanner extends AppCompatActivity {
 
 
 
+
     public void QrScannerInitializer()
     {
-        CodeScannerView scannerView = findViewById(R.id.scanner_view);
-        mCodeScanner = new CodeScanner(this, scannerView);
-        mCodeScanner.setDecodeCallback(new DecodeCallback() {
+//        Toast.makeText(getApplicationContext(), "in qr", Toast.LENGTH_SHORT).show();
+
+        mCodeScanner.setDecodeCallback(new DecodeCallback()
+        {
             @Override
             public void onDecoded(@NonNull final Result result) {
                 runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
-                      //  Toast.makeText(QRScanner.this, result.getText(), Toast.LENGTH_SHORT).show();
+                    public void run()
+                    {
+//                        Toast.makeText(QRScanner.this, result.getText(), Toast.LENGTH_SHORT).show();
 
-                        try {
-                            JSONObject jsonObj = new JSONObject(result.getText());
+                        qr_scan = result.getText();
 
+                        if(!result.getText().isEmpty())
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.qr_scanned), Toast.LENGTH_SHORT).show();
 
-                            String QR = jsonObj.getString("QR");
-                            String Discount = jsonObj.getString("Discount");
-
-//                               Toast.makeText(QRScanner.this, QR +"  "+ Discount, Toast.LENGTH_SHORT).show();
-                            QR_authentication(uid,QR);
-
-
-
-                            qr_discount_total = Integer.valueOf(Discount) + redeemed_liters;
-                            qr_discount =  Integer.valueOf(Discount);
-
-          //                  Toast.makeText(QRScanner.this, String.valueOf(qr_discount_total), Toast.LENGTH_SHORT).show();
-            //                Toast.makeText(QRScanner.this, String.valueOf(qr_discount), Toast.LENGTH_SHORT).show();
-
-
-                            if(QRScanner_discountedqty_SP.getText().toString()!="0")
+                            if(!qr_scan.contains("QR"))
                             {
-                                QRScanner_discountedqty_SP.setText(String.valueOf(qr_discount));
+                                Toast.makeText(getApplicationContext(),getResources().getString(R.string.qr_scanned_failed), Toast.LENGTH_SHORT).show();
                             }
 
                             else
                             {
-                                QRScanner_discountedqty_SP.setText(String.valueOf(0));
-                            }
-                            //     QRScanner_caroil_SP.setItems(product_list);
+                                try
+                                {
+                                    JSONObject jsonObj = new JSONObject(result.getText());
+
+                                    Log.d("tag_result_qr",result.getText());
+
+
+
+
+                                    String QR = jsonObj.getString("QR");
+                                    String Discount = jsonObj.getString("Discount");
+                                    date_end = jsonObj.getString("End Date");
+
+//                               Toast.makeText(QRScanner.this, QR +"  "+ Discount, Toast.LENGTH_SHORT).show();
+                                    QR_authentication(uid,QR);
+
+
+
+                                    qr_discount_total = Integer.valueOf(Discount) + redeemed_liters;
+                                    qr_discount =  Integer.valueOf(Discount);
+
+//                            Toast.makeText(QRScanner.this, String.valueOf(qr_discount_total), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(QRScanner.this, String.valueOf(qr_discount), Toast.LENGTH_SHORT).show();
+
+                                    if(QRScanner_discountedqty_SP.getText().toString()!="0")
+                                    {
+                                        QRScanner_discountedqty_SP.setText(String.valueOf(qr_discount));
+                                    }
+
+                                    else
+                                    {
+                                        QRScanner_discountedqty_SP.setText(String.valueOf(0));
+
+                                    }
+                                    //     QRScanner_caroil_SP.setItems(product_list);
 
 
 
 
 
-                        } catch (final JSONException e) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressDialog.dismiss();
+                                } catch (final JSONException e) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progressDialog.dismiss();
                                    /* Toast.makeText(QRScanner.this,
                                             "Json parsing error: " + e.getMessage(),
                                             Toast.LENGTH_LONG).show();*/
+                                        }
+                                    });
                                 }
-                            });
+                            }
                         }
-
-
-
                     }
                 });
             }
@@ -819,8 +876,6 @@ public class QRScanner extends AppCompatActivity {
 
     public void update_user_data_qr_id(String qr_id,String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
-//          Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(getApplicationContext(), qr_discount, Toast.LENGTH_SHORT).show();
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_layout);
@@ -830,8 +885,11 @@ public class QRScanner extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
+                        Log.d("tag_response_qr",response);
 
 //                        Toast.makeText(QRScanner.this, response, Toast.LENGTH_SHORT).show();
+
+
 
 
                         if (response.contains("success"))
@@ -841,12 +899,15 @@ public class QRScanner extends AppCompatActivity {
                             Intent intent = new Intent(QRScanner.this, HomeScreen.class);
                             startActivity(intent);
                         }
+
+
                         else if (response.contains("Expired"))
                         {
                             progressDialog.dismiss();
 
                             Toast.makeText(QRScanner.this, getResources().getString(R.string.qrinvalid), Toast.LENGTH_SHORT).show();
                             mCodeScanner.startPreview();
+                            qrid="";
                         }
                         else if(response.contains("Already Redeemed"))
                         {
@@ -854,6 +915,7 @@ public class QRScanner extends AppCompatActivity {
 
                             Toast.makeText(QRScanner.this, "QR already redeemed", Toast.LENGTH_SHORT).show();
                             mCodeScanner.startPreview();
+                            qrid ="";
                         }
 
                         // Toast.makeText(Signup.this, response, Toast.LENGTH_SHORT).show();
@@ -944,6 +1006,7 @@ public class QRScanner extends AppCompatActivity {
 
     public void update_user_data(String user_id,String car_id,String product_id,String shop_id,String shop_user_id,String quantity,String previous_odometer,String next_odometer)
     {
+//        Toast.makeText(getApplicationContext(), "in no qr", Toast.LENGTH_SHORT).show();
         //  Toast.makeText(this, qr_id + " " + user_id + " " + car_id + " " + product_id + " " + shop_id+ " " + shop_user_id + " " + quantity +" " + previous_odometer + " " + next_odometer, Toast.LENGTH_SHORT).show()
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();

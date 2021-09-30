@@ -247,7 +247,7 @@
                                 android:backgroundTint="#ffffff"
                                 android:drawableStart="@drawable/carselect"
                                 android:drawablePadding="10dp"
-                                android:hint="@string/mileage_reading"
+                                android:hint="@string/current_car_mileage"
                                 android:inputType="number"
                                 android:textColor="#ffffff"
                                 android:textColorHint="#c3c3c3" />

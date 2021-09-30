@@ -171,7 +171,7 @@ public class Sales_PromoFragment extends Fragment {
                                     String promo_id = c.getString("id");
 
                                     PromosList promosList = new PromosList(banner,promo_id);
-                                    promos.add(promosList);
+                                    promos.add(0,promosList);
 
                                     //   Toast.makeText(getContext(), banner , Toast.LENGTH_SHORT).show();
                                 //    Log.d("Error",banner);
@@ -307,7 +307,7 @@ public class Sales_PromoFragment extends Fragment {
                                    // Toast.makeText(getContext(), banner, Toast.LENGTH_SHORT).show();
                                   //  Log.d("link",banner);
                                     PromosList promosList = new PromosList(banner,promo_id);
-                                    promos.add(promosList);
+                                    promos.add(0,promosList);
 
                                     //   Toast.makeText(getContext(), banner , Toast.LENGTH_SHORT).show();
                                     //    Log.d("Error",banner);

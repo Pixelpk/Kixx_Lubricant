@@ -730,6 +730,11 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="zero_error">The number should not start with 0</string>
 
 
+    <string name="current_car_mileage">Current car mileage</string>
+
+
+
+
 
     <string name="mismatchedpasswords">Password does not match</string>
     <string name="entercarmilage">Enter car milage</string>
@@ -1172,6 +1177,17 @@ Can be used in:
 
 
     <string name="enter_car_mileage">Enter Car Mileage</string>
+
+
+
+
+    <string name="qr_scanned">QR Scanned Successful</string>
+
+    <string name="qr_scanned_failed">QR is Invalid, please try again</string>
+
+
+
+
 
 
     <!--Dialogues on home screen-->

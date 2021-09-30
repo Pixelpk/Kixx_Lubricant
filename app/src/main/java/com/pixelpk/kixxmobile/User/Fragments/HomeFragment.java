@@ -2218,11 +2218,11 @@ public class HomeFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+/*                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
                 {
                     return;
                 }
-                mLastClickTime = SystemClock.elapsedRealtime();
+                mLastClickTime = SystemClock.elapsedRealtime();*/
 
                 String val = mileage.getEditableText().toString();
                 //     Toast.makeText(getContext(),  car_id+" "+status+" "+val, Toast.LENGTH_SHORT).show();
@@ -2238,11 +2238,11 @@ public class HomeFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+/*                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
                 {
                     return;
                 }
-                mLastClickTime = SystemClock.elapsedRealtime();
+                mLastClickTime = SystemClock.elapsedRealtime();*/
 
                 updatemileagestatus("1", car_id, shared_daily_mileage_str, "2");
                 deleteDialog.dismiss();

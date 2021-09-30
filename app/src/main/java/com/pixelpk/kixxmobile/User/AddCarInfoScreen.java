@@ -589,8 +589,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
                                     cars_list.add(car_brand);
                                 }*/
                              //   manufacturer_list.add("select manufacturer");
-                                for (int i = 0; i < manufact.length(); i++) {
-
+                                for (int i = 0; i < manufact.length(); i++)
+                                {
                                     JSONObject c = manufact.getJSONObject(i);
 
                                     String car_manufacturer = c.getString("company");

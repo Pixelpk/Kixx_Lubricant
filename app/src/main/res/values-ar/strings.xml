@@ -659,6 +659,15 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="current_odometer">قراءة عداد المسافات الحالي</string>
     <string name="qr_screen">شاشة الاستجابة السريعة (QR)</string>
     <string name="mileage_reading">قراءة الأميال</string>
+
+
+    <string name="current_car_mileage">عدد الأميال المقطوعة على السيارة الحالية</string>
+
+    <string name="qr_scanned">تم مسح QR بنجاح</string>
+
+    <string name="qr_scanned_failed">QR غير صالح ، يرجى المحاولة مرة أخرى</string>
+
+
     <!--    <string name="select_product">Select product </string>-->
     <!--    <string name="select_product_arabic">حدد المنتج</string>-->
     <!--    <string name="select_quantity">Select Quantity</string>-->

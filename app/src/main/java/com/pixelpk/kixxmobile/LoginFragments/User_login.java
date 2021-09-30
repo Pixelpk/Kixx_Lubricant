@@ -1017,12 +1017,6 @@ public class User_login extends Fragment {
         alertDialog.setPositiveButton(R.string.proceed, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
                 Intent intent = new Intent(getContext(), MapsActivity.class);
                 startActivity(intent);
             }

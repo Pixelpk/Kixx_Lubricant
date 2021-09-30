@@ -258,11 +258,11 @@ public class MapsFragment extends Fragment  implements
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+/*                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
                 {
                     return;
                 }
-                mLastClickTime = SystemClock.elapsedRealtime();
+                mLastClickTime = SystemClock.elapsedRealtime();*/
 
                 dialog.dismiss();
                 Intent intent = new Intent();
@@ -276,11 +276,11 @@ public class MapsFragment extends Fragment  implements
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+/*                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
                 {
                     return;
                 }
-                mLastClickTime = SystemClock.elapsedRealtime();
+                mLastClickTime = SystemClock.elapsedRealtime();*/
 
                 Intent intent = new Intent(getActivity(),HomeScreen.class);
                 startActivity(intent);

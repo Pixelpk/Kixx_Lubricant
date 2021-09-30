@@ -55,8 +55,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class OTPScreen extends AppCompatActivity {
-
+public class OTPScreen extends AppCompatActivity
+{
     EditText OTPScreen_codedigit1,OTPScreen_codedigit2,OTPScreen_codedigit3,OTPScreen_codedigit4,OTPScreen_codedigit5;
     String phoneNumber,referred_code,zeroexcluded_phonenumber;
     private String verificationId;
@@ -118,14 +118,18 @@ public class OTPScreen extends AppCompatActivity {
 
                 //   Toast.makeText(OTPScreen.this, verificationId, Toast.LENGTH_SHORT).show();
 
-                if(TextUtils.isEmpty(code)){
+                if(TextUtils.isEmpty(code))
+                {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.entercode), Toast.LENGTH_SHORT).show();
                 }
-                else if(code.length()!=6){
+
+                else if(code.length()!=6)
+                {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrect_data), Toast.LENGTH_SHORT).show();
                 }
+
                 else
-                    {
+                {
                     //  loader.setVisibility(View.VISIBLE);
 
 
@@ -253,18 +257,22 @@ public class OTPScreen extends AppCompatActivity {
 
     private void sendVerificationCode() {
 
-        new CountDownTimer(120000,1000){
+        new CountDownTimer(120000,1000)
+        {
             @Override
-            public void onTick(long l) {
+            public void onTick(long l)
+            {
                 OTPScreen_coundown.setText(""+l/1000);
                 OTPScreen_coundown.setEnabled(false);
             }
 
             @Override
-            public void onFinish() {
+            public void onFinish()
+            {
                 OTPScreen_coundown.setText(getResources().getString(R.string.Resend));
                 OTPScreen_coundown.setEnabled(true);
             }
+
         }.start();
 
 
@@ -273,8 +281,8 @@ public class OTPScreen extends AppCompatActivity {
                 120,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
-                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
+                new PhoneAuthProvider.OnVerificationStateChangedCallbacks()
+                {
                     /*@Override
                     public void onCodeSent(@NonNull String id, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         OTPScreen.this.id = id;
@@ -285,6 +293,7 @@ public class OTPScreen extends AppCompatActivity {
                         id = s;
                         // progress.dismiss();
                     }
+
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential)
                     {
@@ -293,7 +302,8 @@ public class OTPScreen extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                    public void onVerificationFailed(@NonNull FirebaseException e)
+                    {
                         // Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
                         //       Toast.makeText(getApplicationContext(), "You Login Has Been Blocked Due to 3 Wrong Attempts of Receiving OTP, Please Try Again Later After 1 Hour, Thank You!", Toast.LENGTH_SHORT).show();
                         //        Toast.makeText(OTPScreen.this, "Error Message =" + e.getMessage(), Toast.LENGTH_SHORT).show();
