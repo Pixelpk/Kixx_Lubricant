@@ -105,6 +105,7 @@
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/car_list_item.xml" value="0.176" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/cardetails.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/custom_barcode_scanner.xml" value="0.1" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_home_new.xml" value="0.136" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_maps.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
@@ -139,6 +140,7 @@
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/spinner_textview_layout_with_icon.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/spinner_textview_layout_with_icon_white.xml" value="0.15789473684210525" />
         <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/layout/spinner_white_text.xml" value="0.15789473684210525" />
+        <entry key="..\:/kixx edit/KixxMobile/KixxMobile/app/src/main/res/menu/bottom_app_bar.xml" value="0.15789473684210525" />
       </map>
     </option>
   </component>

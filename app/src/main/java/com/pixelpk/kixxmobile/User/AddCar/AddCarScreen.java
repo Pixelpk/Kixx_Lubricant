@@ -19,9 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -117,6 +123,32 @@ public class AddCarScreen extends AppCompatActivity {
                 finish();
             }
         });
+
+
+//        Sales_AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
+//
+//                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
+//                {
+//                    return;
+//                }
+//                mLastClickTime = SystemClock.elapsedRealtime();
+//
+//                if(Sales_AddCarInfo_carmanufact_TV.getText().toString().equals(""))
+//                {
+//                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
+//                }
+//
+//                else
+//                {
+//                    Sales_spinnerDialog.showSpinerDialog();
+//                }
+//
+//            }
+//        });
 
 
     }
@@ -252,9 +284,33 @@ public class AddCarScreen extends AppCompatActivity {
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-            //        Toast.makeText(AddCarScreen.this, error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
 
             @Override

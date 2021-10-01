@@ -19,10 +19,15 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -1011,7 +1016,10 @@ public class EditCarInfo extends AppCompatActivity {
 
     public void Upadate_User_Car(final String user_car_id,final String car_idnumber, final String car_odometer, final String carnumberplate,final String daily_mileage,final String year_of_manufacture,final String engine_type)
     {
-
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
    //       Toast.makeText(this, user_car_id, Toast.LENGTH_SHORT).show();
     //      Toast.makeText(this, car_idnumber, Toast.LENGTH_SHORT).show();
 
@@ -1021,16 +1029,18 @@ public class EditCarInfo extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        progressDialog.dismiss();
 
 //                              Toast.makeText(EditCarInfo.this, response, Toast.LENGTH_SHORT).show();
 
                         if(response.contains("Duplicate"))
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(EditCarInfo.this,  getResources().getString(R.string.caralreadyexists), Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
+                            progressDialog.dismiss();
+
                             if(get_intent_val.equals("1"))
                             {
                                 Intent intent = new Intent(EditCarInfo.this,AddCarScreen.class);
@@ -1055,8 +1065,37 @@ public class EditCarInfo extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-                            Toast.makeText(EditCarInfo.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {

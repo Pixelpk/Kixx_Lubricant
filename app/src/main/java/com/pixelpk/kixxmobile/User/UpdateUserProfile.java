@@ -240,7 +240,7 @@ public class UpdateUserProfile extends AppCompatActivity {
 
                 new AlertDialog.Builder(UpdateUserProfile.this)
                         .setMessage(getResources().getString(R.string.please_select_image_type))
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setPositiveButton(getResources().getString(R.string.Gallery), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id)
                             {
@@ -760,6 +760,7 @@ public class UpdateUserProfile extends AppCompatActivity {
 
         Glide.with(getApplicationContext())
                 .load(URLs.USER_IMAGE_URL + user_profile_image)
+                .placeholder(R.drawable.profilepic)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource)

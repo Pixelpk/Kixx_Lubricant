@@ -1585,6 +1585,8 @@ public class HomeFragment extends Fragment
                                         }
 
                                         result_div = result_sub / diff_date;
+      /*                                  Log.d("tag_response_res_div",String.valueOf(result_div));
+                                        Toast.makeText(getActivity(), String.valueOf(result_div), Toast.LENGTH_SHORT).show();*/
                                         result_div_float = Float.parseFloat(numberFormat.format(result_div));
                                         result_div_str = String.valueOf(result_div_float);
 

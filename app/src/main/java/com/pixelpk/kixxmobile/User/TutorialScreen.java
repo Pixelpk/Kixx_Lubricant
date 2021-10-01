@@ -47,12 +47,6 @@ public class TutorialScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
                 Intent intent = new Intent(TutorialScreen.this, LanguageSelectionScreen.class);
                 startActivity(intent);
                 finish();
@@ -63,12 +57,6 @@ public class TutorialScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
                 Intent intent = new Intent(TutorialScreen.this, LanguageSelectionScreen.class);
                 startActivity(intent);
                 finish();
@@ -79,12 +67,6 @@ public class TutorialScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
                 viewPager.setCurrentItem(getItem(+1), true);
             }
         });

@@ -354,15 +354,6 @@ public class Sales_QRFragment extends Fragment {
             }
         });
 
-            Sales_AddCarInfo_carbrand_LL.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event)
-                {
-
-
-                    return false;
-                }
-            });
 
 
 

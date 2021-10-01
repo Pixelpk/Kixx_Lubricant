@@ -21,10 +21,15 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -325,6 +330,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
         //        Toast.makeText(AddCarInfoScreen.this, manufact_id, Toast.LENGTH_SHORT).show();
                 get_specific_cars(manufact_id);
                 AddCarInfo_carmanufact_TV.setText(item);
+                AddCar_carbrand_seletion_TV.setText("");
+                car_idnumber = "null";
                 // selectedItems.setText(item + " Position: " + position);
             }
         });
@@ -433,14 +440,24 @@ public class AddCarInfoScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
+
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
                 {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
 
-                //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
-                spinnerDialog.showSpinerDialog();
+                if(AddCarInfo_carmanufact_TV.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    spinnerDialog.showSpinerDialog();
+                }
+
             }
         });
 
@@ -661,13 +678,31 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
 
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();\
-                        error.printStackTrace();
+                        //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                    //    Toast.makeText(AddCarInfoScreen.this, error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -817,16 +852,31 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
 
                 },
-                new Response.ErrorListener() {
-
-
-
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //   progressDialog.dismiss();\
-                        error.printStackTrace();
+                        //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                        //Toast.makeText(AddCarInfoScreen.this, error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
@@ -872,6 +922,10 @@ public class AddCarInfoScreen extends AppCompatActivity {
     public void Add_User_Car(final String car_idnumber, String car_odometer, final String carnumberplate, String daily_mileage, String year_of_manufacture, String engine_type)
     {
 
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     /*    Toast.makeText(this, car_odometer, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, daily_mileage, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, year_of_manufacture, Toast.LENGTH_SHORT).show();
@@ -889,12 +943,12 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        progressDialog.dismiss();
 
                       //  Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
 
                         if(response.contains("Duplicate"))
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(AddCarInfoScreen.this,  getResources().getString(R.string.caralreadyexists), Toast.LENGTH_SHORT).show();
                         }
                         else
@@ -903,12 +957,16 @@ public class AddCarInfoScreen extends AppCompatActivity {
                         //    Toast.makeText(AddCarInfoScreen.this, get_intentval, Toast.LENGTH_SHORT).show();
                             if(get_intentval.equals("1"))
                             {
+                                progressDialog.dismiss();
+
                                 Intent intent = new Intent(AddCarInfoScreen.this, OIl_Recommendation.class);
                                 startActivity(intent);
                                 finish();
                             }
                             else
                             {
+                                progressDialog.dismiss();
+
                                 Intent intent = new Intent(AddCarInfoScreen.this,AddCarScreen.class);
                                 startActivity(intent);
                                 finish();
@@ -926,8 +984,37 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //   progressDialog.dismiss();
-//                        Toast.makeText(AddCarInfoScreen.this, error.toString(), Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         {
