@@ -387,8 +387,6 @@ public class Signup extends AppCompatActivity {
                     {
                         phone = countycode + only_phone;
 
-
-
                         zeroexcludedphonenumber = countycode + Signup_userphET_txt.getText().toString().substring(1);
 
                         if(!editTextNumber4.getText().toString().equals("") || !editTextNumber4.getText().toString().equals("") ||
@@ -635,7 +633,8 @@ public class Signup extends AppCompatActivity {
                         {
                             JSONObject jsonObject = new JSONObject(response);
 
-                            String message = jsonObject.getString("status");
+                            String message     = jsonObject.getString("status");
+                            String res_referal = jsonObject.getString("response");
 
                             if(message.equals("success"))
                             {
@@ -656,15 +655,42 @@ public class Signup extends AppCompatActivity {
 
                             else
                             {
-                                progressDialog.dismiss();
+                                if(res_referal.equals("Unknown Referral"))
+                                {
+                                    progressDialog.dismiss();
+                                    new AlertDialog.Builder(Signup.this)
+                                            .setTitle(getResources().getString(R.string.invalid_refferal_code_header))
+                                            .setMessage(getResources().getString(R.string.invalid_refferal_code))
+                                            .setCancelable(false)
+                                            .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which)
+                                                {
+                                                    editTextNumber4.setText("");
+                                                    editTextNumber3.setText("");
+                                                    editTextNumber2.setText("");
+                                                    editTextNumber .setText("");
+                                                    referral_code="";
 
-                                editor.putString(Constants.Signup_cont,phone);
-                                editor.putString(Constants.Signup_password,password);
-                                editor.putString(Constants.Signup_fcmid,fcm_id);
-                                editor.putString(Constants.Signup_referral,referral);
-                                editor.apply();
+                                                    dialog.dismiss();
+                                                }
+                                            })
+                                            .show();
+                                }
 
-                                sendcode(phone,zeroexcludedphonenumber);
+                                else
+                                {
+                                    progressDialog.dismiss();
+
+                                    editor.putString(Constants.Signup_cont,phone);
+                                    editor.putString(Constants.Signup_password,password);
+                                    editor.putString(Constants.Signup_fcmid,fcm_id);
+                                    editor.putString(Constants.Signup_referral,referral);
+                                    editor.apply();
+
+                                    sendcode(phone,zeroexcludedphonenumber);
+                                }
+
                             }
 
 
@@ -712,6 +738,7 @@ public class Signup extends AppCompatActivity {
 
 
                 parameters.put("phone", contact);
+                parameters.put("referral", referral);
 
                 return parameters;
             }

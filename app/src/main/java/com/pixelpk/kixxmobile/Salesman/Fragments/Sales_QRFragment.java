@@ -306,7 +306,7 @@ public class Sales_QRFragment extends Fragment {
 
                 if(Sales_AddCarInfo_carmanufact_TV.getText().toString().equals(""))
                 {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.select_car_brand_error), Toast.LENGTH_SHORT).show();
                 }
 
                 else
@@ -593,8 +593,8 @@ public class Sales_QRFragment extends Fragment {
 
 
     //    cars_list.add(getResources().getString(R.string.select_car_brand));
-        manufacturer_list.add(getResources().getString(R.string.select_car_manufacturer));
-        user_cars_list.add(getResources().getString(R.string.select_car));
+   /*     manufacturer_list.add(getResources().getString(R.string.select_car_manufacturer));
+        user_cars_list.add(getResources().getString(R.string.select_car));*/
 
 
         ArrayAdapter<String> user_cars_list_adapter = new ArrayAdapter<String>(getContext(),

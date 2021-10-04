@@ -500,7 +500,7 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="already_user">Already a User?</string>
     <string name="password">Password (Min 3 characters)</string>
     <string name="warning_character">Minimum 3 characters</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string name="signin">Sign in</string>
     <string name="signup">Sign up</string>
     <string name="are_you_shopkeeper">Are you a shopkeeper?</string>
@@ -726,11 +726,19 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="user_already_exist_header">User Already Exist</string>
 
 
+    <string name="invalid_refferal_code">Referral code is invalid, Please try again with a valid referral code if you have any</string>
+
+
+    <string name="invalid_refferal_code_header">Invalid Referral Code</string>
+
 
     <string name="zero_error">The number should not start with 0</string>
 
 
     <string name="current_car_mileage">Current car mileage</string>
+
+
+    <string name="select_car_brand_error">Select Car Brand First</string>
 
 
 

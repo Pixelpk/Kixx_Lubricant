@@ -55,9 +55,16 @@
 
     <string name="user_already_exist_header">المستخدم موجود بالفعل</string>
 
- <!--   <string name="password">كلمه السر</string>
-    <string name="forgot_password">هل نسيت كلمة المرور</string>
--->    <string name="sign_up">التسجيل</string>
+    <string name="invalid_refferal_code">رمز الإحالة غير صالح ، يرجى المحاولة مرة أخرى باستخدام رمز إحالة صالح إذا كان لديك أي رمز</string>
+
+    <string name="invalid_refferal_code_header">رمز الإحالة غير صالح</string>
+
+    <string name="select_car_brand_error">حدد ماركة السيارة أولاً</string>
+
+
+    <!--   <string name="password">كلمه السر</string>
+       <string name="forgot_password">هل نسيت كلمة المرور</string>
+   -->    <string name="sign_up">التسجيل</string>
     <string name="feedback">الملاحظات والاقتراحات</string>
     <string name="latest_marketing_promotions">أحدث عروض التسويق</string>
   <!--  <string name="select_car">حدد السيارة</string>
@@ -497,7 +504,7 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="already_user">مسجل مسبقاً؟</string>
     <string name="password">كلمة المرور(الحد الأدنى ثلاثة أحرف)</string>
     <string name="warning_character">الحد الأدنى ثلاثة أحرف.</string>
-    <string name="forgot_password">نسيت كلمة المرور</string>
+    <string name="forgot_password">نسيت كلمة المرور؟</string>
     <string name="signin">تسجيل الدخول</string>
     <string name="signup">التسجيل</string>
     <string name="are_you_shopkeeper">هل أنت صاحب متجر؟</string>

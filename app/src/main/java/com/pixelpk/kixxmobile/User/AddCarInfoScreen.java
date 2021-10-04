@@ -450,7 +450,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
                 if(AddCarInfo_carmanufact_TV.getText().toString().equals(""))
                 {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.select_car_brand_error), Toast.LENGTH_SHORT).show();
                 }
 
                 else
@@ -511,7 +511,9 @@ public class AddCarInfoScreen extends AppCompatActivity {
         manufacture_id = new ArrayList<>();
 
     //    cars_list.add(getResources().getString(R.string.select_car_brand));
-        manufacturer_list.add(getResources().getString(R.string.select_car_manufacturer));
+/*
+        manufacturer_list.add(getResources().getString(R.string.select_car_brand));
+*/
 
         sharedPreferences = getSharedPreferences("Shared",MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -537,7 +539,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         token = sharedPreferences.getString(Shared.loggedIn_jwt,"0");
       //  carid_list.add("select car brand");
-        manufacture_id.add("select manufacturer");
+        manufacture_id.add(getResources().getString(R.string.select_search_car_brand));
 
         spinnerDialog=new SpinnerDialog(AddCarInfoScreen.this,cars_list,getResources().getString(R.string.select_search_car_model),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
         spinnerDialog_carmanufact=new SpinnerDialog(AddCarInfoScreen.this,manufacturer_list,getResources().getString(R.string.select_search_car_brand),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
@@ -560,7 +562,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
     public void get_cars_data(final String token)
     {
-        //    Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+//        Log.d("tag_token_car",token);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 //        progressDialog.setMessage("Please Wait! while we are getting Car Data");
@@ -575,7 +578,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                         progressDialog.dismiss();
                   //      Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
                        //     Toast.makeText(AddCarInfoScreen.this, response, Toast.LENGTH_SHORT).show();
-                        //  Log.d("HTTP_AUTHORIZATION",token);
+
                         try {
 
                             JSONObject jsonObj = new JSONObject(response);
@@ -613,7 +616,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                                     String car_manufacturer = c.getString("company");
                                     String car_manufactureid = c.getString("id");
                       //              Toast.makeText(AddCarInfoScreen.this, car_manufacturer, Toast.LENGTH_SHORT).show();
-                                    manufacture_id.add(car_manufactureid);
+//                                    manufacture_id.add(car_manufactureid);
                              //       Toast.makeText(AddCarInfoScreen.this, car_manufactureid, Toast.LENGTH_SHORT).show();
                                     //     Toast.makeText(UpdateUserProfile.this, occupation, Toast.LENGTH_SHORT).show();
                                     manufacturer_list.add(car_manufacturer);

@@ -750,8 +750,8 @@ public class OIl_Recommendation extends AppCompatActivity {
                                     }*/
                                     promosList = new AddCarList(car_name,company,name,model,car_id,odometer,daily_mileage,year_of_manufacture,engine_type,cid);
                                     myListData.add(promosList);
-                                    myListData_str.add(name/*+" "+model*/);
-                                    car_list.add(name/*+" "+model*/);
+                                    myListData_str.add(name+" "+car_name);
+                                    car_list.add(name+" "+car_name);
 
                                 }
 

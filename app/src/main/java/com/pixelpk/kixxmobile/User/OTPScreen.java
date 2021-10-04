@@ -41,6 +41,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.Constants;
 import com.pixelpk.kixxmobile.ForgotPass_ChangePassword;
 import com.pixelpk.kixxmobile.Login;
@@ -90,7 +91,23 @@ public class OTPScreen extends AppCompatActivity
         //  sendVerificationCode(phoneNumber);
         mAuth = FirebaseAuth.getInstance();
 
-        sendVerificationCode();
+
+        new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+        {
+            @Override
+            public void onConnectionSuccess()
+            {
+                sendVerificationCode();
+            }
+
+            @Override
+            public void onConnectionFail(String msg)
+            {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+            }
+        }).execute();
+
 
         // mCountDownTimer.start();
 
@@ -136,7 +153,22 @@ public class OTPScreen extends AppCompatActivity
                     //  if (verificationId == null && savedInstanceState != null) {
                     //        onRestoreInstanceState(savedInstanceState);
 
-                        verify_code(code);
+                    new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+                    {
+                        @Override
+                        public void onConnectionSuccess()
+                        {
+                            verify_code(code);
+                        }
+
+                        @Override
+                        public void onConnectionFail(String msg)
+                        {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        }
+                    }).execute();
+
 
 //                        Toast.makeText(getApplicationContext(), code, Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
@@ -227,7 +259,7 @@ public class OTPScreen extends AppCompatActivity
 
         catch (Exception e)
         {
-            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
             Log.d("tag-exception",e.toString());
         }
     }
@@ -255,7 +287,12 @@ public class OTPScreen extends AppCompatActivity
     };*/
 
 
-    private void sendVerificationCode() {
+    private void sendVerificationCode()
+    {
+       /* progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);*/
 
         new CountDownTimer(120000,1000)
         {
@@ -275,8 +312,8 @@ public class OTPScreen extends AppCompatActivity
 
         }.start();
 
-
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+        PhoneAuthProvider.getInstance().verifyPhoneNumber
+                (
                 number,        // Phone number to verify
                 120,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
@@ -310,37 +347,24 @@ public class OTPScreen extends AppCompatActivity
                         //   Toast.makeText(OTPScreen.this, getResources().getString(R.string.verificationerror), Toast.LENGTH_SHORT).show();
                         if (e instanceof FirebaseAuthInvalidCredentialsException)
                         {
-                            new AlertDialog.Builder(OTPScreen.this)
-                                    .setMessage(getResources().getText(R.string.invalidphone))
-                                    .setCancelable(false)
-                                    .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
-                                    {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which)
-                                        {
-                                            // Button Handling
 
-                                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                                            {
-                                                return;
-                                            }
-                                            mLastClickTime = SystemClock.elapsedRealtime();
+                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.invalidphone), Toast.LENGTH_SHORT).show();
 
-                                            Intent intent = new Intent(getApplicationContext(), Login.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }
-                                    })
-                                    .show();
-
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent);
+                            finish();
                             // Invalid request
                         }
 
                         else if (e instanceof FirebaseTooManyRequestsException)
                         {
-//                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.toomanyattempts), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPScreen.this, getResources().getString(R.string.toomanyattempts), Toast.LENGTH_SHORT).show();
 
-                            new AlertDialog.Builder(OTPScreen.this)
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent);
+                            finish();
+
+                          /*  new AlertDialog.Builder(OTPScreen.this)
                                     .setMessage(getResources().getText(R.string.toomanyattempts))
                                     .setCancelable(false)
                                     .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
@@ -362,7 +386,7 @@ public class OTPScreen extends AppCompatActivity
                                         }
                                     })
                                     .show();
-
+*/
                             // The SMS quota for the project has been exceeded
                         }
                         // Toast.makeText(OTPScreen.this, "", Toast.LENGTH_SHORT).show();

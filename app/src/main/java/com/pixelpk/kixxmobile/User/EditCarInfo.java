@@ -461,7 +461,7 @@ public class EditCarInfo extends AppCompatActivity {
         enginetype_list = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.enginetype)));
 
         //    cars_list.add(getResources().getString(R.string.select_car_brand));
-        manufacturer_list.add(getResources().getString(R.string.select_car_manufacturer));
+//        manufacturer_list.add(getResources().getString(R.string.select_car_brand));
 
         sharedPreferences = getSharedPreferences("Shared", MODE_PRIVATE);
         editor = sharedPreferences.edit();
