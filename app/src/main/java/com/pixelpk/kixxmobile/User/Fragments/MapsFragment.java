@@ -215,7 +215,7 @@ public class MapsFragment extends Fragment  implements
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED)
         {
-            Toast.makeText(getContext(), "Checking Nearest Shops", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(R.string.checking_shops_string), Toast.LENGTH_SHORT).show();
         }
 
 

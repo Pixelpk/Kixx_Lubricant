@@ -72,7 +72,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
     String token,car_idnumber="null";
 
-    String uid,manufact_id="null";
+    String uid,manufact_id="";
     ImageView AddCarInfo_backarrow;
 
     SpinnerDialog spinnerDialog;
@@ -125,7 +125,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.entercarnumber), Toast.LENGTH_SHORT).show();
                 }
 
-                else if(manufact_id.equals("null"))
+                else if(manufact_id.equals(""))
                 {
                     //Toast.makeText(AddCarInfoScreen.this, "Please Check your internet Connection and try again", Toast.LENGTH_SHORT).show();
                     Toast.makeText(AddCarInfoScreen.this, getResources().getString(R.string.select_car_brand), Toast.LENGTH_SHORT).show();
@@ -293,6 +293,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+
                 else
                 {
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
@@ -305,8 +306,6 @@ public class AddCarInfoScreen extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-
-
             }
         });
 
@@ -315,24 +314,12 @@ public class AddCarInfoScreen extends AppCompatActivity {
             @Override
             public void onClick(String item, int position)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
-              //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
-              /*  car_idnumber = String.valueOf(position);
-                Toast.makeText(AddCarInfoScreen.this, String.valueOf(car_idnumber), Toast.LENGTH_SHORT).show();
-              */
+                Log.d("tag_log_pos", String.valueOf(position));
                 manufact_id = manufacture_id.get(position);
 
-        //        Toast.makeText(AddCarInfoScreen.this, manufact_id, Toast.LENGTH_SHORT).show();
                 get_specific_cars(manufact_id);
                 AddCarInfo_carmanufact_TV.setText(item);
-                AddCar_carbrand_seletion_TV.setText("");
                 car_idnumber = "null";
-                // selectedItems.setText(item + " Position: " + position);
             }
         });
 
@@ -510,11 +497,11 @@ public class AddCarInfoScreen extends AppCompatActivity {
         enginetype_list = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.enginetype)));
         manufacture_id = new ArrayList<>();
 
-    //    cars_list.add(getResources().getString(R.string.select_car_brand));
-/*
-        manufacturer_list.add(getResources().getString(R.string.select_car_brand));
-*/
+//        cars_list.add(getResources().getString(R.string.select_car_brand));
+//
+//        manufacturer_list.add(getResources().getString(R.string.select_car_brand));
 
+//        manufacturer_list.add(getResources().getString(R.string.select_car_manufacturer));
         sharedPreferences = getSharedPreferences("Shared",MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -539,8 +526,10 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         token = sharedPreferences.getString(Shared.loggedIn_jwt,"0");
       //  carid_list.add("select car brand");
-        manufacture_id.add(getResources().getString(R.string.select_search_car_brand));
+//        manufacture_id.add(getResources().getString(R.string.select_search_car_brand));
 
+//        manufacture_id.add("select manufacturer");
+//        manufacture_id.add("select manufacturer");
         spinnerDialog=new SpinnerDialog(AddCarInfoScreen.this,cars_list,getResources().getString(R.string.select_search_car_model),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
         spinnerDialog_carmanufact=new SpinnerDialog(AddCarInfoScreen.this,manufacturer_list,getResources().getString(R.string.select_search_car_brand),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
         spinnerDialog_year =new SpinnerDialog(AddCarInfoScreen.this, years_list,getResources().getString(R.string.select_search_car_model_year),R.style.DialogAnimations_SmileWindow,getResources().getString(R.string.cancel));// With 	Animation
@@ -616,7 +605,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                                     String car_manufacturer = c.getString("company");
                                     String car_manufactureid = c.getString("id");
                       //              Toast.makeText(AddCarInfoScreen.this, car_manufacturer, Toast.LENGTH_SHORT).show();
-//                                    manufacture_id.add(car_manufactureid);
+                                    manufacture_id.add(car_manufactureid);
                              //       Toast.makeText(AddCarInfoScreen.this, car_manufactureid, Toast.LENGTH_SHORT).show();
                                     //     Toast.makeText(UpdateUserProfile.this, occupation, Toast.LENGTH_SHORT).show();
                                     manufacturer_list.add(car_manufacturer);

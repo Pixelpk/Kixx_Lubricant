@@ -89,42 +89,28 @@ public class Sales_SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.
         holder.Settings_optionsIV.setImageResource(myListData.getImageid());
         holder.Settings_optionTV.setText(myListData.getDescription());
 
-        holder.Settings_layout.setOnClickListener(new View.OnClickListener() {
+        holder.Settings_layout.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
                 if (position == 0)
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
                     Intent intent = new Intent(context, Sales_UpdateProfile.class);
                     context.startActivity(intent);
                     //  Toast.makeText(context, "Module Under Development", Toast.LENGTH_SHORT).show();
                 }
                 else if (position == 1)
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
-
                     Intent intent = new Intent(context, LanguageSelectionScreen.class);
                     context.startActivity(intent);
                     editor.putString(Shared.KIXX_APP_LANGUAGE_ISSET,"0").apply();
                     //dule Under Development", Toast.LENGTH_SHORT).show();
                 }
+
                 else if (position == 2)
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
+
 
                     Intent intent = new Intent(context, aboutus_pdf.class);
                     context.startActivity(intent);
@@ -133,11 +119,7 @@ public class Sales_SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.
                     context.startActivity(intent);
                 }*/ else if (position == 3)
                 {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                    {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
+
 
                     new AlertDialog.Builder(context)
                             .setMessage(context.getResources().getString(R.string.are_you_sure_to_logout))

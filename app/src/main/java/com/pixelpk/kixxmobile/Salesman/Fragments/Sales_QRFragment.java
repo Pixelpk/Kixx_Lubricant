@@ -298,11 +298,6 @@ public class Sales_QRFragment extends Fragment {
             {
                 //     ((TextView) findViewById(R.id.spinner_dropdown_tv_icon)).setTextColor(getResources().getColor(R.color.white));
 
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(Sales_AddCarInfo_carmanufact_TV.getText().toString().equals(""))
                 {
@@ -323,11 +318,7 @@ public class Sales_QRFragment extends Fragment {
             @Override
             public void onClick(String item, int position)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
+
 
                 //  Toast.makeText(AddCarInfoScreen.this, item, Toast.LENGTH_SHORT).show();
               /*  car_idnumber = String.valueOf(position);
@@ -337,7 +328,7 @@ public class Sales_QRFragment extends Fragment {
                 SalesQR_addcar_Btn.setVisibility(View.VISIBLE);
                 manufact_id = manufacture_id.get(position);
 
-                //        Toast.makeText(AddCarInfoScreen.this, manufact_id, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), manufact_id, Toast.LENGTH_SHORT).show();
                 get_specific_cars(manufact_id);
                 Sales_AddCarInfo_carmanufact_TV.setText(item);
                 // selectedItems.setText(item + " Position: " + position);
@@ -570,7 +561,7 @@ public class Sales_QRFragment extends Fragment {
 
         SalesQR_SelectCarManufacturer_SP = view.findViewById(R.id.SalesQR_SelectCarManufacturer_SP);*/
 
-        manufacture_id.add("select manufacturer");
+//        manufacture_id.add("select manufacturer");
         Sales_AddCarInfo_carmanufact_LL = view.findViewById(R.id.Sales_AddCarInfo_carmanufact_LL);
         Sales_AddCarInfo_carbrand_LL = view.findViewById(R.id.Sales_AddCarInfo_carbrand_LL);
         SalesQR_next_Btn = view.findViewById(R.id.SalesQR_next_Btn);

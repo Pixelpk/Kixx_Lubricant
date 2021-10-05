@@ -167,14 +167,14 @@ public class ForgotPassword extends AppCompatActivity {
 
                     check_field = if_field_Empty();
 
-                    if (check_field == 3)
-                    {
-                        get_user_car_activity();
-                    }
-
-                    else if(s.equals("0"))
+                    if(s.equals("0"))
                     {
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
+                    }
+
+                    else if (check_field == 3)
+                    {
+                        get_user_car_activity();
                     }
                 }
             }

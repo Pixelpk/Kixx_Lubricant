@@ -86,7 +86,8 @@ public class PromoDetailsScreen extends AppCompatActivity {
         {
             PromoDetailsScreen_title.setGravity(Gravity.END);
             PromoDetailsScreen_description.setGravity(Gravity.END);
-            PromoDetailsScreen_backarrow.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
+            PromoDetailsScreen_backarrow.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24);
+            PromoDetailsScreen_backarrow.setRotation(180);
         }
 
         promo_id = intent.getStringExtra("promo_id");

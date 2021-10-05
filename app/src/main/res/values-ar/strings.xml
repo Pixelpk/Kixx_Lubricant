@@ -561,6 +561,10 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="please_add_your_car">الرجاء إضافة سيارتك</string>
     <string name="car_current_mileage">المسافة المقطوعة بالميل الحالي للسيارة.</string>
     <string name="select_car_manufacturer">اختر الشركة المصنعة للسيارة</string>
+
+    <string name="checking_shops_string">التحقق من أقرب المحلات التجارية</string>
+
+
     <string name="select_car_brand">اختر ماركة السيارة</string>
     <string name="add">إضافة</string>
     <string name="product_portfolio">شاشة محفظة المنتج:</string>

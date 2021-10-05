@@ -638,19 +638,17 @@ public class Signup extends AppCompatActivity {
 
                             if(message.equals("success"))
                             {
+
                                 progressDialog.dismiss();
-                                new AlertDialog.Builder(Signup.this)
-                                        .setTitle(getResources().getString(R.string.user_already_exist_header))
-                                        .setMessage(getResources().getString(R.string.useralreadyregistered))
-                                        .setCancelable(false)
-                                        .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which)
-                                            {
-                                                finish();
-                                            }
-                                        })
-                                        .show();
+
+                                editor.putString(Constants.Signup_cont,phone);
+                                editor.putString(Constants.Signup_password,password);
+                                editor.putString(Constants.Signup_fcmid,fcm_id);
+                                editor.putString(Constants.Signup_referral,referral);
+                                editor.apply();
+
+                                sendcode(phone,zeroexcludedphonenumber);
+                                progressDialog.dismiss();
                             }
 
                             else
@@ -681,14 +679,18 @@ public class Signup extends AppCompatActivity {
                                 else
                                 {
                                     progressDialog.dismiss();
-
-                                    editor.putString(Constants.Signup_cont,phone);
-                                    editor.putString(Constants.Signup_password,password);
-                                    editor.putString(Constants.Signup_fcmid,fcm_id);
-                                    editor.putString(Constants.Signup_referral,referral);
-                                    editor.apply();
-
-                                    sendcode(phone,zeroexcludedphonenumber);
+                                    new AlertDialog.Builder(Signup.this)
+                                            .setTitle(getResources().getString(R.string.user_already_exist_header))
+                                            .setMessage(getResources().getString(R.string.useralreadyregistered))
+                                            .setCancelable(false)
+                                            .setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which)
+                                                {
+                                                    finish();
+                                                }
+                                            })
+                                            .show();
                                 }
 
                             }

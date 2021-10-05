@@ -66,6 +66,7 @@
                         android:inputType="textPersonName"
                         android:textAlignment="center"
                         android:textColor="#ffffff"
+                        android:maxLength="15"
                         android:textColorHint="#ffffff"
                         android:textSize="14sp"
                         android:visibility="visible" />
@@ -284,6 +285,7 @@
                             android:inputType="number"
                             android:linksClickable="true"
                             android:textColor="#ffffff"
+                            android:maxLength="15"
                             android:textColorHighlight="#E3580B"
                             android:textColorHint="#ffffff"
                             android:textSize="14sp" />

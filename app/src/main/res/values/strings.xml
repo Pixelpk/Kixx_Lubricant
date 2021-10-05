@@ -562,6 +562,10 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
     <string name="please_add_your_car">Add your car</string>
     <string name="car_current_mileage">Car current mileage</string>
     <string name="select_car_manufacturer">Select Car Manufacturer</string>
+
+    <string name="checking_shops_string">Checking Nearest Shops</string>
+
+
     <string name="select_car_brand">Select Car Brand</string>
     <string name="add">Add</string>
     <string name="product_portfolio">Product Portfolio Screen</string>

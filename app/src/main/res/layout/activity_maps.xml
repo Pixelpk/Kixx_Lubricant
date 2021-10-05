@@ -94,7 +94,7 @@
 
                     <EditText
                         android:id="@+id/signup_countrycode_ET_seller"
-                        android:layout_width="50dp"
+                        android:layout_width="65dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:backgroundTint="@color/black"
@@ -104,8 +104,7 @@
                         android:inputType="textPersonName"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        android:textSize="14sp"
+                        android:textColorHint="@color/gray_color"
                         android:visibility="visible" />
 
 
@@ -114,6 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/Mobile_number"
+                        android:maxLength="15"
                         android:inputType="number" />
 
                 </LinearLayout>
