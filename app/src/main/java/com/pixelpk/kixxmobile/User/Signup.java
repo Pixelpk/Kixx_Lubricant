@@ -20,6 +20,7 @@ import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -46,6 +47,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.pixelpk.kixxmobile.Constants;
 import com.pixelpk.kixxmobile.Login;
@@ -67,7 +69,10 @@ public class Signup extends AppCompatActivity {
 
     TextView Signup_signinTV;
     Button Signup_userSignupBtn;
-    EditText Signup_userphET_txt,Signup_userpassET_txt;
+    EditText Signup_userphET_txt;
+
+    TextInputLayout Signup_userpassET_txt;
+
     int check_field;
     String refreshedToken="";
     ProgressDialog progressDialog;
@@ -234,75 +239,6 @@ public class Signup extends AppCompatActivity {
         });
 
 
-        Signup_userpassET_txt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE, "0");
-
-                if(!rtl.equals("1"))
-                {
-                    //  Toast.makeText(getContext(), "ltr", Toast.LENGTH_SHORT).show();
-                    final int DRAWABLE_LEFT = 0;
-                    final int DRAWABLE_TOP = 1;
-                    final int DRAWABLE_RIGHT = 2;
-                    final int DRAWABLE_BOTTOM = 3;
-
-                    if(event.getAction() == MotionEvent.ACTION_UP) {
-                        if(event.getRawX() >= (Signup_userpassET_txt.getRight() - Signup_userpassET_txt.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                            // your action here
-                            if(visibility.equals("0"))
-                            {
-                                Signup_userpassET_txt.setTransformationMethod(null);
-                                visibility = "1";
-                            }
-                            else
-                            {
-                                Signup_userpassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                                visibility = "0";
-
-                            }
-
-
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-                else
-                {
-
-                    final int DRAWABLE_LEFT = 0;
-                    final int DRAWABLE_TOP = 1;
-                    final int DRAWABLE_RIGHT = 2;
-                    final int DRAWABLE_BOTTOM = 3;
-
-                    if(event.getAction() == MotionEvent.ACTION_UP) {
-                        if(event.getRawX() <= (Signup_userpassET_txt.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()))  {    // your action here
-                            if(visibility.equals("0"))
-                            {
-                                Signup_userpassET_txt.setTransformationMethod(null);
-                                visibility = "1";
-                            }
-                            else
-                            {
-                                Signup_userpassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                                visibility = "0";
-
-                            }
-
-
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-
-
-            }
-        });
-
-
         Signup_termsnconditions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -380,7 +316,7 @@ public class Signup extends AppCompatActivity {
 
                     if(s.equals("0"))
                     {
-                        Toast.makeText(getApplicationContext(), "The number should not start with 0", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.zero_error), Toast.LENGTH_SHORT).show();
                     }
 
                     else
@@ -410,7 +346,7 @@ public class Signup extends AppCompatActivity {
 
                                 if(termsandcondition_set == true) {
                                     usercontact = Signup_userphET_txt.getText().toString();
-                                    userpassword = Signup_userpassET_txt.getText().toString();
+                                    userpassword = Signup_userpassET_txt.getEditText().getText().toString();
 
 
 
@@ -436,7 +372,7 @@ public class Signup extends AppCompatActivity {
                             if(termsandcondition_set == true)
                             {
                                 usercontact = Signup_userphET_txt.getText().toString();
-                                userpassword = Signup_userpassET_txt.getText().toString();
+                                userpassword = Signup_userpassET_txt.getEditText().getText().toString();
 
                                 //    Toast.makeText(Signup.this, referral_code, Toast.LENGTH_SHORT).show();
 
@@ -511,6 +447,7 @@ public class Signup extends AppCompatActivity {
             if(lang.equals("1"))
             {
                 setApplicationlanguage("ar");
+                Signup_userpassET_txt.getEditText().setGravity(Gravity.RIGHT);
                 rtl_switch();
 
 
@@ -534,11 +471,11 @@ public class Signup extends AppCompatActivity {
             Signup_userphET_txt.setError(getResources().getString(R.string.fill_fields));
             return 1;
 
-        } else if (Signup_userpassET_txt.getText().toString().equals("")) {
-            Signup_userpassET_txt.setError(getResources().getString(R.string.fill_fields));
+        } else if (Signup_userpassET_txt.getEditText().getText().toString().equals("")) {
+            Signup_userpassET_txt.getEditText().setError(getResources().getString(R.string.fill_fields));
             return 2;
         }
-        else if(Signup_userpassET_txt.getText().toString().length()<3)
+        else if(Signup_userpassET_txt.getEditText().getText().toString().length()<3)
         {
 
             Toast.makeText(this,  getResources().getString(R.string.passwordmusthavethreecharacters), Toast.LENGTH_SHORT).show();
@@ -786,7 +723,7 @@ public class Signup extends AppCompatActivity {
         Signup_signinTV.setText(R.string.signin);
         Signup_alreadyauser_tv.setText(R.string.alreadyauser);
         Signup_userphET_txt.setHint(R.string.Mobile_number);
-        Signup_userpassET_txt.setHint(R.string.password);
+        Signup_userpassET_txt.getEditText().setHint(R.string.password);
         Signup_referralcode_tv.setText(R.string.Do_you_have_a_referral_code);
         Signup_termsnconditions.setText(R.string.agreetoterms);
         Signup_termsandconditions_tv.setText(R.string.term_of_use);

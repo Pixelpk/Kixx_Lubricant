@@ -47,6 +47,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pixelpk.kixxmobile.Constants;
@@ -59,6 +60,7 @@ import com.pixelpk.kixxmobile.User.MapsActivity;
 import com.pixelpk.kixxmobile.User.SharedPreferences.Shared;
 import com.pixelpk.kixxmobile.User.Signin;
 import com.pixelpk.kixxmobile.User.Signup;
+import com.sun.mail.imap.Rights;
 import com.ybs.countrypicker.CountryPicker;
 import com.ybs.countrypicker.CountryPickerListener;
 
@@ -78,7 +80,10 @@ public class User_login extends Fragment {
     LinearLayout salesman_layout;
     ScrollView user_layout;
     TextView Signin_requestTV,Signin_forgotpass_TV,UserLogin_salesman_login,UserLogin_user_login;
-    EditText Signin_userphET_txt,Signin_userpassET_txt,UserLogin_referral_ET;
+    EditText Signin_userphET_txt,UserLogin_referral_ET;
+
+    TextInputLayout Signin_userpassET_txt;
+
     Button signin_userSignupBtn,Signin_userSigninBtn;
     String usercontact,userpassword;
     String refreshedToken,referral_code="";
@@ -90,6 +95,8 @@ public class User_login extends Fragment {
     Button signin_userSignunBtn;
     String visibility = "0";
 
+    String rtl;
+
     String phone;
 
     EditText Signin_countrycode_ET;
@@ -98,7 +105,9 @@ public class User_login extends Fragment {
     String countrycode_seller = "+966";
     Fragment selectedFragment = null;
 
-    EditText Signin_salesphET_txt,Signin_salespassET_txt;
+    EditText Signin_salesphET_txt;
+
+    TextInputLayout Signin_salespassET_txt;
 
     Button Signin_salesSigninBtn;
   /*  ProgressDialog progressDialog;
@@ -122,6 +131,8 @@ public class User_login extends Fragment {
         View view  =  inflater.inflate(R.layout.fragment_user_login, container, false);
 
         InitializeView(view);
+
+
 
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -148,6 +159,15 @@ public class User_login extends Fragment {
                 });
 
         InitializeViewSalesman(view);
+
+        rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
+
+        if(rtl.equals("1"))
+        {
+            Signin_salespassET_txt.getEditText().setGravity(Gravity.RIGHT);
+            Signin_userpassET_txt.getEditText().setGravity(Gravity.RIGHT);
+        }
+
 
         Signin_requestTV.setOnClickListener(new View.OnClickListener()
         {
@@ -236,148 +256,6 @@ public class User_login extends Fragment {
             }
         });
 
-
-
-        Signin_userpassET_txt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE, "0");
-
-                if(!rtl.equals("1"))
-                {
-                  //  Toast.makeText(getContext(), "ltr", Toast.LENGTH_SHORT).show();
-                    final int DRAWABLE_LEFT = 0;
-                    final int DRAWABLE_TOP = 1;
-                    final int DRAWABLE_RIGHT = 2;
-                    final int DRAWABLE_BOTTOM = 3;
-
-                    if(event.getAction() == MotionEvent.ACTION_UP) {
-                        if(event.getRawX() >= (Signin_userpassET_txt.getRight() - Signin_userpassET_txt.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                            // your action here
-                            if(visibility.equals("0"))
-                            {
-                                Signin_userpassET_txt.setTransformationMethod(null);
-                                visibility = "1";
-                            }
-                            else
-                            {
-                                Signin_userpassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                                visibility = "0";
-
-                            }
-
-
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-                else
-                {
-
-                    final int DRAWABLE_LEFT = 0;
-                    final int DRAWABLE_TOP = 1;
-                    final int DRAWABLE_RIGHT = 2;
-                    final int DRAWABLE_BOTTOM = 3;
-
-                    if(event.getAction() == MotionEvent.ACTION_UP) {
-                        if(event.getRawX() <= (Signin_userpassET_txt.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()))  {    // your action here
-                            if(visibility.equals("0"))
-                            {
-                                Signin_userpassET_txt.setTransformationMethod(null);
-                                visibility = "1";
-                            }
-                            else
-                            {
-                                Signin_userpassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                                visibility = "0";
-
-                            }
-
-
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-
-
-            }
-        });
-
-
-
-
-        Signin_salespassET_txt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE, "0");
-
-                if(!rtl.equals("1"))
-                {
-                    //  Toast.makeText(getContext(), "ltr", Toast.LENGTH_SHORT).show();
-                    final int DRAWABLE_LEFT = 0;
-                    final int DRAWABLE_TOP = 1;
-                    final int DRAWABLE_RIGHT = 2;
-                    final int DRAWABLE_BOTTOM = 3;
-
-                    if(event.getAction() == MotionEvent.ACTION_UP) {
-                        if(event.getRawX() >= (Signin_salespassET_txt.getRight() - Signin_salespassET_txt.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                            // your action here
-                            if(visibility.equals("0"))
-                            {
-                                Signin_salespassET_txt.setTransformationMethod(null);
-                                visibility = "1";
-                            }
-                            else
-                            {
-                                Signin_salespassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                                visibility = "0";
-
-                            }
-
-
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-                else
-                {
-
-                    final int DRAWABLE_LEFT = 0;
-                    final int DRAWABLE_TOP = 1;
-                    final int DRAWABLE_RIGHT = 2;
-                    final int DRAWABLE_BOTTOM = 3;
-
-                    if(event.getAction() == MotionEvent.ACTION_UP) {
-                        if(event.getRawX() <= (Signin_salespassET_txt.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()))  {    // your action here
-                            if(visibility.equals("0"))
-                            {
-                                Signin_salespassET_txt.setTransformationMethod(null);
-                                visibility = "1";
-                            }
-                            else
-                            {
-                                Signin_salespassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                                visibility = "0";
-
-                            }
-
-
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-
-
-            }
-        });
-
-
         signin_userSignunBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -435,7 +313,7 @@ public class User_login extends Fragment {
                 mLastClickTime = SystemClock.elapsedRealtime();
 
                 usercontact       =  Signin_userphET_txt.getText().toString();
-                userpassword      =  Signin_userpassET_txt.getText().toString();
+                userpassword      =  Signin_userpassET_txt.getEditText().getText().toString();
                 String only_phone =  Signin_userphET_txt.getText().toString();
                 usercontact  = countrycode + only_phone;
 
@@ -511,8 +389,8 @@ public class User_login extends Fragment {
                 // Send Data to server
                 // Register User
 
-            usercontact = Signin_userphET_txt.getText().toString();
-            userpassword = Signin_userpassET_txt.getText().toString();
+            usercontact  = Signin_userphET_txt.getText().toString();
+            userpassword = Signin_userpassET_txt.getEditText().getText().toString();
 
                 if(!UserLogin_referral_ET.getText().toString().equals(""))
                 {
@@ -573,7 +451,7 @@ public class User_login extends Fragment {
                 {
                     Toast.makeText(getContext(),  getResources().getString(R.string.pleaseenterphonenumber), Toast.LENGTH_SHORT).show();
                 }
-                else if(Signin_salespassET_txt.getText().toString().equals(""))
+                else if(Signin_salespassET_txt.getEditText().getText().toString().equals(""))
                 {
                     Toast.makeText(getContext(),  getResources().getString(R.string.pleaseenterpassword), Toast.LENGTH_SHORT).show();
                 }
@@ -598,7 +476,7 @@ public class User_login extends Fragment {
 
                 else
                 {
-                    SigninSales(phone,Signin_salespassET_txt.getText().toString(),refreshedToken);
+                    SigninSales(phone,Signin_salespassET_txt.getEditText().getText().toString(),refreshedToken);
                 }
 
                 }
@@ -641,6 +519,8 @@ public class User_login extends Fragment {
         /*editor.putString(Shared.KIXX_APP_LANGUAGE,"");
         editor.putString(Shared.KIXX_APP_LANGUAGE_ISSET,"");*/
 
+
+
         UserLogin_salesman_login = view.findViewById(R.id.UserLogin_salesman_login);
 
         user_layout = view.findViewById(R.id.User_login);
@@ -651,6 +531,8 @@ public class User_login extends Fragment {
         Signin_countrycode_ET.setText("+966");
 
         Salesman_countrycode_ET.setText("+966");
+
+
     }
 
 
@@ -670,6 +552,9 @@ public class User_login extends Fragment {
 
         Salesman_countrycode_ET.setFocusable(false);
         Salesman_countrycode_ET.setClickable(true);
+
+
+
 
 
     }
@@ -994,7 +879,7 @@ public class User_login extends Fragment {
         }
         else if (userpassword.equals(""))
         {
-            Signin_userpassET_txt.setError(getResources().getString(R.string.pleaseenterpassword));
+            Signin_userpassET_txt.getEditText().setError(getResources().getString(R.string.pleaseenterpassword));
         }
         else
         {

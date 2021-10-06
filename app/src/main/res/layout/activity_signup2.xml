@@ -162,20 +162,31 @@
                             android:layout_height="match_parent"
                             app:srcCompat="@drawable/lockicon" />
 
-                        <EditText
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/Signup_userpassET_txt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:backgroundTint="#ffffff"
-                            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-                            android:drawablePadding="10dp"
-                            android:hint="@string/password"
-                            android:inputType="textPassword"
-                            android:textAlignment="viewStart"
-                            android:textColor="#ffffff"
-                            android:textColorHint="#ffffff"
-                            android:textSize="14sp" />
+                            app:passwordToggleEnabled="true"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false"
+                            app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+                            app:passwordToggleTint="@color/orange">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="#ffffff"
+                                android:paddingEnd="12dp"
+                                android:inputType="textPassword"
+                                android:textColor="#ffffff"
+                                android:hint="@string/password"
+                                android:textColorHint="#ffffff"
+                                android:textColorLink="#008DCF"
+                                android:textSize="12sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
                     </LinearLayout>
 
                     <!--  <com.google.android.material.textfield.TextInputLayout
@@ -278,6 +289,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layoutDirection="ltr"
                         android:padding="15dp">
 
                         <EditText

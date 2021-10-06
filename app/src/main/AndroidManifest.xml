@@ -60,11 +60,16 @@
         tools:replace="android:allowBackup"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Location_Permission"></activity>
-        <activity android:name=".User.FAQ_Screen" />
-        <activity android:name=".User.EditCarInfo" />
-        <activity android:name=".User.OilRecommendation.Howtochooseoil" />
-        <activity android:name=".User.OilRecommendation.OIl_Recommendation" />
+        <activity android:name=".Location_Permission"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".User.FAQ_Screen"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".User.EditCarInfo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".User.OilRecommendation.Howtochooseoil"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".User.OilRecommendation.OIl_Recommendation"
+            android:screenOrientation="portrait"/>
 
         <!-- <service android:name=".User.GeofenceTrasitionService" /> -->
         <activity

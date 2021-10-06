@@ -114,48 +114,9 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
                       //  Toast.makeText(ForgotPass_ChangePassword.this, getResources().getString(R.string.mismatchedpasswords), Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
-
-
-
-
             }
 
         });
-
-
-        ChangePassword_confpassET_txt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_LEFT = 0;
-                final int DRAWABLE_TOP = 1;
-                final int DRAWABLE_RIGHT = 2;
-                final int DRAWABLE_BOTTOM = 3;
-
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (ChangePassword_confpassET_txt.getRight() - ChangePassword_confpassET_txt.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        // your action here
-                        if(visibility.equals("0"))
-                        {
-                            ChangePassword_confpassET_txt.setTransformationMethod(null);
-                            visibility = "1";
-                        }
-                        else
-                        {
-                            ChangePassword_confpassET_txt.setTransformationMethod(new PasswordTransformationMethod());
-                            visibility = "0";
-
-                        }
-
-
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-
 
     }
 
@@ -275,13 +236,13 @@ public class ForgotPass_ChangePassword extends AppCompatActivity {
     {
         if(pass.equals(""))
         {
-            ChangePassword_newpassET_txt.setError("Please fill this field");
+            ChangePassword_newpassET_txt.setError(getResources().getString(R.string.fill_fields));
             return 1;
 
         }
         else if(confpass.equals(""))
         {
-            ChangePassword_confpassET_txt.setError("Please fill this field");
+            ChangePassword_confpassET_txt.setError(getResources().getString(R.string.fill_fields));
             return 2;
         }
         else

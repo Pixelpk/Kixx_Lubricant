@@ -565,6 +565,9 @@ API CI-4/SL, ACEA E7/B4/A3, MB 228.3, MB 229.1(15W-40), Volvo VDS-3, MAN 3275, M
 
     <string name="checking_shops_string">Checking Nearest Shops</string>
 
+    <string name="profile_updated">Profile Updated Successful</string>
+    <string name="profile_updated_failed">Updating profile failed, kindly try again</string>
+
 
     <string name="select_car_brand">Select Car Brand</string>
     <string name="add">Add</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -55,13 +56,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:padding="10dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/CarsClaim_backarrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:src="@drawable/ic_baseline_arrow_back_ios_24_white" />
 
         <TextView
@@ -90,12 +91,21 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_claims"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ClaimScreen_carsserviced"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="true"
             android:paddingBottom="10dp" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </LinearLayout>
 
 </LinearLayout>

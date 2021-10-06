@@ -22,11 +22,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.AddCar.AddCarScreen;
@@ -53,8 +60,8 @@ import java.util.Map;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class OIl_Recommendation extends AppCompatActivity {
-
+public class OIl_Recommendation extends AppCompatActivity
+{
     LinearLayout OilRecommendation_back,Oil_recommendation_select_car_LL;
     Button Oil_recommendation_btn;
 
@@ -101,6 +108,22 @@ public class OIl_Recommendation extends AppCompatActivity {
         setContentView(R.layout.activity_o_il__recommendation);
 
         initializeViews();
+
+        new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+        {
+            @Override
+            public void onConnectionSuccess()
+            {
+                Oil_recommendation_select_car_LL.setEnabled(true);
+            }
+
+            @Override
+            public void onConnectionFail(String msg)
+            {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                Oil_recommendation_select_car_LL.setEnabled(false);
+            }
+        }).execute();
 
         if(rtl.equals("1"))
         {
@@ -710,7 +733,6 @@ public class OIl_Recommendation extends AppCompatActivity {
                     public void onResponse(String response) {
 
                     //    Toast.makeText(OIl_Recommendation.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
@@ -718,6 +740,7 @@ public class OIl_Recommendation extends AppCompatActivity {
                        //     Toast.makeText(OIl_Recommendation.this, response, Toast.LENGTH_SHORT).show();
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
 
                                 JSONArray manufacturer  = jsonObj.getJSONArray("resp");
 
@@ -764,6 +787,7 @@ public class OIl_Recommendation extends AppCompatActivity {
 
                                 if(car_list.isEmpty())
                                 {
+                                    Oil_recommendation_select_car_LL.setEnabled(false);
                                     Oil_Recommendation_mainframe.setVisibility(View.GONE);
                                     Oil_recommendation_no_Car_added.setVisibility(View.VISIBLE);
                                     Oil_recommendation_yom_not_added.setVisibility(View.GONE);
@@ -826,6 +850,8 @@ public class OIl_Recommendation extends AppCompatActivity {
                             }
                             else
                             {
+                                progressDialog.dismiss();
+                                Oil_recommendation_select_car_LL.setEnabled(false);
                                 Oil_Recommendation_mainframe.setVisibility(View.GONE);
                                 Oil_recommendation_no_Car_added.setVisibility(View.VISIBLE);
                                 Oil_recommendation_yom_not_added.setVisibility(View.GONE);
@@ -852,9 +878,32 @@ public class OIl_Recommendation extends AppCompatActivity {
 
                     }
                 },
-                error -> {
-                    //   progressDialog.dismiss();
-                    //        Toast.makeText(AddCarScreen.this, error.toString(), Toast.LENGTH_LONG).show();
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //   progressDialog.dismiss();
+                        progressDialog.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+//                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof NetworkError) {
+                            //TODO
+//                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        } else if (error instanceof ParseError) {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }) {
 
             @Override

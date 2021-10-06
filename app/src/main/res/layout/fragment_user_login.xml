@@ -80,6 +80,7 @@
                         android:drawablePadding="10dp"
                         android:hint="@string/Mobile_number"
                         android:inputType="number"
+                        android:maxLength="15"
                         android:textColor="#ffffff"
                         android:textColorHint="#9b9b9b"
                         android:textSize="14sp" />
@@ -98,20 +99,33 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/lockicon" />
 
-                    <EditText
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/Signin_salespassET_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:backgroundTint="#ffffff"
-                        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-                        android:drawablePadding="10dp"
-                        android:inputType="textPassword"
-                        android:hint="@string/password"
-                        android:password="true"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#9b9b9b"
-                        android:textSize="14sp" />
+                        android:drawableStart="@drawable/lockicon"
+                        app:passwordToggleEnabled="true"
+                        app:hintEnabled="false"
+                        app:hintAnimationEnabled="false"
+                        app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+                        app:passwordToggleTint="@color/orange"
+                       >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#ffffff"
+                            android:paddingEnd="12dp"
+                            android:inputType="textPassword"
+                            android:textColor="#ffffff"
+                            android:hint="@string/create_new_pass"
+                            android:textColorHint="#ffffff"
+                            android:textColorLink="#008DCF"
+                            android:textSize="12sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
 
@@ -303,20 +317,33 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/lockicon" />
 
-                        <EditText
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/Signin_userpassET_txt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:backgroundTint="#ffffff"
-                            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-                            android:drawablePadding="10dp"
-                            android:hint="@string/password"
-                            android:inputType="textPassword"
-                            android:textAlignment="viewStart"
-                            android:textColor="#ffffff"
-                            android:textColorHint="#ffffff"
-                            android:textSize="14sp" />
+                            app:hintEnabled="false"
+                            app:hintAnimationEnabled="false"
+                            android:drawableStart="@drawable/lockicon"
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+                            app:passwordToggleTint="@color/orange"
+                           >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="#ffffff"
+                                android:paddingEnd="12dp"
+                                android:inputType="textPassword"
+                                android:textColor="#ffffff"
+                                android:hint="@string/create_new_pass"
+                                android:textColorHint="#ffffff"
+                                android:textColorLink="#008DCF"
+                                android:textSize="12sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
                     </LinearLayout>
 
 
