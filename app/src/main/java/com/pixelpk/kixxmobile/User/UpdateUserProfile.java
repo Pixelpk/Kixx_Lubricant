@@ -68,6 +68,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.AddCar.AddCarScreen;
@@ -222,6 +223,7 @@ public class UpdateUserProfile extends AppCompatActivity {
                 {
                     return;
                 }
+
                 mLastClickTime = SystemClock.elapsedRealtime();
 
                 finish();
@@ -435,12 +437,6 @@ public class UpdateUserProfile extends AppCompatActivity {
             @Override
             public void onClick(String item, int position)
             {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000)
-                {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
                 Updateuserprofile_City_TV.setText(item);
                 city_str = item;
                 //           Toast.makeText(UpdateUserProfile.this, city_str, Toast.LENGTH_SHORT).show();
@@ -530,13 +526,42 @@ public class UpdateUserProfile extends AppCompatActivity {
                 editor.putString("shared_convert_img",ConvertImage).apply();
 
 //                writeToFile(ConvertImage,getApplicationContext());
+                new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+                {
+                    @Override
+                    public void onConnectionSuccess()
+                    {
+                        progressDialog.dismiss();
+                        new Update_Profile().execute();
+                    }
 
-                new Update_Profile().execute();
+                    @Override
+                    public void onConnectionFail(String msg)
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                    }
+                }).execute();
             }
 
             else
             {
-                new Update_Profile().execute();
+                new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+                {
+                    @Override
+                    public void onConnectionSuccess()
+                    {
+                        progressDialog.dismiss();
+                        new Update_Profile().execute();
+                    }
+
+                    @Override
+                    public void onConnectionFail(String msg)
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                    }
+                }).execute();
             }
     }
 
@@ -808,20 +833,37 @@ public class UpdateUserProfile extends AppCompatActivity {
                 jsonObj = new JSONObject(string1);
                 String message = jsonObj.getString("status");
 
-                if(message.equals("success"))
+                new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
                 {
-                    progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Profile Updated Successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
+                    @Override
+                    public void onConnectionSuccess()
+                    {
+                        if(message.equals("success"))
+                        {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.profile_updated), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
-                else
-                {
-                    progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Profile Update Failed", Toast.LENGTH_SHORT).show();
-                }
+                        else
+                        {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.profile_updated_failed), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onConnectionFail(String msg)
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                    }
+                }).execute();
+
+
 
             }
 

@@ -1418,12 +1418,17 @@ public class HomeFragment extends Fragment
                         } else if (error instanceof ServerError) {
                             //TODO
                             Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
-                        } else if (error instanceof NetworkError) {
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
                             //TODO
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
                             HomeFragment_nonet_LL.setVisibility(View.VISIBLE);
                             HomeFragment_LL.setVisibility(View.GONE);
-                        } else if (error instanceof ParseError) {
+                        }
+                        else if (error instanceof ParseError)
+                        {
                             //TODO
                             Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
                         }
@@ -1683,12 +1688,40 @@ public class HomeFragment extends Fragment
 
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
                         progressDialog.dismiss();
-                        //    Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            //  Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                            HomeFragment_nonet_LL.setVisibility(View.VISIBLE);
+                            HomeFragment_LL.setVisibility(View.GONE);
+
+                        } else if (error instanceof AuthFailureError) {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        } else if (error instanceof ServerError) {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                            HomeFragment_nonet_LL.setVisibility(View.VISIBLE);
+                            HomeFragment_LL.setVisibility(View.GONE);
+                        }
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getActivity(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 

@@ -143,7 +143,7 @@ public class HomeScreen extends AppCompatActivity
                     ldf.setArguments(args);
 
 //Inflate the fragment
-                    getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, ldf).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ldf).commit();
                 }
             });
 

@@ -3,6 +3,7 @@ package com.pixelpk.kixxmobile.User.AddCar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -31,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.AddCarInfoScreen;
@@ -65,6 +67,10 @@ public class AddCarScreen extends AppCompatActivity {
     SharedPreferences.Editor editor;
     LinearLayout AddCar_backarrow_LL;
     String rtl;
+
+    AddCarAdapter adapter;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ImageView Addcar_backarrow_IV;
 
@@ -124,6 +130,32 @@ public class AddCarScreen extends AppCompatActivity {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                swipeRefreshLayout.setRefreshing(false);
+
+                new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+                {
+                    @Override
+                    public void onConnectionSuccess()
+                    {
+                       getCarsData();
+                    }
+
+                    @Override
+                    public void onConnectionFail(String msg)
+                    {
+                        myListData.clear();
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                    }
+                }).execute();
+
+            }
+        });
+
 
 //        Sales_AddCarInfo_carbrand_LL.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -176,16 +208,14 @@ public class AddCarScreen extends AppCompatActivity {
 
         Addcar_backarrow_IV = findViewById(R.id.Addcar_backarrow_IV);
 
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_user_car_list);
+
         rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
         //Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
 
         if(rtl.equals("1"))
         {
-
             Addcar_backarrow_IV.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
-
-        }
-        else {
         }
 
     }
@@ -249,7 +279,7 @@ public class AddCarScreen extends AppCompatActivity {
                                 }
 
 
-                                AddCarAdapter adapter = new AddCarAdapter(myListData, AddCarScreen.this,token,userid,recyclerView);
+                                adapter = new AddCarAdapter(myListData, AddCarScreen.this,token,userid,recyclerView);
                                 recyclerView.setHasFixedSize(true);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AddCarScreen.this);
                                 recyclerView.setLayoutManager(linearLayoutManager);

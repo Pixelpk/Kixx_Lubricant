@@ -160,6 +160,8 @@ public class Sales_PromoFragment extends Fragment {
 
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
+                                recyclerView.setVisibility(View.VISIBLE);
                                 JSONArray data  = jsonObj.getJSONArray("response");
                                 JSONArray ads  = jsonObj.getJSONArray("ads");
 
@@ -177,18 +179,11 @@ public class Sales_PromoFragment extends Fragment {
                                 //    Log.d("Error",banner);
                                 }
 
-
-
-
-
                                 PromosAdapter adapter = new PromosAdapter(promos,getActivity(),"promos","seller");
                                 recyclerView.setHasFixedSize(true);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                                 recyclerView.setLayoutManager(linearLayoutManager);
-
                                 recyclerView.setAdapter(adapter);
-
-                                progressDialog.dismiss();
 
                             }
                             else
@@ -223,6 +218,7 @@ public class Sales_PromoFragment extends Fragment {
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError)
                         {
+                            recyclerView.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                         }
@@ -243,6 +239,7 @@ public class Sales_PromoFragment extends Fragment {
                         else if (error instanceof NetworkError)
                         {
                             //TODO
+                            recyclerView.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                         }
@@ -294,6 +291,9 @@ public class Sales_PromoFragment extends Fragment {
 
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
+
+                                recyclerView.setVisibility(View.VISIBLE);
                                 JSONArray data  = jsonObj.getJSONArray("response");
                                 JSONArray ads  = jsonObj.getJSONArray("ads");
 
@@ -359,15 +359,15 @@ public class Sales_PromoFragment extends Fragment {
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError)
                         {
+                            recyclerView.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-
                         }
 
                         else if(error instanceof AuthFailureError)
                         {
                             //TODO
                             //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                            //   Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
                         }
 
                         else if (error instanceof ServerError)
@@ -379,6 +379,7 @@ public class Sales_PromoFragment extends Fragment {
                         else if (error instanceof NetworkError)
                         {
                             //TODO
+                            recyclerView.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                         }
@@ -434,6 +435,9 @@ public class Sales_PromoFragment extends Fragment {
 
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
+
+                                recyclerView.setVisibility(View.VISIBLE);
                                 JSONArray data  = jsonObj.getJSONArray("ads");
 
                                 for (int i = 0; i < data.length(); i++) {
@@ -459,7 +463,7 @@ public class Sales_PromoFragment extends Fragment {
 
                                 recyclerView.setAdapter(adapter);
 
-                                progressDialog.dismiss();
+
 
                             }
                             else
@@ -494,8 +498,8 @@ public class Sales_PromoFragment extends Fragment {
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError)
                         {
+                            recyclerView.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
-
                         }
 
                         else if(error instanceof AuthFailureError)
@@ -514,6 +518,7 @@ public class Sales_PromoFragment extends Fragment {
                         else if (error instanceof NetworkError)
                         {
                             //TODO
+                            recyclerView.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                         }

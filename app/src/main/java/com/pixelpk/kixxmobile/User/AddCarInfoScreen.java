@@ -34,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.Constants;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
@@ -105,6 +106,35 @@ public class AddCarInfoScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car_info_screen);
+
+        new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+        {
+            @Override
+            public void onConnectionSuccess()
+            {
+                AddCarInfo_carnumber_ET.setEnabled(true);
+                AddCarInfo_carmanufact_LL.setEnabled(true);
+                AddCarInfo_carbrand_LL.setEnabled(true);
+                AddCarInfo_yearofmanufacturing_LL.setEnabled(true);
+                AddCarInfo_enginetype_LL.setEnabled(true);
+                AddCarInfo_Mileage_ET.setEnabled(true);
+                AddCarInfo_dailycarmileage_ET.setEnabled(true);
+            }
+
+            @Override
+            public void onConnectionFail(String msg)
+            {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                AddCarInfo_carnumber_ET.setEnabled(false);
+                AddCarInfo_carmanufact_LL.setEnabled(false);
+                AddCarInfo_carbrand_LL.setEnabled(false);
+                AddCarInfo_yearofmanufacturing_LL.setEnabled(false);
+                AddCarInfo_enginetype_LL.setEnabled(false);
+                AddCarInfo_Mileage_ET.setEnabled(false);
+                AddCarInfo_dailycarmileage_ET.setEnabled(false);
+            }
+        }).execute();
 
         InitializeViews();
 
@@ -510,15 +540,8 @@ public class AddCarInfoScreen extends AppCompatActivity {
 
         if(rtl.equals("1"))
         {
-
             AddCarInfo_backarrow.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
-
         }
-        else
-        {
-
-        }
-
 
         uid = sharedPreferences.getString(Shared.loggedIn_user_id,"0");
         carid_list = new ArrayList<>();
@@ -678,7 +701,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError)
                         {
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                         } else if (error instanceof AuthFailureError) {
                             //TODO
@@ -689,7 +712,7 @@ public class AddCarInfoScreen extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
                         } else if (error instanceof NetworkError) {
                             //TODO
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
 
                         } else if (error instanceof ParseError) {
                             //TODO

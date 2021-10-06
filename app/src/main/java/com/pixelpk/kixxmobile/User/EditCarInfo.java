@@ -31,6 +31,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.URLs;
 import com.pixelpk.kixxmobile.User.AddCar.AddCarScreen;
@@ -115,6 +116,36 @@ public class EditCarInfo extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_car_info);
+
+        new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+        {
+            @Override
+            public void onConnectionSuccess()
+            {
+                AddCarInfo_carnumber_ET.setEnabled(true);
+                AddCarInfo_carmanufact_LL.setEnabled(true);
+                AddCarInfo_carbrand_LL.setEnabled(true);
+                AddCarInfo_yearofmanufacturing_LL.setEnabled(true);
+                AddCarInfo_enginetype_LL.setEnabled(true);
+                AddCarInfo_Mileage_ET.setEnabled(true);
+                AddCarInfo_dailycarmileage_ET.setEnabled(true);
+            }
+
+            @Override
+            public void onConnectionFail(String msg)
+            {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                AddCarInfo_carnumber_ET.setEnabled(false);
+                AddCarInfo_carmanufact_LL.setEnabled(false);
+                AddCarInfo_carbrand_LL.setEnabled(false);
+                AddCarInfo_yearofmanufacturing_LL.setEnabled(false);
+                AddCarInfo_enginetype_LL.setEnabled(false);
+                AddCarInfo_Mileage_ET.setEnabled(false);
+                AddCarInfo_dailycarmileage_ET.setEnabled(false);
+            }
+        }).execute();
+
 
         InitializeViews();
 

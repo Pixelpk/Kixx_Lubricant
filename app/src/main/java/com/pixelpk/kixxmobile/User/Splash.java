@@ -61,6 +61,9 @@ public class Splash extends AppCompatActivity {
 
     TextView Splash_welmessage;
 
+    AlertDialog deleteDialog;
+    View deleteDialogView;
+
     private static int SPLASH_TIME_OUT = 1000;
     ImageView logo_kixx,pic_kixx,imageView_kixx_bottle_left,imageView_kixx_bottle_right,imageView_kixx_bottle_middle;
     TextView slogan;
@@ -73,14 +76,16 @@ public class Splash extends AppCompatActivity {
 
         Splash_welcome = findViewById(R.id.Splash_welcome);
 
-
-
-
         sharedPreferences = getSharedPreferences("Shared",MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
 
         String value = sharedPreferences.getString("disclosure","0");
+
+        LayoutInflater factory = LayoutInflater.from(this);
+        deleteDialogView       = factory.inflate(R.layout.custom_prominent_disclosure, null);
+        deleteDialog           = new AlertDialog.Builder(this).create();
+        deleteDialog.setCancelable(false);
 
         //    Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
 
@@ -396,9 +401,6 @@ public class Splash extends AppCompatActivity {
 
     void permission_disclouser()
     {
-        LayoutInflater factory = LayoutInflater.from(this);
-        final View deleteDialogView = factory.inflate(R.layout.custom_prominent_disclosure, null);
-        final AlertDialog deleteDialog = new AlertDialog.Builder(this).create();
         deleteDialog.setCanceledOnTouchOutside(false);
         deleteDialog.setView(deleteDialogView);
 
@@ -580,6 +582,13 @@ public class Splash extends AppCompatActivity {
         });
 
         deleteDialog.show();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        deleteDialog.setCancelable(false);
+        deleteDialogView.setSaveEnabled(true);
     }
 
     @Override

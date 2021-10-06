@@ -10,8 +10,8 @@ android {
         applicationId "com.pixelpk.kixxmobile"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 59
-        versionName "59"
+        versionCode 60
+        versionName "60"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndkVersion '21.3.6528147'

@@ -16,9 +16,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -200,15 +206,46 @@ public class PromoDetailsScreen extends AppCompatActivity {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
-                   //     Toast.makeText(PromoDetailsScreen.this, error.toString(), Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(getActivity(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> parameters = new HashMap<String, String>();
-
+            protected Map<String, String> getParams()
+            {
+                   Map<String, String> parameters = new HashMap<String, String>();
                    parameters.put("id",promo_id);
 
                 return parameters;

@@ -75,12 +75,19 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_user_car_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/AddCar_carlist_RV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="true"
                 android:paddingBottom="10dp" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </LinearLayout>
 
     </LinearLayout>

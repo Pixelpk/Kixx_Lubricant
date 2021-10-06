@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -59,6 +60,8 @@ public class ContactUs extends AppCompatActivity {
     //Handle Button Clicks
     private long mLastClickTime = 0;
 
+    LinearLayout back_btn_layout;
+
 
 
 
@@ -97,7 +100,7 @@ public class ContactUs extends AppCompatActivity {
             }
         });
 
-        ContactUs_backbtn.setOnClickListener(new View.OnClickListener() {
+        back_btn_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -124,6 +127,8 @@ public class ContactUs extends AppCompatActivity {
         ContactUs_form_submitbtn = findViewById(R.id.ContactUs_form_submitbtn);
 
         ContactUs_backbtn = findViewById(R.id.ContactUs_backbtn);
+
+        back_btn_layout = findViewById(R.id.ContactUs_backbtn_layout);
 
         progressDialog = new ProgressDialog(this);
 

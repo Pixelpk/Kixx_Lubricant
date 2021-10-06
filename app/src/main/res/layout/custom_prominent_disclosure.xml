@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Use Your Location "
+                android:text="Use Your Location\n(استخدم موقعك)"
                 android:drawableEnd="@drawable/location"
                 android:textColor="@color/orange"
                 android:textAlignment="center"
@@ -78,7 +78,7 @@
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:layout_marginBottom="10dp"
-                android:text='Our app collects location data to enable:'
+                android:text='Our app collects location data to enable\n(يجمع تطبيقنا بيانات الموقع للتمكين):'
                 android:textSize="10sp" />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="start"
                 android:textAlignment="textStart"
-                android:text='Features :\n\n1. View Shops\n\n2. Get Nearest Shops\n\n3. Navigate to the nearest shop using your current location'
+                android:text='Features (سمات):\n\n1. View Shops\n(عرض المحلات التجارية)\n\n2. Get Nearest Shops\n(احصل على أقرب المتاجر)\n\n3. Navigate to the nearest shop using your current location\n(انتقل إلى أقرب متجر باستخدام موقعك الحالي)'
                 android:textSize="10sp" />
 
 
@@ -104,7 +104,7 @@
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:layout_marginBottom="10dp"
-                android:text="even when the app is closed or not in use"
+                android:text="even when the app is closed or not in use\n(حتى عندما يكون التطبيق مغلقًا أو غير مستخدم)"
                 android:textSize="10sp" />
 
         </LinearLayout>

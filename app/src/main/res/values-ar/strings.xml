@@ -656,6 +656,10 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <!--    <string name="subject_arabic">الموضوع</string>-->
     <!--    <string name="message">Message</string>-->
     <!--    <string name="turtorial_5_arabic_desc">الرسالة</string>-->
+
+    <string name="profile_updated">تم تحديث الملف الشخصي بنجاح</string>
+    <string name="profile_updated_failed">فشل تحديث الملف الشخصي ، يرجى المحاولة مرة أخرى</string>
+
     <string name="settings">الإعدادات</string>
     <string name="product_line_up">خط المنتج حتى</string>
     <string name="faq_s">الأسئلة المتكررة</string>
@@ -824,54 +828,55 @@ API CI-4 / SL، ACEA E7 / B4 / A3، MB 228.3، MB 229.1 (15W-40)، Volvo VDS-3،
     <string name="with15000km">مع 15000 كيلومتر من الأميال</string>
     <string name="onlyrecommendation">ما ورد أعلاه مجرد توصية <br/> يُنصح بمناقشته مع محل تغيير الزيت قبل التغيير</string>
     <string name="GMCcarrecommendation">إذا كانت سيارتك من GMC. استخدم المنتجات المعتمدة من Dexos1 للحصول على أداء أفضل. <br/> بالنسبة للسيارات الفاخرة ، استخدم Kixx PAO10W-40</string>
-    <string name="howtochoosebestoilformycar">How to choose best oil for my car?</string>
-    <string name="rightoilselection">Selecting the right engine oil can be challenging for most of us. Multiple types, different numbers, letters, variant grades, and viscosity are available in the market. So, how to select the right one? Will it be ideal for the current weather conditions? How long will it last before a change is recommended? Is it ok to mix them up?
+    <string name="howtochoosebestoilformycar">كيف أختار أفضل زيت لسيارتي؟</string>
+    <string name="rightoilselection">قد يكون اختيار زيت المحرك المناسب أمرًا صعبًا بالنسبة لمعظمنا. تتوفر أنواع متعددة وأرقام وأحرف مختلفة ودرجات متغيرة ولزوجة في السوق. إذن ، كيف تختار الحق؟ هل ستكون مثالية لظروف الطقس الحالية؟ كم من الوقت سيستمر قبل أن يوصى بإجراء تغيير؟ هل من المقبول خلطهم؟
 
-Seems like quite a challenging decision to make!  That’s why we usually leave it to the mechanic to recommend one for us.
+يبدو أنه قرار صعب اتخاذه! لهذا السبب نترك الأمر للميكانيكي للتوصية بواحد لنا.
 
-But not to worry, in this article, we will guide you to pick the right oil for your car.
+لكن لا داعي للقلق ، في هذه المقالة ، سنوجهك لاختيار الزيت المناسب لسيارتك.
 
-What kind of oil you need depends on the engine. All new cars will come with a recommended grade listed in the car manual. The grade will be shown in numbers, separated by the letter ‘w’ – for example, 5w40. “The ‘w’ rating, preceded by a number, gives you an indication of how the oil flows (Viscosoty) at winter temperatures and the last number indicates flow (Viscosity) in summer temperatures.”
+يعتمد نوع الزيت الذي تحتاجه على المحرك. ستأتي جميع السيارات الجديدة بدرجة موصى بها مدرجة في دليل السيارة. سيتم عرض الدرجة بالأرقام ، مفصولة بالحرف "w" - على سبيل المثال ، 5w40. "يمنحك التصنيف" w "، مسبوقًا برقم ، إشارة إلى كيفية تدفق الزيت (اللزوجة) في درجات حرارة الشتاء ويشير الرقم الأخير إلى التدفق (اللزوجة) في درجات حرارة الصيف".
 
-Not all engine oils are the same. It is important to choose an oil that is suited to your car and local climate conditions to enjoy all its benefits. Following are the main types of oil:
+ليست كل زيوت المحركات متشابهة. من المهم اختيار الزيت المناسب لسيارتك والظروف المناخية المحلية لتتمتع بكل فوائده. فيما يلي الأنواع الرئيسية للزيت:
 \n\n
-"Mineral Oil:
+"زيوت معدنية:
 
-Mineral oil, also known as “conventional oil”, is the most basic &amp; affordable type of engine oils, obtained from refined petroleum crude oil.
+الزيت المعدني ، المعروف أيضًا باسم "الزيت التقليدي" ، هو أبسط وأبسط أنواع الزيوت المعدنية. نوع ميسور التكلفة من زيوت المحركات ، يتم الحصول عليه من النفط الخام البترولي المكرر.
 
-Mineral oil is thicker than other oil types which causes a slower flow rate that results in increased fuel consumption.
+الزيت المعدني أكثر سمكًا من أنواع الزيوت الأخرى مما يؤدي إلى معدل تدفق أبطأ مما يؤدي إلى زيادة استهلاك الوقود.
 
-Mineral engine oils are less resistant to high temperatures and oxidation compared to synthetic engine oils, and have higher liquid points, which makes them favorable for winter conditions and extremely low temperatures.
+تعتبر زيوت المحركات المعدنية أقل مقاومة لدرجات الحرارة المرتفعة والأكسدة مقارنة بزيوت المحركات الاصطناعية ، ولها نقاط سائلة أعلى ، مما يجعلها مناسبة لظروف الشتاء ودرجات الحرارة المنخفضة للغاية.
 
-And because of that, mineral oils require frequent oil changes, after every 5,000 kilometers or every four months.
+ولهذا السبب ، تتطلب الزيوت المعدنية تغييرات متكررة في الزيت بعد كل 5000 كيلومتر أو كل أربعة أشهر.
 \n\n"
-"Synthetic Oil:
+"النفط الاصطناعية:
 \n
 
-Synthetic oil is a product of complex chemical transformations that are performed either directly on drilled crude petroleum or using preselected molecules. It undergoes more sophisticated modification.They hold many advantages:
- - Synthetics dont break down or sludge up as fast as ordinary mineral-based oils do. In other words, it has less deposit formation which leads to cleaner engines.
-- Better engine protection that increases its health &amp; life span
-- Stable flow performance &amp; viscosity during extreme temperatures
-- Fuel consumption optimization
-And not to forget, one of its main perks is that it requires less frequent oil changes. Synthetic oil can last between 8,000 to 15,000 kilometers or every six months before its next change.
+الزيت الاصطناعي هو نتاج للتحولات الكيميائية المعقدة التي يتم إجراؤها إما مباشرة على النفط الخام المحفور أو باستخدام جزيئات محددة مسبقًا. يخضع لتعديل أكثر تعقيدًا ، وله العديد من المزايا:
+ - المواد الصناعية لا تتحلل أو تتحلل بأسرع ما تفعله الزيوت المعدنية العادية. بمعنى آخر ، لديها تكوين أقل للرواسب مما يؤدي إلى محركات أنظف.
+- حماية أفضل للمحرك تزيد من صحته وحيويته. عمر
+- أداء تدفق مستقر وأمبير. اللزوجة أثناء درجات الحرارة القصوى
+- تحسين استهلاك الوقود
+ولا ننسى أن إحدى مزاياها الرئيسية هي أنها تتطلب تغييرات زيت أقل تكرارًا. يمكن أن يدوم الزيت الاصطناعي ما بين 8000 إلى 15000 كيلومتر أو كل ستة أشهر قبل التغيير التالي.
 
-However, the main disadvantage of synthetic oils that makes the least favorite to people is that they are slightly more expensive.
+ومع ذلك ، فإن العيب الرئيسي للزيوت الاصطناعية التي تجعلها أقل تفضيلاً للناس هو أنها أغلى قليلاً.
  \n\n"
-"Semi-Synthetic Oil:
+
+زيت شبه صناعي:
 
 \n
-Semi-Synthetic oil is also known as synthetic blends &amp; as hybrid lubricants; is a mixture of mineral and synthetic oils that reserves the best features of both oils.
+يُعرف الزيت شبه الصناعي أيضًا باسم الخلطات الاصطناعية" amp؛ كمواد تشحيم هجينة هو مزيج من الزيوت المعدنية والاصطناعية التي تحتفظ بأفضل ميزات كلا الزيتين.
 
-Semi-synthetic oils can be the best choice for engines that encounter heavy loads caused by intensive usage.
+يمكن أن تكون الزيوت شبه الاصطناعية الخيار الأفضل للمحركات التي تواجه أحمالًا ثقيلة ناتجة عن الاستخدام المكثف.
 
-Semi-synthetic oil is more of a wallet-friendly than fully synthetic oil as they are of a lower cost. While getting some benefits of the fully-synthetic oil, it can be your next best choice."
+يعتبر الزيت شبه الاصطناعي صديقًا للمحفظة أكثر من الزيت الاصطناعي بالكامل نظرًا لأنه أقل تكلفة. بينما تحصل على بعض فوائد الزيت الاصطناعي بالكامل ، يمكن أن يكون خيارك التالي الأفضل ".
 \n\n
-"Did You Ever Wondered??
-Have you ever looked at the engine oil bottle and wondered what all these numbers and letters stand for? There are many different ways in describing motor oils, each refers to a certain standard of classification. ​​​​​Here are the three standards used for describing the oils:
- - The API standard
- - The SAE standard
- - The ACEA standard
-You can get more detailed information of all these standards and lubricants info on below link of our website"
+"هل تساءلت يوما ؟؟
+هل سبق لك أن نظرت إلى زجاجة زيت المحرك وتساءلت عن معنى كل هذه الأرقام والحروف؟ هناك العديد من الطرق المختلفة لوصف زيوت المحركات ، كل منها يشير إلى معيار تصنيف معين. فيما يلي المعايير الثلاثة المستخدمة لوصف الزيوت:
+ - معيار API
+ - معيار SAE
+ - معيار ACEA
+يمكنك الحصول على معلومات أكثر تفصيلاً عن كل هذه المعايير ومعلومات زيوت التشحيم على الرابط أدناه لموقعنا على الإنترنت "
 \n\n
         https://www.kixxoil.com/support/categoryByPerformance</string>
 
@@ -1064,7 +1069,7 @@ You can get more detailed information of all these standards and lubricants info
 • محركات بنزين رباعية الأشواط في الدراجات النارية"</string>
 
     <string name="oilrecommendation_yom_not_added">You have one of these things missing from car information<br/><br/>Year of Manufacture<br/>Engine Type<br/><br/>to get oil recommendation, Please update your car</string>
-    <string name="oilrecommendation_nocar_added">You have no cars added, Please add your car</string>
+    <string name="oilrecommendation_nocar_added">لم تتم إضافة أي سيارات ، الرجاء إضافة سيارتك</string>
     <string name="Mileagetext">Please Enter to Notiified for Future Oil Change Date and Mileage Which Keeps your Car Healthy</string>
     <string name="selectyourcar">اختر سيارتك</string>
     <string name="editcar">تحرير السيارة</string>

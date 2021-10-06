@@ -551,6 +551,13 @@ mAuth.signInAnonymously()
         getdata = getIntent();
         intentData = getdata.getStringExtra("Screen");
 
+        String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
+
+        if(rtl.equals("1"))
+        {
+            OPTScreen_backbtn.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_24_rwhite);
+        }
+
 
 
         //  Toast.makeText(this, intentData, Toast.LENGTH_SHORT).show();

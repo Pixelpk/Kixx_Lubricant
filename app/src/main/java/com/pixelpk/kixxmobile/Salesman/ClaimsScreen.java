@@ -3,6 +3,7 @@ package com.pixelpk.kixxmobile.Salesman;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
@@ -12,12 +13,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.pixelpk.kixxmobile.CheckNetworkConnection;
 import com.pixelpk.kixxmobile.R;
 import com.pixelpk.kixxmobile.Salesman.ModelClasses.ClaimsList;
 import com.pixelpk.kixxmobile.Salesman.adapters.claimAdapter;
@@ -49,6 +56,10 @@ public class ClaimsScreen extends AppCompatActivity {
 
     ImageView CarsClaim_backarrow;
 
+    claimAdapter adapter;
+
+    SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +68,31 @@ public class ClaimsScreen extends AppCompatActivity {
 
         InitializeView();
         get_user_data(shopid);
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                swipeRefreshLayout.setRefreshing(false);
+
+                new CheckNetworkConnection(getApplicationContext(), new CheckNetworkConnection.OnConnectionCallback()
+                {
+                    @Override
+                    public void onConnectionSuccess()
+                    {
+                        get_user_data(shopid);
+                    }
+
+                    @Override
+                    public void onConnectionFail(String msg)
+                    {
+                        ClaimScreen_carsserviced.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                    }
+                }).execute();
+            }
+        });
 
         String rtl = sharedPreferences.getString(Shared.KIXX_APP_LANGUAGE,"0");
 
@@ -76,6 +112,8 @@ public class ClaimsScreen extends AppCompatActivity {
     private void InitializeView() {
 
         ClaimScreen_carsserviced = findViewById(R.id.ClaimScreen_carsserviced);
+
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_claims);
 
         progressDialog = new ProgressDialog(this);
 
@@ -111,7 +149,6 @@ public class ClaimsScreen extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                      //         Toast.makeText(ClaimsScreen.this, response, Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             String message = jsonObj.getString("status");
@@ -120,9 +157,13 @@ public class ClaimsScreen extends AppCompatActivity {
 
                             if(message.contains("success"))
                             {
+                                progressDialog.dismiss();
+                                ClaimScreen_carsserviced.setVisibility(View.VISIBLE);
+
                                 JSONArray claims  = jsonObj.getJSONArray("resp");
 
-                                if(!claims.equals("null")) {
+                                if(!claims.equals("null"))
+                                {
 
                                     for (int i = 0; i < claims.length(); i++) {
                                         JSONObject objads = claims.getJSONObject(i);
@@ -137,11 +178,11 @@ public class ClaimsScreen extends AppCompatActivity {
 
                                     }
 
-                                    claimAdapter adapter = new claimAdapter(myListData,ClaimsScreen.this);
+                                    adapter = new claimAdapter(myListData,ClaimsScreen.this);
                                     ClaimScreen_carsserviced.setHasFixedSize(true);
                                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ClaimsScreen.this);
                                     ClaimScreen_carsserviced.setLayoutManager(linearLayoutManager);
-                                    //    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                    //    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()()));
                                     ClaimScreen_carsserviced.setAdapter(adapter);
 
                                 }
@@ -152,6 +193,8 @@ public class ClaimsScreen extends AppCompatActivity {
                             }
                             else
                             {
+                                progressDialog.dismiss();
+                                ClaimScreen_carsserviced.setVisibility(View.VISIBLE);
                                 Toast.makeText(ClaimsScreen.this, getResources().getString(R.string.no_data_error), Toast.LENGTH_SHORT).show();
                             }
 
@@ -175,10 +218,40 @@ public class ClaimsScreen extends AppCompatActivity {
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
                         //   progressDialog.dismiss();
                         progressDialog.dismiss();
-//                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+                        {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if(error instanceof AuthFailureError)
+                        {
+                            //TODO
+                            //   Toast.makeText(getApplicationContext()(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //   Toast.makeText(getApplicationContext()(), R.string.usernotfound, Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof ServerError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.servermaintainence), Toast.LENGTH_SHORT).show();
+                        }
+
+                        else if (error instanceof NetworkError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.networkerror), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        else if (error instanceof ParseError)
+                        {
+                            //TODO
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.incorrectdata), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
 
